@@ -1,6 +1,4 @@
 <template>
-  <div class="backdrop"></div>
-
   <article class="dropMenu" :class="mode">
     <header class="menuHeader">
       <span class="menuHeader__title"> {{ title }}</span>
@@ -28,24 +26,13 @@ const { title, mode } = defineProps<{
 </script>
 
 <style scoped lang="scss">
-.backdrop,
+
 .dropMenu {
   position: absolute;
   top: 0;
   right: 0;
   min-height: 100vh;
 }
-
-.backdrop {
-  width: 100%;
-  background-color: grey;
-  opacity: 0.26;
-
-  @media (min-width: 768px) {
-    display: none;
-  }
-}
-
 .dropMenu {
   width: 85%;
   background-color: rgb(122, 109, 194);

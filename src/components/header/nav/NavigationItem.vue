@@ -16,12 +16,16 @@
     </BaseButton>
 
     <Teleport :to="sendMenuTo">
-      <BaseMenu
-        v-if="dropMenuActivity || dropMenuDesctopActivity"
-        :title="title"
-        :mode="isDropMenu"
-        @close="closeMenu"
-      ></BaseMenu>
+      <div v-if="dropMenuActivity || dropMenuDesctopActivity" class="backdrop"></div>
+
+      <Transition name="dropMenu" :css="isDropMenuAnimation">
+        <BaseMenu
+          v-if="dropMenuActivity || dropMenuDesctopActivity"
+          :title="title"
+          :mode="isDropMenu"
+          @close="closeMenu"
+        ></BaseMenu>
+      </Transition>
     </Teleport>
   </li>
 </template>
@@ -42,9 +46,14 @@ const { path, title, icon, isLink, isDropMenu } = defineProps<{
 
 const dropMenuActivity = ref(false);
 const dropMenuDesctopActivity = ref(false);
+const dropMenuAnimation = ref(false);
 
 const sendMenuTo = computed(() => {
   return dropMenuDesctopActivity.value ? `.${isDropMenu}` : "body";
+});
+
+const isDropMenuAnimation = computed(() => {
+  return dropMenuAnimation.value ? true : false;
 });
 
 function hoverOption() {
@@ -71,10 +80,12 @@ function closeMenu() {
 function resizeListener() {
   const screenWidth = innerWidth;
   if (screenWidth < 768) {
+    dropMenuAnimation.value = true;
     dropMenuDesctopActivity.value = false;
   }
   if (screenWidth >= 768) {
     dropMenuActivity.value = false;
+    dropMenuAnimation.value = false;
   }
 }
 onMounted(() => window.addEventListener("resize", resizeListener));
@@ -82,6 +93,19 @@ onUnmounted(() => window.removeEventListener("resize", resizeListener));
 </script>
 
 <style scoped lang="scss">
+.dropMenu-enter-from,
+.dropMenu-leave-to {
+  transform: translateX(100%);
+}
+.dropMenu-enter-active,
+.dropMenu-leave-active {
+  transition: all 0.4s ease-out;
+}
+.dropMenu-enter-to,
+.dropMenu-leave-from {
+  transform: translateX(0%);
+}
+
 li:nth-child(4) {
   padding-left: 4.5rem;
   border-left: 1px solid var(--primary-greyDark);
@@ -92,6 +116,20 @@ li:nth-child(5) {
   display: none;
   @media (min-width: 768px) {
     display: block;
+  }
+}
+
+.backdrop {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  min-height: 100vh;
+  background-color: grey;
+  opacity: 0.26;
+
+  @media (min-width: 768px) {
+    display: none;
   }
 }
 
