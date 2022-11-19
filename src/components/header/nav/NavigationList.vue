@@ -1,6 +1,6 @@
 <template>
   <nav>
-    <ul>
+    <ul class="optionsContainer">
       <NavigationItem
         v-for="(option, index) in options.userOptions"
         :key="index"
@@ -20,4 +20,19 @@ import { useUserNavigation } from "../../../stores/navigation/userNavigation";
 const options = useUserNavigation();
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+@mixin flexDefault {
+  display: flex;
+  align-items: center;
+}
+
+nav {
+  grid-area: nav;
+}
+
+.optionsContainer {
+  @include flexDefault;
+  justify-content: space-between;
+  gap: 0 2rem;
+}
+</style>

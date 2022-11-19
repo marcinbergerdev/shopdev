@@ -2,13 +2,10 @@
   <router-view></router-view>
 </template>
 
-
-<script setup lang="ts">
-
-</script>
+<script setup lang="ts"></script>
 
 <style lang="scss">
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap");
 
 *,
 *::before,
@@ -25,7 +22,7 @@
   --primary-grey: #f5f5f5;
   --primary-greyDark: #999;
 
-  --primary-claretDark: #800F2F;
+  --primary-claretDark: #800f2f;
   --primary-claret: #a4133c;
 
   --primary-blue: #2697ff;
@@ -41,8 +38,15 @@
 
 html {
   font-size: 10px;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
-
+ul {
+  li {
+    list-style: none;
+  }
+}
+a{
+  text-decoration: none;
+}
 </style>

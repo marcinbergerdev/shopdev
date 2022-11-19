@@ -1,11 +1,11 @@
 <template>
-  <li>
+  <li class="menuOption">
     <BaseButton v-if="isLink" link :to="path">
-      <Icon class="menuNav__icon" :icon="icon" />
-      <p class="menuNav__title">{{ title }}</p>
+      <Icon class="menuOption__icon" :icon="icon" />
+      <p class="menuOption__title">{{ title }}</p>
     </BaseButton>
 
-    <BaseButton v-else :to="path">
+    <BaseButton v-else :to="path" mode="flat">
       {{ title }}
     </BaseButton>
   </li>
@@ -13,10 +13,10 @@
 
 <script setup lang="ts">
 import BaseButton from "../../../cards/BaseButton.vue";
-import { Icon } from '@iconify/vue';
+import { Icon } from "@iconify/vue";
 import { defineProps } from "vue";
 
-const {path, title, icon, isLink} = defineProps<{
+const { path, title, icon, isLink } = defineProps<{
   path: string;
   title: string;
   icon?: string;
@@ -24,4 +24,31 @@ const {path, title, icon, isLink} = defineProps<{
 }>();
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+li:nth-child(4) {
+  padding-left: 4.5rem;
+  border-left: 1px solid var(--primary-greyDark);
+}
+
+li:nth-child(4),
+li:nth-child(5) {
+  display: none;
+  @media (min-width: 768px) {
+    display: block;
+  }
+}
+
+.menuOption {
+  text-align: center;
+
+  &__icon {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  &__title {
+    font-size: 0.9rem;
+    text-align: center;
+  }
+}
+</style>
