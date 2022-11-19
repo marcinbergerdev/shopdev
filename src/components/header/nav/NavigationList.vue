@@ -8,6 +8,8 @@
         :title="option.title"
         :icon="option.icon"
         :isLink="option.isLink"
+        :isDropMenu="option.isDropMenu"
+
       ></NavigationItem>
     </ul>
   </nav>
@@ -16,8 +18,10 @@
 <script setup lang="ts">
 import NavigationItem from "./NavigationItem.vue";
 import { useUserNavigation } from "../../../stores/navigation/userNavigation";
-
+import { ref } from "vue";
 const options = useUserNavigation();
+
+
 </script>
 
 <style scoped lang="scss">

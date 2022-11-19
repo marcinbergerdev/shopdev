@@ -1,5 +1,5 @@
 <template>
-  <RouterLink :to="isRouterLink" v-if="link">
+  <RouterLink class="link" :to="isRouterLink" v-if="link">
     <slot></slot>
   </RouterLink>
 
@@ -21,9 +21,15 @@ const { to, link, mode } = defineProps<{
 </script>
 
 <style scoped lang="scss">
-a,
+.link,
 button {
   color: var(--primary-greyDark);
+}
+
+.link{
+  &:hover,&.router-link-active {
+    color: var(--primary-claretDark);
+  }
 }
 
 .flat {
