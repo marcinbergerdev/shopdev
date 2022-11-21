@@ -1,7 +1,7 @@
 <template>
   <li
     class="menuOption"
-    :class="isDropMenu"
+    :class="name"
     @click="selectedOption(isDropMenu)"
     @mouseover="hoverOption"
     @mouseleave="leaveOption"
@@ -16,13 +16,16 @@
     </BaseButton>
 
     <Teleport :to="sendMenuTo">
-      <div v-if="dropMenuActivity || dropMenuDesctopActivity" class="backdrop"></div>
+      <div
+        v-if="dropMenuMobileActivity || dropMenuDesctopActivity"
+        class="backdrop"
+      ></div>
 
       <Transition name="dropMenu" :css="isDropMenuAnimation">
         <BaseMenu
-          v-if="dropMenuActivity || dropMenuDesctopActivity"
+          v-if="dropMenuMobileActivity || dropMenuDesctopActivity"
           :title="title"
-          :mode="isDropMenu"
+          :mode="display"
           @close="closeMenu"
         ></BaseMenu>
       </Transition>
@@ -34,46 +37,43 @@
 import BaseButton from "../../../cards/BaseButton.vue";
 import BaseMenu from "../../../cards/BaseMenu.vue";
 import { Icon } from "@iconify/vue";
-import { ref, computed, defineProps, onMounted, onUnmounted } from "vue";
+import { ref, computed, onMounted, onUnmounted } from "vue";
 
-const { path, title, icon, isLink, isDropMenu } = defineProps<{
+const { path, title, icon, name, display ,isLink,isDropMenu } = defineProps<{
   path: string;
   title: string;
   icon?: string;
+  name?: string;
+  display?: string;
   isLink: boolean;
-  isDropMenu?: string;
+  isDropMenu?: boolean;
 }>();
 
-const dropMenuActivity = ref(false);
+const dropMenuMobileActivity = ref(false);
 const dropMenuDesctopActivity = ref(false);
 const dropMenuAnimation = ref(false);
 
-const sendMenuTo = computed(() => {
-  return dropMenuDesctopActivity.value ? `.${isDropMenu}` : "body";
-});
-
-const isDropMenuAnimation = computed(() => {
-  return dropMenuAnimation.value ? true : false;
-});
+const sendMenuTo = computed(() => (dropMenuDesctopActivity.value ? `.${name}` : "body"));
+const isDropMenuAnimation = computed(() => (dropMenuAnimation.value ? true : false));
 
 function hoverOption() {
-  if (!!isDropMenu && innerWidth >= 768) {
+  if (isDropMenu && innerWidth >= 768) {
     dropMenuDesctopActivity.value = true;
   }
 }
-function selectedOption(isDropMenu?: string) {
-  if (!!isDropMenu && !dropMenuActivity.value && innerWidth < 768) {
-    dropMenuActivity.value = true;
+function selectedOption(isDropMenu?: boolean) {
+  if (isDropMenu && !dropMenuMobileActivity.value && innerWidth < 768) {
+    dropMenuMobileActivity.value = true;
   }
 }
 
 function leaveOption() {
-  if (!!isDropMenu && innerWidth >= 768) {
+  if (isDropMenu && innerWidth >= 768) {
     dropMenuDesctopActivity.value = false;
   }
 }
 function closeMenu() {
-  dropMenuActivity.value = false;
+  dropMenuMobileActivity.value = false;
   dropMenuDesctopActivity.value = false;
 }
 
@@ -84,11 +84,23 @@ function resizeListener() {
     dropMenuDesctopActivity.value = false;
   }
   if (screenWidth >= 768) {
-    dropMenuActivity.value = false;
+    dropMenuMobileActivity.value = false;
     dropMenuAnimation.value = false;
   }
 }
-onMounted(() => window.addEventListener("resize", resizeListener));
+function pageRefreshed() {
+  const screenWidth = innerWidth;
+  if (screenWidth < 768) {
+    dropMenuAnimation.value = true;
+    return;
+  }
+  dropMenuAnimation.value = false;
+}
+
+onMounted(() => {
+  pageRefreshed();
+  window.addEventListener("resize", resizeListener);
+});
 onUnmounted(() => window.removeEventListener("resize", resizeListener));
 </script>
 
@@ -106,18 +118,19 @@ onUnmounted(() => window.removeEventListener("resize", resizeListener));
   transform: translateX(0%);
 }
 
-li:nth-child(4) {
+li:nth-last-child(2) {
   padding-left: 4.5rem;
   border-left: 1px solid var(--primary-greyDark);
 }
-
-li:nth-child(4),
-li:nth-child(5) {
+li:nth-last-child(2),
+li:nth-last-child(1) {
   display: none;
   @media (min-width: 768px) {
     display: block;
   }
 }
+
+
 
 .backdrop {
   position: absolute;

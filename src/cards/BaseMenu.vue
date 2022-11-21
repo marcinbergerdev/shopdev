@@ -13,7 +13,6 @@
 
 <script setup lang="ts">
 import { Icon } from "@iconify/vue";
-import { computed, defineProps, defineEmits } from "vue";
 
 const emit = defineEmits<{
   (e: "close"): void;
@@ -22,11 +21,11 @@ const emit = defineEmits<{
 const { title, mode } = defineProps<{
   title: string;
   mode?: string;
+  display?: string;
 }>();
 </script>
 
 <style scoped lang="scss">
-
 .dropMenu {
   position: absolute;
   top: 0;
@@ -44,12 +43,13 @@ const { title, mode } = defineProps<{
     min-height: auto;
   }
 }
-.user {
+
+.left {
   @media (min-width: 768px) {
     left: 0;
   }
 }
-.cart {
+.right {
   @media (min-width: 768px) {
     right: 0;
   }
@@ -69,7 +69,7 @@ const { title, mode } = defineProps<{
   &__closeButton {
     background-color: transparent;
     border: 0;
-    &-icon{
+    &-icon {
       font-size: 2rem;
       color: var(--white);
     }

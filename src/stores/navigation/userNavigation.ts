@@ -9,8 +9,10 @@ export const useUserNavigation = defineStore("navOptions", () => {
          path: "/shop/user",
          title: "Twoje konto",
          icon: "cil:user",
+         name: 'user',
+         display: 'left',
          isLink: true,
-         isDropMenu: 'user'
+         isDropMenu: true
       },
       {
          path: "/shop/favorite",
@@ -22,8 +24,10 @@ export const useUserNavigation = defineStore("navOptions", () => {
          path: "/shop/cart",
          title: "Koszyk",
          icon: "carbon:shopping-cart",
+         name: 'cart',
+         display: 'right',
          isLink: true,
-         isDropMenu: 'cart'
+         isDropMenu: true
       },
       {
          path: "/shop/register",
