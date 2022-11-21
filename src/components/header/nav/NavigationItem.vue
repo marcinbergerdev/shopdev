@@ -19,8 +19,8 @@
       <div
         v-if="dropMenuMobileActivity || dropMenuDesctopActivity"
         class="backdrop"
+        @click="closeMenu"
       ></div>
-
       <Transition name="dropMenu" :css="isDropMenuAnimation">
         <BaseMenu
           v-if="dropMenuMobileActivity || dropMenuDesctopActivity"
@@ -39,7 +39,7 @@ import BaseMenu from "../../../cards/BaseMenu.vue";
 import { Icon } from "@iconify/vue";
 import { ref, computed, onMounted, onUnmounted } from "vue";
 
-const { path, title, icon, name, display ,isLink,isDropMenu } = defineProps<{
+const { path, title, icon, name, display, isLink, isDropMenu } = defineProps<{
   path: string;
   title: string;
   icon?: string;
@@ -129,8 +129,6 @@ li:nth-last-child(1) {
     display: block;
   }
 }
-
-
 
 .backdrop {
   position: absolute;

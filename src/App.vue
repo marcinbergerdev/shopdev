@@ -47,8 +47,7 @@ ul {
   }
 }
 
-a{
+a {
   text-decoration: none;
 }
-
 </style>

@@ -2,17 +2,15 @@ import { defineStore } from "pinia";
 import { ref, computed } from "vue";
 
 export const useUserNavigation = defineStore("navOptions", () => {
-
-
    const options = ref([
       {
          path: "/shop/user",
          title: "Twoje konto",
          icon: "cil:user",
-         name: 'user',
-         display: 'left',
+         name: "user",
+         display: "left",
          isLink: true,
-         isDropMenu: true
+         isDropMenu: true,
       },
       {
          path: "/shop/favorite",
@@ -24,15 +22,15 @@ export const useUserNavigation = defineStore("navOptions", () => {
          path: "/shop/cart",
          title: "Koszyk",
          icon: "carbon:shopping-cart",
-         name: 'cart',
-         display: 'right',
+         name: "cart",
+         display: "right",
          isLink: true,
-         isDropMenu: true
+         isDropMenu: true,
       },
       {
          path: "/shop/register",
          title: "Rejestracja",
-         isLink: false
+         isLink: false,
       },
       {
          path: "/shop/service",
@@ -42,6 +40,5 @@ export const useUserNavigation = defineStore("navOptions", () => {
       },
    ]);
    const userOptions = computed(() => options.value);
-
-   return {userOptions }
+   return { userOptions };
 });

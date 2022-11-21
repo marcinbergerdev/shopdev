@@ -11,7 +11,6 @@
         :display="option.display"
         :isLink="option.isLink"
         :isDropMenu="option.isDropMenu"
-
       ></NavigationItem>
     </ul>
   </nav>
@@ -21,8 +20,6 @@
 import NavigationItem from "./NavigationItem.vue";
 import { useUserNavigation } from "../../../stores/navigation/userNavigation";
 const options = useUserNavigation();
-
-
 </script>
 
 <style scoped lang="scss">

@@ -1,12 +1,12 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 
-import ShopHomePage from './layout/shop/ShopHomePage.vue';
-import AuthLogin from './layout/authentication/AuthRegistration.vue';
+import ShopHomePage from "./layout/shop/ShopHomePage.vue";
+import AuthLogin from "./layout/authentication/AuthRegistration.vue";
 
 const router = createRouter({
    history: createWebHashHistory(),
    routes: [
-      { path: "/", redirect: '/shop' },
+      { path: "/", redirect: "/shop" },
       {
          path: "/shop",
          component: ShopHomePage,
@@ -20,7 +20,5 @@ const router = createRouter({
       },
    ],
 });
-
-
 
 export default router;

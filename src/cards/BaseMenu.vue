@@ -6,7 +6,6 @@
         <Icon class="menuHeader__closeButton-icon" icon="bi:x-lg" />
       </button>
     </header>
-
     <section class="menuContent"></section>
   </article>
 </template>
