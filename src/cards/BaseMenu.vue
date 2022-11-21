@@ -1,16 +1,24 @@
 <template>
-  <article class="dropMenu" :class="mode">
+  <div class="dropMenu" :class="mode">
     <header class="menuHeader">
       <span class="menuHeader__title"> {{ title }}</span>
       <button class="menuHeader__closeButton" @click="emit('close')">
         <Icon class="menuHeader__closeButton-icon" icon="bi:x-lg" />
       </button>
     </header>
-    <section class="menuContent"></section>
-  </article>
+
+    <article class="menuContent">
+      <UserContent v-if="menuName === 'user'"></UserContent>
+      <CartContent v-if="menuName === 'cart'"></CartContent>
+    </article>
+
+  </div>
 </template>
 
 <script setup lang="ts">
+import UserContent from '../components/header/contentMenu/UserContent.vue';
+import CartContent from '../components/header/contentMenu/CartContent.vue';
+
 import { Icon } from "@iconify/vue";
 
 const emit = defineEmits<{
@@ -21,6 +29,7 @@ const { title, mode } = defineProps<{
   title: string;
   mode?: string;
   display?: string;
+  menuName? : string;
 }>();
 </script>
 
@@ -78,6 +87,5 @@ const { title, mode } = defineProps<{
   }
 }
 
-.menuContent {
-}
+
 </style>

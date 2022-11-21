@@ -9,8 +9,8 @@
         :icon="option.icon"
         :name="option.name"
         :display="option.display"
-        :isLink="option.isLink"
-        :isDropMenu="option.isDropMenu"
+        :is-link="option.isLink"
+        :is-dropMenu="option.isDropMenu"
       ></NavigationItem>
     </ul>
   </nav>

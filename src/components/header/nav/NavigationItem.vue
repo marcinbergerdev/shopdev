@@ -1,7 +1,7 @@
 <template>
   <li
     class="menuOption"
-    :class="name"
+    :class="[name, desctopHover]"
     @click="selectedOption(isDropMenu)"
     @mouseover="hoverOption"
     @mouseleave="leaveOption"
@@ -26,6 +26,7 @@
           v-if="dropMenuMobileActivity || dropMenuDesctopActivity"
           :title="title"
           :mode="display"
+          :menu-name="name"
           @close="closeMenu"
         ></BaseMenu>
       </Transition>
@@ -55,6 +56,9 @@ const dropMenuAnimation = ref(false);
 
 const sendMenuTo = computed(() => (dropMenuDesctopActivity.value ? `.${name}` : "body"));
 const isDropMenuAnimation = computed(() => (dropMenuAnimation.value ? true : false));
+const desctopHover = computed(() => {
+  return { desctopHover: isDropMenu };
+});
 
 function hoverOption() {
   if (isDropMenu && innerWidth >= 768) {
@@ -159,6 +163,14 @@ li:nth-last-child(1) {
 
   @media (min-width: 768px) {
     position: relative;
+  }
+}
+
+.desctopHover {
+  @media (min-width: 768px) {
+    &:hover {
+      background-color: red;
+    }
   }
 }
 </style>
