@@ -1,7 +1,8 @@
 <template>
   <li
+    :id="name"
     class="menuOption"
-    :class="[name, desctopHover]"
+    :class="desctopHover"
     @click="selectedOption(isDropMenu)"
     @mouseover="hoverOption"
     @mouseleave="leaveOption"
@@ -10,10 +11,10 @@
       <Icon class="menuOption__icon" :icon="icon" />
       <p class="menuOption__title">{{ title }}</p>
     </BaseButton>
-
     <BaseButton v-else :to="path" mode="flat">
       {{ title }}
     </BaseButton>
+
 
     <Teleport :to="sendMenuTo">
       <div
@@ -21,22 +22,26 @@
         class="backdrop"
         @click="closeMenu"
       ></div>
+
       <Transition name="dropMenu" :css="isDropMenuAnimation">
         <BaseMenu
           v-if="dropMenuMobileActivity || dropMenuDesctopActivity"
-          :title="title"
           :mode="display"
-          :menu-name="name"
-          @close="closeMenu"
-        ></BaseMenu>
+        >
+          <MenuHeader :title="title" @close="closeMenu"></MenuHeader>
+          <MenuContent :menuName="name"></MenuContent>
+        </BaseMenu>
       </Transition>
     </Teleport>
   </li>
 </template>
 
 <script setup lang="ts">
+import MenuHeader from "../contentMenu/MenuHeader.vue";
+import MenuContent from "../contentMenu/MenuContent.vue";
 import BaseButton from "../../../cards/BaseButton.vue";
 import BaseMenu from "../../../cards/BaseMenu.vue";
+
 import { Icon } from "@iconify/vue";
 import { ref, computed, onMounted, onUnmounted } from "vue";
 
@@ -54,7 +59,7 @@ const dropMenuMobileActivity = ref(false);
 const dropMenuDesctopActivity = ref(false);
 const dropMenuAnimation = ref(false);
 
-const sendMenuTo = computed(() => (dropMenuDesctopActivity.value ? `.${name}` : "body"));
+const sendMenuTo = computed(() => (dropMenuDesctopActivity.value ? `#${name}` : "body"));
 const isDropMenuAnimation = computed(() => (dropMenuAnimation.value ? true : false));
 const desctopHover = computed(() => {
   return { desctopHover: isDropMenu };

@@ -1,35 +1,16 @@
 <template>
   <div class="dropMenu" :class="mode">
-    <header class="menuHeader">
-      <span class="menuHeader__title"> {{ title }}</span>
-      <button class="menuHeader__closeButton" @click="emit('close')">
-        <Icon class="menuHeader__closeButton-icon" icon="bi:x-lg" />
-      </button>
-    </header>
-
-    <article class="menuContent">
-      <UserContent v-if="menuName === 'user'"></UserContent>
-      <CartContent v-if="menuName === 'cart'"></CartContent>
-    </article>
-
+    <slot></slot>
   </div>
 </template>
 
 <script setup lang="ts">
-import UserContent from '../components/header/contentMenu/UserContent.vue';
-import CartContent from '../components/header/contentMenu/CartContent.vue';
-
-import { Icon } from "@iconify/vue";
-
 const emit = defineEmits<{
   (e: "close"): void;
 }>();
 
-const { title, mode } = defineProps<{
-  title: string;
+const { mode } = defineProps<{
   mode?: string;
-  display?: string;
-  menuName? : string;
 }>();
 </script>
 
@@ -47,7 +28,7 @@ const { title, mode } = defineProps<{
   @media (min-width: 768px) {
     top: 100%;
     width: auto;
-    min-width: 300%;
+    // min-width: 300%;
     min-height: auto;
   }
 }
@@ -62,30 +43,4 @@ const { title, mode } = defineProps<{
     right: 0;
   }
 }
-
-.menuHeader {
-  display: flex;
-  justify-content: space-between;
-  padding: 1rem;
-  background-color: var(--primary-claretDark);
-
-  &__title {
-    font-size: 1.8rem;
-    color: var(--white);
-  }
-
-  &__closeButton {
-    background-color: transparent;
-    border: 0;
-    &-icon {
-      font-size: 2rem;
-      color: var(--white);
-    }
-    @media (min-width: 768px) {
-      display: none;
-    }
-  }
-}
-
-
 </style>
