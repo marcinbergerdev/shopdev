@@ -45,4 +45,14 @@ button {
     cursor: pointer;
   }
 }
+
+.empty{
+  padding: 2rem 0;
+  background-color: transparent;
+  color: var(--secondary-lightRed);
+  border: 0;
+  border-top: 2px solid var(--secondary-lightRed);
+
+}
+
 </style>

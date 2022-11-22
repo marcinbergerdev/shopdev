@@ -1,5 +1,4 @@
 <template>
-  <section>
     <header>
       <h2>Twoje zamówienie</h2>
       <span>(3)</span>
@@ -32,16 +31,14 @@
       </li>
     </ul>
 
-    <div>
+    <section>
       <div>
         <h3>Do zapłaty:</h3>
         <span>239,40 zł</span>
       </div>
 
       <BaseButton>Przejdz do koszyka</BaseButton>
-    </div>
-
-  </section>
+    </section>
 </template>
 
 <script setup lang="ts">

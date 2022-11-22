@@ -18,8 +18,14 @@ const {} = defineProps<{
 
 <style scoped lang="scss">
 .menuContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   min-height: calc(100vh - 4.3rem);
-  background-color: red;
+
+
+
+  background-color: var(--white);
 
 }
 
