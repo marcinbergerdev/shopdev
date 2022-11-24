@@ -28,7 +28,7 @@ const { mode } = defineProps<{
   @media (min-width: 768px) {
     top: 100%;
     width: auto;
-    // min-width: 300%;
+    min-width: 300%;
     min-height: auto;
   }
 }

@@ -15,7 +15,6 @@
       {{ title }}
     </BaseButton>
 
-
     <Teleport :to="sendMenuTo">
       <div
         v-if="dropMenuMobileActivity || dropMenuDesctopActivity"
@@ -28,8 +27,7 @@
           v-if="dropMenuMobileActivity || dropMenuDesctopActivity"
           :mode="display"
         >
-          <MenuHeader :title="title" @close="closeMenu"></MenuHeader>
-          <MenuContent :menuName="name"></MenuContent>
+          <MenuContent :title="title" :menuName="name" @close="closeMenu"></MenuContent>
         </BaseMenu>
       </Transition>
     </Teleport>
@@ -37,7 +35,6 @@
 </template>
 
 <script setup lang="ts">
-import MenuHeader from "../contentMenu/MenuHeader.vue";
 import MenuContent from "../contentMenu/MenuContent.vue";
 import BaseButton from "../../../cards/BaseButton.vue";
 import BaseMenu from "../../../cards/BaseMenu.vue";

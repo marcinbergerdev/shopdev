@@ -51,7 +51,7 @@ button {
   background-color: transparent;
   color: var(--secondary-lightRed);
   border: 0;
-  border-top: 2px solid var(--secondary-lightRed);
+  border-top: 1px solid var(--secondary-lightRed);
 
 }
 
