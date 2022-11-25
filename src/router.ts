@@ -16,6 +16,7 @@ const router = createRouter({
             { path: "cart", component: AuthLogin },
             { path: "service", component: AuthLogin },
             { path: "order", component: AuthLogin },
+            { path: "order1", component: AuthLogin },
          ],
       },
    ],

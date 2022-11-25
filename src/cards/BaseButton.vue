@@ -1,5 +1,5 @@
 <template>
-  <RouterLink class="link" :to="isRouterLink" v-if="link">
+  <RouterLink class="link" :class="mode" :to="isRouterLink" v-if="link">
     <slot></slot>
   </RouterLink>
 
@@ -34,25 +34,43 @@ button {
 
 .flat {
   padding: 0.7rem 1.5rem;
-  background-color: var(--primary-claretDark);
   color: var(--white);
+  background-color: var(--primary-claretDark);
   border-radius: 50px;
   border: 0;
 
   &:hover {
-    transition: 0.15s ease-in-out;
     background-color: var(--primary-claret);
     cursor: pointer;
+    transition: 0.15s ease-in-out;
   }
 }
 
 .empty{
   padding: 2rem 0;
-  background-color: transparent;
   color: var(--secondary-lightRed);
+  background-color: transparent;
   border: 0;
   border-top: 1px solid var(--secondary-lightRed);
 
+  @media (min-width: 768px) {
+    padding: 1rem 0;
+    border-radius: 0 0 0.6rem 0.6rem;
+
+    &:hover{
+      color: var(--white);
+      background-color: var(--secondary-lightRed);
+      transition: .150s ease-in-out;
+      cursor: pointer;
+    }
+  }
+}
+
+.dectopOption{
+
+  &:hover{
+    color: red;
+  }
 }
 
 </style>

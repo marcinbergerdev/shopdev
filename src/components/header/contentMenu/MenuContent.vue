@@ -1,5 +1,5 @@
 <template>
-  <header class="menuHeader">
+  <header class="menuHeader" v-if="isMenuHeader">
     <span class="menuHeader__title"> {{ title }}</span>
     <button class="menuHeader__closeButton" @click="emit('close')">
       <Icon class="menuHeader__closeButton-icon" icon="bi:x-lg" />
@@ -26,6 +26,7 @@ const emit = defineEmits<{
 const {} = defineProps<{
   title: string;
   menuName?: string;
+  isMenuHeader: boolean;
 }>();
 </script>
 
@@ -35,8 +36,6 @@ const {} = defineProps<{
   flex-direction: column;
   justify-content: space-between;
   min-height: calc(100vh - 4.3rem);
-
-  background-color: var(--white);
 
   @media (min-width: 768px) {
     min-height: auto;

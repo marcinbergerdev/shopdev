@@ -1,16 +1,13 @@
 <template>
-  <div class="dropMenu" :class="mode">
+  <div class="dropMenu" :class="[mode, size]">
     <slot></slot>
   </div>
 </template>
 
 <script setup lang="ts">
-const emit = defineEmits<{
-  (e: "close"): void;
-}>();
-
-const { mode } = defineProps<{
+const { mode, size } = defineProps<{
   mode?: string;
+  size?: string;
 }>();
 </script>
 
@@ -20,27 +17,42 @@ const { mode } = defineProps<{
   top: 0;
   right: 0;
   min-height: 100vh;
+  background-color: var(--white);
 }
 .dropMenu {
   width: 85%;
-  background-color: rgb(122, 109, 194);
 
   @media (min-width: 768px) {
     top: 100%;
     width: auto;
-    min-width: 300%;
     min-height: auto;
+    border-radius: 1rem;
+    outline: 1px solid var(--primary-claret);
   }
+}
+
+.user {
+  min-width: 18rem;
+}
+
+.cart {
+  min-width: 25rem;
+}
+.list {
+  min-width: 25rem;
+  height: 400px;
 }
 
 .left {
   @media (min-width: 768px) {
     left: 0;
+    border-radius: 0 0.6rem 0.6rem 0.6rem;
   }
 }
 .right {
   @media (min-width: 768px) {
     right: 0;
+    border-radius: 0.6rem 0 0.6rem 0.6rem;
   }
 }
 </style>

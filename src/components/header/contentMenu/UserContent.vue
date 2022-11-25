@@ -6,21 +6,21 @@
 
   <ul class="userList">
     <li class="userList__option">
-      <BaseButton link to="/test">
+      <BaseButton link to="#" mode="dectopOption">
         <Icon class="icon" icon="cil:user" />
         <span class="name">Twoje konto</span>
       </BaseButton>
     </li>
 
     <li class="userList__option">
-      <BaseButton link to="/test">
+      <BaseButton link to="#">
         <Icon class="icon" icon="bi:heart" />
         <span class="name">Ulubione</span>
       </BaseButton>
     </li>
 
     <li class="userList__option">
-      <BaseButton link to="/test">
+      <BaseButton link to="#">
         <Icon class="icon" icon="fluent-mdl2:activate-orders" />
         <span class="name">Zamówienia</span>
       </BaseButton>
@@ -46,10 +46,18 @@ a {
   span {
     color: var(--primary-greyDark);
   }
+
+  @media (min-width: 768px) {
+    &:hover {
+      gap: 0 1rem;
+      transition: 0.2s ease-in-out;
+    }
+  }
 }
 
 .userData {
   padding: 1rem;
+
   &__title {
     margin-bottom: 0.3rem;
     font-size: 1rem;
@@ -59,6 +67,15 @@ a {
   &__nick {
     font-size: 2rem;
   }
+
+  @media (min-width: 768px) {
+    text-align: left;
+
+    &__title,
+    &__nick {
+      font-size: 1rem;
+    }
+  }
 }
 
 .userList {
@@ -66,11 +83,19 @@ a {
   flex-direction: column;
   align-items: center;
   gap: 4rem 0;
-  padding: 2rem 0;
+  padding: 1rem 0 2rem 0;
 
   &__option {
     width: 70%;
     font-size: 2rem;
+
+    @media (min-width: 768px) {
+      font-size: 1.3rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    gap: 2rem 0;
   }
 }
 </style>

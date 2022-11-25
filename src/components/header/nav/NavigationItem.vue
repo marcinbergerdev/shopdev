@@ -1,15 +1,15 @@
 <template>
   <li
     :id="name"
-    class="menuOption"
-    :class="desctopHover"
+    class="optionElement"
+    :class="optionHover"
     @click="selectedOption(isDropMenu)"
     @mouseover="hoverOption"
     @mouseleave="leaveOption"
   >
     <BaseButton v-if="isLink" link :to="path">
-      <Icon class="menuOption__icon" :icon="icon" />
-      <p class="menuOption__title">{{ title }}</p>
+      <Icon class="optionElement__icon" :icon="icon" />
+      <p class="optionElement__title">{{ title }}</p>
     </BaseButton>
     <BaseButton v-else :to="path" mode="flat">
       {{ title }}
@@ -25,9 +25,15 @@
       <Transition name="dropMenu" :css="isDropMenuAnimation">
         <BaseMenu
           v-if="dropMenuMobileActivity || dropMenuDesctopActivity"
-          :mode="display"
+          :mode="hoverPosition"
+          :size="name"
         >
-          <MenuContent :title="title" :menuName="name" @close="closeMenu"></MenuContent>
+          <MenuContent
+            :title="title"
+            :menuName="name"
+            :isMenuHeader="dropMenuMobileActivity"
+            @close="closeMenu"
+          ></MenuContent>
         </BaseMenu>
       </Transition>
     </Teleport>
@@ -42,12 +48,12 @@ import BaseMenu from "../../../cards/BaseMenu.vue";
 import { Icon } from "@iconify/vue";
 import { ref, computed, onMounted, onUnmounted } from "vue";
 
-const { path, title, icon, name, display, isLink, isDropMenu } = defineProps<{
+const { path, title, icon, name, hoverPosition, isLink, isDropMenu } = defineProps<{
   path: string;
   title: string;
   icon?: string;
   name?: string;
-  display?: string;
+  hoverPosition?: string;
   isLink: boolean;
   isDropMenu?: boolean;
 }>();
@@ -58,8 +64,8 @@ const dropMenuAnimation = ref(false);
 
 const sendMenuTo = computed(() => (dropMenuDesctopActivity.value ? `#${name}` : "body"));
 const isDropMenuAnimation = computed(() => (dropMenuAnimation.value ? true : false));
-const desctopHover = computed(() => {
-  return { desctopHover: isDropMenu };
+const optionHover = computed(() => {
+  return { optionHover: isDropMenu};
 });
 
 function hoverOption() {
@@ -86,8 +92,8 @@ function closeMenu() {
 function resizeListener() {
   const screenWidth = innerWidth;
   if (screenWidth < 768) {
-    dropMenuAnimation.value = true;
     dropMenuDesctopActivity.value = false;
+    dropMenuAnimation.value = true;
   }
   if (screenWidth >= 768) {
     dropMenuMobileActivity.value = false;
@@ -150,7 +156,8 @@ li:nth-last-child(1) {
   }
 }
 
-.menuOption {
+.optionElement{
+  padding: 0.5rem;
   text-align: center;
 
   &__icon {
@@ -168,10 +175,12 @@ li:nth-last-child(1) {
   }
 }
 
-.desctopHover {
+.optionHover {
   @media (min-width: 768px) {
     &:hover {
-      background-color: red;
+      cursor: pointer;
+      outline: 1px solid var(--primary-claret);
+      border-radius: 0.6rem 0.6rem 0 0;
     }
   }
 }

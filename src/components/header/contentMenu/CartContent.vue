@@ -1,44 +1,47 @@
 <template>
-    <header>
-      <h2>Twoje zamówienie</h2>
-      <span>(3)</span>
-    </header>
+  <header class="orderHeader">
+    <h2 class="orderHeader__title">Twoje zamówienie</h2>
+    <span class="orderHeader__quantity">(3)</span>
+  </header>
 
-    <ul>
-      <li>
-        <img src="../../../assets/psp.jpg" alt="foto" />
-        <div>
-          <h3>Sony PSP z gwarancją + zestaw słuchawkowy</h3>
-          <span>1 szt.</span>
-          <span>79,80zł</span>
-        </div>
-      </li>
-      <li>
-        <img src="../../../assets/psp.jpg" alt="foto" />
-        <div>
-          <h3>Sony PSP z gwarancją + zestaw słuchawkowy</h3>
-          <span>1 szt.</span>
-          <span>79,80zł</span>
-        </div>
-      </li>
-      <li>
-        <img src="../../../assets/psp.jpg" alt="foto" />
-        <div>
-          <h3>Sony PSP z gwarancją + zestaw słuchawkowy</h3>
-          <span>1 szt.</span>
-          <span>79,80zł</span>
-        </div>
-      </li>
-    </ul>
+  <ul class="orderListContainer">
 
-    <section>
-      <div>
-        <h3>Do zapłaty:</h3>
-        <span>239,40 zł</span>
+    <li class="orderProduct">
+      <img class="orderProduct__img" src="../../../assets/psp.jpg" alt="foto" />
+      <div class="orderData">
+        <h3 class="orderData__title">Sony PSP z gwarancją + zestaw słuchawkowy</h3>
+        <span class="orderData__quantity">1 szt.</span>
+        <span class="orderData__price">79,80zł</span>
       </div>
+    </li>
 
-      <BaseButton>Przejdz do koszyka</BaseButton>
-    </section>
+    <li class="orderProduct">
+      <img class="orderProduct__img" src="../../../assets/psp.jpg" alt="foto" />
+      <div class="orderData">
+        <h3 class="orderData__title">Sony PSP z gwarancją + zestaw słuchawkowy</h3>
+        <span class="orderData__quantity">1 szt.</span>
+        <span class="orderData__price">79,80zł</span>
+      </div>
+    </li>
+
+    <li class="orderProduct">
+      <img class="orderProduct__img" src="../../../assets/psp.jpg" alt="foto" />
+      <div class="orderData">
+        <h3 class="orderData__title">Sony PSP z gwarancją + zestaw słuchawkowy</h3>
+        <span class="orderData__quantity">1 szt.</span>
+        <span class="orderData__price">79,80zł</span>
+      </div>
+    </li>
+  </ul>
+
+  <section class="orderSum">
+    <div class="orderAmount">
+      <h3 class="orderAmount__title">Do zapłaty:</h3>
+      <span class="orderAmount__pay">239,40 zł</span>
+    </div>
+
+    <BaseButton>Przejdz do koszyka</BaseButton>
+  </section>
 </template>
 
 <script setup lang="ts">
@@ -47,9 +50,59 @@ import { computed } from "vue";
 </script>
 
 <style scoped lang="scss">
-img{
+img {
   width: 50px;
   height: 50px;
 }
 
+.orderHeader {
+  &__title {
+  }
+
+  &__quantity{
+
+  }
+}
+
+
+.orderListContainer{
+
+}
+
+
+.orderProduct{
+
+ &__img{
+
+ }
+}
+
+.orderData{
+  &__title{
+
+  }
+
+  &__quantity{
+
+  }
+
+  &__price{
+
+  }
+}
+
+.orderSum{
+
+}
+
+.orderAmount{
+
+  &__title{
+
+  }
+
+  &__pay{
+
+  }
+}
 </style>

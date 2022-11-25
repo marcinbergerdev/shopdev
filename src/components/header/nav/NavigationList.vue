@@ -8,7 +8,7 @@
         :title="option.title"
         :icon="option.icon"
         :name="option.name"
-        :display="option.display"
+        :hoverPosition="option.hoverPosition"
         :is-link="option.isLink"
         :is-dropMenu="option.isDropMenu"
       ></NavigationItem>
