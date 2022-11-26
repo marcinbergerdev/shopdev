@@ -48,6 +48,7 @@ a {
   }
 
   @media (min-width: 768px) {
+    transition: 0.2s ease-in-out;
     &:hover {
       gap: 0 1rem;
       transition: 0.2s ease-in-out;
@@ -83,7 +84,9 @@ a {
   flex-direction: column;
   align-items: center;
   gap: 4rem 0;
-  padding: 1rem 0 2rem 0;
+  flex: 1;
+  padding: 3rem 0;
+  overflow: auto;
 
   &__option {
     width: 70%;
@@ -95,6 +98,7 @@ a {
   }
 
   @media (min-width: 768px) {
+    padding: 1rem 0 2rem 0;
     gap: 2rem 0;
   }
 }

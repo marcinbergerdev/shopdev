@@ -32,16 +32,17 @@ const { mode, size } = defineProps<{
 }
 
 .user {
-  min-width: 18rem;
+  @media (min-width: 768px) {
+    min-width: 18rem;
+  }
 }
 
 .cart {
-  min-width: 25rem;
+  @media (min-width: 768px) {
+    min-width: 35rem;
+  }
 }
-.list {
-  min-width: 25rem;
-  height: 400px;
-}
+
 
 .left {
   @media (min-width: 768px) {

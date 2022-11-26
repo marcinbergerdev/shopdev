@@ -20,6 +20,7 @@
   --black: #000;
 
   --primary-grey: #f5f5f5;
+  --primary-greyLight: #F1F1F1;
   --primary-greyDark: #999;
 
   --primary-claretDark: #800f2f;
