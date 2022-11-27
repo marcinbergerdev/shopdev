@@ -86,7 +86,7 @@ button {
 .deleteProduct {
   position: relative;
   width: 2rem;
-  padding: 1rem 0;
+  padding: 1.2rem;
   grid-area: trash;
   justify-self: flex-end;
   color: var(--secondary-lightRed);
@@ -95,12 +95,12 @@ button {
 
   @media (min-width: 768px) {
     cursor: pointer;
-  }
-}
+    border-radius: 5px;
 
-.dectopOption {
-  &:hover {
-    color: red;
+    &:hover{
+      color: var(--white);
+      background-color: var(--secondary-lightRed);
+    }
   }
 }
 </style>

@@ -5,24 +5,10 @@
   </header>
 
   <ul class="userList">
-    <li class="userList__option">
-      <BaseButton link to="#" mode="dectopOption">
-        <Icon class="icon" icon="cil:user" />
-        <span class="name">Twoje konto</span>
-      </BaseButton>
-    </li>
-
-    <li class="userList__option">
-      <BaseButton link to="#">
-        <Icon class="icon" icon="bi:heart" />
-        <span class="name">Ulubione</span>
-      </BaseButton>
-    </li>
-
-    <li class="userList__option">
-      <BaseButton link to="#">
-        <Icon class="icon" icon="fluent-mdl2:activate-orders" />
-        <span class="name">Zamówienia</span>
+    <li class="userList__option" v-for="(option, id) in userOption" :key="id">
+      <BaseButton link :to="option.path">
+        <Icon class="icon" :icon="option.icon" />
+        <span class="name">{{ option.title }}</span>
       </BaseButton>
     </li>
   </ul>
@@ -33,7 +19,25 @@
 <script setup lang="ts">
 import BaseButton from "../../../cards/BaseButton.vue";
 import { Icon } from "@iconify/vue";
-import { computed } from "vue";
+import { ref } from "vue";
+
+const userOption = ref([
+  {
+    path: "#",
+    icon: "cil:user",
+    title: "Twoje konto",
+  },
+  {
+    path: "#",
+    icon: "bi:heart",
+    title: "Ulubione",
+  },
+  {
+    path: "#",
+    icon: "fluent-mdl2:activate-orders",
+    title: "Zamówienia",
+  },
+]);
 </script>
 
 <style scoped lang="scss">
@@ -44,13 +48,15 @@ a {
 
   .icon,
   span {
-    color: var(--primary-greyDark);
+    color: var(--primary-greyDarker);
   }
 
   @media (min-width: 768px) {
     transition: 0.2s ease-in-out;
+    opacity: 0.7;
     &:hover {
       gap: 0 1rem;
+      opacity: 1;
       transition: 0.2s ease-in-out;
     }
   }

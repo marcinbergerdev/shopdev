@@ -200,7 +200,7 @@ import { Icon } from "@iconify/vue";
   }
 
   &__icon {
-    font-size: 1.7rem;
+    font-size: 1.8rem;
     position: absolute;
     top: 50%;
     left: 50%;
