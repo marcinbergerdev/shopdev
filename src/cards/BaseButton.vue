@@ -26,8 +26,9 @@ button {
   color: var(--primary-greyDark);
 }
 
-.link{
-  &:hover,&.router-link-active {
+.link {
+  &:hover,
+  &.router-link-active {
     color: var(--primary-claretDark);
   }
 }
@@ -46,7 +47,7 @@ button {
   }
 }
 
-.empty{
+.empty {
   padding: 2rem 0;
   color: var(--secondary-lightRed);
   background-color: transparent;
@@ -57,16 +58,16 @@ button {
     padding: 1rem 0;
     border-radius: 0 0 0.6rem 0.6rem;
 
-    &:hover{
+    &:hover {
       color: var(--white);
       background-color: var(--secondary-lightRed);
-      transition: .150s ease-in-out;
+      transition: 0.15s ease-in-out;
       cursor: pointer;
     }
   }
 }
 
-.payButtonMobileMenu{
+.payButtonMobileMenu {
   padding: 1.3rem;
   border-radius: 50px;
   color: var(--white);
@@ -74,7 +75,7 @@ button {
   border: 0;
 }
 
-.productsEdit{
+.productsEdit {
   display: flex;
   flex: 1;
   justify-content: flex-end;
@@ -82,14 +83,24 @@ button {
   color: var(--primary-blue);
 }
 
+.deleteProduct {
+  position: relative;
+  width: 2rem;
+  padding: 1rem 0;
+  grid-area: trash;
+  justify-self: flex-end;
+  color: var(--secondary-lightRed);
+  background-color: transparent;
+  border: 0;
 
-
-
-.dectopOption{
-
-  &:hover{
-    color: red;
+  @media (min-width: 768px) {
+    cursor: pointer;
   }
 }
 
+.dectopOption {
+  &:hover {
+    color: red;
+  }
+}
 </style>
