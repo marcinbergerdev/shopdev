@@ -16,6 +16,7 @@ const { mode, size } = defineProps<{
   position: absolute;
   top: 0;
   right: 0;
+  z-index: 100;
   min-height: 100vh;
   background-color: var(--white);
 }

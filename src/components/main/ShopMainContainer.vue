@@ -1,6 +1,6 @@
 <template>
   <main>
-    <ShopSlider></ShopSlider>
+    <AdsSlider></AdsSlider>
 
 
 
@@ -267,20 +267,20 @@
 </template>
 
 <script setup lang="ts">
-import ShopSlider from './slider/ShopSlider.vue';
+import AdsSlider from './ads/AdsSliderList.vue';
 
 import { Icon } from "@iconify/vue";
 </script>
 
 <style scoped lang="scss">
-img {
-  width: 100px;
-  height: 100px;
-}
-.slider {
-  img {
-    width: 100px;
-    height: 50px;
-  }
-}
+// img {
+//   width: 100px;
+//   height: 100px;
+// }
+// .slider {
+//   img {
+//     width: 100px;
+//     height: 50px;
+//   }
+// }
 </style>
