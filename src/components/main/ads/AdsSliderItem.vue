@@ -1,6 +1,6 @@
 <template>
   <transition name="slider" mode="out-in">
-    <li class="sliderItem" v-if="sliderNumber === sliderIndex">
+    <li class="sliderItem" v-if="currentSlide === sliderIndex">
       <img class="sliderItem__img" :src="sliderPath" alt="slider-photo" />
     </li>
   </transition>
@@ -9,9 +9,9 @@
 <script setup lang="ts">
 
 const {} = defineProps<{
-  sliderNumber: number;
   sliderPath: string;
   sliderIndex: number;
+  currentSlide: number;
 }>();
 
 </script>

@@ -5,9 +5,9 @@
         <AdsSliderItem
           v-for="(slider, id) in sliders"
           :key="id"
-          :sliderNumber="slide"
           :sliderPath="slider.path"
           :sliderIndex="id"
+          :currentSlide="slide"
         ></AdsSliderItem>
       </ul>
     </section>
@@ -15,8 +15,8 @@
     <section class="sliderDots">
       <DotsSlider
         v-for="dot in dots"
-        :key="dot.id"
-        :currentDot="dot.id"
+        :key="dot"
+        :currentDot="dot"
         :currentSlide="slide"
       ></DotsSlider>
     </section>
@@ -26,10 +26,9 @@
 <script setup lang="ts">
 import AdsSliderItem from "./AdsSliderItem.vue";
 import DotsSlider from "../dots/DotsSlider.vue";
-import { ref, onMounted, onUnmounted } from "vue";
+import { ref, onMounted, onBeforeUnmount } from "vue";
 
 const slide = ref(0);
-
 const sliders = ref([
   { path: "/src/assets/psp.jpg" },
   { path: "/src/assets/zdj1.jpg" },
@@ -38,19 +37,22 @@ const sliders = ref([
   { path: "/src/assets/zdj4.jpg" },
 ]);
 
-const dots = ref([{ id: 0 }, { id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }]);
+const dots = ref([0, 1, 2, 3, 4]);
+let sliderInterval: NodeJS.Timer;
 
 onMounted(() => {
-  setInterval(() => {
+  sliderInterval = setInterval(() => {
     if (slide.value === sliders.value.length - 1) {
       slide.value = 0;
       return;
     }
     ++slide.value;
-  }, 2000);
+  }, 30000);
 });
 
-onUnmounted(() => {});
+onBeforeUnmount(() => {
+  clearInterval(sliderInterval);
+});
 </script>
 
 <style scoped lang="scss">
