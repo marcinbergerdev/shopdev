@@ -16,17 +16,14 @@
     </BaseButton>
 
     <Teleport :to="sendMenuTo">
-      <div
-        v-if="dropMenuMobileActivity || dropMenuDesctopActivity"
-        class="backdrop"
-        @click="closeMenu"
-      ></div>
-
       <Transition name="dropMenu" :css="isDropMenuAnimation">
         <BaseMenu
           v-if="dropMenuMobileActivity || dropMenuDesctopActivity"
+          :view="dropMenuMobileActivity || dropMenuDesctopActivity"
           :mode="hoverPosition"
+          :position="dropMenuPosition"
           :size="name"
+          @close="closeMenu"
         >
           <MenuContent
             :title="title"
@@ -42,18 +39,24 @@
 
 <script setup lang="ts">
 import MenuContent from "../contentMenu/MenuContent.vue";
-import BaseButton from "../../../cards/BaseButton.vue";
-import BaseMenu from "../../../cards/BaseMenu.vue";
-
-import { Icon } from "@iconify/vue";
 import { ref, computed, onMounted, onUnmounted } from "vue";
 
-const { path, title, icon, name, hoverPosition, isLink, isDropMenu } = defineProps<{
+const {
+  path,
+  title,
+  icon,
+  name,
+  hoverPosition,
+  dropMenuPosition,
+  isLink,
+  isDropMenu,
+} = defineProps<{
   path: string;
   title: string;
   icon?: string;
   name?: string;
   hoverPosition?: string;
+  dropMenuPosition?: string;
   isLink: boolean;
   isDropMenu?: boolean;
 }>();
@@ -65,7 +68,7 @@ const dropMenuAnimation = ref(false);
 const sendMenuTo = computed(() => (dropMenuDesctopActivity.value ? `#${name}` : "body"));
 const isDropMenuAnimation = computed(() => (dropMenuAnimation.value ? true : false));
 const optionHover = computed(() => {
-  return { optionHover: isDropMenu};
+  return { optionHover: isDropMenu };
 });
 
 function hoverOption() {
@@ -142,21 +145,21 @@ li:nth-last-child(1) {
   }
 }
 
-.backdrop {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 100%;
-  min-height: 100vh;
-  background-color: grey;
-  opacity: 0.26;
+// .backdrop {
+//   position: absolute;
+//   top: 0;
+//   right: 0;
+//   width: 100%;
+//   min-height: 100vh;
+//   background-color: grey;
+//   opacity: 0.26;
 
-  @media (min-width: 768px) {
-    display: none;
-  }
-}
+//   @media (min-width: 768px) {
+//     display: none;
+//   }
+// }
 
-.optionElement{
+.optionElement {
   padding: 0.5rem;
   text-align: center;
 

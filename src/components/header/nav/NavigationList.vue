@@ -9,6 +9,7 @@
         :icon="option.icon"
         :name="option.name"
         :hoverPosition="option.hoverPosition"
+        :dropMenuPosition="option.dropMenuPosition"
         :is-link="option.isLink"
         :is-dropMenu="option.isDropMenu"
       ></NavigationItem>

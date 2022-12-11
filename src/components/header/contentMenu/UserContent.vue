@@ -17,8 +17,6 @@
 </template>
 
 <script setup lang="ts">
-import BaseButton from "../../../cards/BaseButton.vue";
-import { Icon } from "@iconify/vue";
 import { ref } from "vue";
 
 const userOption = ref([

@@ -1,8 +1,8 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 
-import ShopHomePage from "./layout/shop/ShopHomePage.vue";
-import AuthLogin from "./layout/authentication/AuthLogin.vue";
-import ShopMainContainer from './components/main/ShopMainContainer.vue';
+const ShopHomePage = () => import("./layout/shop/ShopHomePage.vue");
+const ShopMainContainer = () => import("./components/main/ShopMainContainer.vue");
+const AuthLogin = () => import("./layout/authentication/AuthLogin.vue");
 
 const router = createRouter({
    history: createWebHashHistory(),

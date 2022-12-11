@@ -4,11 +4,14 @@
     <SearchContainer></SearchContainer>
     <NavigationList></NavigationList>
   </header>
+
+  <CategoryNavList />
 </template>
 
 <script setup lang="ts">
 import NavigationList from "./nav/NavigationList.vue";
 import SearchContainer from "./search/SearchContainer.vue";
+import CategoryNavList from "../main/categories/CategoryNavList.vue";
 </script>
 
 <style scoped lang="scss">

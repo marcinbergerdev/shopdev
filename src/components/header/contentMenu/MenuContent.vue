@@ -13,7 +13,6 @@
 </template>
 
 <script setup lang="ts">
-import { Icon } from "@iconify/vue";
 import UserContent from "./UserContent.vue";
 import CartContent from "./CartContent.vue";
 

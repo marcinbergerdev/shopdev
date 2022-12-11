@@ -7,36 +7,28 @@
 </template>
 
 <script setup lang="ts">
-
 const {} = defineProps<{
   sliderPath: string;
   sliderIndex: number;
   currentSlide: number;
 }>();
-
 </script>
 
 <style scoped lang="scss">
-
-
 .slider-leave-from,
-.slider-enter-to
-{
+.slider-enter-to {
   transform: translateX(0);
 }
 .slider-leave-active,
-.slider-enter-active{
+.slider-enter-active {
   transition: all 2s ease;
 }
-.slider-leave-to{
+.slider-leave-to {
   transform: translateX(-100%);
 }
-.slider-enter-from{
+.slider-enter-from {
   transform: translateX(100%);
 }
-
-
-
 
 .sliderItem {
   position: absolute;
@@ -50,8 +42,4 @@ const {} = defineProps<{
     height: 100%;
   }
 }
-
-
-
-
 </style>

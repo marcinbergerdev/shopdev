@@ -125,8 +125,7 @@
 </template>
 
 <script setup lang="ts">
-import BaseButton from "../../../cards/BaseButton.vue";
-import { Icon } from "@iconify/vue";
+
 </script>
 
 <style scoped lang="scss">

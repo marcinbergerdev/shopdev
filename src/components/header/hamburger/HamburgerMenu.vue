@@ -8,19 +8,18 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { useMenuVisibility } from "../../../stores/navigation/menuVisibility";
+import { ref, computed } from "vue";
 
-const isActive = ref(false);
+const menuVisibility = useMenuVisibility();
 
 const activity = computed<object>(() => {
-  return { hamburgerActive: isActive.value };
+  return { hamburgerActive: menuVisibility.isMenuHidden };
 });
 
 function toggleHamburger() {
-  isActive.value = !isActive.value;
+  menuVisibility.switchMenu();
 }
-
-
 </script>
 
 <style scoped lang="scss">
@@ -98,7 +97,7 @@ function toggleHamburger() {
   }
 }
 
-.hamburgerTitle{
+.hamburgerTitle {
   font-size: 1rem;
   color: var(--primary-greyDark);
 }
