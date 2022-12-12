@@ -102,12 +102,7 @@ watch(route, (rout) => {
 });
 
 onMounted(() => {
-  if (innerWidth < 768 && route.path === "/shop") {
-    path.value = "body";
-    isOnMounted.value = true;
-  }
-
-  if (innerWidth < 768 && route.path !== "/shop") {
+  if (innerWidth < 768 && (route.path === "/shop" || route.path !== "/shop")) {
     path.value = "body";
     isOnMounted.value = true;
   }
