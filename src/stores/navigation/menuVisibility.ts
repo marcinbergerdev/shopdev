@@ -3,6 +3,7 @@ import { ref, computed } from "vue";
 
 export const useMenuVisibility = defineStore("menuVisibility", () => {
    const menuHidden = ref(false);
+   const isMenuAnimation = ref(true);
 
    const isMenuHidden = computed<boolean>(() => {
       return menuHidden.value;
@@ -20,10 +21,20 @@ export const useMenuVisibility = defineStore("menuVisibility", () => {
       menuHidden.value = false;
    }
 
+   function activateAnimation(){
+      isMenuAnimation.value = true;
+   }
+   function deactivateAnimation(){
+      isMenuAnimation.value = false;
+   }
+
    return {
       isMenuHidden,
       switchMenu,
       openMenu,
-      closeMenu
+      closeMenu,
+      isMenuAnimation,
+      activateAnimation,
+      deactivateAnimation
    };
 });

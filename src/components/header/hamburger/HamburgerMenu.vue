@@ -19,6 +19,7 @@ const activity = computed<object>(() => {
 
 function toggleHamburger() {
   menuVisibility.switchMenu();
+  menuVisibility.activateAnimation();
 }
 </script>
 

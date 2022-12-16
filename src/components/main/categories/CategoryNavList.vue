@@ -1,10 +1,10 @@
 <template>
   <Teleport :to="path" v-if="isOnMounted">
-    <Transition name="test" mode="out-in">
+    <Transition name="test" mode="out-in" :css="visibility.isMenuAnimation">
       <BaseMenu
         :view="visibility.isMenuHidden"
-        position="left"
         v-if="visibility.isMenuHidden || showMenu"
+        :menu-style="isCategoriesForMobile"
         @close="closeMenu"
       >
         <article>
@@ -39,28 +39,28 @@ import { useRoute } from "vue-router";
 
 const categories = useUserCategories();
 const visibility = useMenuVisibility();
-
 const route = useRoute();
-const path = ref(".navigationContainer");
 
+const path = ref(".navigationContainer");
 const isOnMounted = ref(false);
 const showMenu = ref(false);
+const isCategoriesForMobile = ref(false);
 
 function watchUserWidth() {
   if (innerWidth < 768 && showMenu && route.path === "/shop") {
     path.value = "body";
     showMenu.value = false;
+    isCategoriesForMobile.value = true;
     visibility.closeMenu();
-
-    return;
+    visibility.deactivateAnimation();
   }
 
   if (innerWidth < 768 && showMenu && route.path !== "/shop") {
-    path.value = "body";
-    showMenu.value = false;
     setTimeout(() => {
       isOnMounted.value = true;
     }, 10);
+    path.value = "body";
+    showMenu.value = false;
   }
 
   if (innerWidth >= 768 && route.path !== "/shop") {
@@ -70,8 +70,15 @@ function watchUserWidth() {
   }
 
   if (innerWidth >= 768 && route.path === "/shop") {
+    setTimeout(() => {
+      isOnMounted.value = true;
+    }, 10);
+    isCategoriesForMobile.value = false;
     path.value = ".navigationContainer";
     showMenu.value = true;
+
+    visibility.deactivateAnimation();
+    visibility.closeMenu();
   }
 }
 
@@ -92,24 +99,27 @@ watch(route, (rout) => {
   }
 
   if (innerWidth >= 768 && rout.path === "/shop") {
-    path.value = ".navigationContainer";
     setTimeout(() => {
       isOnMounted.value = true;
     }, 10);
+    path.value = ".navigationContainer";
     visibility.openMenu();
     showMenu.value = true;
   }
 });
 
+
 onMounted(() => {
   if (innerWidth < 768 && (route.path === "/shop" || route.path !== "/shop")) {
     path.value = "body";
     isOnMounted.value = true;
+    isCategoriesForMobile.value = true;
   }
 
   if (innerWidth >= 768 && route.path === "/shop") {
     showMenu.value = true;
     isOnMounted.value = true;
+    isCategoriesForMobile.value = false;
   }
 
   window.addEventListener("resize", watchUserWidth);
@@ -120,7 +130,7 @@ onUnmounted(() => {
 });
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .test-enter-from,
 .test-leave-to {
   transform: translateX(-100%);
@@ -136,5 +146,9 @@ onUnmounted(() => {
 
 article {
   min-height: 100vh;
+
+  @media (min-width: 768px) {
+    min-height: auto;
+  }
 }
 </style>

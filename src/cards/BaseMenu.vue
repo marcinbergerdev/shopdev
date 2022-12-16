@@ -1,26 +1,34 @@
 <template>
-  <div class="dropContainer" :class="position">
+  <div class="dropContainer" :class="containerPosition">
     <Teleport to="body">
-      <div v-if="view" class="backdrop" @click="emit('close')"></div>
+      <div class="backdrop" v-if="view" @click="emit('close')"></div>
     </Teleport>
 
-    <div class="dropMenu" :class="[mode, size]">
+    <div :class="[dropMenuStyle, hoverPosition, size]">
       <slot></slot>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-const { view, mode, position, size } = defineProps<{
+
+import { computed} from "vue";
+const props = defineProps<{
   view: boolean;
-  mode?: string;
-  position?: string;
+  menuStyle: boolean;
+  hoverPosition?: string;
+  containerPosition?: string;
   size?: string;
 }>();
 
 const emit = defineEmits<{
   (e: "close"): void;
 }>();
+
+const dropMenuStyle = computed<string>(() => {
+  return props.menuStyle ? "dropMenu" : "static";
+});
+
 </script>
 
 <style scoped lang="scss">
@@ -58,11 +66,14 @@ const emit = defineEmits<{
     min-height: auto;
   }
 }
+
 .dropMenu {
-  @include dropPosition;
+  position: absolute;
+  top: 0;
+  z-index: 100;
+  min-height: 100vh;
   width: 100%;
   background-color: var(--white);
-
 
   @media (min-width: 768px) {
     top: 100%;
@@ -78,6 +89,7 @@ const emit = defineEmits<{
     right: auto;
   }
 }
+
 .dropMenuLeft {
   left: 0;
   @media (min-width: 768px) {

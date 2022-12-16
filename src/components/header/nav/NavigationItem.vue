@@ -19,9 +19,10 @@
       <Transition name="dropMenu" :css="isDropMenuAnimation">
         <BaseMenu
           v-if="dropMenuMobileActivity || dropMenuDesctopActivity"
-          :view="dropMenuMobileActivity || dropMenuDesctopActivity"
-          :mode="hoverPosition"
-          :position="dropMenuPosition"
+          :view="dropMenuMobileActivity || !dropMenuDesctopActivity"
+          :menu-style="true"
+          :container-position="dropMenuPositionMobile"
+          :hover-position="hoverMenuPositionDesctop "
           :size="name"
           @close="closeMenu"
         >
@@ -61,12 +62,34 @@ const {
   isDropMenu?: boolean;
 }>();
 
+const test = computed(() => {
+  return true;
+});
+
+
 const dropMenuMobileActivity = ref(false);
 const dropMenuDesctopActivity = ref(false);
 const dropMenuAnimation = ref(false);
 
 const sendMenuTo = computed(() => (dropMenuDesctopActivity.value ? `#${name}` : "body"));
 const isDropMenuAnimation = computed(() => (dropMenuAnimation.value ? true : false));
+
+
+
+
+
+const dropMenuPositionMobile= computed(() => {
+  if(dropMenuMobileActivity.value){
+    return dropMenuPosition;
+  }
+});
+const hoverMenuPositionDesctop = computed(() => {
+  if(dropMenuDesctopActivity.value){
+    return hoverPosition;
+  }
+});
+
+
 const optionHover = computed(() => {
   return { optionHover: isDropMenu };
 });
@@ -145,19 +168,6 @@ li:nth-last-child(1) {
   }
 }
 
-// .backdrop {
-//   position: absolute;
-//   top: 0;
-//   right: 0;
-//   width: 100%;
-//   min-height: 100vh;
-//   background-color: grey;
-//   opacity: 0.26;
-
-//   @media (min-width: 768px) {
-//     display: none;
-//   }
-// }
 
 .optionElement {
   padding: 0.5rem;
