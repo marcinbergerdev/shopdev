@@ -26,7 +26,7 @@ const emit = defineEmits<{
 }>();
 
 const dropMenuStyle = computed<string>(() => {
-  return props.menuStyle ? "dropMenu" : "static";
+  return props.menuStyle ? "dropMenuMobile" : "categoriesDesctop";
 });
 </script>
 
@@ -66,7 +66,7 @@ const dropMenuStyle = computed<string>(() => {
   }
 }
 
-.dropMenu {
+.dropMenuMobile {
   position: absolute;
   top: 0;
   z-index: 100;
@@ -82,6 +82,16 @@ const dropMenuStyle = computed<string>(() => {
     outline: 1px solid var(--primary-claret);
   }
 }
+
+.categoriesDesctop{
+  @media (min-width: 768px) {
+
+  }
+}
+
+
+
+
 .dropMenuRight {
   right: 0;
   @media (min-width: 768px) {

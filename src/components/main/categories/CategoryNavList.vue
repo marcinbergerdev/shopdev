@@ -1,20 +1,26 @@
 <template>
   <Teleport :to="path" v-if="isOnMounted">
-    <Transition name="test" mode="out-in" :css="visibility.isMenuAnimation">
+    <Transition
+      name="categoriesAnimation"
+      mode="out-in"
+      :css="visibility.isMenuAnimation"
+    >
       <BaseMenu
         :view="visibility.isMenuHidden"
         v-if="visibility.isMenuHidden || showMenu"
         :menu-style="isCategoriesForMobile"
         @close="closeMenu"
       >
-        <article>
-          <header>
-            <button class="menuHeader__closeButton" @click="closeMenu">
-              <Icon class="menuHeader__closeButton-icon" icon="bi:x-lg" />
+        <article class="categoriesListContainer">
+          <header class="categoriesHeader" v-if="visibility.isMenuHidden">
+            <h2 class="categoriesHeader__title">Category</h2>
+
+            <button class="categoriesHeader__closeButton" @click="closeMenu">
+              <Icon class="categoriesHeader__icon" icon="bi:x-lg" />
             </button>
           </header>
 
-          <ul>
+          <ul class="categoriesList">
             <CategoryNavItem
               v-for="(category, id) in categories.getCategories"
               :key="id"
@@ -139,24 +145,62 @@ onUnmounted(() => {
 </script>
 
 <style scoped lang="scss">
-.test-enter-from,
-.test-leave-to {
+.categoriesAnimation-enter-from,
+.categoriesAnimation-leave-to {
   transform: translateX(-100%);
 }
-.test-enter-active,
-.test-leave-active {
+.categoriesAnimation-enter-active,
+.categoriesAnimation-leave-active {
   transition: all 0.4s ease-out;
 }
-.test-enter-to,
-.test-leave-from {
+.categoriesAnimation-enter-to,
+.categoriesAnimation-leave-from {
   transform: translateX(0%);
 }
 
-article {
-  min-height: 100vh;
+.categoriesListContainer {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   @media (min-width: 768px) {
-    min-height: auto;
+    height: auto;
   }
+}
+
+.categoriesHeader {
+  display: flex;
+  justify-content: space-between;
+  padding: 1.2rem;
+  background-color: var(--primary-claretDark);
+
+  &__title {
+    color: var(--white);
+    font-weight: 400;
+  }
+
+  &__closeButton {
+    display: grid;
+    place-items: center;
+    background-color: transparent;
+    border: 0;
+  }
+
+  &__icon {
+    font-size: 2rem;
+    color: var(--white);
+  }
+}
+
+.categoriesList {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex: 1;
+  padding: 5rem 0;
+  overflow: auto;
+  overflow-x: hidden;
 }
 </style>
