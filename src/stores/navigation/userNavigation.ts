@@ -18,7 +18,6 @@ export const useUserNavigation = defineStore("userNavigation", () => {
          title: "Ulubione",
          icon: "bi:heart",
          isLink: true,
-
       },
       {
          path: "/shop/cart",

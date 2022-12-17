@@ -11,8 +11,8 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from "vue";
 
-import { computed} from "vue";
 const props = defineProps<{
   view: boolean;
   menuStyle: boolean;
@@ -28,7 +28,6 @@ const emit = defineEmits<{
 const dropMenuStyle = computed<string>(() => {
   return props.menuStyle ? "dropMenu" : "static";
 });
-
 </script>
 
 <style scoped lang="scss">
@@ -108,7 +107,6 @@ const dropMenuStyle = computed<string>(() => {
     min-width: 35rem;
   }
 }
-
 .hoverRight {
   @media (min-width: 768px) {
     left: 0;

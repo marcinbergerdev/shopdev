@@ -47,39 +47,43 @@ const showMenu = ref(false);
 const isCategoriesForMobile = ref(false);
 
 function watchUserWidth() {
-  if (innerWidth < 768 && showMenu && route.path === "/shop") {
+  if (innerWidth < 768 && showMenu) {
     path.value = "body";
     showMenu.value = false;
     isCategoriesForMobile.value = true;
-    visibility.closeMenu();
-    visibility.deactivateAnimation();
+
+    if (route.path === "/shop") {
+      visibility.closeMenu();
+      visibility.deactivateAnimation();
+      return;
+    }
+
+    if (route.path !== "/shop") {
+      setTimeout(() => {
+        isOnMounted.value = true;
+      }, 10);
+      return;
+    }
   }
 
-  if (innerWidth < 768 && showMenu && route.path !== "/shop") {
-    setTimeout(() => {
-      isOnMounted.value = true;
-    }, 10);
-    path.value = "body";
-    showMenu.value = false;
-    isCategoriesForMobile.value = true;
-  }
-
-  if (innerWidth >= 768 && route.path !== "/shop") {
-    isOnMounted.value = false;
-    showMenu.value = false;
+  if (innerWidth >= 768) {
     isCategoriesForMobile.value = false;
     visibility.closeMenu();
-  }
 
-  if (innerWidth >= 768 && route.path === "/shop") {
-    setTimeout(() => {
-      isOnMounted.value = true;
-    }, 10);
-    path.value = ".navigationContainer";
-    showMenu.value = true;
-    isCategoriesForMobile.value = false;
-    visibility.deactivateAnimation();
-    visibility.closeMenu();
+    if (route.path !== "/shop") {
+      isOnMounted.value = false;
+      return;
+    }
+
+    if (route.path === "/shop") {
+      setTimeout(() => {
+        isOnMounted.value = true;
+      }, 10);
+      path.value = ".navigationContainer";
+      showMenu.value = true;
+      visibility.deactivateAnimation();
+      return;
+    }
   }
 }
 
@@ -93,22 +97,25 @@ watch(route, (rout) => {
     isOnMounted.value = true;
   }
 
-  if (innerWidth >= 768 && route.path !== "/shop") {
-    visibility.closeMenu();
-    showMenu.value = false;
-    isOnMounted.value = false;
-  }
+  if (innerWidth >= 768) {
+    if (route.path !== "/shop") {
+      visibility.closeMenu();
+      showMenu.value = false;
+      isOnMounted.value = false;
+      return;
+    }
 
-  if (innerWidth >= 768 && rout.path === "/shop") {
-    setTimeout(() => {
-      isOnMounted.value = true;
-    }, 10);
-    path.value = ".navigationContainer";
-    showMenu.value = true;
-    visibility.openMenu();
+    if (rout.path === "/shop") {
+      setTimeout(() => {
+        isOnMounted.value = true;
+      }, 10);
+      path.value = ".navigationContainer";
+      showMenu.value = true;
+      visibility.openMenu();
+      return;
+    }
   }
 });
-
 
 onMounted(() => {
   if (innerWidth < 768 && (route.path === "/shop" || route.path !== "/shop")) {

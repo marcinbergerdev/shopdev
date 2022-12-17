@@ -22,7 +22,7 @@
           :view="dropMenuMobileActivity || !dropMenuDesctopActivity"
           :menu-style="true"
           :container-position="dropMenuPositionMobile"
-          :hover-position="hoverMenuPositionDesctop "
+          :hover-position="hoverMenuPositionDesctop"
           :size="name"
           @close="closeMenu"
         >
@@ -66,7 +66,6 @@ const test = computed(() => {
   return true;
 });
 
-
 const dropMenuMobileActivity = ref(false);
 const dropMenuDesctopActivity = ref(false);
 const dropMenuAnimation = ref(false);
@@ -74,21 +73,16 @@ const dropMenuAnimation = ref(false);
 const sendMenuTo = computed(() => (dropMenuDesctopActivity.value ? `#${name}` : "body"));
 const isDropMenuAnimation = computed(() => (dropMenuAnimation.value ? true : false));
 
-
-
-
-
-const dropMenuPositionMobile= computed(() => {
-  if(dropMenuMobileActivity.value){
+const dropMenuPositionMobile = computed(() => {
+  if (dropMenuMobileActivity.value) {
     return dropMenuPosition;
   }
 });
 const hoverMenuPositionDesctop = computed(() => {
-  if(dropMenuDesctopActivity.value){
+  if (dropMenuDesctopActivity.value) {
     return hoverPosition;
   }
 });
-
 
 const optionHover = computed(() => {
   return { optionHover: isDropMenu };
@@ -167,7 +161,6 @@ li:nth-last-child(1) {
     display: block;
   }
 }
-
 
 .optionElement {
   padding: 0.5rem;
