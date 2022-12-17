@@ -61,22 +61,23 @@ function watchUserWidth() {
     }, 10);
     path.value = "body";
     showMenu.value = false;
+    isCategoriesForMobile.value = true;
   }
 
   if (innerWidth >= 768 && route.path !== "/shop") {
-    showMenu.value = false;
-    visibility.closeMenu();
     isOnMounted.value = false;
+    showMenu.value = false;
+    isCategoriesForMobile.value = false;
+    visibility.closeMenu();
   }
 
   if (innerWidth >= 768 && route.path === "/shop") {
     setTimeout(() => {
       isOnMounted.value = true;
     }, 10);
-    isCategoriesForMobile.value = false;
     path.value = ".navigationContainer";
     showMenu.value = true;
-
+    isCategoriesForMobile.value = false;
     visibility.deactivateAnimation();
     visibility.closeMenu();
   }
@@ -103,8 +104,8 @@ watch(route, (rout) => {
       isOnMounted.value = true;
     }, 10);
     path.value = ".navigationContainer";
-    visibility.openMenu();
     showMenu.value = true;
+    visibility.openMenu();
   }
 });
 
