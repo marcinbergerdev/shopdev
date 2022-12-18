@@ -1,7 +1,7 @@
 <template>
   <div class="dropContainer" :class="containerPosition">
-    <Teleport to="body">
-      <div class="backdrop" v-if="view" @click="emit('close')"></div>
+    <Teleport to="body" v-if="view">
+      <div class="backdrop" @click="emit('close')"></div>
     </Teleport>
 
     <div :class="[dropMenuStyle, hoverPosition, size]">
@@ -23,11 +23,8 @@ const props = defineProps<{
   containerPosition?: string;
   isHeader?: boolean;
   size?: string;
-  title?: string
+  title?: string;
 }>();
-
-const { view, hoverPosition, containerPosition, size} = props;
-
 
 const emit = defineEmits<{
   (e: "close"): void;
@@ -91,14 +88,10 @@ const dropMenuStyle = computed<string>(() => {
   }
 }
 
-.categoriesDesctop{
+.categoriesDesctop {
   @media (min-width: 768px) {
-
   }
 }
-
-
-
 
 .dropMenuRight {
   right: 0;

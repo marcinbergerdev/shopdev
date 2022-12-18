@@ -109,7 +109,7 @@ watch(route, (rout) => {
       }, 10);
       path.value = ".navigationContainer";
       showMenu.value = true;
-      visibility.openMenu();
+      visibility.closeMenu();
       return;
     }
   }

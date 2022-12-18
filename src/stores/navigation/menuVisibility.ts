@@ -13,28 +13,23 @@ export const useMenuVisibility = defineStore("menuVisibility", () => {
       menuHidden.value = !menuHidden.value;
    }
 
-   function openMenu() {
-      menuHidden.value = true;
-
-   }
    function closeMenu() {
       menuHidden.value = false;
    }
 
-   function activateAnimation(){
+   function activateAnimation() {
       isMenuAnimation.value = true;
    }
-   function deactivateAnimation(){
+   function deactivateAnimation() {
       isMenuAnimation.value = false;
    }
 
    return {
       isMenuHidden,
       switchMenu,
-      openMenu,
       closeMenu,
       isMenuAnimation,
       activateAnimation,
-      deactivateAnimation
+      deactivateAnimation,
    };
 });
