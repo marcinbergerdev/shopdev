@@ -32,8 +32,7 @@ import { ref, onMounted } from "vue";
 
 const isUnderCategory = ref(false);
 
-const { icon, title, underCategory } = defineProps<{
-  categoryId: number;
+const props = defineProps<{
   icon: string;
   title: string;
   underCategory: Array<{
@@ -42,6 +41,7 @@ const { icon, title, underCategory } = defineProps<{
     amount: number;
   }>;
 }>();
+const { icon, title, underCategory } = props;
 
 function showCategory() {
   isUnderCategory.value = true;

@@ -5,12 +5,15 @@
     </Teleport>
 
     <div :class="[dropMenuStyle, hoverPosition, size]">
+      <MenuHeader :isHeader="isHeader" :title="title" @click="emit('close')"></MenuHeader>
+
       <slot></slot>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import MenuHeader from "../components/header/contentMenu/MenuHeader.vue";
 import { computed } from "vue";
 
 const props = defineProps<{
@@ -18,8 +21,13 @@ const props = defineProps<{
   menuStyle: boolean;
   hoverPosition?: string;
   containerPosition?: string;
+  isHeader?: boolean;
   size?: string;
+  title?: string
 }>();
+
+const { view, hoverPosition, containerPosition, size} = props;
+
 
 const emit = defineEmits<{
   (e: "close"): void;

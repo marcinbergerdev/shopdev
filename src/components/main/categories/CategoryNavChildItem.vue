@@ -6,17 +6,17 @@
 </template>
 
 <script setup lang="ts">
-
-const { link, title, amount } = defineProps<{
+const props = defineProps<{
   link: string;
   title: string;
   amount: number;
 }>();
+
+const { link, title, amount } = props;
 </script>
 
 <style scoped lang="scss">
-
-.underOption{
+.underOption {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -24,14 +24,13 @@ const { link, title, amount } = defineProps<{
   padding: 1rem;
   color: var(--primary-greyDark);
 
-  &__name{
+  &__name {
     font-size: 1.7rem;
     color: var(--primary-greyDark);
   }
 
-  &__amount{
+  // &__amount{
 
-  }
+  // }
 }
-
 </style>

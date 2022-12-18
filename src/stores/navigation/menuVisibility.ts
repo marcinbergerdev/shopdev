@@ -14,7 +14,7 @@ export const useMenuVisibility = defineStore("menuVisibility", () => {
    }
 
    function openMenu() {
-      menuHidden.value = false;
+      menuHidden.value = true;
 
    }
    function closeMenu() {

@@ -12,14 +12,6 @@
         @close="closeMenu"
       >
         <article class="categoriesListContainer">
-          <header class="categoriesHeader" v-if="visibility.isMenuHidden">
-            <h2 class="categoriesHeader__title">Category</h2>
-
-            <button class="categoriesHeader__closeButton" @click="closeMenu">
-              <Icon class="categoriesHeader__icon" icon="bi:x-lg" />
-            </button>
-          </header>
-
           <ul class="categoriesList">
             <CategoryNavItem
               v-for="(category, id) in categories.getCategories"

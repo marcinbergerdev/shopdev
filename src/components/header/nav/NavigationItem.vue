@@ -24,14 +24,11 @@
           :container-position="dropMenuPositionMobile"
           :hover-position="hoverMenuPositionDesctop"
           :size="name"
+          :title="title"
+          :is-header="dropMenuMobileActivity"
           @close="closeMenu"
         >
-          <MenuContent
-            :title="title"
-            :menuName="name"
-            :isMenuHeader="dropMenuMobileActivity"
-            @close="closeMenu"
-          ></MenuContent>
+          <MenuContent :title="title" :menuName="name" @close="closeMenu"></MenuContent>
         </BaseMenu>
       </Transition>
     </Teleport>
@@ -42,16 +39,7 @@
 import MenuContent from "../contentMenu/MenuContent.vue";
 import { ref, computed, onMounted, onUnmounted } from "vue";
 
-const {
-  path,
-  title,
-  icon,
-  name,
-  hoverPosition,
-  dropMenuPosition,
-  isLink,
-  isDropMenu,
-} = defineProps<{
+const props = defineProps<{
   path: string;
   title: string;
   icon?: string;
@@ -61,10 +49,16 @@ const {
   isLink: boolean;
   isDropMenu?: boolean;
 }>();
-
-const test = computed(() => {
-  return true;
-});
+const {
+  path,
+  title,
+  icon,
+  name,
+  hoverPosition,
+  dropMenuPosition,
+  isLink,
+  isDropMenu,
+} = props;
 
 const dropMenuMobileActivity = ref(false);
 const dropMenuDesctopActivity = ref(false);
