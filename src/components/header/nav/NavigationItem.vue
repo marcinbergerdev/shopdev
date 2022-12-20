@@ -3,7 +3,7 @@
     :id="name"
     class="optionElement"
     :class="optionHover"
-    @click="selectedOption(isDropMenu)"
+    @click="selectOption(isDropMenu)"
     @mouseover="hoverOption"
     @mouseleave="leaveOption"
   >
@@ -87,7 +87,7 @@ function hoverOption() {
     dropMenuDesctopActivity.value = true;
   }
 }
-function selectedOption(isDropMenu?: boolean) {
+function selectOption(isDropMenu?: boolean) {
   if (isDropMenu && !dropMenuMobileActivity.value && innerWidth < 768) {
     dropMenuMobileActivity.value = true;
   }

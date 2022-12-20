@@ -19,7 +19,7 @@
   --white: #fff;
   --black: #000;
 
-  --primary-greyLight: #F1F1F1;
+  --primary-greyLight: #f1f1f1;
   --primary-grey: #f5f5f5;
   --primary-greyDark: #999;
   --primary-greyDarker: #7e7e7e;
@@ -52,5 +52,4 @@ ul {
 a {
   text-decoration: none;
 }
-
 </style>

@@ -29,8 +29,7 @@ const { link, title, amount } = props;
     color: var(--primary-greyDark);
   }
 
-  // &__amount{
-
-  // }
+  &__amount {
+  }
 }
 </style>

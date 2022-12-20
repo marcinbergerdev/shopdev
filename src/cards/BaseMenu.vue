@@ -5,8 +5,12 @@
     </Teleport>
 
     <div :class="[dropMenuStyle, hoverPosition, size]">
-      <MenuHeader :isHeader="isHeader" :title="title" @click="emit('close')"></MenuHeader>
-
+      <MenuHeader
+        v-if="visibility.isMenuHidden || isHeader"
+        :isHeader="isHeader"
+        :title="title"
+        @click="emit('close')"
+      ></MenuHeader>
       <slot></slot>
     </div>
   </div>
@@ -14,8 +18,10 @@
 
 <script setup lang="ts">
 import MenuHeader from "../components/header/contentMenu/MenuHeader.vue";
+import { useMenuVisibility } from "../stores/navigation/menuVisibility";
 import { computed } from "vue";
 
+const visibility = useMenuVisibility();
 const props = defineProps<{
   view: boolean;
   menuStyle: boolean;
@@ -40,7 +46,7 @@ const dropMenuStyle = computed<string>(() => {
   position: absolute;
   top: 0;
   z-index: 100;
-  min-height: 100vh;
+  height: 100vh;
 }
 
 .backdrop {
@@ -49,7 +55,7 @@ const dropMenuStyle = computed<string>(() => {
   right: 0;
   z-index: 50;
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
   background-color: grey;
   opacity: 0.26;
 
@@ -59,7 +65,10 @@ const dropMenuStyle = computed<string>(() => {
 }
 
 .dropContainer {
-  @include dropPosition;
+  position: absolute;
+  top: 0;
+  z-index: 100;
+  height: 100vh;
   width: 85%;
 
   @media (min-width: 768px) {
@@ -67,7 +76,7 @@ const dropMenuStyle = computed<string>(() => {
     top: auto;
     z-index: auto;
     width: auto;
-    min-height: auto;
+    height: auto;
   }
 }
 
@@ -75,14 +84,14 @@ const dropMenuStyle = computed<string>(() => {
   position: absolute;
   top: 0;
   z-index: 100;
-  min-height: 100vh;
+  height: 100%;
   width: 100%;
   background-color: var(--white);
 
   @media (min-width: 768px) {
     top: 100%;
     width: auto;
-    min-height: auto;
+    height: auto;
     border-radius: 1rem;
     outline: 1px solid var(--primary-claret);
   }

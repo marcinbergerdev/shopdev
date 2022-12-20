@@ -25,114 +25,6 @@
           smigana, polecam!
         </p>
       </li>
-      <!-- <li>
-        <span>Promocja</span>
-        <img src="../../../assets/psp.jpg" alt="product-img" />
-        <div>
-          <span></span>
-          <Icon icon="bi:heart" />
-        </div>
-        <p>
-          Sony PSP z gwarancją + zestaw słuchawkowy i ładowarka tanio, nie używana nie
-          smigana, polecam!
-        </p>
-      </li>
-      <li>
-        <span>Promocja</span>
-        <img src="../../../assets/psp.jpg" alt="product-img" />
-        <div>
-          <span></span>
-          <Icon icon="bi:heart" />
-        </div>
-        <p>
-          Sony PSP z gwarancją + zestaw słuchawkowy i ładowarka tanio, nie używana nie
-          smigana, polecam!
-        </p>
-      </li>
-      <li>
-        <span>Promocja</span>
-        <img src="../../../assets/psp.jpg" alt="product-img" />
-        <div>
-          <span></span>
-          <Icon icon="bi:heart" />
-        </div>
-        <p>
-          Sony PSP z gwarancją + zestaw słuchawkowy i ładowarka tanio, nie używana nie
-          smigana, polecam!
-        </p>
-      </li>
-      <li>
-        <span>Promocja</span>
-        <img src="../../../assets/psp.jpg" alt="product-img" />
-        <div>
-          <span></span>
-          <Icon icon="bi:heart" />
-        </div>
-        <p>
-          Sony PSP z gwarancją + zestaw słuchawkowy i ładowarka tanio, nie używana nie
-          smigana, polecam!
-        </p>
-      </li>
-      <li>
-        <span>Promocja</span>
-        <img src="../../../assets/psp.jpg" alt="product-img" />
-        <div>
-          <span></span>
-          <Icon icon="bi:heart" />
-        </div>
-        <p>
-          Sony PSP z gwarancją + zestaw słuchawkowy i ładowarka tanio, nie używana nie
-          smigana, polecam!
-        </p>
-      </li>
-      <li>
-        <span>Promocja</span>
-        <img src="../../../assets/psp.jpg" alt="product-img" />
-        <div>
-          <span></span>
-          <Icon icon="bi:heart" />
-        </div>
-        <p>
-          Sony PSP z gwarancją + zestaw słuchawkowy i ładowarka tanio, nie używana nie
-          smigana, polecam!
-        </p>
-      </li>
-      <li>
-        <span>Promocja</span>
-        <img src="../../../assets/psp.jpg" alt="product-img" />
-        <div>
-          <span></span>
-          <Icon icon="bi:heart" />
-        </div>
-        <p>
-          Sony PSP z gwarancją + zestaw słuchawkowy i ładowarka tanio, nie używana nie
-          smigana, polecam!
-        </p>
-      </li>
-      <li>
-        <span>Promocja</span>
-        <img src="../../../assets/psp.jpg" alt="product-img" />
-        <div>
-          <span></span>
-          <Icon icon="bi:heart" />
-        </div>
-        <p>
-          Sony PSP z gwarancją + zestaw słuchawkowy i ładowarka tanio, nie używana nie
-          smigana, polecam!
-        </p>
-      </li>
-      <li>
-        <span>Promocja</span>
-        <img src="../../../assets/psp.jpg" alt="product-img" />
-        <div>
-          <span></span>
-          <Icon icon="bi:heart" />
-        </div>
-        <p>
-          Sony PSP z gwarancją + zestaw słuchawkowy i ładowarka tanio, nie używana nie
-          smigana, polecam!
-        </p>
-      </li> -->
     </ul>
   </article>
 </template>
@@ -141,6 +33,9 @@
 </script>
 
 <style scoped>
+article{
+  background-color: bisque;
+}
 
 img{
   width: 50px;

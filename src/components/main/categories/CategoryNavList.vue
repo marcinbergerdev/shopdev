@@ -151,10 +151,7 @@ onUnmounted(() => {
 }
 
 .categoriesListContainer {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  height: calc(100vh - 4.5rem);
 
   @media (min-width: 768px) {
     height: auto;
@@ -190,7 +187,7 @@ onUnmounted(() => {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  flex: 1;
+  height: 100%;
   padding: 5rem 0;
   overflow: auto;
   overflow-x: hidden;

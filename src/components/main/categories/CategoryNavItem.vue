@@ -83,7 +83,6 @@ onMounted(() => {
   align-items: center;
   margin: 0.5rem 0;
   padding: 1rem;
-
   &__arrowIcon {
     font-size: 1.5rem;
     color: var(--primary-greyDark);
@@ -109,7 +108,7 @@ onMounted(() => {
 }
 
 .underList {
-  position: absolute;
+  position:absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -117,10 +116,8 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-
   background-color: var(--white);
   overflow: auto;
-
   &__closeButton {
     display: flex;
     align-items: center;
@@ -128,7 +125,6 @@ onMounted(() => {
     background-color: transparent;
     border: 0;
     margin: 1.5rem 1rem;
-
     &-icon {
       color: var(--primary-greyDark);
       font-size: 2rem;
