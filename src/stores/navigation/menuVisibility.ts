@@ -11,10 +11,12 @@ export const useMenuVisibility = defineStore("menuVisibility", () => {
 
    function switchMenu() {
       menuHidden.value = !menuHidden.value;
+      document.body.classList.add('scrollHidden');
    }
 
    function closeMenu() {
       menuHidden.value = false;
+      document.body.classList.remove('scrollHidden');
    }
 
    function activateAnimation() {

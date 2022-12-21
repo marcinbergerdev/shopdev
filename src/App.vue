@@ -52,4 +52,8 @@ ul {
 a {
   text-decoration: none;
 }
+
+.scrollHidden {
+  overflow: hidden;
+}
 </style>

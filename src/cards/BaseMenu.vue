@@ -1,7 +1,7 @@
 <template>
   <div class="dropContainer" :class="containerPosition">
     <Teleport to="body" v-if="view">
-      <div class="backdrop" @click="emit('close')"></div>
+      <div class="backdrop" @click="closeMenu"></div>
     </Teleport>
 
     <div :class="[dropMenuStyle, hoverPosition, size]">
@@ -9,7 +9,7 @@
         v-if="visibility.isMenuHidden || isHeader"
         :isHeader="isHeader"
         :title="title"
-        @click="emit('close')"
+        @close="emit('close')"
       ></MenuHeader>
       <slot></slot>
     </div>
@@ -39,18 +39,23 @@ const emit = defineEmits<{
 const dropMenuStyle = computed<string>(() => {
   return props.menuStyle ? "dropMenuMobile" : "categoriesDesctop";
 });
+
+function closeMenu() {
+  emit("close");
+  document.body.classList.remove("scrollHidden");
+}
 </script>
 
 <style scoped lang="scss">
 @mixin dropPosition {
-  position: absolute;
+  position: fixed;
   top: 0;
   z-index: 100;
   height: 100vh;
 }
 
 .backdrop {
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   z-index: 50;
@@ -65,7 +70,7 @@ const dropMenuStyle = computed<string>(() => {
 }
 
 .dropContainer {
-  position: absolute;
+  position: fixed;
   top: 0;
   z-index: 100;
   height: 100vh;

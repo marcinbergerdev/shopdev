@@ -9,10 +9,6 @@
 
     <Transition name="underList" mode="out-in">
       <ul class="underList" v-if="isUnderCategory">
-        <button class="underList__closeButton" @click="closeUnderList">
-          <Icon class="underList__closeButton-icon" icon="akar-icons:arrow-left" />
-        </button>
-
         <CategoryNavChildItem
           v-for="(category, id) in underCategory"
           :key="id"
@@ -45,6 +41,7 @@ const { icon, title, underCategory } = props;
 
 function showCategory() {
   isUnderCategory.value = true;
+  emit("underCategoryBack");
 }
 
 function closeCategory() {
@@ -56,6 +53,7 @@ function closeUnderList() {
 
 const emit = defineEmits<{
   (e: "underCategory", value: object): void;
+  (e: "underCategoryBack"): void;
 }>();
 
 onMounted(() => {
@@ -108,9 +106,10 @@ onMounted(() => {
 }
 
 .underList {
-  position:absolute;
+  position: absolute;
   top: 0;
   left: 0;
+  padding: 5rem 0;
   width: 100%;
   height: 100%;
   display: flex;
