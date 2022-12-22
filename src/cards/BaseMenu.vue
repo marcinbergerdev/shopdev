@@ -9,7 +9,7 @@
         v-if="visibility.isMenuHidden || isHeader"
         :isHeader="isHeader"
         :title="title"
-        @close="emit('close')"
+        @close="closeMenu"
       ></MenuHeader>
       <slot></slot>
     </div>
@@ -41,8 +41,9 @@ const dropMenuStyle = computed<string>(() => {
 });
 
 function closeMenu() {
-  emit("close");
+  visibility.closeMenu();
   document.body.classList.remove("scrollHidden");
+  emit("close");
 }
 </script>
 

@@ -5,6 +5,10 @@
     <button class="dropMenuHeaderMobile__closeButton" @click="emit('close')">
       <Icon class="dropMenuHeaderMobile__icon" icon="bi:x-lg" />
     </button>
+
+    <button class="dropMenuHeaderMobile__closeButton" @click="emit('close')">
+      <Icon class="dropMenuHeaderMobile__icon" icon="akar-icons:arrow-left" />
+    </button>
   </header>
 </template>
 

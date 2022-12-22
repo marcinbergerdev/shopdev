@@ -9,7 +9,6 @@
         :view="visibility.isMenuHidden"
         v-if="visibility.isMenuHidden || showMenu"
         :menu-style="isCategoriesForMobile"
-        @close="closeMenu"
       >
         <article class="categoriesListContainer">
           <ul class="categoriesList">
@@ -83,10 +82,6 @@ function watchUserWidth() {
       return;
     }
   }
-}
-
-function closeMenu() {
-  visibility.closeMenu();
 }
 
 watch(route, (rout) => {

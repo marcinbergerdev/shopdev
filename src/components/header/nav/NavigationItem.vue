@@ -28,7 +28,7 @@
           :is-header="dropMenuMobileActivity"
           @close="closeMenu"
         >
-          <MenuContent :title="title" :menuName="name" @close="closeMenu"></MenuContent>
+          <MenuContent :title="title" :menuName="name"></MenuContent>
         </BaseMenu>
       </Transition>
     </Teleport>
