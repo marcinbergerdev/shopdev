@@ -2,6 +2,7 @@ import { defineStore } from "pinia";
 import { ref, computed } from "vue";
 
 export const useUserCategories = defineStore("userCategories", () => {
+
    const categories = ref([
       {
          icon: "ic:outline-health-and-safety",
@@ -480,10 +481,27 @@ export const useUserCategories = defineStore("userCategories", () => {
          ],
       },
    ]);
+   const backIcon = ref(false);
 
-   const getCategories = categories.value;
+   const getCategories = computed(() => categories.value);
+
+
+
+
+
+   function showBackIcon(){
+      backIcon.value = true;
+   }
+   function hideBackIcon(){
+      backIcon.value = false;
+   }
+
+
 
    return {
       getCategories,
+      backIcon,
+      showBackIcon,
+      hideBackIcon
    };
 });

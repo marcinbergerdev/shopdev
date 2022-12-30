@@ -23,7 +23,7 @@ const { menuName } = props;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: calc(100vh - 4.3rem);
+  height: calc(100% - 4.3rem);
   @media (min-width: 768px) {
     height: auto;
   }

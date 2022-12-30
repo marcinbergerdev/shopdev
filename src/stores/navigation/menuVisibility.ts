@@ -22,6 +22,7 @@ export const useMenuVisibility = defineStore("menuVisibility", () => {
    function activateAnimation() {
       isMenuAnimation.value = true;
    }
+
    function deactivateAnimation() {
       isMenuAnimation.value = false;
    }

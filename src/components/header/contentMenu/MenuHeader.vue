@@ -2,17 +2,28 @@
   <header class="dropMenuHeaderMobile">
     <span class="dropMenuHeaderMobile__title">{{ title ? title : "Category" }}</span>
 
-    <button class="dropMenuHeaderMobile__closeButton" @click="emit('close')">
+    <button
+      class="dropMenuHeaderMobile__closeButton"
+      @click="emit('close')"
+      v-if="!underCategories.backIcon"
+    >
       <Icon class="dropMenuHeaderMobile__icon" icon="bi:x-lg" />
     </button>
 
-    <button class="dropMenuHeaderMobile__closeButton" @click="emit('close')">
+    <button
+      class="dropMenuHeaderMobile__closeButton"
+      @click="underCategories.hideBackIcon"
+      v-else
+    >
       <Icon class="dropMenuHeaderMobile__icon" icon="akar-icons:arrow-left" />
     </button>
   </header>
 </template>
 
 <script setup lang="ts">
+import { useUserCategories } from "../../../stores/navigation/userCategories";
+const underCategories = useUserCategories();
+
 const props = defineProps<{
   title?: string;
 }>();

@@ -24,7 +24,10 @@
 
 <script setup lang="ts">
 import CategoryNavChildItem from "./CategoryNavChildItem.vue";
+import { useUserCategories } from "../../../stores/navigation/userCategories";
+
 import { ref, onMounted } from "vue";
+const underCategories = useUserCategories();
 
 const isUnderCategory = ref(false);
 
@@ -39,22 +42,18 @@ const props = defineProps<{
 }>();
 const { icon, title, underCategory } = props;
 
+const emit = defineEmits<{
+  (e: "underCategory", value: object): void;
+}>();
+
 function showCategory() {
   isUnderCategory.value = true;
-  emit("underCategoryBack");
+  underCategories.showBackIcon();
 }
 
 function closeCategory() {
   isUnderCategory.value = false;
 }
-function closeUnderList() {
-  isUnderCategory.value = false;
-}
-
-const emit = defineEmits<{
-  (e: "underCategory", value: object): void;
-  (e: "underCategoryBack"): void;
-}>();
 
 onMounted(() => {
   emit("underCategory", underCategory);

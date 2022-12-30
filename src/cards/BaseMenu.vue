@@ -19,9 +19,12 @@
 <script setup lang="ts">
 import MenuHeader from "../components/header/contentMenu/MenuHeader.vue";
 import { useMenuVisibility } from "../stores/navigation/menuVisibility";
+import { useUserCategories } from "../stores/navigation/userCategories";
 import { computed } from "vue";
 
 const visibility = useMenuVisibility();
+const underCategories = useUserCategories();
+
 const props = defineProps<{
   view: boolean;
   menuStyle: boolean;
@@ -42,6 +45,7 @@ const dropMenuStyle = computed<string>(() => {
 
 function closeMenu() {
   visibility.closeMenu();
+  underCategories.hideBackIcon();
   document.body.classList.remove("scrollHidden");
   emit("close");
 }

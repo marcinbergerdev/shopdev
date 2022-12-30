@@ -66,6 +66,7 @@ function watchUserWidth() {
   if (innerWidth >= 768) {
     isCategoriesForMobile.value = false;
     visibility.closeMenu();
+    categories.hideBackIcon();
 
     if (route.path !== "/shop") {
       isOnMounted.value = false;
