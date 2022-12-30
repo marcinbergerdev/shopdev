@@ -78,7 +78,7 @@ function closeMenu() {
   position: fixed;
   top: 0;
   z-index: 100;
-  height: 100vh;
+  height: 100%;
   width: 85%;
 
   @media (min-width: 768px) {
