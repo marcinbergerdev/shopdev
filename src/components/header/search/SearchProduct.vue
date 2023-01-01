@@ -1,17 +1,10 @@
 <template>
   <form>
-    <input type="text" placeholder="Wyszukaj...">
+    <input type="text" placeholder="Wyszukaj..." />
   </form>
 </template>
 
-
-<script setup lang="ts">
-
-
-
-
-
-</script>
+<script setup lang="ts"></script>
 
 <style scoped lang="scss">
 form {
@@ -28,7 +21,7 @@ input {
 }
 
 input:focus {
-  transition: .150s ease-in-out;
+  transition: 0.15s ease-in-out;
   border: 3px solid var(--primary-greyDark);
 }
 </style>

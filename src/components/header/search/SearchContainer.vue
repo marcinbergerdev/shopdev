@@ -3,18 +3,11 @@
     <SearchProduct></SearchProduct>
     <HamburgerMenu></HamburgerMenu>
   </section>
-
-
 </template>
 
-
 <script setup lang="ts">
-import HamburgerMenu from '../hamburger/HamburgerMenu.vue';
-import SearchProduct from './SearchProduct.vue';
-
-
-
-
+import HamburgerMenu from "../hamburger/HamburgerMenu.vue";
+import SearchProduct from "./SearchProduct.vue";
 </script>
 
 <style scoped lang="scss">
@@ -23,7 +16,7 @@ import SearchProduct from './SearchProduct.vue';
   align-items: center;
 }
 
-section{
+section {
   grid-area: search;
   padding-right: 1rem;
   grid-area: search;

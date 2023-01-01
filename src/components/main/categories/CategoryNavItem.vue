@@ -7,7 +7,7 @@
 
     <Icon class="categoriesOption__arrowIcon" icon="akar-icons:arrow-right" />
 
-    <Transition name="underList" mode="out-in">
+    <Transition name="underList" mode="out-in" :css="stopUnderListTransition">
       <ul class="underList" v-if="isUnderCategory">
         <CategoryNavChildItem
           v-for="(category, id) in underCategory"
@@ -26,10 +26,11 @@
 import CategoryNavChildItem from "./CategoryNavChildItem.vue";
 import { useUserCategories } from "../../../stores/navigation/userCategories";
 
-import { ref, onMounted } from "vue";
+import { ref } from "vue";
 const underCategories = useUserCategories();
 
 const isUnderCategory = ref(false);
+const stopUnderListTransition = ref(true);
 
 const props = defineProps<{
   icon: string;
@@ -47,6 +48,12 @@ const emit = defineEmits<{
 }>();
 
 function showCategory() {
+  if (innerWidth >= 768) {
+    stopUnderListTransition.value = false;
+    isUnderCategory.value = true;
+    return;
+  }
+  stopUnderListTransition.value = true;
   isUnderCategory.value = true;
   underCategories.showBackIcon();
 }
@@ -54,10 +61,6 @@ function showCategory() {
 function closeCategory() {
   isUnderCategory.value = false;
 }
-
-onMounted(() => {
-  emit("underCategory", underCategory);
-});
 </script>
 
 <style scoped lang="scss">
@@ -83,6 +86,11 @@ onMounted(() => {
   &__arrowIcon {
     font-size: 1.5rem;
     color: var(--primary-greyDark);
+  }
+
+  @media (min-width: 768px) {
+    margin: 0;
+    padding: 0;
   }
 }
 
@@ -115,7 +123,7 @@ onMounted(() => {
   flex-direction: column;
   justify-content: flex-start;
   background-color: var(--white);
-  overflow: auto;
+
   &__closeButton {
     display: flex;
     align-items: center;
@@ -127,6 +135,13 @@ onMounted(() => {
       color: var(--primary-greyDark);
       font-size: 2rem;
     }
+  }
+
+  @media (min-width: 768px) {
+    left: 100%;
+    padding: 0;
+    background-color: rgb(229, 196, 196);
+    overflow: scroll;
   }
 }
 </style>

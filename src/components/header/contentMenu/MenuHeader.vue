@@ -1,20 +1,16 @@
 <template>
-  <header class="dropMenuHeaderMobile">
+  <header class="dropMenuHeaderMobile" @click="underCategories.hideBackIcon">
     <span class="dropMenuHeaderMobile__title">{{ title ? title : "Category" }}</span>
 
     <button
       class="dropMenuHeaderMobile__closeButton"
       @click="emit('close')"
-      v-if="!underCategories.backIcon"
+      v-if="!underCategories.getBackIcon"
     >
       <Icon class="dropMenuHeaderMobile__icon" icon="bi:x-lg" />
     </button>
 
-    <button
-      class="dropMenuHeaderMobile__closeButton"
-      @click="underCategories.hideBackIcon"
-      v-else
-    >
+    <button class="dropMenuHeaderMobile__closeButton" v-else>
       <Icon class="dropMenuHeaderMobile__icon" icon="akar-icons:arrow-left" />
     </button>
   </header>

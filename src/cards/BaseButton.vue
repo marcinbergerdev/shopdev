@@ -97,7 +97,7 @@ button {
     cursor: pointer;
     border-radius: 5px;
 
-    &:hover{
+    &:hover {
       color: var(--white);
       background-color: var(--secondary-lightRed);
     }

@@ -34,9 +34,9 @@ import { useMenuVisibility } from "../../../stores/navigation/menuVisibility";
 import { ref, watch, onMounted, onUnmounted } from "vue";
 import { useRoute } from "vue-router";
 
+const route = useRoute();
 const categories = useUserCategories();
 const visibility = useMenuVisibility();
-const route = useRoute();
 
 const path = ref(".navigationContainer");
 const isOnMounted = ref(false);
@@ -153,6 +153,7 @@ onUnmounted(() => {
 
   @media (min-width: 768px) {
     height: auto;
+    overflow-x: visible;
   }
 }
 
@@ -188,5 +189,12 @@ onUnmounted(() => {
   padding: 5rem 0;
   overflow: auto;
   overflow-x: hidden;
+
+  @media (min-width: 768px) {
+    display: block;
+    height: auto;
+    padding: 0;
+    overflow: auto;
+  }
 }
 </style>

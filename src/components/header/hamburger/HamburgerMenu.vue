@@ -9,7 +9,7 @@
 
 <script setup lang="ts">
 import { useMenuVisibility } from "../../../stores/navigation/menuVisibility";
-import { ref, computed } from "vue";
+import { computed } from "vue";
 
 const menuVisibility = useMenuVisibility();
 

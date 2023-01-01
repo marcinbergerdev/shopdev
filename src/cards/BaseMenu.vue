@@ -109,6 +109,7 @@ function closeMenu() {
 
 .categoriesDesctop {
   @media (min-width: 768px) {
+    background-color: rgb(228, 221, 221);
   }
 }
 

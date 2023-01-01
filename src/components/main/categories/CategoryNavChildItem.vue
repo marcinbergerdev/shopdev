@@ -31,5 +31,10 @@ const { link, title, amount } = props;
 
   // &__amount {
   // }
+
+  @media (min-width: 768px) {
+    margin: 0;
+    padding: 0;
+  }
 }
 </style>
