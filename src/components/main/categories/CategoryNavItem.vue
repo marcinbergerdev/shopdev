@@ -89,14 +89,19 @@ function closeCategory() {
     color: var(--primary-greyDark);
     @media (min-width: 768px) {
       display: none;
-      pointer-events: none;
     }
   }
 
   @media (min-width: 768px) {
     margin: 0;
     padding: 1rem 0;
-    cursor: pointer;
+
+    &:hover {
+      .optionBox__icon,
+      .optionBox__title {
+        color: var(--primary-claret);
+      }
+    }
   }
 }
 
@@ -106,25 +111,24 @@ function closeCategory() {
   gap: 0 2rem;
   color: var(--primary-greyDark);
 
+  &__icon {
+    font-size: 2rem;
+    @media (min-width: 768px) {
+      font-size: 1.6rem;
+      pointer-events: none;
+    }
+  }
+
   &__title {
     font-size: 1.7rem;
     color: var(--primary-greyDark);
     background-color: transparent;
     border: 0;
+
     @media (min-width: 768px) {
       font-size: 1.4rem;
+      pointer-events: none;
     }
-  }
-
-  &__icon {
-    font-size: 2rem;
-    @media (min-width: 768px) {
-      font-size: 1.6rem;
-    }
-  }
-
-  @media (min-width: 768px) {
-    pointer-events: none;
   }
 }
 

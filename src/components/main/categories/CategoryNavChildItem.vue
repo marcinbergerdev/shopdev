@@ -27,13 +27,19 @@ const { link, title, amount } = props;
   &__name {
     font-size: 1.7rem;
     color: var(--primary-greyDark);
+
     @media (min-width: 768px) {
       font-size: 1.4rem;
+      &:hover {
+        color: var(--primary-claret);
+      }
     }
   }
 
-  // &__amount {
-  // }
+  &__amount {
+    color: var(--primary-claret);
+    font-weight: 700;
+  }
 
   @media (min-width: 768px) {
     margin: 0;
