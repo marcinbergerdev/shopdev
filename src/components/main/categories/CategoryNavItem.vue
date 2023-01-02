@@ -83,14 +83,20 @@ function closeCategory() {
   align-items: center;
   margin: 0.5rem 0;
   padding: 1rem;
+
   &__arrowIcon {
     font-size: 1.5rem;
     color: var(--primary-greyDark);
+    @media (min-width: 768px) {
+      display: none;
+      pointer-events: none;
+    }
   }
 
   @media (min-width: 768px) {
     margin: 0;
-    padding: 0;
+    padding: 1rem 0;
+    cursor: pointer;
   }
 }
 
@@ -105,10 +111,20 @@ function closeCategory() {
     color: var(--primary-greyDark);
     background-color: transparent;
     border: 0;
+    @media (min-width: 768px) {
+      font-size: 1.4rem;
+    }
   }
 
   &__icon {
     font-size: 2rem;
+    @media (min-width: 768px) {
+      font-size: 1.6rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    pointer-events: none;
   }
 }
 
@@ -138,10 +154,12 @@ function closeCategory() {
   }
 
   @media (min-width: 768px) {
+    top: -1px;
     left: 100%;
-    padding: 0;
-    background-color: rgb(229, 196, 196);
-    overflow: scroll;
+    height: 100.5%;
+    padding: 2rem;
+    border: 1px solid var(--primary-greyDark);
+    overflow: auto;
   }
 }
 </style>

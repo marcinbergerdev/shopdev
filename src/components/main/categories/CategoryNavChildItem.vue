@@ -27,6 +27,9 @@ const { link, title, amount } = props;
   &__name {
     font-size: 1.7rem;
     color: var(--primary-greyDark);
+    @media (min-width: 768px) {
+      font-size: 1.4rem;
+    }
   }
 
   // &__amount {
@@ -34,7 +37,7 @@ const { link, title, amount } = props;
 
   @media (min-width: 768px) {
     margin: 0;
-    padding: 0;
+    padding: 1rem 0;
   }
 }
 </style>

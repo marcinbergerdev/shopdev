@@ -29,17 +29,19 @@
   </article>
 </template>
 
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 
-<style scoped>
-article{
+<style scoped lang="scss">
+article {
   background-color: bisque;
+
+  @media (min-width: 768px) {
+    width: 65%;
+  }
 }
 
-img{
+img {
   width: 50px;
   height: 50px;
 }
-
 </style>

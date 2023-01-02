@@ -86,6 +86,7 @@ function closeMenu() {
     top: auto;
     z-index: auto;
     width: auto;
+    margin-right: 2rem;
     height: auto;
   }
 }
@@ -100,7 +101,6 @@ function closeMenu() {
 
   @media (min-width: 768px) {
     top: 100%;
-    width: auto;
     height: auto;
     border-radius: 1rem;
     outline: 1px solid var(--primary-claret);
@@ -109,7 +109,8 @@ function closeMenu() {
 
 .categoriesDesctop {
   @media (min-width: 768px) {
-    background-color: rgb(228, 221, 221);
+    width: 28rem;
+    border: 1px solid var(--primary-greyDark);
   }
 }
 

@@ -14,6 +14,8 @@ import SaleList from "../sale/SaleList.vue";
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-between;
+    margin-top: 3rem;
+    padding: 0 1rem;
   }
 }
 </style>

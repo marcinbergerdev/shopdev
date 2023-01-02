@@ -185,15 +185,15 @@ onUnmounted(() => {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  width: 100%;
   height: 100%;
   padding: 5rem 0;
   overflow: auto;
   overflow-x: hidden;
 
   @media (min-width: 768px) {
-    display: block;
-    height: auto;
-    padding: 0;
+    height: 45rem;
+    padding: 2rem 0 2rem 2rem;
     overflow: auto;
   }
 }
