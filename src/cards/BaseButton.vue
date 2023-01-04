@@ -106,6 +106,12 @@ button {
 
 
 .addToCart{
+  display: grid;
+  place-items: center;
+  padding: 0.4rem;
 
+  background-color: transparent;
+  border: 1px solid var(--secondary-superLightGreen);
+  border-radius: 50%;
 }
 </style>

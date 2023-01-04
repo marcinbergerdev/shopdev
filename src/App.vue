@@ -31,7 +31,7 @@
 
   --secondary-superLightGreen: #54ce60;
   --secondary-lightGreen: #03ad00;
-  --secondary-normalGreen: #009317;
+  --secondary-normalGreen: #27981D;
   --secondary-darkGreen: #07581e;
 
   --secondary-lightRed: #e40101;

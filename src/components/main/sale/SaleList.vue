@@ -2,7 +2,11 @@
   <article v-if="true">
     <ul>
 
-    <BaseProduct></BaseProduct>
+    <BaseProduct view="singleView"></BaseProduct>
+    <BaseProduct view="singleView"></BaseProduct>
+    <BaseProduct view="singleView"></BaseProduct>
+    <BaseProduct view="singleView"></BaseProduct>
+    <BaseProduct view="singleView"></BaseProduct>
 
       <!-- <li>
         <span>Promocja</span>
@@ -69,6 +73,9 @@
       </li> -->
 
     </ul>
+
+    <!-- <button> Zobacz Wiecej</button> -->
+
   </article>
 </template>
 
@@ -76,12 +83,21 @@
 
 <style scoped lang="scss">
 article {
-  background-color: bisque;
+  display: grid;
+  place-items: flex-start;
+  // background-color: rgb(231, 182, 182);
+
 
   @media (min-width: 768px) {
-    width: 65%;
+    width: 80%;
   }
 }
+
+ul{
+
+
+}
+
 
 img {
   width: 50px;
