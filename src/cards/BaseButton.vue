@@ -103,4 +103,9 @@ button {
     }
   }
 }
+
+
+.addToCart{
+
+}
 </style>

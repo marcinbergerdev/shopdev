@@ -5,6 +5,7 @@ import App from './App.vue';
 import { Icon } from "@iconify/vue";
 import BaseButton from './cards/BaseButton.vue';
 import BaseMenu from './cards/BaseMenu.vue';
+import BaseProduct from './cards/BaseProduct.vue';
 
 import router from './router.js';
 
@@ -14,6 +15,7 @@ const app = createApp(App);
 app.component('Icon', Icon);
 app.component('BaseButton', BaseButton);
 app.component('BaseMenu', BaseMenu);
+app.component('BaseProduct', BaseProduct);
 
 app.use(router);
 app.use(pinia);

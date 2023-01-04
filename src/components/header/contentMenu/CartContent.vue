@@ -23,8 +23,10 @@
       <img class="orderProduct__img" src="../../../assets/psp.jpg" alt="foto" />
       <div class="orderData">
         <h3 class="orderData__title">Sony PSP z gwarancją + zestaw słuchawkowy</h3>
+
         <span class="orderData__quantity">1 szt.</span>
         <span class="orderData__price">79,80zł</span>
+
         <BaseButton mode="deleteProduct">
           <Icon class="orderData__icon" icon="bi:trash" />
         </BaseButton>
@@ -124,9 +126,7 @@
   </section>
 </template>
 
-<script setup lang="ts">
-
-</script>
+<script setup lang="ts"></script>
 
 <style scoped lang="scss">
 .orderHeader {
@@ -213,6 +213,9 @@
   flex-direction: column;
   padding: 1.5rem;
   background-color: var(--primary-greyLight);
+  @media (min-width: 768px) {
+    border-radius: 0 0 0.6rem 0.6rem;
+  }
 }
 
 .orderAmount {
