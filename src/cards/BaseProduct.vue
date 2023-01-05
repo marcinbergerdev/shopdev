@@ -7,7 +7,6 @@
     </span>
 
     <header class="productHeader">
-
       <section class="productPrise">
         <span class="productPrise__amount">56,99zł</span>
         <Icon class="productPrise__favorite" icon="bi:heart" />
@@ -40,10 +39,13 @@ defineProps<{
 
 <style lang="scss" scoped>
 .singleView {
-  width: 23rem;
+  width: 18rem;
 
   height: 33rem;
 
+  @media (min-width: 330px) {
+    width: 23rem;
+  }
   @media (min-width: 768px) {
     margin: 0;
   }
@@ -134,17 +136,15 @@ defineProps<{
   }
 
   &__inaccessible {
-    color: var( --secondary-lightRed);
+    color: var(--secondary-lightRed);
   }
 
   @media (min-width: 768px) {
   }
 }
 
-.cartIcon{
+.cartIcon {
   font-size: 2rem;
   color: var(--secondary-superLightGreen);
 }
-
-
 </style>
