@@ -55,7 +55,6 @@ function closeMenu() {
 @mixin dropPosition {
   position: fixed;
   top: 0;
-  z-index: 100;
   height: 100vh;
 }
 
@@ -84,7 +83,6 @@ function closeMenu() {
   @media (min-width: 768px) {
     position: static;
     top: auto;
-    z-index: auto;
     width: auto;
     margin-right: 2rem;
     height: auto;

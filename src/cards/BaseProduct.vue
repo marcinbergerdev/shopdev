@@ -1,29 +1,32 @@
 <template>
   <li class="productContainer" :class="view">
-    <span class="productContainer__promotion">Promocja</span>
+    <span class="productContainer__promotion" v-if="promotion">Promocja</span>
 
     <span class="productImg">
-      <img class="productImg__productImg" src="../assets/zdj2.jpg" alt="product-img" />
+      <img class="productImg__productImg" :src="img" alt="product-img" />
     </span>
 
     <header class="productHeader">
       <section class="productPrise">
-        <span class="productPrise__amount">56,99zł</span>
-        <Icon class="productPrise__favorite" icon="bi:heart" />
+        <span class="productPrise__amount"> {{ price }}zł</span>
+        <Icon class="productPrise__favorite" v-if="favorite" icon="bi:heart" />
       </section>
 
-      <h2 class="productHeader__title">Sony PSP</h2>
+      <h2 class="productHeader__title">{{ title }}</h2>
 
       <p class="productHeader__description">
-        Sony PSP z gwarancją + zestaw słuchawkowy i ładowarka tanio, nie używana nie
-        smigana, polecam!
+        {{ description }}
       </p>
 
       <section class="productStatus">
-        <span v-if="true" class="productStatus__available">Produkt dostępny</span>
-        <span v-if="false" class="productStatus__inaccessible">Brak produktu</span>
+        <span v-if="productAvailable" class="productStatus__available"
+          >Produkt dostępny</span
+        >
+        <span v-if="productInaccessible" class="productStatus__inaccessible"
+          >Brak produktu</span
+        >
 
-        <BaseButton mode="addToCart">
+        <BaseButton mode="addToCart" v-if="cartIcon">
           <Icon class="cartIcon" icon="carbon:shopping-cart-plus" />
         </BaseButton>
       </section>
@@ -34,13 +37,23 @@
 <script setup lang="ts">
 defineProps<{
   view: string;
+  id?: number;
+  category?: string;
+  img?: string;
+  price?: number;
+  favorite?: boolean;
+  title?: string;
+  description?: string;
+  promotion?: boolean;
+  productAvailable?: boolean;
+  productInaccessible?: boolean;
+  cartIcon?: boolean;
 }>();
 </script>
 
 <style lang="scss" scoped>
-.singleView {
+.promotionSize {
   width: 18rem;
-
   height: 33rem;
 
   @media (min-width: 330px) {
@@ -48,6 +61,16 @@ defineProps<{
   }
   @media (min-width: 768px) {
     margin: 0;
+  }
+}
+
+.lastSearchingSize {
+  width: 18rem;
+  height: 30rem;
+
+  .productImg {
+    width: 100%;
+    height: 50%;
   }
 }
 
@@ -75,6 +98,12 @@ defineProps<{
 
   @media (min-width: 768px) {
     margin: 0;
+    box-shadow: none;
+
+    &:hover {
+      box-shadow: 2px 2px 7px 0 rgba(0, 0, 0, 0.26);
+      cursor: pointer;
+    }
   }
 }
 
@@ -93,6 +122,7 @@ defineProps<{
 .productHeader {
   display: flex;
   flex-direction: column;
+  text-align: start;
   gap: 0.5rem 0;
   padding: 1rem 0.8rem;
 
@@ -137,9 +167,6 @@ defineProps<{
 
   &__inaccessible {
     color: var(--secondary-lightRed);
-  }
-
-  @media (min-width: 768px) {
   }
 }
 
