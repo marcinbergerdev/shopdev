@@ -1,7 +1,6 @@
 <template>
   <section class="searchedContainer">
     <AdsImage></AdsImage>
-    <!-- <AdsImage></AdsImage> -->
 
     <article class="lastSearchingWrapper">
       <h2 class="lastSearchingWrapper__title">Ostatnio wyszukiwane</h2>
@@ -94,11 +93,24 @@ const searchedProduct = ref([
 
 <style scoped lang="scss">
 .searchedContainer {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  margin-top: 10rem;
+  margin: 10rem 0;
+  padding-bottom: 5rem;
+
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    height: 1px;
+    background-color: var(--primary-greyDark);
+  }
 
   @media (min-width: 1000px) {
     flex-direction: row;
@@ -144,7 +156,6 @@ const searchedProduct = ref([
   flex-direction: column;
   align-items: center;
   gap: 5rem 0;
-
 
   @media (min-width: 1000px) {
     margin: 2rem 2rem 0 2rem;
