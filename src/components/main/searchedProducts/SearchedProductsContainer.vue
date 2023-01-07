@@ -99,7 +99,8 @@ const searchedProduct = ref([
   justify-content: space-between;
   align-items: center;
   margin-top: 10rem;
-  @media (min-width: 768px) {
+
+  @media (min-width: 1000px) {
     flex-direction: row;
   }
 }
@@ -108,11 +109,11 @@ const searchedProduct = ref([
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-top: 10rem;
+  margin-top: 7rem;
 
   &__title {
     width: 70%;
-    margin: 0 auto;
+    margin: 7rem auto;
     padding: 0.5rem 0;
     text-align: center;
     font-size: 2rem;
@@ -122,14 +123,18 @@ const searchedProduct = ref([
 
     @media (min-width: 768px) {
       width: auto;
-      margin: 0 0 0 10rem;
       border: 0;
-      text-align: start;
       font-size: 2.8rem;
       color: var(--black);
     }
+
+    @media (min-width: 1000px) {
+      margin: 0 0 0 10rem;
+      text-align: start;
+    }
   }
-  @media (min-width: 768px) {
+
+  @media (min-width: 1000px) {
     margin: 0;
   }
 }
@@ -138,12 +143,14 @@ const searchedProduct = ref([
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 5rem 0;
 
-  @media (min-width: 768px) {
-    margin-top: 2rem;
-    flex-direction: row;
+
+  @media (min-width: 1000px) {
+    margin: 2rem 2rem 0 2rem;
     justify-content: center;
-    gap: 0 10rem;
+    flex-flow: row wrap;
+    gap: 5rem 10rem;
   }
 }
 </style>

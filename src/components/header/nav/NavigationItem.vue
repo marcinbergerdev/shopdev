@@ -11,6 +11,7 @@
       <Icon class="optionElement__icon" :icon="icon" />
       <p class="optionElement__title">{{ title }}</p>
     </BaseButton>
+
     <BaseButton v-else :to="path" mode="flat">
       {{ title }}
     </BaseButton>

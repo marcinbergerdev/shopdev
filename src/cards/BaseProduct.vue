@@ -9,7 +9,7 @@
     <header class="productHeader">
       <section class="productPrise">
         <span class="productPrise__amount"> {{ price }}zł</span>
-        <Icon class="productPrise__favorite" v-if="favorite" icon="bi:heart" />
+        <Icon class="productPrise__favorite" v-if="favorite" icon="ph:heart-fill" />
       </section>
 
       <h2 class="productHeader__title">{{ title }}</h2>
@@ -83,9 +83,9 @@ defineProps<{
   flex-direction: column;
   justify-content: space-between;
 
-  margin-top: 5rem;
   border-radius: 0.2rem;
   box-shadow: 2px 2px 7px 0 rgba(0, 0, 0, 0.26);
+  transition: box-shadow 0.2s ease-in-out;
 
   &__promotion {
     position: absolute;
@@ -102,6 +102,7 @@ defineProps<{
 
     &:hover {
       box-shadow: 2px 2px 7px 0 rgba(0, 0, 0, 0.26);
+      transition: box-shadow 0.2s ease-in-out;
       cursor: pointer;
     }
   }
@@ -140,7 +141,6 @@ defineProps<{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-right: 0.5rem;
   &__amount {
     font-size: 2.4rem;
     color: var(--secondary-darkGreen);
@@ -148,6 +148,13 @@ defineProps<{
 
   &__favorite {
     font-size: 2rem;
+    color: #c3c3c3;
+    transition: 0.2s ease-in-out;
+
+    &:hover {
+      color: #d5446d;
+      transition: 0.2s ease-in-out;
+    }
   }
 
   @media (min-width: 768px) {

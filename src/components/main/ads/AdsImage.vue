@@ -1,19 +1,25 @@
 <template>
-  <article>
-    <img src="../../../assets/psp.jpg" alt="" />
+  <article class="adContainer">
+    <img class="adContainer__img" src="../../../assets/psp.jpg" alt="" />
   </article>
 </template>
 
 <script setup lang="ts"></script>
 
 <style scoped lang="scss">
-article{
-  @media(min-width: 768px){
-    margin-left: 0.5rem;
+.adContainer {
+  margin: 0 auto;
+  align-self: flex-start;
+  width: min(55rem, 100%);
+  height: 27rem;
+
+  &__img {
+    width: 100%;
+    height: 100%;
   }
-}
-img {
-  width: 45rem;
-  height: 25rem;
+
+  @media (min-width: 1000px) {
+    margin: 3rem 0 0 0.5rem;
+  }
 }
 </style>

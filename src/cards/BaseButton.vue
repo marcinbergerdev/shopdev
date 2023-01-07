@@ -111,5 +111,18 @@ button {
   background-color: transparent;
   border: 1px solid var(--secondary-superLightGreen);
   border-radius: 50%;
+  transition: 0.2s ease-in-out;
+
+  &:hover {
+    background-color: var(--secondary-superLightGreen);
+    .cartIcon {
+      color: var(--white);
+    }
+  }
+
+
+  @media (min-width: 768px) {
+    cursor: pointer;
+  }
 }
 </style>

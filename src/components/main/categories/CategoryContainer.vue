@@ -10,11 +10,12 @@ import SaleList from "../sale/SaleList.vue";
 
 <style scoped lang="scss">
 .navigationContainer {
+  margin-top: 8rem;
+
   @media (min-width: 768px) {
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-between;
-    margin-top: 3rem;
     padding: 0 1rem;
   }
 }
