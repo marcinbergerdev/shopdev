@@ -21,7 +21,7 @@
 
   --primary-greyLight: #f1f1f1;
   --primary-grey: #f5f5f5;
-  --primary-greyDark: #999;
+  --primary-greyDark: #555;
   --primary-greyDarker: #7e7e7e;
 
   --primary-claretDark: #800f2f;

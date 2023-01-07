@@ -58,7 +58,11 @@ const popularCategory = ref([
 }
 
 .popularCategoriesHeader {
+  margin: 4rem 2rem;
   font-size: 1.6rem;
+  @media (min-width: 768px) {
+    margin: 0 0 3rem 2rem;
+  }
 }
 
 .popularCategoriesList {

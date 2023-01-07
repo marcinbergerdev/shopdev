@@ -98,7 +98,7 @@ const searchedProduct = ref([
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  margin: 10rem 0;
+  margin: 8rem 0;
   padding-bottom: 5rem;
 
   &::before {

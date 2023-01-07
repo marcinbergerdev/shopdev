@@ -131,9 +131,6 @@ defineProps<{
     margin-top: 0.5rem;
   }
 
-  &__descritpion {
-  }
-
   @media (min-width: 768px) {
   }
 }
@@ -167,6 +164,7 @@ defineProps<{
   align-items: flex-end;
   margin-top: 1rem;
   font-weight: 500;
+  font-size: 1.2rem;
 
   &__available {
     color: var(--secondary-normalGreen);
