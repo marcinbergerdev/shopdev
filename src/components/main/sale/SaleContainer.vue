@@ -218,7 +218,7 @@ onUnmounted(() => {
   margin: 0 auto;
 
   @media (min-width: 768px) {
-    width: 63%;
+    width: 55%;
   }
   @media (min-width: 1600px) {
     width: 68%;

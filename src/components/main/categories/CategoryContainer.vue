@@ -1,11 +1,11 @@
 <template>
   <section class="navigationContainer">
-    <SaleList />
+    <SaleContainer />
   </section>
 </template>
 
 <script setup lang="ts">
-import SaleList from "../sale/SaleList.vue";
+import SaleContainer from "../sale/SaleContainer.vue";
 </script>
 
 <style scoped lang="scss">

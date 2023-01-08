@@ -120,9 +120,21 @@ button {
     }
   }
 
-
   @media (min-width: 768px) {
     cursor: pointer;
+  }
+}
+
+.footerOption {
+  @media (min-width: 768px) {
+    color: var(--black);
+    opacity: 0.6;
+    transition: .1s ease-in;
+
+    &:hover {
+      opacity: 1;
+      transition: .1s ease-in-out;
+    }
   }
 }
 </style>
