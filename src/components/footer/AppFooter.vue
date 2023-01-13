@@ -99,6 +99,7 @@ const shopInfos = ref([
 ]);
 </script>
 
+
 <style scoped lang="scss">
 .footerContainer {
   display: flex;

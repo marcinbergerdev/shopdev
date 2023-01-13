@@ -4,10 +4,10 @@ import { ref, computed } from "vue";
 export const useUserNavigation = defineStore("userNavigation", () => {
    const options = ref([
       {
-         path: "/shop/user",
+         path: "/shop/account",
          title: "Twoje konto",
          icon: "cil:user",
-         name: "user",
+         name: "account",
          hoverPosition: "hoverRight",
          dropMenuPosition: "dropMenuRight ",
          isLink: true,

@@ -126,9 +126,9 @@ function closeMenu() {
   }
 }
 
-.user {
+.account {
   @media (min-width: 768px) {
-    min-width: 18rem;
+    min-width: 22rem;
   }
 }
 

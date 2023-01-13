@@ -21,19 +21,19 @@ import { ref } from "vue";
 
 const userOption = ref([
   {
-    path: "#",
+    path: "/shop/account/user",
     icon: "cil:user",
     title: "Twoje konto",
   },
   {
-    path: "#",
-    icon: "bi:heart",
-    title: "Ulubione",
-  },
-  {
-    path: "#",
+    path: "/shop/account/orders",
     icon: "fluent-mdl2:activate-orders",
     title: "Zamówienia",
+  },
+  {
+    path: "/shop/account/returns",
+    icon: "tabler:truck-return",
+    title: "Zwroty i Reklamacje",
   },
 ]);
 </script>

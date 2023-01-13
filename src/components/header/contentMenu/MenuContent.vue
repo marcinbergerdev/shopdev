@@ -1,7 +1,7 @@
 <template>
   <article class="menuContainer">
-    <UserContent v-if="menuName === 'user'"></UserContent>
-    <CartContent v-if="menuName === 'cart'"></CartContent>
+    <UserContent v-if="menuName === 'account'"></UserContent>
+    <CartContent v-else></CartContent>
   </article>
 </template>
 
