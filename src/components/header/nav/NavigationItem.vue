@@ -7,7 +7,7 @@
     @mouseover="hoverOption"
     @mouseleave="leaveOption"
   >
-    <BaseButton v-if="isLink" link :to="path">
+    <BaseButton v-if="isLink" link :to="path" mode="navElement">
       <Icon class="optionElement__icon" :icon="icon" />
       <p class="optionElement__title">{{ title }}</p>
     </BaseButton>

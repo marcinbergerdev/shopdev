@@ -1,6 +1,6 @@
 <template>
-  <header class="sliderContainer">
-    <section class="slider">
+  <section class="sliderContainer">
+    <article class="slider">
       <ul class="sliderList">
         <AdsSliderItem
           v-for="(slider, id) in sliders"
@@ -10,17 +10,17 @@
           :currentSlide="slide"
         ></AdsSliderItem>
       </ul>
-    </section>
+    </article>
 
-    <section class="sliderDots">
+    <article class="sliderDots">
       <DotsSlider
         v-for="dot in dots"
         :key="dot"
         :currentDot="dot"
         :currentSlide="slide"
       ></DotsSlider>
-    </section>
-  </header>
+    </article>
+  </section>
 </template>
 
 <script setup lang="ts">

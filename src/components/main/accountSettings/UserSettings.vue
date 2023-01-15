@@ -1,13 +1,9 @@
 <template>
-<section>
-  <p>user</p>
-</section>
+  <section>
+    <p>rób od nowa elo</p>
+  </section>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts"></script>
 
-</script>
-
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>

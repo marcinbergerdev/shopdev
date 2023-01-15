@@ -47,23 +47,55 @@ button {
   }
 }
 
+.empty,
+.deleteAccount {
+  background-color: transparent;
+  color: var(--secondary-lightRed);
+
+  &:hover {
+    color: var(--white);
+    background-color: var(--secondary-lightRed);
+    transition: 0.15s ease-in-out;
+    cursor: pointer;
+  }
+}
+
 .empty {
   padding: 2rem 0;
-  color: var(--secondary-lightRed);
-  background-color: transparent;
   border: 0;
   border-top: 1px solid var(--secondary-lightRed);
 
   @media (min-width: 768px) {
     padding: 1rem 0;
     border-radius: 0 0 0.6rem 0.6rem;
+  }
+}
 
-    &:hover {
-      color: var(--white);
-      background-color: var(--secondary-lightRed);
-      transition: 0.15s ease-in-out;
-      cursor: pointer;
-    }
+.deleteAccount {
+  padding: 1rem;
+  border: 1px solid var(--secondary-lightRed);
+  border-radius: 0.8rem;
+}
+
+.navElement {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.settingOption {
+  display: block;
+  padding: 1rem 3rem;
+  font-size: 2rem;
+  &.router-link-active {
+    background-color: var(--primary-claret);
+    color: var(--white);
+    transition: 0.15s ease-in-out;
+  }
+
+  @media (min-width: 768px) {
+    font-size: 1.7rem;
+    padding: 1rem 5rem;
   }
 }
 
@@ -129,11 +161,11 @@ button {
   @media (min-width: 768px) {
     color: var(--black);
     opacity: 0.6;
-    transition: .1s ease-in;
+    transition: 0.1s ease-in;
 
     &:hover {
       opacity: 1;
-      transition: .1s ease-in-out;
+      transition: 0.1s ease-in-out;
     }
   }
 }

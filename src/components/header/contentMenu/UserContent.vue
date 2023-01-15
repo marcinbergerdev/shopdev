@@ -46,7 +46,9 @@ a {
 
   .icon,
   span {
-    color: var(--primary-greyDarker);
+    @media (min-width: 768px) {
+      color: var(--primary-greyDarker);
+    }
   }
 
   @media (min-width: 768px) {
