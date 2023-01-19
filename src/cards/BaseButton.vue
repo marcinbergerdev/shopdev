@@ -77,6 +77,12 @@ button {
   border-radius: 0.8rem;
 }
 
+.edit {
+  color: var(--primary-blue);
+  border: 0;
+  background-color: transparent;
+}
+
 .navElement {
   display: block;
   width: 100%;
