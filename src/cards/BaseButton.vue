@@ -81,6 +81,10 @@ button {
   color: var(--primary-blue);
   border: 0;
   background-color: transparent;
+
+  @media (min-width: 768px) {
+    cursor: pointer;
+  }
 }
 
 .navElement {

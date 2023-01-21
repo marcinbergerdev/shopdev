@@ -1,9 +1,10 @@
 <template>
-  <div class="backdrop" v-if="isDialog"></div>
+  <div class="backdrop" v-if="isModal"></div>
   <Transition name="dialog" mode="out-in">
-    <dialog class="modal" open v-if="isDialog">
+    <dialog class="modal" open v-if="isModal">
       <header>
         <slot></slot>
+        <BaseButton @click="emit('close')"><Icon icon="bi:x-lg" /></BaseButton>
       </header>
 
       <section>
@@ -19,17 +20,24 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-const isDialog = ref(false);
+
+defineProps<{
+  isModal?: boolean;
+}>();
+
+const emit = defineEmits<{
+  (e: "close"): void;
+}>();
 </script>
 
 <style scoped lang="scss">
 .dialog-enter-from,
 .dialog-leave-to {
-  opacity: 0.6;
+  opacity: 0.7;
 }
 .dialog-enter-active,
 .dialog-leave-active {
-  transition: all 0.4s ease-out;
+  transition: all 0.2s ease-out;
 }
 .dialog-enter-to,
 .dialog-leave-from {
@@ -38,7 +46,7 @@ const isDialog = ref(false);
 
 .backdrop,
 .modal {
-  position: absolute;
+  position: fixed;
   top: 0;
 }
 

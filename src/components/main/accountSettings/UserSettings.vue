@@ -1,16 +1,31 @@
 <template>
   <section class="userSettingsContainer">
     <Teleport to="body">
-      <BaseModal>
+      <BaseModal :isModal="isModal" @close="closeModal">
         <template #default>
-          <h2>Nazwa użytkownika</h2>
-          <BaseButton><Icon icon="bi:x-lg" /></BaseButton>
+          <h2 v-if="isUserName">Nazwa użytkownika</h2>
+          <h2 v-else-if="isEmail">Zmień adres e-mail</h2>
+          <h2 v-else>Zmień hasło</h2>
         </template>
 
         <template #content>
-          <form>
+          <form v-if="isUserName">
             <input type="text" placeholder="Imię" />
             <input type="text" placeholder="Nazwisko" />
+          </form>
+
+          <form v-else-if="isEmail">
+            <input type="text" placeholder="Nowy e-mail" />
+            <div>
+              <input type="text" placeholder="Potwiedź hasłem" />
+              <span>Pokaż</span>
+            </div>
+          </form>
+
+          <form v-else>
+            <input type="text" placeholder="Obecne hasło" />
+            <input type="text" placeholder="Nowe hasło" />
+            <input type="text" placeholder="Powtórz nowe hasło" />
           </form>
         </template>
 
@@ -30,7 +45,7 @@
 
         <div class="dataBox__data">
           <span class="dataBox__data-value">Jan Kowalski</span>
-          <BaseButton mode="edit">Zmień</BaseButton>
+          <BaseButton mode="edit" @click="showModal('userName')">Zmień</BaseButton>
         </div>
       </div>
 
@@ -39,7 +54,7 @@
 
         <div class="dataBox__data">
           <span class="dataBox__data-value">jankowalski@op.pl</span>
-          <BaseButton mode="edit">Zmień</BaseButton>
+          <BaseButton mode="edit" @click="showModal('email')">Zmień</BaseButton>
         </div>
       </div>
 
@@ -48,7 +63,7 @@
 
         <div class="dataBox__data">
           <span class="dataBox__data-value userPassword">kowalski1234</span>
-          <BaseButton mode="edit">Zmień</BaseButton>
+          <BaseButton mode="edit" @click="showModal('password')">Zmień</BaseButton>
         </div>
       </div>
     </article>
@@ -64,7 +79,32 @@
   </section>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref, computed } from "vue";
+
+const isModal = ref(false);
+const selectedModal = ref("");
+
+const isUserName = computed<boolean>(() => {
+  return selectedModal.value === "userName";
+});
+
+const isEmail = computed<boolean>(() => {
+  return selectedModal.value === "email";
+});
+
+function showModal(data: string) {
+  isModal.value = true;
+  document.body.classList.add("scrollHidden");
+  selectedModal.value = data;
+}
+
+function closeModal() {
+  isModal.value = false;
+  document.body.classList.remove("scrollHidden");
+  selectedModal.value = "";
+}
+</script>
 
 <style scoped lang="scss">
 .userSettingsContainer {
