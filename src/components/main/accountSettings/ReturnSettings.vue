@@ -53,7 +53,7 @@
   }
 
   &__description {
-    margin: 1.5rem 0 3rem 0;
+    margin: 1.5rem 0 5rem 0;
     font-size: 1.3rem;
     color: var(--primary-greyDarker);
   }
@@ -67,7 +67,7 @@
   }
 
   @media (min-width: 768px) {
-    padding: 5rem 2rem;
+    padding: 5rem 2rem 9rem 2rem;
   }
 }
 </style>

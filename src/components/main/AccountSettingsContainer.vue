@@ -17,12 +17,29 @@
     </li>
   </ul>
 
-  <router-view></router-view>
+  <router-view v-slot="userSettings">
+    <transition name="userSettings" mode="out-in">
+      <component :is="userSettings.Component"></component>
+    </transition>
+  </router-view>
 </template>
 
 <script setup lang="ts"></script>
 
 <style scoped lang="scss">
+.userSettings-enter-from,
+.userSettings-leave-to {
+  transform: scale(0.95);
+}
+.userSettings-enter-active,
+.userSettings-leave-active {
+  transition: transform 0.15s ease-out;
+}
+.userSettings-enter-to,
+.userSettings-leave-from {
+  transform: scale(1);
+}
+
 .settingsList {
   display: flex;
   flex-direction: column;
