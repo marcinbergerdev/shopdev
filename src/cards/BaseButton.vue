@@ -71,6 +71,43 @@ button {
   }
 }
 
+.closeModal {
+  display: grid;
+  place-items: center;
+  padding: 0.3rem;
+  font-size: 2rem;
+  background-color: transparent;
+  border: 1px solid var(--black);
+  border-radius: 50px;
+  @media (min-width: 768px) {
+    cursor: pointer;
+  }
+}
+
+.modalInteractionButton {
+  width: 100%;
+  padding: 0.8rem 0;
+  background-color: transparent;
+  background-color: var(--primary-blue);
+  color: var(--white);
+  border: 0;
+  border-radius: 7px;
+  @media (min-width: 768px) {
+    cursor: pointer;
+  }
+}
+
+.showUserPassword {
+  background-color: transparent;
+  margin-right: 1rem;
+  color: var(--primary-blue);
+  border: 0;
+
+  @media (min-width: 768px) {
+    cursor: pointer;
+  }
+}
+
 .deleteAccount {
   padding: 1rem;
   border: 1px solid var(--secondary-lightRed);

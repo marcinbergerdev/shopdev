@@ -46,10 +46,11 @@
 .returnInfoBox {
   width: min(50rem, 100%);
   padding: 2rem 1rem;
-  box-shadow: 0px 0px 8px -1px rgba(0, 0, 0, 0.3);
+  box-shadow: 3px 3px 8px -1px rgba(0, 0, 0, 0.35);
+  border-radius: 2rem;
 
   &__title {
-    font-size: 1.6rem;
+    font-size: 2.7rem;
   }
 
   &__description {

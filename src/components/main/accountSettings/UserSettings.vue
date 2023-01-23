@@ -9,28 +9,47 @@
         </template>
 
         <template #content>
-          <form v-if="isUserName">
+          <form v-if="isUserName" class="userForm">
             <input type="text" placeholder="Imię" />
             <input type="text" placeholder="Nazwisko" />
           </form>
 
-          <form v-else-if="isEmail">
+          <form v-else-if="isEmail" class="userForm">
             <input type="text" placeholder="Nowy e-mail" />
-            <div>
-              <input type="text" placeholder="Potwiedź hasłem" />
-              <span>Pokaż</span>
+            <div class="userForm__passwordVisibility">
+              <input :type="isPasswordVisible" placeholder="Potwiedź hasłem" />
+              <BaseButton @click="showPassword(1)" mode="showUserPassword"
+                >Pokaż</BaseButton
+              >
             </div>
           </form>
 
-          <form v-else>
-            <input type="text" placeholder="Obecne hasło" />
-            <input type="text" placeholder="Nowe hasło" />
-            <input type="text" placeholder="Powtórz nowe hasło" />
+          <form v-else class="userForm">
+            <div class="userForm__passwordVisibility">
+              <input :type="isPasswordVisible" placeholder="Obecne hasło" />
+              <BaseButton @click="showPassword(2)" mode="showUserPassword"
+                >Pokaż</BaseButton
+              >
+            </div>
+
+            <div class="userForm__passwordVisibility">
+              <input :type="isPasswordVisible" placeholder="Nowe hasło" />
+              <BaseButton @click="showPassword(3)" mode="showUserPassword"
+                >Pokaż</BaseButton
+              >
+            </div>
+
+            <div class="userForm__passwordVisibility">
+              <input :type="isPasswordVisible" placeholder="Powtórz nowe hasło" />
+              <BaseButton @click="showPassword(4)" mode="showUserPassword"
+                >Pokaż</BaseButton
+              >
+            </div>
           </form>
         </template>
 
         <template #interactive>
-          <BaseButton>Zapisz</BaseButton>
+          <BaseButton mode="modalInteractionButton">Zapisz</BaseButton>
         </template>
       </BaseModal>
     </Teleport>
@@ -81,9 +100,11 @@
 
 <script setup lang="ts">
 import { ref, computed } from "vue";
+import BaseButton from "../../../cards/BaseButton.vue";
 
 const isModal = ref(false);
 const selectedModal = ref("");
+const passwordVisible = ref(true);
 
 const isUserName = computed<boolean>(() => {
   return selectedModal.value === "userName";
@@ -93,16 +114,27 @@ const isEmail = computed<boolean>(() => {
   return selectedModal.value === "email";
 });
 
+const isPasswordVisible = computed<string>(() => {
+  return passwordVisible.value ? "password" : "text";
+});
+
 function showModal(data: string) {
   isModal.value = true;
   document.body.classList.add("scrollHidden");
   selectedModal.value = data;
 }
 
+function showPassword(show: number) {
+  passwordVisible.value = !passwordVisible.value;
+
+console.log(show);
+}
+
 function closeModal() {
   isModal.value = false;
   document.body.classList.remove("scrollHidden");
   selectedModal.value = "";
+  passwordVisible.value = true;
 }
 </script>
 
@@ -152,6 +184,40 @@ function closeModal() {
 
 .userPassword {
   @media (min-width: 768px) {
+  }
+}
+
+.userForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem 0;
+  margin-top: 1.5rem;
+
+  input {
+    width: 100%;
+    padding: 0.7rem 1rem;
+    outline: none;
+    border: 1px solid var(--primary-greyDarker);
+    border-radius: 7px;
+  }
+
+  input::placeholder {
+    opacity: 0.5;
+  }
+
+  input:focus::placeholder {
+    opacity: 1;
+  }
+
+  &__passwordVisibility {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--primary-greyDarker);
+    border-radius: 7px;
+
+    input {
+      border: 0;
+    }
   }
 }
 

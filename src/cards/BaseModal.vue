@@ -2,18 +2,20 @@
   <div class="backdrop" v-if="isModal"></div>
   <Transition name="dialog" mode="out-in">
     <dialog class="modal" open v-if="isModal">
-      <header>
+      <header class="modalHeader">
         <slot></slot>
-        <BaseButton @click="emit('close')"><Icon icon="bi:x-lg" /></BaseButton>
+        <BaseButton mode="closeModal" @click="emit('close')"
+          ><Icon icon="bi:x-lg"
+        /></BaseButton>
       </header>
 
-      <section>
+      <section class="modalContent">
         <slot name="content"></slot>
       </section>
 
-      <button>
+      <section class="modalInteraction">
         <slot name="interactive"></slot>
-      </button>
+      </section>
     </dialog>
   </Transition>
 </template>
@@ -35,9 +37,8 @@ const emit = defineEmits<{
 .dialog-leave-to {
   opacity: 0.7;
 }
-.dialog-enter-active,
-.dialog-leave-active {
-  transition: all 0.2s ease-out;
+.dialog-enter-active {
+  transition: all 0.2s ease-in-out;
 }
 .dialog-enter-to,
 .dialog-leave-from {
@@ -54,13 +55,28 @@ const emit = defineEmits<{
   width: 100%;
   min-height: 100vh;
   background-color: #000;
-  opacity: 0.4;
+  opacity: 0.5;
 }
 
 .modal {
-  width: 80%;
-  top: 50%;
+  width: min(80%, 40rem);
+  top: 40%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -40%);
+  border-radius: 5px;
+  border: none;
+}
+
+.modalContent,
+.modalInteraction {
+  padding: 1.5rem 1.5rem 2rem 1.5rem;
+}
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background-color: #ebebeb;
+  border-radius: 5px 5px 0 0;
 }
 </style>
