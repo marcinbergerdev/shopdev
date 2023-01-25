@@ -1,58 +1,10 @@
 <template>
   <section class="userSettingsContainer">
-    <Teleport to="body">
-      <BaseModal :isModal="isModal" :isInteraction="false" @close="closeModal">
-        <template #default>
-          <h2 v-if="showTitle === 'userName'">Nazwa użytkownika</h2>
-          <h2 v-else-if="showTitle === 'email'">Zmień adres e-mail</h2>
-          <h2 v-else>Zmień hasło</h2>
-        </template>
-
-        <template #content>
-          <form @submit.prevent="changeData">
-            <div class="userForm" v-if="showTitle === 'userName'">
-              <input type="text" placeholder="Imię" />
-              <input type="text" placeholder="Nazwisko" />
-            </div>
-
-            <div class="userForm" v-else-if="showTitle === 'email'">
-              <input type="text" placeholder="Nowy e-mail" />
-              <div class="userForm__passwordVisibility">
-                <input type="password" placeholder="Potwiedź hasłem" />
-                <BaseButton mode="showUserPassword" @click="showPassword"
-                  >Pokaż</BaseButton
-                >
-              </div>
-            </div>
-
-            <div class="userForm" v-else>
-              <div class="userForm__passwordVisibility">
-                <input type="password" placeholder="Obecne hasło" />
-                <BaseButton mode="showUserPassword" @click="showPassword"
-                  >Pokaż</BaseButton
-                >
-              </div>
-
-              <div class="userForm__passwordVisibility">
-                <input type="password" placeholder="Nowe hasło" />
-                <BaseButton mode="showUserPassword" @click="showPassword"
-                  >Pokaż</BaseButton
-                >
-              </div>
-
-              <div class="userForm__passwordVisibility">
-                <input type="password" placeholder="Powtórz nowe hasło" />
-                <BaseButton mode="showUserPassword" @click="showPassword"
-                  >Pokaż</BaseButton
-                >
-              </div>
-            </div>
-
-            <BaseButton mode="modalFormButton">Zapisz</BaseButton>
-          </form>
-        </template>
-      </BaseModal>
-    </Teleport>
+    <BaseDialog
+      :isModal="isModal"
+      :isTitle="selectedModal"
+      @close="closeModal"
+    ></BaseDialog>
 
     <header class="userDataHeader">
       <h3 class="userDataHeader__title">Dane Konta</h3>
@@ -97,44 +49,21 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from "vue";
+import { ref } from "vue";
 
 const isModal = ref(false);
 const selectedModal = ref("");
-const passwordVisible = ref(true);
-
-const showTitle = computed<string>(() => {
-  if (selectedModal.value === "userName") {
-    return "userName";
-  } else if (selectedModal.value === "email") {
-    return "email";
-  } else {
-    return "password";
-  }
-});
 
 function showModal(data: string) {
   isModal.value = true;
-  selectedModal.value = data;
   document.body.classList.add("scrollHidden");
-}
-
-function changeData() {}
-
-function showPassword(event: any) {
-  const showPassword = event.target.parentNode.querySelector("input").type;
-  if (showPassword === "text") {
-    event.target.parentNode.querySelector("input").type = "password";
-    return;
-  }
-  event.target.parentNode.querySelector("input").type = "text";
+  selectedModal.value = data;
 }
 
 function closeModal() {
   isModal.value = false;
   document.body.classList.remove("scrollHidden");
   selectedModal.value = "";
-  passwordVisible.value = true;
 }
 </script>
 
@@ -187,39 +116,39 @@ function closeModal() {
   }
 }
 
-.userForm {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem 0;
-  margin-top: 1.5rem;
+// .userForm {
+//   display: flex;
+//   flex-direction: column;
+//   gap: 1.5rem 0;
+//   margin-top: 1.5rem;
 
-  input {
-    width: 100%;
-    padding: 0.7rem 1rem;
-    outline: none;
-    border: 1px solid var(--primary-greyDarker);
-    border-radius: 7px;
-  }
+//   input {
+//     width: 100%;
+//     padding: 0.7rem 1rem;
+//     outline: none;
+//     border: 1px solid var(--primary-greyDarker);
+//     border-radius: 7px;
+//   }
 
-  input::placeholder {
-    opacity: 0.5;
-  }
+//   input::placeholder {
+//     opacity: 0.5;
+//   }
 
-  input:focus::placeholder {
-    opacity: 1;
-  }
+//   input:focus::placeholder {
+//     opacity: 1;
+//   }
 
-  &__passwordVisibility {
-    display: flex;
-    align-items: center;
-    border: 1px solid var(--primary-greyDarker);
-    border-radius: 7px;
+//   &__passwordVisibility {
+//     display: flex;
+//     align-items: center;
+//     border: 1px solid var(--primary-greyDarker);
+//     border-radius: 7px;
 
-    input {
-      border: 0;
-    }
-  }
-}
+//     input {
+//       border: 0;
+//     }
+//   }
+// }
 
 .deleteUserAccount {
   margin-top: 10rem;
