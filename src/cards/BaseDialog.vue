@@ -18,24 +18,32 @@
             <input type="text" placeholder="Nowy e-mail" />
             <div class="userForm__passwordVisibility">
               <input type="password" placeholder="Potwiedź hasłem" />
-              <BaseButton mode="showUserPassword" @click="showPassword">Pokaż</BaseButton>
+              <BaseButton mode="showUserPassword" @click.prevent="showPassword"
+                >Pokaż</BaseButton
+              >
             </div>
           </div>
 
           <div class="userForm" v-else>
             <div class="userForm__passwordVisibility">
               <input type="password" placeholder="Obecne hasło" />
-              <BaseButton mode="showUserPassword" @click="showPassword">Pokaż</BaseButton>
+              <BaseButton mode="showUserPassword" @click.prevent="showPassword"
+                >Pokaż</BaseButton
+              >
             </div>
 
             <div class="userForm__passwordVisibility">
               <input type="password" placeholder="Nowe hasło" />
-              <BaseButton mode="showUserPassword" @click="showPassword">Pokaż</BaseButton>
+              <BaseButton mode="showUserPassword" @click.prevent="showPassword"
+                >Pokaż</BaseButton
+              >
             </div>
 
             <div class="userForm__passwordVisibility">
               <input type="password" placeholder="Powtórz nowe hasło" />
-              <BaseButton mode="showUserPassword" @click="showPassword">Pokaż</BaseButton>
+              <BaseButton mode="showUserPassword" @click.prevent="showPassword"
+                >Pokaż</BaseButton
+              >
             </div>
           </div>
 
@@ -58,7 +66,9 @@ const emit = defineEmits<{
   (e: "close"): void;
 }>();
 
-function changeData() {}
+function changeData() {
+  console.log("asdas");
+}
 
 function showPassword(event: any) {
   const showPassword = event.target.parentNode.querySelector("input").type;
