@@ -18,8 +18,8 @@
             <div class="userForm" v-else-if="showTitle === 'email'">
               <input type="text" placeholder="Nowy e-mail" />
               <div class="userForm__passwordVisibility">
-                <input :type="isPasswordVisible" placeholder="Potwiedź hasłem" />
-                <BaseButton @click="showPassword(1)" mode="showUserPassword"
+                <input type="password" placeholder="Potwiedź hasłem" />
+                <BaseButton mode="showUserPassword" @click="showPassword"
                   >Pokaż</BaseButton
                 >
               </div>
@@ -27,22 +27,22 @@
 
             <div class="userForm" v-else>
               <div class="userForm__passwordVisibility">
-                <input :type="isPasswordVisible" placeholder="Obecne hasło" />
-                <BaseButton @click="showPassword(2)" mode="showUserPassword"
+                <input type="password" placeholder="Obecne hasło" />
+                <BaseButton mode="showUserPassword" @click="showPassword"
                   >Pokaż</BaseButton
                 >
               </div>
 
               <div class="userForm__passwordVisibility">
-                <input :type="isPasswordVisible" placeholder="Nowe hasło" />
-                <BaseButton @click="showPassword(3)" mode="showUserPassword"
+                <input type="password" placeholder="Nowe hasło" />
+                <BaseButton mode="showUserPassword" @click="showPassword"
                   >Pokaż</BaseButton
                 >
               </div>
 
               <div class="userForm__passwordVisibility">
-                <input :type="isPasswordVisible" placeholder="Powtórz nowe hasło" />
-                <BaseButton @click="showPassword(4)" mode="showUserPassword"
+                <input type="password" placeholder="Powtórz nowe hasło" />
+                <BaseButton mode="showUserPassword" @click="showPassword"
                   >Pokaż</BaseButton
                 >
               </div>
@@ -113,10 +113,6 @@ const showTitle = computed<string>(() => {
   }
 });
 
-const isPasswordVisible = computed<string>(() => {
-  return passwordVisible.value ? "password" : "text";
-});
-
 function showModal(data: string) {
   isModal.value = true;
   selectedModal.value = data;
@@ -125,9 +121,13 @@ function showModal(data: string) {
 
 function changeData() {}
 
-function showPassword(password: number) {
-  passwordVisible.value = !passwordVisible.value;
-  console.log(password);
+function showPassword(event: any) {
+  const showPassword = event.target.parentNode.querySelector("input").type;
+  if (showPassword === "text") {
+    event.target.parentNode.querySelector("input").type = "password";
+    return;
+  }
+  event.target.parentNode.querySelector("input").type = "text";
 }
 
 function closeModal() {
