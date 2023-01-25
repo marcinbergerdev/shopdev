@@ -11,6 +11,7 @@ import BaseMenu from './cards/BaseMenu.vue';
 import BaseProduct from './cards/BaseProduct.vue';
 import BaseModal from './cards/BaseModal.vue';
 
+
 import router from './router.js';
 
 const pinia = createPinia();

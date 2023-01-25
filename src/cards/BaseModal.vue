@@ -1,30 +1,32 @@
 <template>
-  <div class="backdrop" v-if="isModal"></div>
   <Transition name="dialog" mode="out-in">
-    <dialog class="modal" open v-if="isModal">
-      <header class="modalHeader">
-        <slot></slot>
-        <BaseButton mode="closeModal" @click="emit('close')"
-          ><Icon icon="bi:x-lg"
-        /></BaseButton>
-      </header>
+    <div class="modalContainer" v-if="isModal">
+      <div class="backdrop"></div>
 
-      <section class="modalContent">
-        <slot name="content"></slot>
-      </section>
+      <dialog class="modal" open v-if="isModal">
+        <header class="modalHeader">
+          <slot></slot>
+          <BaseButton mode="closeModal" @click="emit('close')"
+            ><Icon icon="bi:x-lg"
+          /></BaseButton>
+        </header>
 
-      <section class="modalInteraction">
-        <slot name="interactive"></slot>
-      </section>
-    </dialog>
+        <section class="modalContent">
+          <slot name="content"></slot>
+        </section>
+
+        <section class="modalInteraction" v-if="isInteraction">
+          <slot name="interactive"></slot>
+        </section>
+      </dialog>
+    </div>
   </Transition>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-
 defineProps<{
-  isModal?: boolean;
+  isModal: boolean;
+  isInteraction: boolean;
 }>();
 
 const emit = defineEmits<{
@@ -45,24 +47,26 @@ const emit = defineEmits<{
   opacity: 1;
 }
 
-.backdrop,
-.modal {
+.modalContainer {
   position: fixed;
   top: 0;
+  left: 0;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  min-height: 100vh;
 }
 
 .backdrop {
-  width: 100%;
-  min-height: 100vh;
+  width: inherit;
+  min-height: inherit;
   background-color: #000;
   opacity: 0.5;
 }
 
 .modal {
   width: min(80%, 40rem);
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -40%);
+  margin: 0 auto;
   border-radius: 5px;
   border: none;
 }

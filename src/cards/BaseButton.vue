@@ -84,8 +84,9 @@ button {
   }
 }
 
-.modalInteractionButton {
+.modalFormButton {
   width: 100%;
+  margin-top: 3rem;
   padding: 0.8rem 0;
   background-color: transparent;
   background-color: var(--primary-blue);

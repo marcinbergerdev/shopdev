@@ -1,55 +1,55 @@
 <template>
   <section class="userSettingsContainer">
     <Teleport to="body">
-      <BaseModal :isModal="isModal" @close="closeModal">
+      <BaseModal :isModal="isModal" :isInteraction="false" @close="closeModal">
         <template #default>
-          <h2 v-if="isUserName">Nazwa użytkownika</h2>
-          <h2 v-else-if="isEmail">Zmień adres e-mail</h2>
+          <h2 v-if="showTitle === 'userName'">Nazwa użytkownika</h2>
+          <h2 v-else-if="showTitle === 'email'">Zmień adres e-mail</h2>
           <h2 v-else>Zmień hasło</h2>
         </template>
 
         <template #content>
-          <form v-if="isUserName" class="userForm">
-            <input type="text" placeholder="Imię" />
-            <input type="text" placeholder="Nazwisko" />
+          <form @submit.prevent="changeData">
+            <div class="userForm" v-if="showTitle === 'userName'">
+              <input type="text" placeholder="Imię" />
+              <input type="text" placeholder="Nazwisko" />
+            </div>
+
+            <div class="userForm" v-else-if="showTitle === 'email'">
+              <input type="text" placeholder="Nowy e-mail" />
+              <div class="userForm__passwordVisibility">
+                <input :type="isPasswordVisible" placeholder="Potwiedź hasłem" />
+                <BaseButton @click="showPassword(1)" mode="showUserPassword"
+                  >Pokaż</BaseButton
+                >
+              </div>
+            </div>
+
+            <div class="userForm" v-else>
+              <div class="userForm__passwordVisibility">
+                <input :type="isPasswordVisible" placeholder="Obecne hasło" />
+                <BaseButton @click="showPassword(2)" mode="showUserPassword"
+                  >Pokaż</BaseButton
+                >
+              </div>
+
+              <div class="userForm__passwordVisibility">
+                <input :type="isPasswordVisible" placeholder="Nowe hasło" />
+                <BaseButton @click="showPassword(3)" mode="showUserPassword"
+                  >Pokaż</BaseButton
+                >
+              </div>
+
+              <div class="userForm__passwordVisibility">
+                <input :type="isPasswordVisible" placeholder="Powtórz nowe hasło" />
+                <BaseButton @click="showPassword(4)" mode="showUserPassword"
+                  >Pokaż</BaseButton
+                >
+              </div>
+            </div>
+
+            <BaseButton mode="modalFormButton">Zapisz</BaseButton>
           </form>
-
-          <form v-else-if="isEmail" class="userForm">
-            <input type="text" placeholder="Nowy e-mail" />
-            <div class="userForm__passwordVisibility">
-              <input :type="isPasswordVisible" placeholder="Potwiedź hasłem" />
-              <BaseButton @click="showPassword(1)" mode="showUserPassword"
-                >Pokaż</BaseButton
-              >
-            </div>
-          </form>
-
-          <form v-else class="userForm">
-            <div class="userForm__passwordVisibility">
-              <input :type="isPasswordVisible" placeholder="Obecne hasło" />
-              <BaseButton @click="showPassword(2)" mode="showUserPassword"
-                >Pokaż</BaseButton
-              >
-            </div>
-
-            <div class="userForm__passwordVisibility">
-              <input :type="isPasswordVisible" placeholder="Nowe hasło" />
-              <BaseButton @click="showPassword(3)" mode="showUserPassword"
-                >Pokaż</BaseButton
-              >
-            </div>
-
-            <div class="userForm__passwordVisibility">
-              <input :type="isPasswordVisible" placeholder="Powtórz nowe hasło" />
-              <BaseButton @click="showPassword(4)" mode="showUserPassword"
-                >Pokaż</BaseButton
-              >
-            </div>
-          </form>
-        </template>
-
-        <template #interactive>
-          <BaseButton mode="modalInteractionButton">Zapisz</BaseButton>
         </template>
       </BaseModal>
     </Teleport>
@@ -57,7 +57,6 @@
     <header class="userDataHeader">
       <h3 class="userDataHeader__title">Dane Konta</h3>
     </header>
-
     <article class="userDataWrapper">
       <div class="dataBox">
         <h4 class="dataBox__title">Nazwa Użytkownika</h4>
@@ -86,7 +85,6 @@
         </div>
       </div>
     </article>
-
     <article class="deleteUserAccount">
       <h5 class="deleteUserAccount__title">Usuń konto</h5>
       <p class="deleteUserAccount__description">
@@ -100,18 +98,19 @@
 
 <script setup lang="ts">
 import { ref, computed } from "vue";
-import BaseButton from "../../../cards/BaseButton.vue";
 
 const isModal = ref(false);
 const selectedModal = ref("");
 const passwordVisible = ref(true);
 
-const isUserName = computed<boolean>(() => {
-  return selectedModal.value === "userName";
-});
-
-const isEmail = computed<boolean>(() => {
-  return selectedModal.value === "email";
+const showTitle = computed<string>(() => {
+  if (selectedModal.value === "userName") {
+    return "userName";
+  } else if (selectedModal.value === "email") {
+    return "email";
+  } else {
+    return "password";
+  }
 });
 
 const isPasswordVisible = computed<string>(() => {
@@ -120,14 +119,15 @@ const isPasswordVisible = computed<string>(() => {
 
 function showModal(data: string) {
   isModal.value = true;
-  document.body.classList.add("scrollHidden");
   selectedModal.value = data;
+  document.body.classList.add("scrollHidden");
 }
 
-function showPassword(show: number) {
-  passwordVisible.value = !passwordVisible.value;
+function changeData() {}
 
-console.log(show);
+function showPassword(password: number) {
+  passwordVisible.value = !passwordVisible.value;
+  console.log(password);
 }
 
 function closeModal() {
