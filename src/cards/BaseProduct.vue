@@ -3,7 +3,7 @@
     <span class="productContainer__promotion" v-if="promotion">Promocja</span>
 
     <span class="productImg">
-      <img class="productImg__productImg" :src="img" alt="product-img" />
+      <img loading="lazy" class="productImg__productImg" :src="img" alt="product-img" />
     </span>
 
     <header class="productHeader">

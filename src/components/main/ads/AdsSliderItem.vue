@@ -1,7 +1,7 @@
 <template>
   <transition name="slider" mode="out-in">
     <li class="sliderItem" v-if="currentSlide === sliderIndex">
-      <img class="sliderItem__img" :src="sliderPath" alt="slider-photo" />
+      <img loading="lazy" class="sliderItem__img" :src="sliderPath" alt="slider-photo" />
     </li>
   </transition>
 </template>

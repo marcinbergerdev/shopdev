@@ -1,7 +1,7 @@
 <template>
   <li class="popularCategoriesItem">
     <BaseButton link :to="to">
-      <img class="popularCategoriesItem__img" :src="img" alt="category-image" />
+      <img loading="lazy" class="popularCategoriesItem__img" :src="img" alt="category-image" />
       <span class="popularCategoriesItem__name"> {{ name }}</span>
     </BaseButton>
   </li>
