@@ -7,7 +7,7 @@
 
   <ul class="orderListContainer">
     <li class="orderProduct">
-      <img class="orderProduct__img" src="../../../assets/psp.jpg" alt="foto" />
+      <img class="orderProduct__img" src="../../../../public/assets/psp.jpg" alt="foto" />
       <div class="orderData">
         <h3 class="orderData__title">Sony PSP z gwarancją + zestaw słuchawkowy</h3>
         <span class="orderData__quantity">1 szt.</span>
@@ -20,7 +20,11 @@
     </li>
 
     <li class="orderProduct">
-      <img class="orderProduct__img" src="../../../assets/psp.jpg" alt="foto" />
+      <img
+        class="orderProduct__img"
+        src="../../../../public/assets/zdj1.jpg"
+        alt="foto"
+      />
       <div class="orderData">
         <h3 class="orderData__title">Sony PSP z gwarancją + zestaw słuchawkowy</h3>
 
@@ -34,7 +38,11 @@
     </li>
 
     <li class="orderProduct">
-      <img class="orderProduct__img" src="../../../assets/psp.jpg" alt="foto" />
+      <img
+        class="orderProduct__img"
+        src="../../../../public/assets/zdj2.jpg"
+        alt="foto"
+      />
       <div class="orderData">
         <h3 class="orderData__title">Sony PSP z gwarancją + zestaw słuchawkowy</h3>
         <span class="orderData__quantity">1 szt.</span>
@@ -45,42 +53,11 @@
       </div>
     </li>
     <li class="orderProduct">
-      <img class="orderProduct__img" src="../../../assets/psp.jpg" alt="foto" />
-      <div class="orderData">
-        <h3 class="orderData__title">Sony PSP z gwarancją + zestaw słuchawkowy</h3>
-        <span class="orderData__quantity">1 szt.</span>
-        <span class="orderData__price">79,80zł</span>
-        <BaseButton mode="deleteProduct">
-          <Icon class="orderData__icon" icon="bi:trash" />
-        </BaseButton>
-      </div>
-    </li>
-
-    <li class="orderProduct">
-      <img class="orderProduct__img" src="../../../assets/psp.jpg" alt="foto" />
-      <div class="orderData">
-        <h3 class="orderData__title">Sony PSP z gwarancją + zestaw słuchawkowy</h3>
-        <span class="orderData__quantity">1 szt.</span>
-        <span class="orderData__price">79,80zł</span>
-        <BaseButton mode="deleteProduct">
-          <Icon class="orderData__icon" icon="bi:trash" />
-        </BaseButton>
-      </div>
-    </li>
-
-    <li class="orderProduct">
-      <img class="orderProduct__img" src="../../../assets/psp.jpg" alt="foto" />
-      <div class="orderData">
-        <h3 class="orderData__title">Sony PSP z gwarancją + zestaw słuchawkowy</h3>
-        <span class="orderData__quantity">1 szt.</span>
-        <span class="orderData__price">79,80zł</span>
-        <BaseButton mode="deleteProduct">
-          <Icon class="orderData__icon" icon="bi:trash" />
-        </BaseButton>
-      </div>
-    </li>
-    <li class="orderProduct">
-      <img class="orderProduct__img" src="../../../assets/psp.jpg" alt="foto" />
+      <img
+        class="orderProduct__img"
+        src="../../../../public/assets/zdj3.jpg"
+        alt="foto"
+      />
       <div class="orderData">
         <h3 class="orderData__title">Sony PSP z gwarancją + zestaw słuchawkowy</h3>
         <span class="orderData__quantity">1 szt.</span>
@@ -92,7 +69,11 @@
     </li>
 
     <li class="orderProduct">
-      <img class="orderProduct__img" src="../../../assets/psp.jpg" alt="foto" />
+      <img
+        class="orderProduct__img"
+        src="../../../../public/assets/zdj4.jpg"
+        alt="foto"
+      />
       <div class="orderData">
         <h3 class="orderData__title">Sony PSP z gwarancją + zestaw słuchawkowy</h3>
         <span class="orderData__quantity">1 szt.</span>
@@ -104,7 +85,54 @@
     </li>
 
     <li class="orderProduct">
-      <img class="orderProduct__img" src="../../../assets/psp.jpg" alt="foto" />
+      <img class="orderProduct__img" src="../../../../public/assets/psp.jpg" alt="foto" />
+      <div class="orderData">
+        <h3 class="orderData__title">Sony PSP z gwarancją + zestaw słuchawkowy</h3>
+        <span class="orderData__quantity">1 szt.</span>
+        <span class="orderData__price">79,80zł</span>
+        <BaseButton mode="deleteProduct">
+          <Icon class="orderData__icon" icon="bi:trash" />
+        </BaseButton>
+      </div>
+    </li>
+    <li class="orderProduct">
+      <img
+        class="orderProduct__img"
+        src="../../../../public/assets/zdj1.jpg"
+        alt="foto"
+      />
+      <div class="orderData">
+        <h3 class="orderData__title">Sony PSP z gwarancją + zestaw słuchawkowy</h3>
+        <span class="orderData__quantity">1 szt.</span>
+        <span class="orderData__price">79,80zł</span>
+        <BaseButton mode="deleteProduct">
+          <Icon class="orderData__icon" icon="bi:trash" />
+        </BaseButton>
+      </div>
+    </li>
+
+    <li class="orderProduct">
+      <img
+        class="orderProduct__img"
+        src="../../../../public/assets/zdj2.jpg"
+        alt="foto"
+      />
+      <div class="orderData">
+        <h3 class="orderData__title">Sony PSP z gwarancją + zestaw słuchawkowy</h3>
+        <span class="orderData__quantity">1 szt.</span>
+        <span class="orderData__price">79,80zł</span>
+        <BaseButton mode="deleteProduct">
+          <Icon class="orderData__icon" icon="bi:trash" />
+        </BaseButton>
+      </div>
+    </li>
+
+    <li class="orderProduct">
+      <img
+        class="orderProduct__img"
+        src="../../../../public/assets/zdj3.jpg"
+        alt="foto"
+      />
       <div class="orderData">
         <h3 class="orderData__title">Sony PSP z gwarancją + zestaw słuchawkowy</h3>
         <span class="orderData__quantity">1 szt.</span>

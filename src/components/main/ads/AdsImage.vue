@@ -1,6 +1,6 @@
 <template>
   <article class="adContainer">
-    <img class="adContainer__img" src="../../../assets/psp.jpg" alt="" />
+    <img class="adContainer__img" src="../../../../public/assets/psp.jpg" alt="ads" />
   </article>
 </template>
 

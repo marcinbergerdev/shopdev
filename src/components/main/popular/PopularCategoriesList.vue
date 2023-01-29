@@ -22,27 +22,27 @@ import { ref } from "vue";
 
 const popularCategory = ref([
   {
-    img: "/src/assets/zdj1.jpg",
+    img: "/assets/zdj1.jpg",
     name: "Dom i Ogród",
     to: "#",
   },
   {
-    img: "/src/assets/zdj2.jpg",
+    img: "/assets/zdj2.jpg",
     name: "Elektronika",
     to: "#",
   },
   {
-    img: "/src/assets/zdj3.jpg",
+    img: "/assets/zdj3.jpg",
     name: "Motoryzacja",
     to: "#",
   },
   {
-    img: "/src/assets/zdj4.jpg",
+    img: "/assets/zdj4.jpg",
     name: "Uroda",
     to: "#",
   },
   {
-    img: "/src/assets/psp.jpg",
+    img: "/assets/psp.jpg",
     name: "Moda",
     to: "#",
   },

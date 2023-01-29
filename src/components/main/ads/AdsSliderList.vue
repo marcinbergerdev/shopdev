@@ -30,11 +30,11 @@ import { ref, onMounted, onBeforeUnmount } from "vue";
 
 const slide = ref(0);
 const sliders = ref([
-  { path: "/src/assets/psp.jpg" },
-  { path: "/src/assets/zdj1.jpg" },
-  { path: "/src/assets/zdj2.jpg" },
-  { path: "/src/assets/zdj3.jpg" },
-  { path: "/src/assets/zdj4.jpg" },
+  { path: "/assets/psp.jpg" },
+  { path: "/assets/zdj1.jpg" },
+  { path: "/assets/zdj2.jpg" },
+  { path: "/assets/zdj3.jpg" },
+  { path: "/assets/zdj4.jpg" },
 ]);
 
 const dots = ref([0, 1, 2, 3, 4]);

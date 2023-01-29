@@ -35,7 +35,7 @@ const searchedProduct = ref([
   {
     id: 1,
     category: "all",
-    img: "/src/assets/zdj1.jpg",
+    img: "/assets/zdj1.jpg",
     price: 43.45,
     favorite: true,
     title: "Sony PSP",
@@ -49,7 +49,7 @@ const searchedProduct = ref([
   {
     id: 2,
     category: "all",
-    img: "/src/assets/zdj2.jpg",
+    img: "/assets/zdj2.jpg",
     price: 56.45,
     favorite: true,
     title: "Sony PSP",
@@ -63,7 +63,7 @@ const searchedProduct = ref([
   {
     id: 3,
     category: "all",
-    img: "/src/assets/zdj3.jpg",
+    img: "/assets/zdj3.jpg",
     price: 76.55,
     favorite: true,
     title: "Sony PSP",
@@ -77,7 +77,7 @@ const searchedProduct = ref([
   {
     id: 4,
     category: "all",
-    img: "/src/assets/zdj3.jpg",
+    img: "/assets/zdj4.jpg",
     price: 76.55,
     favorite: true,
     title: "Sony PSP",
