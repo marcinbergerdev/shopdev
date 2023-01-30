@@ -11,6 +11,7 @@ import BaseMenu from './cards/BaseMenu.vue';
 import BaseProduct from './cards/BaseProduct.vue';
 import BaseModal from './cards/BaseModal.vue';
 import BaseDialog from './cards/BaseDialog.vue';
+import BaseOrder from './cards/BaseOrder.vue';
 
 
 import router from './router.js';
@@ -27,6 +28,7 @@ app.component('BaseMenu', BaseMenu);
 app.component('BaseProduct', BaseProduct);
 app.component('BaseModal', BaseModal);
 app.component('BaseDialog', BaseDialog);
+app.component('BaseOrder', BaseOrder);
 
 
 app.use(router);

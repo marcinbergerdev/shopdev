@@ -45,7 +45,7 @@
 
 .returnInfoBox {
   width: min(50rem, 100%);
-  padding: 2rem 1rem;
+  padding: 2rem;
   box-shadow: 3px 3px 8px -1px rgba(0, 0, 0, 0.35);
   border-radius: 2rem;
 

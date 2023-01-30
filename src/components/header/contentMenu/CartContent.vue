@@ -6,8 +6,16 @@
   </header>
 
   <ul class="orderListContainer">
+
+
+  
     <li class="orderProduct">
-      <img loading="lazy" class="orderProduct__img" src="../../../../public/assets/psp.jpg" alt="foto" />
+      <img
+        loading="lazy"
+        class="orderProduct__img"
+        src="../../../../public/assets/psp.jpg"
+        alt="foto"
+      />
       <div class="orderData">
         <h3 class="orderData__title">Sony PSP z gwarancją + zestaw słuchawkowy</h3>
         <span class="orderData__quantity">1 szt.</span>
@@ -20,7 +28,8 @@
     </li>
 
     <li class="orderProduct">
-      <img loading="lazy"
+      <img
+        loading="lazy"
         class="orderProduct__img"
         src="../../../../public/assets/zdj1.jpg"
         alt="foto"
@@ -38,7 +47,8 @@
     </li>
 
     <li class="orderProduct">
-      <img loading="lazy"
+      <img
+        loading="lazy"
         class="orderProduct__img"
         src="../../../../public/assets/zdj2.jpg"
         alt="foto"
@@ -53,7 +63,8 @@
       </div>
     </li>
     <li class="orderProduct">
-      <img loading="lazy"
+      <img
+        loading="lazy"
         class="orderProduct__img"
         src="../../../../public/assets/zdj3.jpg"
         alt="foto"
@@ -69,7 +80,8 @@
     </li>
 
     <li class="orderProduct">
-      <img loading="lazy"
+      <img
+        loading="lazy"
         class="orderProduct__img"
         src="../../../../public/assets/zdj4.jpg"
         alt="foto"
@@ -85,7 +97,12 @@
     </li>
 
     <li class="orderProduct">
-      <img loading="lazy" class="orderProduct__img" src="../../../../public/assets/psp.jpg" alt="foto" />
+      <img
+        loading="lazy"
+        class="orderProduct__img"
+        src="../../../../public/assets/psp.jpg"
+        alt="foto"
+      />
       <div class="orderData">
         <h3 class="orderData__title">Sony PSP z gwarancją + zestaw słuchawkowy</h3>
         <span class="orderData__quantity">1 szt.</span>
@@ -96,7 +113,8 @@
       </div>
     </li>
     <li class="orderProduct">
-      <img loading="lazy"
+      <img
+        loading="lazy"
         class="orderProduct__img"
         src="../../../../public/assets/zdj1.jpg"
         alt="foto"
@@ -112,7 +130,8 @@
     </li>
 
     <li class="orderProduct">
-      <img loading="lazy"
+      <img
+        loading="lazy"
         class="orderProduct__img"
         src="../../../../public/assets/zdj2.jpg"
         alt="foto"
@@ -128,7 +147,8 @@
     </li>
 
     <li class="orderProduct">
-      <img loading="lazy"
+      <img
+        loading="lazy"
         class="orderProduct__img"
         src="../../../../public/assets/zdj3.jpg"
         alt="foto"

@@ -7,6 +7,7 @@ const AccountSettingsContainer = () => import("./components/main/AccountSettings
 const UserSettings = () => import("./components/main/accountSettings/UserSettings.vue");
 const OrderSettings = () => import("./components/main/accountSettings/OrderSettings.vue");
 const ReturnSettings = () => import("./components/main/accountSettings/ReturnSettings.vue");
+const UserOrderList = () => import("./components/main/userOrders/UserOrdersList.vue");
 
 const router = createRouter({
    history: createWebHashHistory(),
@@ -30,7 +31,7 @@ const router = createRouter({
 
             { path: "favorite", component: AuthLogin },
 
-            { path: "cart", component: AuthLogin },
+            { path: "cart", component: UserOrderList },
 
             { path: "service", component: AuthLogin },
 
