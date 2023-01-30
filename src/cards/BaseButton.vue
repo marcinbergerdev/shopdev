@@ -47,6 +47,15 @@ button {
   }
 }
 
+.favorite {
+  background-color: transparent;
+  border: 0;
+
+  @media (min-width: 768px) {
+    cursor: pointer;
+  }
+}
+
 .empty,
 .deleteAccount {
   background-color: transparent;

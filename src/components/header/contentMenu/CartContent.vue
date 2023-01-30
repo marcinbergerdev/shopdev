@@ -6,161 +6,17 @@
   </header>
 
   <ul class="orderListContainer">
-
-
-  
-    <li class="orderProduct">
-      <img
-        loading="lazy"
-        class="orderProduct__img"
-        src="../../../../public/assets/psp.jpg"
-        alt="foto"
-      />
-      <div class="orderData">
-        <h3 class="orderData__title">Sony PSP z gwarancją + zestaw słuchawkowy</h3>
-        <span class="orderData__quantity">1 szt.</span>
-        <span class="orderData__price">79,80zł</span>
-
-        <BaseButton mode="deleteProduct">
-          <Icon class="orderData__icon" icon="bi:trash" />
-        </BaseButton>
-      </div>
-    </li>
-
-    <li class="orderProduct">
-      <img
-        loading="lazy"
-        class="orderProduct__img"
-        src="../../../../public/assets/zdj1.jpg"
-        alt="foto"
-      />
-      <div class="orderData">
-        <h3 class="orderData__title">Sony PSP z gwarancją + zestaw słuchawkowy</h3>
-
-        <span class="orderData__quantity">1 szt.</span>
-        <span class="orderData__price">79,80zł</span>
-
-        <BaseButton mode="deleteProduct">
-          <Icon class="orderData__icon" icon="bi:trash" />
-        </BaseButton>
-      </div>
-    </li>
-
-    <li class="orderProduct">
-      <img
-        loading="lazy"
-        class="orderProduct__img"
-        src="../../../../public/assets/zdj2.jpg"
-        alt="foto"
-      />
-      <div class="orderData">
-        <h3 class="orderData__title">Sony PSP z gwarancją + zestaw słuchawkowy</h3>
-        <span class="orderData__quantity">1 szt.</span>
-        <span class="orderData__price">79,80zł</span>
-        <BaseButton mode="deleteProduct">
-          <Icon class="orderData__icon" icon="bi:trash" />
-        </BaseButton>
-      </div>
-    </li>
-    <li class="orderProduct">
-      <img
-        loading="lazy"
-        class="orderProduct__img"
-        src="../../../../public/assets/zdj3.jpg"
-        alt="foto"
-      />
-      <div class="orderData">
-        <h3 class="orderData__title">Sony PSP z gwarancją + zestaw słuchawkowy</h3>
-        <span class="orderData__quantity">1 szt.</span>
-        <span class="orderData__price">79,80zł</span>
-        <BaseButton mode="deleteProduct">
-          <Icon class="orderData__icon" icon="bi:trash" />
-        </BaseButton>
-      </div>
-    </li>
-
-    <li class="orderProduct">
-      <img
-        loading="lazy"
-        class="orderProduct__img"
-        src="../../../../public/assets/zdj4.jpg"
-        alt="foto"
-      />
-      <div class="orderData">
-        <h3 class="orderData__title">Sony PSP z gwarancją + zestaw słuchawkowy</h3>
-        <span class="orderData__quantity">1 szt.</span>
-        <span class="orderData__price">79,80zł</span>
-        <BaseButton mode="deleteProduct">
-          <Icon class="orderData__icon" icon="bi:trash" />
-        </BaseButton>
-      </div>
-    </li>
-
-    <li class="orderProduct">
-      <img
-        loading="lazy"
-        class="orderProduct__img"
-        src="../../../../public/assets/psp.jpg"
-        alt="foto"
-      />
-      <div class="orderData">
-        <h3 class="orderData__title">Sony PSP z gwarancją + zestaw słuchawkowy</h3>
-        <span class="orderData__quantity">1 szt.</span>
-        <span class="orderData__price">79,80zł</span>
-        <BaseButton mode="deleteProduct">
-          <Icon class="orderData__icon" icon="bi:trash" />
-        </BaseButton>
-      </div>
-    </li>
-    <li class="orderProduct">
-      <img
-        loading="lazy"
-        class="orderProduct__img"
-        src="../../../../public/assets/zdj1.jpg"
-        alt="foto"
-      />
-      <div class="orderData">
-        <h3 class="orderData__title">Sony PSP z gwarancją + zestaw słuchawkowy</h3>
-        <span class="orderData__quantity">1 szt.</span>
-        <span class="orderData__price">79,80zł</span>
-        <BaseButton mode="deleteProduct">
-          <Icon class="orderData__icon" icon="bi:trash" />
-        </BaseButton>
-      </div>
-    </li>
-
-    <li class="orderProduct">
-      <img
-        loading="lazy"
-        class="orderProduct__img"
-        src="../../../../public/assets/zdj2.jpg"
-        alt="foto"
-      />
-      <div class="orderData">
-        <h3 class="orderData__title">Sony PSP z gwarancją + zestaw słuchawkowy</h3>
-        <span class="orderData__quantity">1 szt.</span>
-        <span class="orderData__price">79,80zł</span>
-        <BaseButton mode="deleteProduct">
-          <Icon class="orderData__icon" icon="bi:trash" />
-        </BaseButton>
-      </div>
-    </li>
-
-    <li class="orderProduct">
-      <img
-        loading="lazy"
-        class="orderProduct__img"
-        src="../../../../public/assets/zdj3.jpg"
-        alt="foto"
-      />
-      <div class="orderData">
-        <h3 class="orderData__title">Sony PSP z gwarancją + zestaw słuchawkowy</h3>
-        <span class="orderData__quantity">1 szt.</span>
-        <span class="orderData__price">79,80zł</span>
-        <BaseButton mode="deleteProduct">
-          <Icon class="orderData__icon" icon="bi:trash" />
-        </BaseButton>
-      </div>
+    <li>
+      <BaseOrder
+        v-for="order in orders.userOrders"
+        :key="order.id"
+        :id="order.id"
+        :img="order.img"
+        :name="order.name"
+        :amount="order.amount"
+        :price="order.price"
+        :delete-button="order.deleteButton"
+      ></BaseOrder>
     </li>
   </ul>
 
@@ -174,7 +30,11 @@
   </section>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref } from "vue";
+import { useUserOrders } from "../../../stores/navigation/userOrders";
+const orders = useUserOrders();
+</script>
 
 <style scoped lang="scss">
 .orderHeader {

@@ -9,7 +9,9 @@
     <header class="productHeader">
       <section class="productPrise">
         <span class="productPrise__amount"> {{ price }}zł</span>
-        <Icon class="productPrise__favorite" v-if="favorite" icon="ph:heart-fill" />
+        <BaseButton mode="favorite">
+          <Icon class="productPrise__favorite" v-if="favorite" icon="ph:heart-fill" />
+        </BaseButton>
       </section>
 
       <h2 class="productHeader__title">{{ title }}</h2>
