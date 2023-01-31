@@ -164,10 +164,15 @@ button {
   border: 0;
 }
 
-.productsEdit {
+.productsEditHover {
   display: flex;
   flex: 1;
   justify-content: flex-end;
+  font-size: 1.3rem;
+  color: var(--primary-blue);
+}
+
+.productsEditDesctop {
   font-size: 1.3rem;
   color: var(--primary-blue);
 }
@@ -226,4 +231,5 @@ button {
     }
   }
 }
+
 </style>

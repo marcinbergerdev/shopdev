@@ -4,7 +4,7 @@ import { ref, computed } from "vue";
 export const useUserOrders = defineStore("userOrders", () => {
    const orders = ref([
       {
-         id: 0,
+         id: 1,
          img: "/assets/psp.jpg",
          name: "Sony PSP z gwarancją + zestaw słuchawkowy",
          amount: true,

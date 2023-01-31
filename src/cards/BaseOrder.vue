@@ -1,13 +1,25 @@
 <template>
-  <article>
-    <img loading="lazy" class="orderImage" :src="img" alt="product-foto" />;
+  <article :class="display">
+    <img loading="lazy" class="orderImage" :src="img" alt="product-foto" />
 
-    <section>
+    <section :class="mode">
       <h3>Sony PSP z gwarancją + zestaw słuchawkowy</h3>
 
-      <span>1 szt.</span>
+      <select id="myAmounts">
+        <option value="1">1 szt.</option>
+        <option value="2">2 szt.</option>
+        <option value="3">3 szt.</option>
+        <option value="4">4 szt.</option>
+        <option value="5">5 szt.</option>
+        <option value="6">6 szt.</option>
+        <option value="7">7 szt.</option>
+        <option value="8">8 szt.</option>
+        <option value="9">9 szt.</option>
+        <option value="10">10 szt.</option>
+      </select>
 
       <span>79,80zł</span>
+
       <BaseButton mode="favorite">
         <Icon class="favorite" icon="ph:heart-fill" />
       </BaseButton>
@@ -21,6 +33,8 @@
 
 <script setup lang="ts">
 defineProps<{
+  display: string;
+  mode: string;
   id: number;
   img: string;
   name: string;
@@ -44,6 +58,20 @@ defineProps<{
   &:hover {
     color: #d5446d;
     transition: 0.2s ease-in-out;
+  }
+}
+
+.orderBoxHover {
+}
+
+.orderDataHover {
+  h3 {
+  }
+
+  select {
+  }
+
+  span {
   }
 }
 </style>
