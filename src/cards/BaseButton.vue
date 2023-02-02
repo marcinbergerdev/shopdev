@@ -48,10 +48,15 @@ button {
 }
 
 .favorite {
+  font-size: 2.4rem;
+  color: #c3c3c3;
   background-color: transparent;
   border: 0;
+  transition: 0.2s ease-in-out;
 
-  @media (min-width: 768px) {
+  &:hover {
+    color: #d5446d;
+    transition: 0.2s ease-in-out;
     cursor: pointer;
   }
 }
@@ -162,6 +167,17 @@ button {
   color: var(--white);
   background-color: var(--primary-claret);
   border: 0;
+
+  @media (min-width: 768px) {
+    opacity: 0.8;
+    transition: 0.2s ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 1;
+      transition: 0.2s ease-in-out;
+    }
+  }
 }
 
 .productsEditHover {
@@ -178,11 +194,7 @@ button {
 }
 
 .deleteProduct {
-  position: relative;
-  width: 2rem;
-  padding: 1.2rem;
-  grid-area: trash;
-  justify-self: flex-end;
+  font-size: 1.9rem;
   color: var(--secondary-lightRed);
   background-color: transparent;
   border: 0;
@@ -231,5 +243,4 @@ button {
     }
   }
 }
-
 </style>

@@ -7,7 +7,7 @@
   <ul class="orderListContainer">
     <li>
       <BaseOrder
-        display="orderBoxHover"
+        display="orderWrapperHover"
         mode="orderDataHover"
         v-for="order in orders.userOrders"
         :key="order.id"
@@ -60,9 +60,13 @@ const orders = useUserOrders();
   flex-direction: column;
   flex: 1;
   gap: 1.5rem;
-  padding: 3rem 2rem;
+  padding: 2rem 1rem;
   overflow: auto;
   box-shadow: inset 0px 12px 11px -10px #ccc, inset 0px -12px 11px -10px #ccc;
+
+  @media (min-width: 330px) {
+    padding: 3rem 2rem;
+  }
 
   @media (min-width: 768px) {
     flex: auto;
@@ -118,24 +122,25 @@ const orders = useUserOrders();
 //   }
 // }
 
-// .orderAmountContainer {
-//   position: relative;
-//   display: flex;
-//   flex-direction: column;
-//   padding: 1.5rem;
-//   background-color: var(--primary-greyLight);
-//   @media (min-width: 768px) {
-//     border-radius: 0 0 0.6rem 0.6rem;
-//   }
-// }
+.orderAmountContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  background-color: var(--primary-greyLight);
 
-// .orderAmount {
-//   display: flex;
-//   justify-content: space-between;
-//   margin-bottom: 1.5rem;
+  @media (min-width: 768px) {
+    border-radius: 0 0 0.6rem 0.6rem;
+  }
+}
 
-//   &__pay {
-//     font-weight: 700;
-//   }
-// }
+.orderAmount {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+
+  &__pay {
+    font-weight: 700;
+  }
+}
 </style>

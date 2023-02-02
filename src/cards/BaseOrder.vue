@@ -3,9 +3,9 @@
     <img loading="lazy" class="orderImage" :src="img" alt="product-foto" />
 
     <section :class="mode">
-      <h3>Sony PSP z gwarancją + zestaw słuchawkowy</h3>
+      <h3 class="title">Sony PSP z gwarancją + zestaw słuchawkowy</h3>
 
-      <select id="myAmounts">
+      <select id="myAmounts" class="amount">
         <option value="1">1 szt.</option>
         <option value="2">2 szt.</option>
         <option value="3">3 szt.</option>
@@ -18,15 +18,17 @@
         <option value="10">10 szt.</option>
       </select>
 
-      <span>79,80zł</span>
+      <span class="price">79,80zł</span>
 
-      <BaseButton mode="favorite">
-        <Icon class="favorite" icon="ph:heart-fill" />
-      </BaseButton>
+      <div class="orderIconContainer">
+        <BaseButton mode="favorite">
+          <Icon class="icon" icon="ph:heart-fill" />
+        </BaseButton>
 
-      <BaseButton mode="deleteProduct">
-        <Icon class="orderData__icon" icon="bi:trash" />
-      </BaseButton>
+        <BaseButton mode="deleteProduct">
+          <Icon class="icon" icon="bi:trash" />
+        </BaseButton>
+      </div>
     </section>
   </article>
 </template>
@@ -50,28 +52,56 @@ defineProps<{
   height: 6rem;
 }
 
-.favorite {
-  font-size: 2rem;
-  color: #c3c3c3;
-  transition: 0.2s ease-in-out;
-
-  &:hover {
-    color: #d5446d;
-    transition: 0.2s ease-in-out;
-  }
-}
-
-.orderBoxHover {
+.orderWrapperHover {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--primary-claret);
 }
 
 .orderDataHover {
-  h3 {
+  display: grid;
+  flex-direction: column;
+  align-items: center;
+  grid-template-areas:
+    "title title title"
+    "amount price icons";
+  flex: 1;
+  gap: 2rem 0;
+
+  .title {
+    grid-area: title;
   }
 
-  select {
+  .amount {
+    grid-area: amount;
+    width: 6rem;
   }
 
-  span {
+  .price {
+    grid-area: price;
+    justify-self: flex-end;
+    font-size: 1.3rem;
+  }
+
+  .orderIconContainer {
+    grid-area: icons;
+    justify-self: flex-end;
+    align-self: center;
+    // set position
+  }
+}
+
+.deleteProduct {
+  .icon {
+  }
+}
+
+.favorite {
+  .icon {
   }
 }
 </style>
