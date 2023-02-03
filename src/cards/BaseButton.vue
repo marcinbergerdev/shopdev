@@ -47,20 +47,6 @@ button {
   }
 }
 
-.favorite {
-  font-size: 2.4rem;
-  color: #c3c3c3;
-  background-color: transparent;
-  border: 0;
-  transition: 0.2s ease-in-out;
-
-  &:hover {
-    color: #d5446d;
-    transition: 0.2s ease-in-out;
-    cursor: pointer;
-  }
-}
-
 .empty,
 .deleteAccount {
   background-color: transparent;
@@ -193,8 +179,20 @@ button {
   color: var(--primary-blue);
 }
 
+.favorite {
+  color: #c3c3c3;
+  background-color: transparent;
+  border: 0;
+  transition: 0.2s ease-in-out;
+
+  &:hover {
+    color: #d5446d;
+    transition: 0.2s ease-in-out;
+    cursor: pointer;
+  }
+}
+
 .deleteProduct {
-  font-size: 1.9rem;
   color: var(--secondary-lightRed);
   background-color: transparent;
   border: 0;

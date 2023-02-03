@@ -6,8 +6,8 @@
 </template>
 
 <script setup lang="ts">
-import UserContent from "./UserContent.vue";
-import CartContent from "./CartContent.vue";
+import UserContent from "./userSettings/UserContent.vue";
+import CartContent from "./cartContent/CartContent.vue";
 
 import { defineProps } from "vue";
 

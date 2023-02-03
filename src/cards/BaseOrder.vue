@@ -48,8 +48,13 @@ defineProps<{
 
 <style scoped lang="scss">
 .orderImage {
-  width: 6rem;
-  height: 6rem;
+  width: 4rem;
+  height: 4rem;
+
+  @media (min-width: 300px) {
+    width: 6rem;
+    height: 6rem;
+  }
 }
 
 .orderWrapperHover {
@@ -74,34 +79,40 @@ defineProps<{
 
   .title {
     grid-area: title;
+    text-align: start;
   }
 
   .amount {
     grid-area: amount;
-    width: 6rem;
+    width: 4.5rem;
+
+    @media (min-width: 300px) {
+      width: 6rem;
+    }
   }
 
   .price {
     grid-area: price;
-    justify-self: flex-end;
+    justify-self: center;
     font-size: 1.3rem;
+
+    @media (min-width: 300px) {
+      justify-self: flex-end;
+    }
   }
 
   .orderIconContainer {
     grid-area: icons;
     justify-self: flex-end;
-    align-self: center;
-    // set position
+    display: flex;
+    gap: 0.5rem;
   }
 }
 
-.deleteProduct {
-  .icon {
-  }
-}
-
+.deleteProduct,
 .favorite {
-  .icon {
-  }
+  display: grid;
+  place-items: center;
+  font-size: 2.4rem;
 }
 </style>
