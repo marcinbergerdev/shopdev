@@ -200,10 +200,12 @@ button {
   @media (min-width: 768px) {
     cursor: pointer;
     border-radius: 5px;
+    transition: 0.2s ease-in-out;
 
     &:hover {
       color: var(--white);
       background-color: var(--secondary-lightRed);
+      transition: 0.2s ease-in-out;
     }
   }
 }

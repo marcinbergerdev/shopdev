@@ -1,7 +1,9 @@
 <template>
   <CartOrderHeader
     mode="orderHeaderHover"
-    editButton="productsEditHover"
+    edit-button-style="productsEditHover"
+    :is-edit-button="true"
+    :is-delete-button="false"
   ></CartOrderHeader>
 
   <ul class="orderListContainer">

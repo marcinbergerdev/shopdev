@@ -2,8 +2,8 @@
   <section class="userOrderDesctopContainer">
     <CartOrderHeader
       mode="orderHeaderDesctop"
-      edit-button="productsEditDesctop"
-      :delete-all="true"
+      :is-edit-button="false"
+      :is-delete-button="true"
     ></CartOrderHeader>
 
     <ul class="userOrderDesctopList">
@@ -43,6 +43,8 @@ const orders = useUserOrders();
 .userOrderDesctopContainer {
   display: flex;
   flex-direction: column;
+  margin-top: 7rem;
+  border-top: 1px solid var(--primary-greyDark);
 
   @media (min-width: 768px) {
     display: grid;

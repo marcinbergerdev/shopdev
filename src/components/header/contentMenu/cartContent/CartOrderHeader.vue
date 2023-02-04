@@ -3,8 +3,10 @@
     <h2 class="title">Twoje zamówienie</h2>
     <span class="amount">(3)</span>
 
-    <BaseButton :mode="editButton" link to="/shop/order1">Edytuj</BaseButton>
-    <BaseButton class="deleteAll" mode="deleteProduct" v-if="deleteAll">
+    <BaseButton link to="/shop/order1" :class="editButtonStyle" v-if="isEditButton"
+      >Edytuj</BaseButton
+    >
+    <BaseButton class="deleteAll" mode="deleteProduct" v-if="isDeleteButton">
       <Icon class="orderData__icon" icon="bi:trash" />
       <span>wyczyść koszyk</span>
     </BaseButton>
@@ -14,8 +16,9 @@
 <script setup lang="ts">
 defineProps<{
   mode: string;
-  editButton: string;
-  deleteAll?: boolean;
+  editButtonStyle?: string;
+  isEditButton: boolean;
+  isDeleteButton: boolean;
 }>();
 </script>
 <style scoped lang="scss">
@@ -31,50 +34,56 @@ defineProps<{
 
   .amount {
     font-size: 1.4rem;
+    color: var(--primary-greyForm);
   }
 }
+
 .orderHeaderDesctop {
-  display: grid;
+  display: flex;
+  flex-flow: row wrap;
   align-items: center;
-  grid-template-areas:
-    "title amount"
-    "edit deleteAll";
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 6rem;
+  padding: 1rem;
 
   .title {
-    grid-area: title;
+    flex: 19rem;
+    font-size: 2rem;
+    font-weight: 400;
+
+    @media (min-width: 320px) {
+      flex: 21rem;
+      font-size: 2.3rem;
+    }
+
+    @media (min-width: 768px) {
+      flex: auto;
+    }
   }
 
   .amount {
-    grid-area: amount;
+    flex: calc(100% - 20rem - 1rem); // (flex 1 - titleWidth - flex gap)
+    font-size: 1.4rem;
+    color: var(--primary-greyForm);
+
+    @media (min-width: 320px) {
+      flex: calc(100% - 21rem - 1rem); // (flex 1 - titleWidth - flex gap)
+    }
   }
 
   @media (min-width: 768px) {
-    display: flex;
-    gap: 1rem;
-  }
-}
-
-.productsEditDesctop {
-  grid-area: edit;
-
-  @media (min-width: 768px) {
-    display: none;
+    margin-top: 0;
   }
 }
 
 .deleteAll {
-  grid-area: deleteAll;
-
-  @media (min-width: 768px) {
-    display: flex;
-    flex: 1;
-    align-items: center;
-    justify-content: flex-end;
-
-    &:hover {
-      background-color: transparent;
-      color: var(--secondary-lightRed);
-    }
-  }
+  display: flex;
+  padding: 0.5rem 1rem;
+  gap: 1rem;
+  align-items: center;
+  justify-content: flex-end;
+  border: 1px solid var(--secondary-lightRed);
+  border-radius: 5px;
 }
 </style>
