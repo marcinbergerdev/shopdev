@@ -7,20 +7,18 @@
   ></CartOrderHeader>
 
   <ul class="orderListContainer">
-    <li>
-      <BaseOrder
-        display="orderWrapperHover"
-        mode="orderDataHover"
-        v-for="order in orders.userOrders"
-        :key="order.id"
-        :id="order.id"
-        :img="order.img"
-        :name="order.name"
-        :amount="order.amount"
-        :price="order.price"
-        :delete-button="order.deleteButton"
-      ></BaseOrder>
-    </li>
+    <BaseOrder
+      display="orderWrapperHover"
+      mode="orderDataHover"
+      v-for="order in orders.userOrders"
+      :key="order.id"
+      :id="order.id"
+      :img="order.img"
+      :name="order.name"
+      :amount="order.amount"
+      :price="order.price"
+      :delete-button="order.deleteButton"
+    ></BaseOrder>
   </ul>
 
   <CartOrderPrice

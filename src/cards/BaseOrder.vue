@@ -1,5 +1,5 @@
 <template>
-  <article :class="display">
+  <li :class="display">
     <img loading="lazy" class="orderImage" :src="img" alt="product-foto" />
 
     <section :class="mode">
@@ -30,7 +30,7 @@
         </BaseButton>
       </div>
     </section>
-  </article>
+  </li>
 </template>
 
 <script setup lang="ts">

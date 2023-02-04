@@ -7,7 +7,6 @@
     ></CartOrderHeader>
 
     <ul class="userOrderDesctopList">
-      <li>
         <BaseOrder
           display="sd"
           mode="d"
@@ -20,7 +19,6 @@
           :price="order.price"
           :delete-button="order.deleteButton"
         ></BaseOrder>
-      </li>
     </ul>
 
     <CartOrderPrice
@@ -60,6 +58,7 @@ const orders = useUserOrders();
 
 .userOrderDesctopList {
   grid-area: list;
+  display: flex;
 }
 
 .orderAmountDesctopContainer {
