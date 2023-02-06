@@ -43,7 +43,7 @@ defineProps<{
   flex-flow: row wrap;
   align-items: center;
   justify-content: flex-end;
-  gap: 1rem;
+  gap: 2rem 1rem;
   margin-top: 6rem;
   padding: 1rem;
 
@@ -58,7 +58,8 @@ defineProps<{
     }
 
     @media (min-width: 768px) {
-      flex: auto;
+      flex: 30rem;
+      font-size: 3rem;
     }
   }
 
@@ -69,6 +70,11 @@ defineProps<{
 
     @media (min-width: 320px) {
       flex: calc(100% - 21rem - 1rem); // (flex 1 - titleWidth - flex gap)
+    }
+
+    @media (min-width: 768px) {
+      flex: calc(100% - 30rem - 1rem); // (flex 1 - titleWidth - flex gap)
+      font-size: 2rem;
     }
   }
 

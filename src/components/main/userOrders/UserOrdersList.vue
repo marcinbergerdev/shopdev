@@ -6,23 +6,23 @@
       :is-delete-button="true"
     ></CartOrderHeader>
 
-    <ul class="userOrderDesctopList">
-        <BaseOrder
-          display="sd"
-          mode="d"
-          v-for="order in orders.userOrders"
-          :key="order.id"
-          :id="order.id"
-          :img="order.img"
-          :name="order.name"
-          :amount="order.amount"
-          :price="order.price"
-          :delete-button="order.deleteButton"
-        ></BaseOrder>
+    <ul class="userOrderListDesctop">
+      <BaseOrder
+        display="orderItemDesctop"
+        mode="orderProduct"
+        v-for="order in orders.userOrders"
+        :key="order.id"
+        :id="order.id"
+        :img="order.img"
+        :name="order.name"
+        :amount="order.amount"
+        :price="order.price"
+        :delete-button="order.deleteButton"
+      ></BaseOrder>
     </ul>
 
     <CartOrderPrice
-      mode="orderAmountDesctopContainer"
+      mode="orderAmountContainerDesctop"
       content="orderAmountDesctop"
     ></CartOrderPrice>
   </section>
@@ -56,12 +56,13 @@ const orders = useUserOrders();
   grid-area: header;
 }
 
-.userOrderDesctopList {
+.userOrderListDesctop {
   grid-area: list;
   display: flex;
+  flex-direction: column;
 }
 
-.orderAmountDesctopContainer {
+.orderAmountContainerDesctop {
   grid-area: amount;
 }
 </style>

@@ -3,7 +3,7 @@
     <img loading="lazy" class="orderImage" :src="img" alt="product-foto" />
 
     <section :class="mode">
-      <h3 class="title">Sony PSP z gwarancją + zestaw słuchawkowy</h3>
+      <h3 class="title">{{ name }}</h3>
 
       <select id="myAmounts" class="amount">
         <option value="1">1 szt.</option>
@@ -107,6 +107,10 @@ defineProps<{
     display: flex;
     gap: 0.5rem;
   }
+}
+
+.orderItemDesctop {
+  display: flex;
 }
 
 .deleteProduct,
