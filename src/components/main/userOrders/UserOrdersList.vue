@@ -9,7 +9,7 @@
     <ul class="userOrderListDesctop">
       <BaseOrder
         display="orderItemDesctop"
-        mode="orderProduct"
+        mode="orderProductDesctop"
         v-for="order in orders.userOrders"
         :key="order.id"
         :id="order.id"
@@ -22,8 +22,8 @@
     </ul>
 
     <CartOrderPrice
-      mode="orderAmountContainerDesctop"
-      content="orderAmountDesctop"
+      mode="orderAmountDesctop"
+      content="orderAmountContainerDesctop"
     ></CartOrderPrice>
   </section>
 </template>
@@ -49,20 +49,37 @@ const orders = useUserOrders();
     grid-template-areas:
       "header amount"
       "list amount";
+    padding: 5rem 2rem;
+    grid-template-columns: 2fr 1fr;
+    gap: 0 2rem;
+  }
+
+  @media (min-width: 1280px) {
+    padding: 10rem 10rem;
   }
 }
 
 .orderHeaderDesctop {
   grid-area: header;
 }
+.orderAmountDesctop {
+  grid-area: amount;
+}
 
 .userOrderListDesctop {
   grid-area: list;
   display: flex;
   flex-direction: column;
-}
+  margin-top: 3rem;
+  border-radius: 15px;
 
-.orderAmountContainerDesctop {
-  grid-area: amount;
+  @media (min-width: 768px) {
+    padding: 3rem;
+    li:first-child {
+      border: 0;
+    }
+
+    border: 1px solid var(--primary-claret);
+  }
 }
 </style>

@@ -48,13 +48,36 @@ defineProps<{
 
 <style scoped lang="scss">
 .orderImage {
-  width: 4rem;
-  height: 4rem;
+  width: 5rem;
+  height: 5rem;
 
   @media (min-width: 300px) {
     width: 6rem;
     height: 6rem;
   }
+  @media (min-width: 768px) {
+    width: 8rem;
+    height: 8rem;
+  }
+}
+
+.title {
+  grid-area: title;
+}
+.amount {
+  grid: amount;
+
+  @media (min-width: 768px) {
+    cursor: pointer;
+  }
+}
+
+.price {
+  grid-area: price;
+}
+
+.orderIconContainer {
+  grid-area: icons;
 }
 
 .orderWrapperHover {
@@ -78,12 +101,10 @@ defineProps<{
   gap: 2rem 0;
 
   .title {
-    grid-area: title;
     text-align: start;
   }
 
   .amount {
-    grid-area: amount;
     width: 4.5rem;
 
     @media (min-width: 300px) {
@@ -92,7 +113,6 @@ defineProps<{
   }
 
   .price {
-    grid-area: price;
     justify-self: center;
     font-size: 1.3rem;
 
@@ -102,7 +122,6 @@ defineProps<{
   }
 
   .orderIconContainer {
-    grid-area: icons;
     justify-self: flex-end;
     display: flex;
     gap: 0.5rem;
@@ -111,6 +130,56 @@ defineProps<{
 
 .orderItemDesctop {
   display: flex;
+  gap: 0.5rem;
+  padding: 4rem 0;
+  border-top: 1px solid var(--primary-greyDark);
+
+  @media (min-width: 768px) {
+    gap: 0 2rem;
+  }
+}
+
+.orderProductDesctop {
+  width: 100%;
+  display: grid;
+  align-items: flex-start;
+  justify-content: space-between;
+  grid-template-areas:
+    "title amount price"
+    "title . icons";
+  grid-template-rows: 2fr 1fr;
+  grid-template-columns: 35% 6rem 6rem;
+
+  .title {
+    font-size: 0.9rem;
+    width: min(100%, 25rem);
+
+    @media (min-width: 400px) {
+      font-size: 1.1rem;
+    }
+  }
+
+  .price {
+    font-size: 1.3rem;
+  }
+
+  .orderIconContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+    @media (min-width: 768px) {
+      width: 6rem;
+      justify-content: space-between;
+    }
+  }
+
+  @media (min-width: 768px) {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0 3rem;
+  }
 }
 
 .deleteProduct,

@@ -1,11 +1,11 @@
 <template>
   <section :class="mode">
     <div :class="content">
-      <h3>Do zapłaty:</h3>
-      <span class="orderAmount__pay">239,40 zł</span>
+      <h3 class="title">Do zapłaty:</h3>
+      <span class="price">239,40 zł</span>
     </div>
 
-    <BaseButton mode="payButtonMobileMenu">Przejdz do koszyka</BaseButton>
+    <BaseButton mode="payButtonMobileMenu">Zapłać</BaseButton>
   </section>
 </template>
 
@@ -37,5 +37,30 @@ defineProps<{
   &__pay {
     font-weight: 700;
   }
+}
+
+.orderAmountDesctop {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem;
+  border-top: 2px solid var(--primary-claret);
+
+  @media (min-width: 768px) {
+    width: min(100%, 35rem);
+    height: 13rem;
+    justify-self: center;
+    margin-top: 13.3rem;
+    border: 2px solid var(--primary-claret);
+    border-radius: 2.5rem;
+  }
+}
+
+.orderAmountContainerDesctop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.3rem;
 }
 </style>

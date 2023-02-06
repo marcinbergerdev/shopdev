@@ -61,6 +61,10 @@ const orders = useUserOrders();
   overflow: auto;
   box-shadow: inset 0px 12px 11px -10px #ccc, inset 0px -12px 11px -10px #ccc;
 
+  li:last-child {
+    border: 0;
+  }
+
   @media (min-width: 330px) {
     padding: 3rem 2rem;
   }
