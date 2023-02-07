@@ -55,7 +55,7 @@ const orders = useUserOrders();
   }
 
   @media (min-width: 1280px) {
-    padding: 10rem 10rem;
+    padding: 5rem 10rem;
   }
 }
 
@@ -74,9 +74,15 @@ const orders = useUserOrders();
   border-radius: 15px;
 
   @media (min-width: 768px) {
-    padding: 3rem;
+    padding: 4rem 3rem;
+
     li:first-child {
       border: 0;
+      padding-top: 0;
+    }
+
+    li:last-child {
+      padding-bottom: 0;
     }
 
     border: 1px solid var(--primary-claret);

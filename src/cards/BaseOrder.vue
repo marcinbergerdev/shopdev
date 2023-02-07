@@ -83,7 +83,7 @@ defineProps<{
 .orderWrapperHover {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   gap: 1rem;
   margin-bottom: 2rem;
   padding-bottom: 2rem;
@@ -98,10 +98,14 @@ defineProps<{
     "title title title"
     "amount price icons";
   flex: 1;
-  gap: 2rem 0;
+  gap: 1.5rem 0;
 
   .title {
     text-align: start;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
   .amount {
@@ -153,6 +157,10 @@ defineProps<{
   .title {
     font-size: 0.9rem;
     width: min(100%, 25rem);
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 
     @media (min-width: 400px) {
       font-size: 1.1rem;

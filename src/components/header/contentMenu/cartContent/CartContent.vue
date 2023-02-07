@@ -56,7 +56,7 @@ const orders = useUserOrders();
   display: flex;
   flex-direction: column;
   flex: 1;
-  gap: 1.5rem;
+  gap: 4rem;
   padding: 2rem 1rem;
   overflow: auto;
   box-shadow: inset 0px 12px 11px -10px #ccc, inset 0px -12px 11px -10px #ccc;
