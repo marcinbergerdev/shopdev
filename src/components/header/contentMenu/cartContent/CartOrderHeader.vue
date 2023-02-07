@@ -6,7 +6,12 @@
     <BaseButton link to="/shop/order1" :class="editButtonStyle" v-if="isEditButton"
       >Edytuj</BaseButton
     >
-    <BaseButton class="deleteAll" mode="deleteProduct" v-if="isDeleteButton">
+    <BaseButton
+      class="deleteAll"
+      mode="deleteProduct"
+      v-if="isDeleteButton"
+      @click="emit('show')"
+    >
       <Icon class="orderData__icon" icon="bi:trash" />
       <span>wyczyść koszyk</span>
     </BaseButton>
@@ -19,6 +24,10 @@ defineProps<{
   editButtonStyle?: string;
   isEditButton: boolean;
   isDeleteButton: boolean;
+}>();
+
+const emit = defineEmits<{
+  (e: "show"): void;
 }>();
 </script>
 <style scoped lang="scss">

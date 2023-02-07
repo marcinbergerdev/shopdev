@@ -47,6 +47,32 @@ button {
   }
 }
 
+.clear {
+  background-color: transparent;
+  border: 0;
+  padding: 1rem;
+
+  @media (min-width: 768px) {
+    cursor: pointer;
+  }
+}
+
+.border {
+  width: 8rem;
+  padding: 0 1rem;
+  background-color: transparent;
+  border: 1px solid var(--primary-claret);
+  border-radius: 5rem;
+  color: var(--primary-claret);
+
+  &:hover {
+    color: var(--white);
+    background-color: var(--primary-claret);
+    transition: 0.15s ease-in-out;
+    cursor: pointer;
+  }
+}
+
 .empty,
 .deleteAccount {
   background-color: transparent;

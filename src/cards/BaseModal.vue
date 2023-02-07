@@ -3,10 +3,10 @@
     <div class="modalContainer" v-if="isModal">
       <div class="backdrop"></div>
 
-      <dialog class="modal" open v-if="isModal">
+      <dialog class="modal" :class="mode" open v-if="isModal">
         <header class="modalHeader">
           <slot></slot>
-          <BaseButton mode="closeModal" @click="emit('close')"
+          <BaseButton mode="closeModal" v-if="isHeaderCloseButton" @click="emit('close')"
             ><Icon icon="bi:x-lg"
           /></BaseButton>
         </header>
@@ -25,8 +25,10 @@
 
 <script setup lang="ts">
 defineProps<{
+  mode?: string;
   isModal: boolean;
   isInteraction: boolean;
+  isHeaderCloseButton: boolean;
 }>();
 
 const emit = defineEmits<{
@@ -82,5 +84,27 @@ const emit = defineEmits<{
   padding: 1rem 1.5rem;
   background-color: #ebebeb;
   border-radius: 5px 5px 0 0;
+}
+
+.deleteAllOrders {
+  text-align: center;
+  border-radius: 35px;
+  .modalHeader {
+    justify-content: center;
+    border-radius: 35px 35px 0 0;
+    padding: 2rem 0;
+    background-color: var(--primary-claret);
+    color: var(--white);
+  }
+
+  .modalContent {
+    margin-top: 2rem;
+  }
+
+  .modalInteraction {
+    display: flex;
+    gap: 0 3rem;
+    justify-content: center;
+  }
 }
 </style>

@@ -4,6 +4,7 @@
       mode="orderHeaderDesctop"
       :is-edit-button="false"
       :is-delete-button="true"
+      @show="showModal"
     ></CartOrderHeader>
 
     <ul class="userOrderListDesctop">
@@ -25,6 +26,28 @@
       mode="orderAmountDesctop"
       content="orderAmountContainerDesctop"
     ></CartOrderPrice>
+
+    <BaseModal
+      mode="deleteAllOrders"
+      :isModal="isModal"
+      :isHeaderCloseButton="false"
+      :isInteraction="true"
+    >
+      <template #default>
+        <h2 class="modalHeaderTitle">Wyczyścić koszyk?</h2>
+      </template>
+
+      <template #content>
+        <p class="modalContentDescription">
+          Usuwasz wszystkie produkty z koszyka, nie można tego cofnąć!
+        </p>
+      </template>
+
+      <template #interactive>
+        <BaseButton mode="clear" @click="closeModal">Anuluj</BaseButton>
+        <BaseButton mode="border">Continue</BaseButton>
+      </template>
+    </BaseModal>
   </section>
 </template>
 
@@ -35,6 +58,15 @@ import CartOrderPrice from "../../header/contentMenu/cartContent/CartOrderPrice.
 import { ref } from "vue";
 import { useUserOrders } from "../../../stores/navigation/userOrders";
 const orders = useUserOrders();
+
+const isModal = ref(false);
+function showModal() {
+  isModal.value = true;
+}
+
+function closeModal() {
+  isModal.value = false;
+}
 </script>
 
 <style scoped lang="scss">
@@ -87,5 +119,14 @@ const orders = useUserOrders();
 
     border: 1px solid var(--primary-claret);
   }
+}
+
+.modalHeaderTitle {
+  font-weight: 200;
+}
+
+.modalContentDescription {
+  padding: 0 4rem;
+  font-size: 1.2rem;
 }
 </style>

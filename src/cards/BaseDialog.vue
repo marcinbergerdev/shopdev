@@ -1,6 +1,11 @@
 <template>
   <Teleport to="body">
-    <BaseModal :isModal="isModal" :isInteraction="false" @close="emit('close')">
+    <BaseModal
+      :isModal="isModal"
+      :isInteraction="false"
+      :isHeaderCloseButton="true"
+      @close="emit('close')"
+    >
       <template #default>
         <h2 v-if="isTitle === 'userName'">Nazwa użytkownika</h2>
         <h2 v-else-if="isTitle === 'email'">Zmień adres e-mail</h2>
