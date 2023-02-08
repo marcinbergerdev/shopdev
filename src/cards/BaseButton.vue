@@ -47,6 +47,26 @@ button {
   }
 }
 
+.filledLink {
+  width: min(80%, 25rem);
+  margin-top: 10rem;
+  padding: 0.8rem 1rem;
+  font-size: 1.4rem;
+  color: var(--primary-claret) !important;
+  background-color: transparent;
+  border-radius: 50px;
+  border: 2px solid var(--primary-claret);
+
+  @media (min-width: 768px) {
+    &:hover {
+      background-color: var(--primary-claret);
+      color: var(--white) !important;
+      cursor: pointer;
+      transition: 0.15s ease-in-out;
+    }
+  }
+}
+
 .clear {
   background-color: transparent;
   border: 0;

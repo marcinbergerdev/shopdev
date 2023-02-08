@@ -1,5 +1,7 @@
 <template>
-  <section class="userOrderDesctopContainer">
+  <UserOrdersEmptyList v-if="isEmptyOrderList"></UserOrdersEmptyList>
+
+  <section class="userOrderDesctopContainer" v-else>
     <CartOrderHeader
       mode="orderHeaderDesctop"
       :is-edit-button="false"
@@ -26,6 +28,10 @@
       mode="orderAmountDesctop"
       content="orderAmountContainerDesctop"
     ></CartOrderPrice>
+
+    <BaseButton link to="/shop" mode="filledLink onlyDesctop keepBuyingButton"
+      >Przjedz do zakupów</BaseButton
+    >
 
     <Teleport to="body">
       <BaseModal
@@ -56,10 +62,13 @@
 <script setup lang="ts">
 import CartOrderHeader from "../../header/contentMenu/cartContent/CartOrderHeader.vue";
 import CartOrderPrice from "../../header/contentMenu/cartContent/CartOrderPrice.vue";
+import UserOrdersEmptyList from "./UserOrdersEmptyList.vue";
 
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { useUserOrders } from "../../../stores/navigation/userOrders";
 const orders = useUserOrders();
+
+const isEmptyOrderList = computed(() => (orders.userOrders.length === 0 ? true : false));
 
 const isModal = ref(false);
 function showModal() {
@@ -82,7 +91,8 @@ function closeModal() {
     display: grid;
     grid-template-areas:
       "header amount"
-      "list amount";
+      "list amount"
+      "buyMore .";
     padding: 5rem 2rem;
     grid-template-columns: 2fr 1fr;
     gap: 0 2rem;
@@ -98,6 +108,18 @@ function closeModal() {
 }
 .orderAmountDesctop {
   grid-area: amount;
+}
+
+.keepBuyingButton {
+  grid-area: buyMore;
+  text-align: center;
+  align-self: center;
+
+  @media (min-width: 768px) {
+    margin-top: 4rem;
+    align-self: auto;
+    justify-self: flex-end;
+  }
 }
 
 .userOrderListDesctop {
