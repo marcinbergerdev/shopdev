@@ -1,33 +1,38 @@
 <template>
-  <CartOrderHeader
-    mode="orderHeaderHover"
-    edit-button-style="productsEditHover"
-    :is-edit-button="true"
-    :is-delete-button="false"
-  ></CartOrderHeader>
+  <UserOrdersEmptyList mode="emptyOrderListHoverContainer" v-if="orders.isEmpty"></UserOrdersEmptyList>
 
-  <ul class="orderListContainer">
-    <BaseOrder
-      display="orderWrapperHover"
-      mode="orderDataHover"
-      v-for="order in orders.userOrders"
-      :key="order.id"
-      :id="order.id"
-      :img="order.img"
-      :name="order.name"
-      :amount="order.amount"
-      :price="order.price"
-      :delete-button="order.deleteButton"
-    ></BaseOrder>
-  </ul>
+  <div v-else>
+    <CartOrderHeader
+      mode="orderHeaderHover"
+      edit-button-style="productsEditHover"
+      :is-edit-button="true"
+      :is-delete-button="false"
+    ></CartOrderHeader>
 
-  <CartOrderPrice
-    mode="orderAmountHoverContainer"
-    content="orderAmountHover"
-  ></CartOrderPrice>
+    <ul class="orderListContainer">
+      <BaseOrder
+        display="orderWrapperHover"
+        mode="orderDataHover"
+        v-for="order in orders.userOrders"
+        :key="order.id"
+        :id="order.id"
+        :img="order.img"
+        :name="order.name"
+        :amount="order.amount"
+        :price="order.price"
+        :delete-button="order.deleteButton"
+      ></BaseOrder>
+    </ul>
+
+    <CartOrderPrice
+      mode="orderAmountHoverContainer"
+      content="orderAmountHover"
+    ></CartOrderPrice>
+  </div>
 </template>
 
 <script setup lang="ts">
+import UserOrdersEmptyList from "../../../main/userOrders/UserOrdersEmptyList.vue";
 import CartOrderHeader from "./CartOrderHeader.vue";
 import CartOrderPrice from "./CartOrderPrice.vue";
 

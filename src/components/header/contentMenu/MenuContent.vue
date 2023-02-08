@@ -11,11 +11,9 @@ import CartContent from "./cartContent/CartContent.vue";
 
 import { defineProps } from "vue";
 
-const props = defineProps<{
+defineProps<{
   menuName?: string;
 }>();
-
-const { menuName } = props;
 </script>
 
 <style scoped lang="scss">
