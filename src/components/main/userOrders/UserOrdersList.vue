@@ -1,5 +1,8 @@
 <template>
-  <UserOrdersEmptyList mode="emptyOrderListDesctopContainer" v-if="orders.isEmpty"></UserOrdersEmptyList>
+  <UserOrdersEmptyList
+    mode="emptyOrderListDesctopContainer"
+    v-if="orders.isEmpty"
+  ></UserOrdersEmptyList>
 
   <section class="userOrderDesctopContainer" v-else>
     <CartOrderHeader

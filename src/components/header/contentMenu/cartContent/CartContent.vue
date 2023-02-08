@@ -1,7 +1,11 @@
 <template>
-  <UserOrdersEmptyList mode="emptyOrderListHoverContainer" v-if="orders.isEmpty"></UserOrdersEmptyList>
+  <UserOrdersEmptyList
+    mode="emptyOrderListHoverContainer"
+    v-if="orders.isEmpty"
+    :isMobileButton="false"
+  ></UserOrdersEmptyList>
 
-  <div v-else>
+  <div class="orderContainer" v-else>
     <CartOrderHeader
       mode="orderHeaderHover"
       edit-button-style="productsEditHover"
@@ -42,6 +46,12 @@ const orders = useUserOrders();
 </script>
 
 <style scoped lang="scss">
+.orderContainer {
+  display: flex;
+  flex-direction: column;
+  height: calc(100%);
+}
+
 .orderHeader {
   display: flex;
   align-items: center;
