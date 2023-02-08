@@ -1,40 +1,27 @@
-import { createApp } from 'vue';
-import { createPinia } from 'pinia'
-import App from './App.vue';
-
-
-
+import { createApp } from "vue";
+import { createPinia } from "pinia";
+import App from "./App.vue";
 
 import { Icon } from "@iconify/vue";
-import BaseButton from './cards/BaseButton.vue';
-import BaseMenu from './cards/BaseMenu.vue';
-import BaseProduct from './cards/BaseProduct.vue';
-import BaseModal from './cards/BaseModal.vue';
-import BaseDialog from './cards/BaseDialog.vue';
-import BaseOrder from './cards/BaseOrder.vue';
+import BaseButton from "./cards/BaseButton.vue";
+import BaseMenu from "./cards/BaseMenu.vue";
+import BaseProduct from "./cards/BaseProduct.vue";
+import BaseModal from "./cards/BaseModal.vue";
+import BaseOrder from "./cards/BaseOrder.vue";
 
-
-import router from './router.js';
+import router from "./router.js";
 
 const pinia = createPinia();
 const app = createApp(App);
 
-
-
-
-app.component('Icon', Icon);
-app.component('BaseButton', BaseButton);
-app.component('BaseMenu', BaseMenu);
-app.component('BaseProduct', BaseProduct);
-app.component('BaseModal', BaseModal);
-app.component('BaseDialog', BaseDialog);
-app.component('BaseOrder', BaseOrder);
-
+app.component("Icon", Icon);
+app.component("BaseButton", BaseButton);
+app.component("BaseMenu", BaseMenu);
+app.component("BaseProduct", BaseProduct);
+app.component("BaseModal", BaseModal);
+app.component("BaseOrder", BaseOrder);
 
 app.use(router);
 app.use(pinia);
 
-
-app.mount('#app')
-
-
+app.mount("#app");

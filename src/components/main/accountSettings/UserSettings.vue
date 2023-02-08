@@ -1,10 +1,10 @@
 <template>
   <section class="userSettingsContainer">
-    <BaseDialog
+    <UserSettingsForm
       :isModal="isModal"
       :isTitle="selectedModal"
       @close="closeModal"
-    ></BaseDialog>
+    ></UserSettingsForm>
 
     <header class="userDataHeader">
       <h3 class="userDataHeader__title">Dane Konta</h3>
@@ -49,6 +49,7 @@
 </template>
 
 <script setup lang="ts">
+import UserSettingsForm from "./UserSettingsForm.vue";
 import { ref } from "vue";
 
 const isModal = ref(false);

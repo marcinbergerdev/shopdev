@@ -27,27 +27,29 @@
       content="orderAmountContainerDesctop"
     ></CartOrderPrice>
 
-    <BaseModal
-      mode="deleteAllOrders"
-      :isModal="isModal"
-      :isHeaderCloseButton="false"
-      :isInteraction="true"
-    >
-      <template #default>
-        <h2 class="modalHeaderTitle">Wyczyścić koszyk?</h2>
-      </template>
+    <Teleport to="body">
+      <BaseModal
+        mode="deleteAllOrders"
+        :isModal="isModal"
+        :isHeaderCloseButton="false"
+        :isInteraction="true"
+      >
+        <template #default>
+          <h2 class="modalHeaderTitle">Wyczyścić koszyk?</h2>
+        </template>
 
-      <template #content>
-        <p class="modalContentDescription">
-          Usuwasz wszystkie produkty z koszyka, nie można tego cofnąć!
-        </p>
-      </template>
+        <template #content>
+          <p class="modalContentDescription">
+            Usuwasz wszystkie produkty z koszyka, nie można tego cofnąć!
+          </p>
+        </template>
 
-      <template #interactive>
-        <BaseButton mode="clear" @click="closeModal">Anuluj</BaseButton>
-        <BaseButton mode="border">Continue</BaseButton>
-      </template>
-    </BaseModal>
+        <template #interactive>
+          <BaseButton mode="clear" @click="closeModal">Anuluj</BaseButton>
+          <BaseButton mode="border">Continue</BaseButton>
+        </template>
+      </BaseModal>
+    </Teleport>
   </section>
 </template>
 

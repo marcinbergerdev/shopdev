@@ -1,12 +1,12 @@
 <template>
-  <section :class="mode">
+  <article :class="mode">
     <div :class="content">
       <h3 class="title">Do zapłaty:</h3>
       <span class="price">239,40 zł</span>
     </div>
 
     <BaseButton mode="payButtonMobileMenu">Zapłać</BaseButton>
-  </section>
+  </article>
 </template>
 
 <script setup lang="ts">
