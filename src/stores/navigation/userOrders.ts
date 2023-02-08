@@ -45,6 +45,7 @@ export const useUserOrders = defineStore("userOrders", () => {
       },
    ]);
 
+   const isEmpty = computed(() => (orders.value.length === 0 ? true : false));
    const userOrders = computed(() => orders.value);
-   return { userOrders };
+   return { userOrders, isEmpty};
 });

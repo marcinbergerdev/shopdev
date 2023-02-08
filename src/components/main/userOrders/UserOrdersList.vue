@@ -1,5 +1,5 @@
 <template>
-  <UserOrdersEmptyList v-if="isEmptyOrderList"></UserOrdersEmptyList>
+  <UserOrdersEmptyList v-if="orders.isEmpty"></UserOrdersEmptyList>
 
   <section class="userOrderDesctopContainer" v-else>
     <CartOrderHeader
@@ -67,8 +67,6 @@ import UserOrdersEmptyList from "./UserOrdersEmptyList.vue";
 import { ref, computed } from "vue";
 import { useUserOrders } from "../../../stores/navigation/userOrders";
 const orders = useUserOrders();
-
-const isEmptyOrderList = computed(() => (orders.userOrders.length === 0 ? true : false));
 
 const isModal = ref(false);
 function showModal() {
