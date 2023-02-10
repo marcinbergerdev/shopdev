@@ -36,6 +36,7 @@ const router = createRouter({
             { path: "service", component: AuthLogin },
 
             { path: "order", component: AuthLogin },
+            { path: "register", component: AuthLogin },
 
             { path: "order1", component: AuthLogin },
 

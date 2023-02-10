@@ -8,9 +8,10 @@
         :title="option.title"
         :icon="option.icon"
         :name="option.name"
+        :view="option.view"
         :hoverPosition="option.hoverPosition"
         :dropMenuPosition="option.dropMenuPosition"
-        :is-link="option.isLink"
+        :hide-icon="option.hideIcon"
         :is-dropMenu="option.isDropMenu"
       ></NavigationItem>
     </ul>

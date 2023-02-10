@@ -7,13 +7,9 @@
     @mouseover="hoverOption"
     @mouseleave="leaveOption"
   >
-    <BaseButton v-if="isLink" link :to="path" mode="navElement">
-      <Icon class="optionElement__icon" :icon="icon" />
+    <BaseButton link :to="path" :mode="view">
+      <Icon class="optionElement__icon" v-if="!hideIcon" :icon="icon" />
       <p class="optionElement__title">{{ title }}</p>
-    </BaseButton>
-
-    <BaseButton v-else :to="path" mode="flat">
-      {{ title }}
     </BaseButton>
 
     <Teleport :to="sendMenuTo">
@@ -45,21 +41,13 @@ const props = defineProps<{
   title: string;
   icon?: string;
   name?: string;
+  view: string;
   hoverPosition?: string;
   dropMenuPosition?: string;
-  isLink: boolean;
+  hideIcon?: boolean;
   isDropMenu?: boolean;
 }>();
-const {
-  path,
-  title,
-  icon,
-  name,
-  hoverPosition,
-  dropMenuPosition,
-  isLink,
-  isDropMenu,
-} = props;
+const { path, title, icon, name, hoverPosition, dropMenuPosition, isDropMenu } = props;
 
 const dropMenuMobileActivity = ref(false);
 const dropMenuDesctopActivity = ref(false);
@@ -168,7 +156,6 @@ li:nth-last-child(1) {
   }
 
   &__title {
-    font-size: 0.9rem;
     text-align: center;
   }
 

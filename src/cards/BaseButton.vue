@@ -34,16 +34,23 @@ button {
 }
 
 .flat {
+  display: block;
   padding: 0.7rem 1.5rem;
   color: var(--white);
+  font-size: 1.3rem;
+
   background-color: var(--primary-claretDark);
   border-radius: 50px;
   border: 0;
 
   &:hover {
     background-color: var(--primary-claret);
+    color: var(--white);
     cursor: pointer;
     transition: 0.15s ease-in-out;
+  }
+  &.router-link-active {
+    color: var(--white);
   }
 }
 
@@ -175,6 +182,7 @@ button {
   display: block;
   width: 100%;
   height: 100%;
+  font-size: 0.9rem;
 }
 
 .settingOption {
