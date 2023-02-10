@@ -9,10 +9,11 @@
         :icon="option.icon"
         :name="option.name"
         :view="option.view"
-        :hoverPosition="option.hoverPosition"
-        :dropMenuPosition="option.dropMenuPosition"
+        :hover-position="option.hoverPosition"
+        :drop-menu-position="option.dropMenuPosition"
         :hide-icon="option.hideIcon"
-        :is-dropMenu="option.isDropMenu"
+        :is-drop-menu="option.isDropMenu"
+        :is-mobile-disabled="option.isMobileDisabled"
       ></NavigationItem>
     </ul>
   </nav>

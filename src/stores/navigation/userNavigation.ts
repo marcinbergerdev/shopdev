@@ -12,6 +12,7 @@ export const useUserNavigation = defineStore("userNavigation", () => {
          hoverPosition: "hoverRight",
          dropMenuPosition: "dropMenuRight ",
          isDropMenu: true,
+         isMobileDisabled: 'disabled'
       },
       {
          path: "/shop/favorite",
@@ -28,6 +29,7 @@ export const useUserNavigation = defineStore("userNavigation", () => {
          hoverPosition: "hoverLeft",
          dropMenuPosition: "dropMenuRight",
          isDropMenu: true,
+         isMobileDisabled: 'disabled'
       },
       {
          path: "/shop/register",

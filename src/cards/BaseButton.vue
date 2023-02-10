@@ -1,5 +1,10 @@
 <template>
-  <RouterLink class="link" :class="mode" :to="isRouterLink" v-if="link">
+  <RouterLink
+    class="link"
+    :class="[mode, isMobileDisabled]"
+    :to="isRouterLink"
+    v-if="link"
+  >
     <slot></slot>
   </RouterLink>
 
@@ -17,6 +22,7 @@ const { to, link, mode } = defineProps<{
   to?: string;
   link?: boolean;
   mode?: string;
+  isMobileDisabled?: string;
 }>();
 </script>
 
@@ -51,6 +57,14 @@ button {
   }
   &.router-link-active {
     color: var(--white);
+  }
+}
+
+.disabled {
+  pointer-events: none;
+
+  @media (min-width: 768px) {
+    pointer-events: auto;
   }
 }
 

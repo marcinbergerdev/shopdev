@@ -7,7 +7,7 @@
     @mouseover="hoverOption"
     @mouseleave="leaveOption"
   >
-    <BaseButton link :to="path" :mode="view">
+    <BaseButton link :to="path" :mode="view" :isMobileDisabled="isMobileDisabled">
       <Icon class="optionElement__icon" v-if="!hideIcon" :icon="icon" />
       <p class="optionElement__title">{{ title }}</p>
     </BaseButton>
@@ -46,8 +46,20 @@ const props = defineProps<{
   dropMenuPosition?: string;
   hideIcon?: boolean;
   isDropMenu?: boolean;
+  isMobileDisabled?: string;
 }>();
-const { path, title, icon, name, hoverPosition, dropMenuPosition, isDropMenu } = props;
+const {
+  path,
+  title,
+  icon,
+  name,
+  view,
+  hoverPosition,
+  dropMenuPosition,
+  hideIcon,
+  isDropMenu,
+  isMobileDisabled,
+} = props;
 
 const dropMenuMobileActivity = ref(false);
 const dropMenuDesctopActivity = ref(false);
