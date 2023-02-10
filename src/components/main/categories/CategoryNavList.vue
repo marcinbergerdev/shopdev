@@ -44,7 +44,7 @@ const showMenu = ref(false);
 const isCategoriesForMobile = ref(false);
 
 function watchUserWidth() {
-  if (innerWidth < 768 && showMenu) {
+  if (innerWidth < 768) {
     path.value = "body";
     showMenu.value = false;
     isCategoriesForMobile.value = true;
@@ -100,10 +100,10 @@ watch(route, (rout) => {
     }
 
     if (rout.path === "/shop") {
+      path.value = ".navigationContainer";
       setTimeout(() => {
         isOnMounted.value = true;
       }, 10);
-      path.value = ".navigationContainer";
       showMenu.value = true;
       visibility.closeMenu();
       return;
