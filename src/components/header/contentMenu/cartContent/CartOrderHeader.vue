@@ -3,7 +3,7 @@
     <h2 class="title">Twoje zamówienie</h2>
     <span class="amount">(3)</span>
 
-    <BaseButton link to="/shop/order1" :class="editButtonStyle" v-if="isEditButton"
+    <BaseButton link to="/shop/cart" :class="editButtonStyle" v-if="isEditButton"
       >Edytuj</BaseButton
     >
     <BaseButton
