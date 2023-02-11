@@ -56,9 +56,7 @@ function watchUserWidth() {
     }
 
     if (route.path !== "/shop") {
-      setTimeout(() => {
-        isOnMounted.value = true;
-      }, 10);
+      isOnMounted.value = true;
       return;
     }
   }
@@ -93,17 +91,17 @@ watch(route, (rout) => {
 
   if (innerWidth >= 768) {
     if (route.path !== "/shop") {
-      visibility.closeMenu();
-      showMenu.value = false;
       isOnMounted.value = false;
+      showMenu.value = false;
+      visibility.closeMenu();
       return;
     }
 
     if (rout.path === "/shop") {
-      path.value = ".navigationContainer";
       setTimeout(() => {
         isOnMounted.value = true;
       }, 10);
+      path.value = ".navigationContainer";
       showMenu.value = true;
       visibility.closeMenu();
       return;

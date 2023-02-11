@@ -5,7 +5,12 @@
   </header>
 
   <ul class="userList">
-    <li class="userList__option" v-for="(option, id) in userOption" :key="id">
+    <li
+      class="userList__option"
+      v-for="(option, id) in userOption"
+      :key="id"
+      @click="closeMenu"
+    >
       <BaseButton link :to="option.path">
         <Icon class="icon" :icon="option.icon" />
         <span class="name">{{ option.title }}</span>
@@ -17,7 +22,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, inject } from "vue";
+
+const { closeMenu } = inject("closeMenu") as any;
 
 const userOption = ref([
   {

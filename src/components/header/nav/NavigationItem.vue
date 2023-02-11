@@ -34,7 +34,8 @@
 
 <script setup lang="ts">
 import MenuContent from "../contentMenu/MenuContent.vue";
-import { ref, computed, onMounted, onUnmounted } from "vue";
+
+import { ref, computed, provide, onMounted, onUnmounted } from "vue";
 
 const props = defineProps<{
   path: string;
@@ -124,6 +125,10 @@ function pageRefreshed() {
   }
   dropMenuAnimation.value = false;
 }
+
+provide("closeMenu", {
+  closeMenu,
+});
 
 onMounted(() => {
   pageRefreshed();
