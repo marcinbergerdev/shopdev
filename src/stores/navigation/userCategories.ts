@@ -2,62 +2,60 @@ import { defineStore } from "pinia";
 import { ref, computed } from "vue";
 
 export const useUserCategories = defineStore("userCategories", () => {
-
-
    const categories = ref([
       {
          icon: "ic:outline-health-and-safety",
          title: "Zdrowie",
-         link: 'zdrowie',
+         link: "zdrowie",
          underCategories: [
             {
-               link: "#",
+               link: "suplementy",
                title: "Suplementy diety",
                amount: 120,
             },
 
             {
-               link: "#",
+               link: "lekibezrecepty",
                title: "Leki bez recepty",
                amount: 23,
             },
             {
-               link: "#",
+               link: "zywnoscmedyczna",
                title: "Żywność medyczna",
                amount: 123,
             },
             {
-               link: "#",
+               link: "opatrunki",
                title: "Materiały opatrunkowe",
                amount: 343,
             },
             {
-               link: "#",
+               link: "ziolalecznicze",
                title: "Zioła lecznicze",
                amount: 45,
             },
             {
-               link: "#",
+               link: "mascikremy",
                title: "Maści i kremy",
                amount: 34,
             },
             {
-               link: "#",
+               link: "higiena",
                title: "Higiena intymna",
                amount: 67,
             },
             {
-               link: "#",
+               link: "erotyka",
                title: "Erotyka",
                amount: 23,
             },
             {
-               link: "#",
+               link: "urzadzeniamedyczne",
                title: "Urządzenia medyczne",
                amount: 3,
             },
             {
-               link: "#",
+               link: "higienajamyustna",
                title: "Higiena jamy ustnej",
                amount: 3,
             },
@@ -66,35 +64,35 @@ export const useUserCategories = defineStore("userCategories", () => {
       {
          icon: "game-icons:t-shirt",
          title: "Moda",
-         link: 'moda',
+         link: "moda",
          underCategories: [
             {
-               link: "#",
+               link: "odziezdamska",
                title: "Odzież damska",
                amount: 20,
             },
             {
-               link: "#",
+               link: "bieliznadamska",
                title: "Bielizna damska",
                amount: 45,
             },
             {
-               link: "#",
+               link: "butydamskie",
                title: "Buty damskie",
                amount: 23,
             },
             {
-               link: "#",
+               link: "odziezmeska",
                title: "Odzież męska",
                amount: 34,
             },
             {
-               link: "#",
+               link: "bieliznameska",
                title: "Bielizna męska",
                amount: 34,
             },
             {
-               link: "#",
+               link: "butymeskie",
                title: "Buty męskie",
                amount: 343,
             },
@@ -103,55 +101,55 @@ export const useUserCategories = defineStore("userCategories", () => {
       {
          icon: "icon-park-outline:cosmetic-brush",
          title: "Uroda",
-         link: 'uroda',
+         link: "uroda",
          underCategories: [
             {
-               link: "#",
+               link: "kremydotwarz",
                title: "Kremy do twarzy",
                amount: 12,
             },
             {
-               link: "#",
+               link: "maseczkidotwarzy",
                title: "Maseczki do twarzy",
                amount: 23,
             },
             {
-               link: "#",
+               link: "Oczyszczenie",
                title: "Oczyszczenia i demakijaż",
                amount: 123,
             },
             {
-               link: "#",
+               link: "goleniedepilacja",
                title: "Golenie i depilacja",
                amount: 343,
             },
             {
-               link: "#",
+               link: "lakierdopaznokci",
                title: "Lakiery do paznokci",
                amount: 45,
             },
             {
-               link: "#",
+               link: "odrzywkidopaznokci",
                title: "Odrzywki do paznokci",
                amount: 34,
             },
             {
-               link: "#",
+               link: "szampony",
                title: "Szampony",
                amount: 67,
             },
             {
-               link: "#",
+               link: "perfumydamskie",
                title: "Perfumy damskie",
                amount: 23,
             },
             {
-               link: "#",
+               link: "perfumymeskie",
                title: "Perfumy męskie",
                amount: 3,
             },
             {
-               link: "#",
+               link: "pedzledomakijazu",
                title: "Pędzle do makijażu",
                amount: 3,
             },
@@ -160,30 +158,30 @@ export const useUserCategories = defineStore("userCategories", () => {
       {
          icon: "cil:baby",
          title: "Dziecko",
-         link: 'dziecko',
+         link: "dziecko",
          underCategories: [
             {
-               link: "#",
+               link: "zdrowieihigiena",
                title: "Zdrowie i higiena",
                amount: 120,
             },
             {
-               link: "#",
-               title: "Wózki dziecęce",
+               link: "wozki",
+               title: "Wózki dziecięce",
                amount: 23,
             },
             {
-               link: "#",
+               link: "szkola",
                title: "Artykuły szkolne",
                amount: 123,
             },
             {
-               link: "#",
+               link: "zabawki",
                title: "Zabawki",
                amount: 343,
             },
             {
-               link: "#",
+               link: "akcesoria",
                title: "Akcesoria dla dzieci",
                amount: 45,
             },
@@ -192,35 +190,35 @@ export const useUserCategories = defineStore("userCategories", () => {
       {
          icon: "fluent:sport-american-football-24-regular",
          title: "Sport i Turystyka",
-         link: 'sport',
+         link: "sport",
          underCategories: [
             {
-               link: "#",
+               link: "akcesoriarowery",
                title: "Rowery i akcesoria",
                amount: 120,
             },
             {
-               link: "#",
+               link: "akcesoriaturystyka",
                title: "Akcesoria turystyczne",
                amount: 23,
             },
             {
-               link: "#",
+               link: "wedkarstwo",
                title: "Wędkarstwo",
                amount: 123,
             },
             {
-               link: "#",
+               link: "odzywki",
                title: "Odżywki",
                amount: 343,
             },
             {
-               link: "#",
+               link: "wiatrowki",
                title: "Wiatrówki",
                amount: 45,
             },
             {
-               link: "#",
+               link: "militaria",
                title: "Odzież militarna",
                amount: 34,
             },
@@ -229,50 +227,45 @@ export const useUserCategories = defineStore("userCategories", () => {
       {
          icon: "dashicons:book",
          title: "Kultura i Rozrywka",
-         link: 'kultura',
+         link: "kultura",
          underCategories: [
             {
-               link: "#",
+               link: "ksiazki",
                title: "Ksiązki",
                amount: 120,
             },
             {
-               link: "#",
+               link: "gry",
                title: "Gry na PC",
                amount: 23,
             },
             {
-               link: "#",
+               link: "konsola",
                title: "Gry na konsole",
                amount: 123,
             },
             {
-               link: "#",
+               link: "instrumenty",
                title: "Instrumnety",
                amount: 343,
             },
             {
-               link: "#",
+               link: "cd",
                title: "Płyty CD",
                amount: 45,
             },
             {
-               link: "#",
+               link: "akcesoriamuzyka",
                title: "Akcesoria muzyczne",
                amount: 34,
             },
             {
-               link: "#",
-               title: "Higiena intymna",
-               amount: 67,
-            },
-            {
-               link: "#",
+               link: "filmy",
                title: "Filmy",
                amount: 23,
             },
             {
-               link: "#",
+               link: "filmydladzieci",
                title: "Filmy dla dzieci",
                amount: 3,
             },
@@ -281,55 +274,55 @@ export const useUserCategories = defineStore("userCategories", () => {
       {
          icon: "fluent-emoji-high-contrast:house-with-garden",
          title: "Dom i Ogród",
-         link: 'dom',
+         link: "dom",
          underCategories: [
             {
-               link: "#",
+               link: "dekoracje",
                title: "Dekoracje i ozdoby",
                amount: 120,
             },
             {
-               link: "#",
+               link: "dywany",
                title: "Dywany i dywaniki",
                amount: 23,
             },
             {
-               link: "#",
+               link: "posciele",
                title: "Pościele i koce",
                amount: 123,
             },
             {
-               link: "#",
+               link: "garnki",
                title: "Garnki i patelnie",
                amount: 343,
             },
             {
-               link: "#",
+               link: "zastawy",
                title: "Zastawa stołowa",
                amount: 45,
             },
             {
-               link: "#",
+               link: "wkretarki",
                title: "Wkrętarki",
                amount: 34,
             },
             {
-               link: "#",
+               link: "pily",
                title: "Piły",
                amount: 67,
             },
             {
-               link: "#",
+               link: "szlifierki",
                title: "Szlifierka",
                amount: 23,
             },
             {
-               link: "#",
+               link: "spawarki",
                title: "Spawarki",
                amount: 3,
             },
             {
-               link: "#",
+               link: "lampki",
                title: "Lampki",
                amount: 3,
             },
@@ -338,50 +331,50 @@ export const useUserCategories = defineStore("userCategories", () => {
       {
          icon: "grommet-icons:personal-computer",
          title: "Elektronika",
-         link: 'elektronika',
+         link: "elektronika",
          underCategories: [
             {
-               link: "#",
+               link: "telefony",
                title: "Telefony",
                amount: 120,
             },
             {
-               link: "#",
+               link: "komputery",
                title: "Komputery PC",
                amount: 23,
             },
             {
-               link: "#",
+               link: "laptopy",
                title: "Laptopy",
                amount: 123,
             },
             {
-               link: "#",
+               link: "konsole",
                title: "Konsole",
                amount: 343,
             },
             {
-               link: "#",
+               link: "tablety",
                title: "Tablety",
                amount: 45,
             },
             {
-               link: "#",
+               link: "tv",
                title: "Telewizory",
                amount: 34,
             },
             {
-               link: "#",
+               link: "kuchnia",
                title: "Sprzęt kuchenny",
                amount: 67,
             },
             {
-               link: "#",
+               link: "sluchawki",
                title: "Słuchawki",
                amount: 23,
             },
             {
-               link: "#",
+               link: "aparaty",
                title: "Aparaty cyfrowe",
                amount: 3,
             },
@@ -390,55 +383,55 @@ export const useUserCategories = defineStore("userCategories", () => {
       {
          icon: "cil:car-alt",
          title: "Motoryzacja",
-         link: 'motoryzacja',
+         link: "motoryzacja",
          underCategories: [
             {
-               link: "#",
+               link: "karoseria",
                title: "Części karoserii",
                amount: 120,
             },
             {
-               link: "#",
+               link: "silniki",
                title: "Silniki",
                amount: 23,
             },
             {
-               link: "#",
+               link: "hamulce",
                title: "Układ hamulcowy",
                amount: 123,
             },
             {
-               link: "#",
+               link: "zawieszenia",
                title: "Układ zawieszenia",
                amount: 343,
             },
             {
-               link: "#",
+               link: "wydechy",
                title: "Układ wydechowy",
                amount: 45,
             },
             {
-               link: "#",
+               link: "chlodzenie",
                title: "Układ chłodzenia",
                amount: 34,
             },
             {
-               link: "#",
+               link: "akumulatory",
                title: "Układ elektrynczy i akumulatory",
                amount: 67,
             },
             {
-               link: "#",
+               link: "oponyfelgi",
                title: "Opony i felgi",
                amount: 23,
             },
             {
-               link: "#",
+               link: "elektronika",
                title: "Elektronika samochodowa",
                amount: 3,
             },
             {
-               link: "#",
+               link: "akcesoria",
                title: "Akcesoria do samochodów",
                amount: 3,
             },
@@ -447,47 +440,42 @@ export const useUserCategories = defineStore("userCategories", () => {
       {
          icon: "fluent-emoji-high-contrast:framed-picture",
          title: "Kolekcja i Sztuka",
-         link: 'sztuka',
+         link: "sztuka",
          underCategories: [
             {
-               link: "#",
+               link: "meble",
                title: "Meble",
                amount: 120,
             },
             {
-               link: "#",
+               link: "porcelana",
                title: "Porcelana i ceramika",
                amount: 23,
             },
             {
-               link: "#",
+               link: "bizuteria",
                title: "Biżuteria",
                amount: 123,
             },
             {
-               link: "#",
+               link: "zegarki",
                title: "Zegary i zegarki",
                amount: 343,
             },
             {
-               link: "#",
+               link: "modelarswo",
                title: "Modelarstwo",
                amount: 45,
             },
             {
-               link: "#",
+               link: "zloto",
                title: "Złoto i Srebro",
                amount: 34,
             },
             {
-               link: "#",
+               link: "rzezba",
                title: "Rzeźba",
                amount: 67,
-            },
-            {
-               link: "#",
-               title: "Erotyka",
-               amount: 23,
             },
          ],
       },

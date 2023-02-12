@@ -13,9 +13,10 @@
           v-for="(category, id) in underCategory"
           :key="id"
           v-show="isUnderCategory"
-          :link="category.link"
+          :under-category-link="category.link"
           :title="category.title"
           :amount="category.amount"
+          :category-link="link"
         ></CategoryNavChildItem>
       </ul>
     </Transition>

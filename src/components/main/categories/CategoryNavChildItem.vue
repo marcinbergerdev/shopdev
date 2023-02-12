@@ -1,18 +1,26 @@
 <template>
   <li class="underOption">
-    <a class="underOption__name" :href="link">{{ title }}</a>
+    <BaseButton link :to="underCategory" class="underOption__name">{{
+      title
+    }}</BaseButton>
     <span class="underOption__amount">({{ amount }})</span>
   </li>
 </template>
 
 <script setup lang="ts">
+import { computed } from "vue";
 const props = defineProps<{
-  link: string;
+  underCategoryLink: string;
   title: string;
   amount: number;
+  categoryLink: string;
 }>();
 
-const { link, title, amount } = props;
+const { underCategoryLink, categoryLink, title, amount } = props;
+
+const underCategory = computed(() => {
+  return `/shop/categories/${categoryLink}/${underCategoryLink}`;
+});
 </script>
 
 <style scoped lang="scss">
