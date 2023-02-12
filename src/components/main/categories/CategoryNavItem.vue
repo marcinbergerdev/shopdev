@@ -1,9 +1,9 @@
 <template>
   <li class="categoriesOption" @mouseover="showCategory" @mouseleave="closeCategory">
-    <div class="optionBox">
+    <BaseButton link :to="categoryLink" class="optionBox">
       <Icon class="optionBox__icon" :icon="icon" />
       <button class="optionBox__title">{{ title }}</button>
-    </div>
+    </BaseButton>
 
     <Icon class="categoriesOption__arrowIcon" icon="akar-icons:arrow-right" />
 
@@ -26,26 +26,31 @@
 import CategoryNavChildItem from "./CategoryNavChildItem.vue";
 import { useUserCategories } from "../../../stores/navigation/userCategories";
 
-import { ref } from "vue";
-const underCategories = useUserCategories();
-
-const isUnderCategory = ref(false);
-const stopUnderListTransition = ref(true);
+import { ref, computed } from "vue";
 
 const props = defineProps<{
   icon: string;
   title: string;
+  link: string;
   underCategory: Array<{
     link: string;
     title: string;
     amount: number;
   }>;
 }>();
-const { icon, title, underCategory } = props;
+const { icon, title, link, underCategory } = props;
 
 const emit = defineEmits<{
   (e: "underCategory", value: object): void;
 }>();
+
+const underCategories = useUserCategories();
+const isUnderCategory = ref(false);
+const stopUnderListTransition = ref(true);
+
+const categoryLink = computed(() => {
+  return `/shop/categories/${link}`;
+});
 
 function showCategory() {
   if (innerWidth >= 768) {
@@ -97,6 +102,7 @@ function closeCategory() {
     padding: 1rem 0;
 
     &:hover {
+      cursor: pointer;
       .optionBox__icon,
       .optionBox__title {
         color: var(--primary-claret);
@@ -114,6 +120,7 @@ function closeCategory() {
   &__icon {
     font-size: 2rem;
     @media (min-width: 768px) {
+      color: var(--primary-greyDark);
       font-size: 1.6rem;
       pointer-events: none;
     }

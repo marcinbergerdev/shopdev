@@ -29,6 +29,13 @@ const router = createRouter({
                ],
             },
 
+            {
+               path: "categories/:category",
+               component: AuthLogin,
+
+
+            },
+
             { path: "favorite", component: AuthLogin },
 
             { path: "cart", component: UserOrderList },
@@ -41,6 +48,7 @@ const router = createRouter({
             { path: "order1", component: AuthLogin },
 
             { path: "service", component: AuthLogin },
+
          ],
       },
    ],

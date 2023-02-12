@@ -18,6 +18,7 @@
               :categoryId="id"
               :icon="category.icon"
               :title="category.title"
+              :link="category.link"
               :underCategory="category.underCategories"
             ></CategoryNavItem>
           </ul>

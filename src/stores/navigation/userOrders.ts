@@ -2,7 +2,16 @@ import { defineStore } from "pinia";
 import { ref, computed } from "vue";
 
 export const useUserOrders = defineStore("userOrders", () => {
-   const orders = ref([
+   interface Orders {
+      id?: number;
+      img?: string;
+      name?: string;
+      amount?: boolean;
+      price?: number;
+      deleteButton?: boolean;
+   }
+
+   const orders = ref<Array<Orders>>([
       {
          id: 1,
          img: "/assets/psp.jpg",
@@ -47,5 +56,5 @@ export const useUserOrders = defineStore("userOrders", () => {
 
    const isEmpty = computed(() => (orders.value.length === 0 ? true : false));
    const userOrders = computed(() => orders.value);
-   return { userOrders, isEmpty};
+   return { userOrders, isEmpty };
 });

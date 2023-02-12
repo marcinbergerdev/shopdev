@@ -2,10 +2,13 @@ import { defineStore } from "pinia";
 import { ref, computed } from "vue";
 
 export const useUserCategories = defineStore("userCategories", () => {
+
+
    const categories = ref([
       {
          icon: "ic:outline-health-and-safety",
          title: "Zdrowie",
+         link: 'zdrowie',
          underCategories: [
             {
                link: "#",
@@ -63,6 +66,7 @@ export const useUserCategories = defineStore("userCategories", () => {
       {
          icon: "game-icons:t-shirt",
          title: "Moda",
+         link: 'moda',
          underCategories: [
             {
                link: "#",
@@ -99,6 +103,7 @@ export const useUserCategories = defineStore("userCategories", () => {
       {
          icon: "icon-park-outline:cosmetic-brush",
          title: "Uroda",
+         link: 'uroda',
          underCategories: [
             {
                link: "#",
@@ -155,6 +160,7 @@ export const useUserCategories = defineStore("userCategories", () => {
       {
          icon: "cil:baby",
          title: "Dziecko",
+         link: 'dziecko',
          underCategories: [
             {
                link: "#",
@@ -186,6 +192,7 @@ export const useUserCategories = defineStore("userCategories", () => {
       {
          icon: "fluent:sport-american-football-24-regular",
          title: "Sport i Turystyka",
+         link: 'sport',
          underCategories: [
             {
                link: "#",
@@ -222,6 +229,7 @@ export const useUserCategories = defineStore("userCategories", () => {
       {
          icon: "dashicons:book",
          title: "Kultura i Rozrywka",
+         link: 'kultura',
          underCategories: [
             {
                link: "#",
@@ -273,6 +281,7 @@ export const useUserCategories = defineStore("userCategories", () => {
       {
          icon: "fluent-emoji-high-contrast:house-with-garden",
          title: "Dom i Ogród",
+         link: 'dom',
          underCategories: [
             {
                link: "#",
@@ -329,6 +338,7 @@ export const useUserCategories = defineStore("userCategories", () => {
       {
          icon: "grommet-icons:personal-computer",
          title: "Elektronika",
+         link: 'elektronika',
          underCategories: [
             {
                link: "#",
@@ -380,6 +390,7 @@ export const useUserCategories = defineStore("userCategories", () => {
       {
          icon: "cil:car-alt",
          title: "Motoryzacja",
+         link: 'motoryzacja',
          underCategories: [
             {
                link: "#",
@@ -436,6 +447,7 @@ export const useUserCategories = defineStore("userCategories", () => {
       {
          icon: "fluent-emoji-high-contrast:framed-picture",
          title: "Kolekcja i Sztuka",
+         link: 'sztuka',
          underCategories: [
             {
                link: "#",

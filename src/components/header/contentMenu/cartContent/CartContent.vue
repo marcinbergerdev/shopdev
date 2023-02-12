@@ -40,7 +40,6 @@ import UserOrdersEmptyList from "../../../main/userOrders/UserOrdersEmptyList.vu
 import CartOrderHeader from "./CartOrderHeader.vue";
 import CartOrderPrice from "./CartOrderPrice.vue";
 
-import { ref } from "vue";
 import { useUserOrders } from "../../../../stores/navigation/userOrders";
 const orders = useUserOrders();
 </script>
