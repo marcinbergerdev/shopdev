@@ -40,10 +40,7 @@
 import UserOrdersEmptyList from "../../../main/userOrders/UserOrdersEmptyList.vue";
 import CartOrderHeader from "./CartOrderHeader.vue";
 import CartOrderPrice from "./CartOrderPrice.vue";
-<<<<<<< HEAD
 
-=======
->>>>>>> main
 import { useUserOrders } from "../../../../stores/navigation/userOrders";
 import { inject } from "vue";
 
