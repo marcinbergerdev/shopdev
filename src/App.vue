@@ -58,7 +58,6 @@ a {
   overflow: hidden;
 }
 
-
 .addToCart {
   &:hover {
     .cartIcon {

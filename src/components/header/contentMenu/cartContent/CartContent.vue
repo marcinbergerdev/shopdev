@@ -11,6 +11,7 @@
       edit-button-style="productsEditHover"
       :is-edit-button="true"
       :is-delete-button="false"
+      @click="editCloseMenu"
     ></CartOrderHeader>
 
     <ul class="orderListContainer">
@@ -39,9 +40,22 @@
 import UserOrdersEmptyList from "../../../main/userOrders/UserOrdersEmptyList.vue";
 import CartOrderHeader from "./CartOrderHeader.vue";
 import CartOrderPrice from "./CartOrderPrice.vue";
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
 import { useUserOrders } from "../../../../stores/navigation/userOrders";
+import { inject } from "vue";
+
 const orders = useUserOrders();
+const { closeMenu } = inject("closeMenu") as any;
+
+const editCloseMenu = (e: any) => {
+  if (e.target.text === "Edytuj") {
+    closeMenu();
+    document.body.classList.remove("scrollHidden");
+  }
+};
 </script>
 
 <style scoped lang="scss">

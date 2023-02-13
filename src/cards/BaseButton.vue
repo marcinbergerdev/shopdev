@@ -60,7 +60,7 @@ button {
   }
 }
 
-.disabled {
+.disabledLinkOnMobile {
   pointer-events: none;
 
   @media (min-width: 768px) {

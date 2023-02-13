@@ -14,10 +14,13 @@ const ReturnSettings = () =>
    import("./components/main/accountSettings/ReturnSettings.vue");
 const UserOrderList = () =>
    import("./components/main/userOrders/UserOrdersList.vue");
+<<<<<<< HEAD
 const ProductListContainer = () =>
    import("./components/main/productsList/ProductListContainer.vue");
 const ProductList = () =>
    import("./components/main/productsList/ProductList.vue");
+=======
+>>>>>>> main
 
 const router = createRouter({
    history: createWebHashHistory(),
@@ -32,6 +35,7 @@ const router = createRouter({
             {
                path: "account",
                component: AccountSettingsContainer,
+               redirect: "/shop/account/user",
                children: [
                   { path: "user", component: UserSettings },
                   { path: "orders", component: OrderSettings },
