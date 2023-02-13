@@ -1,13 +1,23 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 
 const ShopHomePage = () => import("./layout/shop/ShopHomePage.vue");
-const ShopMainContainer = () => import("./components/main/ShopMainContainer.vue");
+const ShopMainContainer = () =>
+   import("./components/main/ShopMainContainer.vue");
 const AuthLogin = () => import("./layout/authentication/AuthLogin.vue");
-const AccountSettingsContainer = () => import("./components/main/AccountSettingsContainer.vue");
-const UserSettings = () => import("./components/main/accountSettings/UserSettings.vue");
-const OrderSettings = () => import("./components/main/accountSettings/OrderSettings.vue");
-const ReturnSettings = () => import("./components/main/accountSettings/ReturnSettings.vue");
-const UserOrderList = () => import("./components/main/userOrders/UserOrdersList.vue");
+const AccountSettingsContainer = () =>
+   import("./components/main/AccountSettingsContainer.vue");
+const UserSettings = () =>
+   import("./components/main/accountSettings/UserSettings.vue");
+const OrderSettings = () =>
+   import("./components/main/accountSettings/OrderSettings.vue");
+const ReturnSettings = () =>
+   import("./components/main/accountSettings/ReturnSettings.vue");
+const UserOrderList = () =>
+   import("./components/main/userOrders/UserOrdersList.vue");
+const ProductListContainer = () =>
+   import("./components/main/productsList/ProductListContainer.vue");
+const ProductList = () =>
+   import("./components/main/productsList/ProductList.vue");
 
 const router = createRouter({
    history: createWebHashHistory(),
@@ -31,9 +41,15 @@ const router = createRouter({
 
             {
                path: "categories/:category",
-               component: AuthLogin,
-
-
+               component: ProductListContainer,
+               children: [
+                  {
+                     path: ":underCategory",
+                     component: ProductListContainer,
+                     props: true,
+                  },
+               ],
+               props: true
             },
 
             { path: "favorite", component: AuthLogin },
@@ -48,7 +64,6 @@ const router = createRouter({
             { path: "order1", component: AuthLogin },
 
             { path: "service", component: AuthLogin },
-
          ],
       },
    ],

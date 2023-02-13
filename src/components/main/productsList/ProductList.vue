@@ -1,13 +1,13 @@
 <template>
-  <div>
-
-  </div>
+  <article>
+    <p>{{ underCategory }}</p>
+  </article>
 </template>
 
 <script setup lang="ts">
-
+defineProps<{
+  underCategory?: any;
+}>();
 </script>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>
