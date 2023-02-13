@@ -11,4 +11,3 @@ import PopularCategoriesList from "./popular/PopularCategoriesList.vue";
 </script>
 
 <style scoped lang="scss"></style>
-s

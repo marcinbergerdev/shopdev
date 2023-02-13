@@ -13,7 +13,7 @@ const props = defineProps<{
   underCategoryLink: string;
   title: string;
   amount: number;
-  categoryLink: string;
+  categoryLink?: string;
 }>();
 
 const { underCategoryLink, categoryLink, title, amount } = props;

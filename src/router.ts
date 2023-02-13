@@ -19,40 +19,46 @@ const ProductListContainer = () =>
 const ProductList = () =>
    import("./components/main/productsList/ProductList.vue");
 
-
-
 const router = createRouter({
    history: createWebHashHistory(),
    routes: [
       { path: "/", redirect: "/shop" },
       {
+         name: "homepage",
          path: "/shop",
          component: ShopHomePage,
          children: [
-            { path: "", component: ShopMainContainer },
+            { name: "contentHomePage", path: "", component: ShopMainContainer },
 
             {
+               name: "account",
                path: "account",
                component: AccountSettingsContainer,
                redirect: "/shop/account/user",
                children: [
-                  { path: "user", component: UserSettings },
-                  { path: "orders", component: OrderSettings },
-                  { path: "returns", component: ReturnSettings },
+                  { name: "user", path: "user", component: UserSettings },
+                  { name: "orders", path: "orders", component: OrderSettings },
+                  {
+                     name: "returns",
+                     path: "returns",
+                     component: ReturnSettings,
+                  },
                ],
             },
 
             {
+               name: "categories",
                path: "categories/:category",
                component: ProductListContainer,
+               props: true,
                children: [
                   {
+                     name: "underCategories",
                      path: ":underCategory",
                      component: ProductListContainer,
                      props: true,
                   },
                ],
-               props: true
             },
 
             { path: "favorite", component: AuthLogin },
