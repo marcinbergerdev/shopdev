@@ -9,7 +9,7 @@
       class="userList__option"
       v-for="(option, id) in userOption"
       :key="id"
-      @click="closeMenu"
+      @click="optionCloseMenu"
     >
       <BaseButton link :to="option.path">
         <Icon class="icon" :icon="option.icon" />
@@ -43,6 +43,11 @@ const userOption = ref([
     title: "Zwroty i Reklamacje",
   },
 ]);
+
+function optionCloseMenu() {
+  closeMenu();
+  document.body.classList.remove("scrollHidden");
+}
 </script>
 
 <style scoped lang="scss">
