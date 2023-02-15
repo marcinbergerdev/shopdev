@@ -1,5 +1,5 @@
 <template>
-  <li class="underOption">
+  <li class="underOption" @click="closeCategoryMenu">
     <BaseButton link :to="underCategory" class="underOption__name">{{
       title
     }}</BaseButton>
@@ -8,7 +8,9 @@
 </template>
 
 <script setup lang="ts">
+import { useMenuVisibility } from "../../../stores/navigation/menuVisibility";
 import { computed } from "vue";
+
 const props = defineProps<{
   underCategoryLink: string;
   title: string;
@@ -21,6 +23,14 @@ const { underCategoryLink, categoryLink, title, amount } = props;
 const underCategory = computed(() => {
   return `/shop/categories/${categoryLink}/${underCategoryLink}`;
 });
+
+const categories = useMenuVisibility();
+
+function closeCategoryMenu() {
+  if (innerWidth < 768) {
+    categories.closeMenu();
+  }
+}
 </script>
 
 <style scoped lang="scss">

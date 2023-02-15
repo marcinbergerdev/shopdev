@@ -41,7 +41,7 @@ const props = defineProps<{
 }>();
 const { icon, title, link, underCategory } = props;
 
-const emit = defineEmits<{
+defineEmits<{
   (e: "underCategory", value: object): void;
 }>();
 
@@ -112,11 +112,18 @@ function closeCategory() {
   }
 }
 
+.link.router-link-active {
+  .optionBox__title {
+    color: var(--primary-claret);
+  }
+}
+
 .optionBox {
   display: flex;
   align-items: center;
   gap: 0 2rem;
   color: var(--primary-greyDark);
+  pointer-events: none;
 
   &__icon {
     font-size: 2rem;
@@ -137,6 +144,10 @@ function closeCategory() {
       font-size: 1.4rem;
       pointer-events: none;
     }
+  }
+
+  @media (min-width: 768px) {
+    pointer-events: auto;
   }
 }
 

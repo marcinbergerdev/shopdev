@@ -1,6 +1,6 @@
 <template>
-  <section>
-    <ul class="test">
+  <aside class="underCategoryAside">
+    <ul class="underCategoryList">
       <CategoryNavChildItem
         v-for="(underCategory, id) in selectedUnderCategories"
         :key="id"
@@ -11,20 +11,13 @@
         :category-link="category"
       ></CategoryNavChildItem>
     </ul>
-  </section>
-
-  <section>
-  <p>ddds</p>
-  </section>
+  </aside>
 </template>
 
 <script setup lang="ts">
 import CategoryNavChildItem from "../categories/CategoryNavChildItem.vue";
 import { useUserCategories } from "../../../stores/navigation/userCategories";
-import { useRoute, useRouter } from "vue-router";
 import { ref, onMounted } from "vue";
-
-const categories = useUserCategories();
 
 const props = defineProps<{
   category?: any;
@@ -32,33 +25,40 @@ const props = defineProps<{
 }>();
 const { category, underCategory } = props;
 
-const route = useRoute();
-const router = useRouter();
-const test = ref<any>([]);
-
 interface UnderCategories {
   link: string;
   title: string;
   amount: number;
 }
 
+const categories = useUserCategories();
 const selectedUnderCategories = ref<Array<UnderCategories>>([]);
 
-onMounted(() => {
-  if ((!!category && !underCategory) || (!!categories && !!underCategory)) {
+function selectCategories(categoryName: string, underCategoryName: string) {
+  selectedUnderCategories.value = [];
+  if ((!!categoryName && !underCategoryName) || (!!categoryName && !!underCategoryName)) {
     const checkCategories = categories.getCategories;
-    const selectedCategory = checkCategories.filter((option) => option.link === category);
+    const selectedCategory = checkCategories.filter(
+      (option) => option.link === categoryName
+    );
     selectedUnderCategories.value = selectedCategory[0].underCategories;
   }
+}
+
+onMounted(() => {
+  selectCategories(category, underCategory);
 });
 </script>
 
 <style scoped lang="scss">
-.test {
+.underCategoryAside {
   display: none;
 
   @media (min-width: 768px) {
     display: block;
   }
+}
+
+.underCategoryList {
 }
 </style>

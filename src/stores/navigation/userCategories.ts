@@ -114,7 +114,7 @@ export const useUserCategories = defineStore("userCategories", () => {
                amount: 23,
             },
             {
-               link: "Oczyszczenie",
+               link: "oczyszczenie",
                title: "Oczyszczenia i demakijaż",
                amount: 123,
             },

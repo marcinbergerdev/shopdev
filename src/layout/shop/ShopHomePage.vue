@@ -2,7 +2,7 @@
   <AppHeader></AppHeader>
   <main>
     <AdsSlider />
-    <router-view></router-view>
+    <router-view :key="$route.path"></router-view>
   </main>
   <AppFooter></AppFooter>
 </template>
