@@ -60,6 +60,21 @@ button {
   }
 }
 
+.filters {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.4rem;
+  background-color: transparent;
+  border: 1px solid var(--primary-greyDark);
+  padding: 0.7rem 1.5rem;
+  border-radius: 50px;
+
+  @media (min-width: 768px) {
+    cursor: pointer;
+  }
+}
+
 .disabledLinkOnMobile {
   pointer-events: none;
 
