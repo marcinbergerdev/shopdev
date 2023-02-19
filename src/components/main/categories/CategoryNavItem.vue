@@ -1,5 +1,10 @@
 <template>
-  <li class="categoriesOption" @mouseover="showCategory" @mouseleave="closeCategory">
+  <li
+    class="categoriesOption"
+    @mouseover="showCategory"
+    @mouseleave="closeCategory"
+    @click="showAllProducts"
+  >
     <BaseButton link :to="categoryLink" class="optionBox">
       <Icon class="optionBox__icon" :icon="icon" />
       <button class="optionBox__title">{{ title }}</button>
@@ -26,6 +31,7 @@
 <script setup lang="ts">
 import CategoryNavChildItem from "./CategoryNavChildItem.vue";
 import { useUserCategories } from "../../../stores/navigation/userCategories";
+import { useProducts } from "../../../stores/products/products";
 
 import { ref, computed } from "vue";
 
@@ -62,6 +68,14 @@ function showCategory() {
   stopUnderListTransition.value = true;
   isUnderCategory.value = true;
   underCategories.showBackIcon();
+}
+
+const setProducts = useProducts();
+
+function showAllProducts() {
+  if (innerWidth >= 768) {
+    setProducts.fetchProducts();
+  }
 }
 
 function closeCategory() {

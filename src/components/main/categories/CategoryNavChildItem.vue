@@ -1,14 +1,19 @@
 <template>
   <li class="underOption" @click="closeCategoryMenu">
-    <BaseButton link :to="underCategory" class="underOption__name">{{
-      title
-    }}</BaseButton>
+    <BaseButton
+      link
+      :to="underCategory"
+      class="underOption__name"
+      @click="fetchProducts"
+      >{{ title }}</BaseButton
+    >
     <span class="underOption__amount">({{ amount }})</span>
   </li>
 </template>
 
 <script setup lang="ts">
 import { useMenuVisibility } from "../../../stores/navigation/menuVisibility";
+import { useProducts } from "../../../stores/products/products";
 import { computed } from "vue";
 
 const props = defineProps<{
@@ -25,11 +30,16 @@ const underCategory = computed(() => {
 });
 
 const categories = useMenuVisibility();
-
 function closeCategoryMenu() {
   if (innerWidth < 768) {
     categories.closeMenu();
   }
+}
+
+const setProducts = useProducts();
+
+function fetchProducts() {
+  setProducts.fetchProducts();
 }
 </script>
 

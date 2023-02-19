@@ -1,14 +1,12 @@
 <template>
   <ul class="productsList">
-    <ProductItem v-for="product in products" :key="1"></ProductItem>
+    <BaseProduct view="test" v-for="product in products.products" :key="1"></BaseProduct>
   </ul>
 </template>
 
 <script setup lang="ts">
-import ProductItem from "./ProductItem.vue";
-import { ref } from "vue";
-
-const products = ref([1, 2, 3, 4]);
+import { useProducts } from "../../../stores/products/products";
+const products = useProducts();
 </script>
 
 <style scoped lang="scss">
