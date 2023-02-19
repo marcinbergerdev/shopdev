@@ -41,7 +41,7 @@ import UserOrdersEmptyList from "../../../main/userOrders/UserOrdersEmptyList.vu
 import CartOrderHeader from "./CartOrderHeader.vue";
 import CartOrderPrice from "./CartOrderPrice.vue";
 
-import { useUserOrders } from "../../../../stores/navigation/userOrders";
+import { useUserOrders } from "../../../../stores/orders/userOrders";
 import { inject } from "vue";
 
 const orders = useUserOrders();

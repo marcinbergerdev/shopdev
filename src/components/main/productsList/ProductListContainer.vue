@@ -77,7 +77,7 @@ onMounted(() => {
       "categoryList filters"
       "categoryList productsList"
       "categoryList pagination";
-    grid-template-columns: 25rem 1fr;
+    grid-template-columns: 27rem 1fr;
     grid-template-rows: 5rem 1fr 7rem;
   }
 }
@@ -95,7 +95,7 @@ onMounted(() => {
   @media (min-width: 768px) {
     height: 100%;
     margin: 0 2rem 0 1rem;
-    padding: 0 1rem;
+    padding: 2rem 1rem;
     border: 1px solid var(--primary-greyDark);
   }
 }

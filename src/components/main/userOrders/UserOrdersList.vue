@@ -68,7 +68,7 @@ import CartOrderPrice from "../../header/contentMenu/cartContent/CartOrderPrice.
 import UserOrdersEmptyList from "./UserOrdersEmptyList.vue";
 
 import { ref, computed } from "vue";
-import { useUserOrders } from "../../../stores/navigation/userOrders";
+import { useUserOrders } from "../../../stores/orders/userOrders";
 const orders = useUserOrders();
 
 const isModal = ref(false);
