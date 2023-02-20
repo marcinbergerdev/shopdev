@@ -38,8 +38,9 @@ function closeCategoryMenu() {
 
 const setProducts = useProducts();
 
-function fetchProducts() {
-  setProducts.fetchProducts();
+async function fetchProducts() {
+  await setProducts.clearProductList();
+  await setProducts.fetchProducts();
 }
 </script>
 

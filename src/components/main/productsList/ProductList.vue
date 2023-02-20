@@ -1,12 +1,33 @@
 <template>
   <ul class="productsList">
-    <BaseProduct view="test" v-for="product in products.products" :key="1"></BaseProduct>
+    <BaseProduct
+      view="selectedProduct"
+      v-for="product in products.products"
+      :key="product.id"
+      :id="product.id"
+      :category="product.category"
+      :img="product.image"
+      :price="product.price"
+      :favorite="true"
+      :title="product.title"
+      :description="product.description"
+      :promotion="false"
+      :productAvailable="true"
+      :cartIcon="true"
+    ></BaseProduct>
   </ul>
 </template>
 
 <script setup lang="ts">
 import { useProducts } from "../../../stores/products/products";
-const products = useProducts();
+import { onMounted } from "vue";
+
+let products = useProducts();
+
+onMounted(async () => {
+  await products.clearProductList();
+  await products.fetchProducts();
+});
 </script>
 
 <style scoped lang="scss">
@@ -15,12 +36,16 @@ const products = useProducts();
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 1rem;
+  // gap: 5rem 0;
+  margin: 6rem 0;
   width: 100%;
 
   @media (min-width: 768px) {
     padding: 5rem;
     align-items: flex-start;
+    justify-content: center;
+    flex-flow: row wrap;
+    gap: 5rem 10rem;
   }
 }
 </style>

@@ -69,7 +69,7 @@ onMounted(() => {
     "productsList productsList"
     "pagination pagination";
   margin-top: 5rem;
-  height: 100rem;
+  min-height: 100rem;
   grid-template-rows: 8rem 1fr 7rem;
 
   @media (min-width: 768px) {

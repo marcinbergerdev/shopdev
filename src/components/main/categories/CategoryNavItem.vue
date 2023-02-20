@@ -72,9 +72,10 @@ function showCategory() {
 
 const setProducts = useProducts();
 
-function showAllProducts() {
+async function showAllProducts() {
   if (innerWidth >= 768) {
-    setProducts.fetchProducts();
+    await setProducts.clearProductList();
+    await setProducts.fetchProducts();
   }
 }
 

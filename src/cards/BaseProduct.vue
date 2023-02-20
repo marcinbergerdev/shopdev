@@ -3,12 +3,12 @@
     <span class="productContainer__promotion" v-if="promotion">Promocja</span>
 
     <span class="productImg">
-      <img loading="lazy" class="productImg__productImg" :src="img" alt="product-img" />
+      <img loading="lazy" class="productImg__img" :src="img" alt="product-img" />
     </span>
 
     <header class="productHeader">
       <section class="productPrise">
-        <span class="productPrise__amount"> {{ price }}zł</span>
+        <span class="productPrise__amount"> {{ price?.toFixed(2) }}zł</span>
         <BaseButton mode="favorite">
           <Icon class="productPrise__favorite" v-if="favorite" icon="ph:heart-fill" />
         </BaseButton>
@@ -76,9 +76,6 @@ defineProps<{
   }
 }
 
-.dualView {
-}
-
 .productContainer {
   position: relative;
   display: flex;
@@ -115,7 +112,7 @@ defineProps<{
   width: 100%;
   height: 55%;
 
-  &__productImg {
+  &__img {
     width: 100%;
     height: 100%;
     border-radius: 0.2rem 0.2rem 0 0;
@@ -180,5 +177,35 @@ defineProps<{
 .cartIcon {
   font-size: 2rem;
   color: var(--secondary-superLightGreen);
+}
+
+.selectedProduct {
+  width: 100%;
+  min-height: 40rem;
+  padding: 4rem 1rem;
+  box-shadow: none;
+  border-bottom: 1px solid var(--primary-greyDark);
+
+  .productHeader {
+    margin-top: 5rem;
+  }
+
+  .productImg {
+    width: fit-content;
+    height: 20rem;
+    align-self: center;
+  }
+  .productStatus {
+    margin-top: 4rem;
+    align-items: center;
+
+    .cartIcon {
+      font-size: 2.4rem;
+    }
+  }
+
+  .productPrise__favorite {
+    font-size: 3rem;
+  }
 }
 </style>
