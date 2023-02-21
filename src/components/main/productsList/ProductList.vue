@@ -22,7 +22,7 @@
 import { useProducts } from "../../../stores/products/products";
 import { onMounted } from "vue";
 
-let products = useProducts();
+const products = useProducts();
 
 onMounted(async () => {
   await products.clearProductList();
@@ -36,7 +36,6 @@ onMounted(async () => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  // gap: 5rem 0;
   margin: 6rem 0;
   width: 100%;
 

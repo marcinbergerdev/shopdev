@@ -4,13 +4,24 @@ import { ref, computed } from "vue";
 
 export const usePromotion = defineStore("promotion", () => {
 
-  const promotions = ref([]);
+   interface Product {
+      id?: number;
+      category?: string;
+      image?: string;
+      price?: number;
+      title?: string;
+      description?: string;
+   }
+
+
+
+  const promotions = ref<Array<Product>>([]);
 
 
 
 
 
-  async function fetchProducts() {
+  async function fetchPromotions() {
      try {
         const products = await axios.get("https://fakestoreapi.com/products");
         console.log(products.data);
@@ -19,5 +30,5 @@ export const usePromotion = defineStore("promotion", () => {
      }
   }
 
-  return { fetchProducts };
+  return { fetchPromotions };
 });

@@ -3,7 +3,6 @@ import axios from "axios";
 import { ref, computed } from "vue";
 
 export const useProducts = defineStore("products", () => {
-
    interface Product {
       id?: number;
       category?: string;
@@ -20,6 +19,7 @@ export const useProducts = defineStore("products", () => {
          const response = await axios.get(
             "https://fakestoreapi.com/products?limit=15"
          );
+
          fetchedProducts.value = response.data;
          console.log(products.value);
       } catch (error) {

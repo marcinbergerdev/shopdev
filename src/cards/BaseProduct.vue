@@ -207,5 +207,34 @@ defineProps<{
   .productPrise__favorite {
     font-size: 3rem;
   }
+
+  @media (min-width: 768px) {
+    width: 25rem;
+    height: 53rem;
+    padding: 0;
+    border: 0;
+
+    .productImg {
+      width: fit-content;
+      height: 25rem;
+      align-self: center;
+    }
+
+    .productHeader__title,
+    .productHeader__description {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+    }
+
+    .productHeader__title {
+      -webkit-line-clamp: 2;
+    }
+
+    .productHeader__description {
+      -webkit-line-clamp: 3;
+    }
+  }
 }
 </style>
