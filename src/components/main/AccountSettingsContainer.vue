@@ -18,9 +18,9 @@
   </ul>
 
   <router-view v-slot="userSettings">
-    <transition name="userSettings" mode="out-in">
+    <Transition name="userSettings" mode="out-in" appear>
       <component :is="userSettings.Component"></component>
-    </transition>
+    </Transition>
   </router-view>
 </template>
 
