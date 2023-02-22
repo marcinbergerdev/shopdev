@@ -21,12 +21,20 @@
 <script setup lang="ts">
 import { useProducts } from "../../../stores/products/products";
 import { onMounted } from "vue";
+import { useRoute } from "vue-router";
 
+const route = useRoute();
 const products = useProducts();
 
+// get examples of products only for project
 onMounted(async () => {
   await products.clearProductList();
-  await products.fetchProducts();
+  if (route.params.category && route.params.underCategory) {
+    await products.fetchProducts("/category/electronics?limit=20");
+    return;
+  }
+
+  await products.fetchProducts("?limit=20");
 });
 </script>
 

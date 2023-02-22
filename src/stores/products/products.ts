@@ -14,14 +14,12 @@ export const useProducts = defineStore("products", () => {
 
    const fetchedProducts = ref<Array<Product>>([]);
 
-   async function fetchProducts() {
+   async function fetchProducts(link?: string) {
       try {
          const response = await axios.get(
-            "https://fakestoreapi.com/products?limit=15"
+            "https://fakestoreapi.com/products" + link
          );
-
          fetchedProducts.value = response.data;
-         console.log(products.value);
       } catch (error) {
          console.log(error);
       }

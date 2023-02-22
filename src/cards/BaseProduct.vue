@@ -58,6 +58,29 @@ defineProps<{
   width: 18rem;
   height: 33rem;
 
+  .productImg {
+    height: 40%;
+    &__img {
+      padding: 1rem 5rem;
+    }
+  }
+
+  .productHeader__title,
+  .productHeader__description {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+  }
+
+  .productHeader__title {
+    -webkit-line-clamp: 2;
+  }
+
+  .productHeader__description {
+    -webkit-line-clamp: 2;
+  }
+
   @media (min-width: 330px) {
     width: 23rem;
   }
@@ -218,6 +241,7 @@ defineProps<{
       width: fit-content;
       height: 25rem;
       align-self: center;
+      padding: 3rem;
     }
 
     .productHeader__title,

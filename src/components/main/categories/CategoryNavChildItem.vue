@@ -4,7 +4,7 @@
       link
       :to="underCategory"
       class="underOption__name"
-      @click="fetchProducts"
+      @click="showAllProductInUnderCategory"
       >{{ title }}</BaseButton
     >
     <span class="underOption__amount">({{ amount }})</span>
@@ -36,11 +36,13 @@ function closeCategoryMenu() {
   }
 }
 
+// get examples of products only for project
+const testProductsLinkApi = "/category/electronics";
 const setProducts = useProducts();
 
-async function fetchProducts() {
+async function showAllProductInUnderCategory() {
   await setProducts.clearProductList();
-  await setProducts.fetchProducts();
+  await setProducts.fetchProducts(testProductsLinkApi);
 }
 </script>
 

@@ -3,7 +3,7 @@
     class="categoriesOption"
     @mouseover="showCategory"
     @mouseleave="closeCategory"
-    @click="showAllProducts"
+    @click="showAllProductInMainCategory"
   >
     <BaseButton link :to="categoryLink" class="optionBox">
       <Icon class="optionBox__icon" :icon="icon" />
@@ -70,12 +70,14 @@ function showCategory() {
   underCategories.showBackIcon();
 }
 
+// get examples of products only for project
+const testProductsLinkApi = "?limit=20";
 const setProducts = useProducts();
 
-async function showAllProducts() {
+async function showAllProductInMainCategory() {
   if (innerWidth >= 768) {
     await setProducts.clearProductList();
-    await setProducts.fetchProducts();
+    await setProducts.fetchProducts(testProductsLinkApi);
   }
 }
 

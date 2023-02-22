@@ -1,20 +1,19 @@
 <template>
   <article v-if="true" class="carouselContainer">
     <Carousel :items-to-show="showProducts" :wrap-around="true">
-      <Slide v-for="product in promotionProducts" :key="product.id">
+      <Slide v-for="product in promotionProducts.products" :key="product.id">
         <BaseProduct
           view="promotionSize"
           :id="product.id"
           :category="product.category"
-          :img="product.img"
+          :img="product.image"
           :price="product.price"
-          :favorite="product.favorite"
+          :favorite="true"
           :title="product.title"
           :description="product.description"
-          :promotion="product.promotion"
-          :product-available="product.productAvailable"
-          :product-inaccessible="product.productInaccessible"
-          :cart-icon="product.cartIcon"
+          :promotion="true"
+          :product-available="true"
+          :cart-icon="true"
         ></BaseProduct>
       </Slide>
 
@@ -30,158 +29,159 @@
 import "vue3-carousel/dist/carousel.css";
 import { Carousel, Slide, Pagination, Navigation } from "vue3-carousel";
 import { ref, onMounted, onUnmounted } from "vue";
+import { useProducts } from "../../../stores/products/products";
 
 const showProducts = ref(5);
 
-const promotionProducts = ref([
-  {
-    id: 1,
-    category: "all",
-    img: "/assets/zdj1.jpg",
-    price: 43.45,
-    favorite: true,
-    title: "Sony PSP",
-    description:
-      "Sony PSP z gwarancją + zestaw słuchawkowy i ładowarka tanio, nie używana niesmigana, polecam!",
-    promotion: true,
-    productAvailable: true,
-    productInaccessible: false,
-    cartIcon: true,
-  },
-  {
-    id: 2,
-    category: "all",
-    img: "/assets/zdj2.jpg",
-    price: 56.45,
-    favorite: true,
-    title: "Sony PSP",
-    description:
-      "Sony PSP z gwarancją + zestaw słuchawkowy i ładowarka tanio, nie używana niesmigana, polecam!",
-    promotion: true,
-    productAvailable: true,
-    productInaccessible: false,
-    cartIcon: true,
-  },
+// const promotionProducts = ref([
+//   {
+//     id: 1,
+//     category: "all",
+//     img: "/assets/zdj1.jpg",
+//     price: 43.45,
+//     favorite: true,
+//     title: "Sony PSP",
+//     description:
+//       "Sony PSP z gwarancją + zestaw słuchawkowy i ładowarka tanio, nie używana niesmigana, polecam!",
+//     promotion: true,
+//     productAvailable: true,
+//     productInaccessible: false,
+//     cartIcon: true,
+//   },
+//   {
+//     id: 2,
+//     category: "all",
+//     img: "/assets/zdj2.jpg",
+//     price: 56.45,
+//     favorite: true,
+//     title: "Sony PSP",
+//     description:
+//       "Sony PSP z gwarancją + zestaw słuchawkowy i ładowarka tanio, nie używana niesmigana, polecam!",
+//     promotion: true,
+//     productAvailable: true,
+//     productInaccessible: false,
+//     cartIcon: true,
+//   },
 
-  {
-    id: 3,
-    category: "all",
-    img: "/assets/zdj3.jpg",
-    price: 76.55,
-    favorite: true,
-    title: "Sony PSP",
-    description:
-      "Sony PSP z gwarancją + zestaw słuchawkowy i ładowarka tanio, nie używana niesmigana, polecam!",
-    promotion: true,
-    productAvailable: true,
-    productInaccessible: false,
-    cartIcon: true,
-  },
+//   {
+//     id: 3,
+//     category: "all",
+//     img: "/assets/zdj3.jpg",
+//     price: 76.55,
+//     favorite: true,
+//     title: "Sony PSP",
+//     description:
+//       "Sony PSP z gwarancją + zestaw słuchawkowy i ładowarka tanio, nie używana niesmigana, polecam!",
+//     promotion: true,
+//     productAvailable: true,
+//     productInaccessible: false,
+//     cartIcon: true,
+//   },
 
-  {
-    id: 4,
-    category: "all",
-    img: "/assets/zdj4.jpg",
-    price: 45.87,
-    favorite: true,
-    title: "Sony PSP",
-    description:
-      "Sony PSP z gwarancją + zestaw słuchawkowy i ładowarka tanio, nie używana niesmigana, polecam!",
-    promotion: true,
-    productAvailable: true,
-    productInaccessible: false,
-    cartIcon: true,
-  },
+//   {
+//     id: 4,
+//     category: "all",
+//     img: "/assets/zdj4.jpg",
+//     price: 45.87,
+//     favorite: true,
+//     title: "Sony PSP",
+//     description:
+//       "Sony PSP z gwarancją + zestaw słuchawkowy i ładowarka tanio, nie używana niesmigana, polecam!",
+//     promotion: true,
+//     productAvailable: true,
+//     productInaccessible: false,
+//     cartIcon: true,
+//   },
 
-  {
-    id: 5,
-    category: "all",
-    img: "/assets/psp.jpg",
-    price: 12.09,
-    favorite: true,
-    title: "Sony PSP",
-    description:
-      "Sony PSP z gwarancją + zestaw słuchawkowy i ładowarka tanio, nie używana niesmigana, polecam!",
-    promotion: true,
-    productAvailable: true,
-    productInaccessible: false,
-    cartIcon: true,
-  },
+//   {
+//     id: 5,
+//     category: "all",
+//     img: "/assets/psp.jpg",
+//     price: 12.09,
+//     favorite: true,
+//     title: "Sony PSP",
+//     description:
+//       "Sony PSP z gwarancją + zestaw słuchawkowy i ładowarka tanio, nie używana niesmigana, polecam!",
+//     promotion: true,
+//     productAvailable: true,
+//     productInaccessible: false,
+//     cartIcon: true,
+//   },
 
-  {
-    id: 6,
-    category: "all",
-    img: "/assets/zdj1.jpg",
-    price: 76.23,
-    favorite: true,
-    title: "Sony PSP",
-    description:
-      "Sony PSP z gwarancją + zestaw słuchawkowy i ładowarka tanio, nie używana niesmigana, polecam!",
-    promotion: true,
-    productAvailable: true,
-    productInaccessible: false,
-    cartIcon: true,
-  },
+//   {
+//     id: 6,
+//     category: "all",
+//     img: "/assets/zdj1.jpg",
+//     price: 76.23,
+//     favorite: true,
+//     title: "Sony PSP",
+//     description:
+//       "Sony PSP z gwarancją + zestaw słuchawkowy i ładowarka tanio, nie używana niesmigana, polecam!",
+//     promotion: true,
+//     productAvailable: true,
+//     productInaccessible: false,
+//     cartIcon: true,
+//   },
 
-  {
-    id: 7,
-    category: "all",
-    img: "/assets/zdj2.jpg",
-    price: 44.98,
-    favorite: true,
-    title: "Sony PSP",
-    description:
-      "Sony PSP z gwarancją + zestaw słuchawkowy i ładowarka tanio, nie używana niesmigana, polecam!",
-    promotion: true,
-    productAvailable: true,
-    productInaccessible: false,
-    cartIcon: true,
-  },
-  {
-    id: 8,
-    category: "all",
-    img: "/assets/zdj3.jpg",
-    price: 33.23,
-    favorite: true,
-    title: "Sony PSP",
-    description:
-      "Sony PSP z gwarancją + zestaw słuchawkowy i ładowarka tanio, nie używana niesmigana, polecam!",
-    promotion: true,
-    productAvailable: true,
-    productInaccessible: false,
-    cartIcon: true,
-  },
+//   {
+//     id: 7,
+//     category: "all",
+//     img: "/assets/zdj2.jpg",
+//     price: 44.98,
+//     favorite: true,
+//     title: "Sony PSP",
+//     description:
+//       "Sony PSP z gwarancją + zestaw słuchawkowy i ładowarka tanio, nie używana niesmigana, polecam!",
+//     promotion: true,
+//     productAvailable: true,
+//     productInaccessible: false,
+//     cartIcon: true,
+//   },
+//   {
+//     id: 8,
+//     category: "all",
+//     img: "/assets/zdj3.jpg",
+//     price: 33.23,
+//     favorite: true,
+//     title: "Sony PSP",
+//     description:
+//       "Sony PSP z gwarancją + zestaw słuchawkowy i ładowarka tanio, nie używana niesmigana, polecam!",
+//     promotion: true,
+//     productAvailable: true,
+//     productInaccessible: false,
+//     cartIcon: true,
+//   },
 
-  {
-    id: 9,
-    category: "all",
-    img: "/assets/zdj4.jpg",
-    price: 5.99,
-    favorite: true,
-    title: "Sony PSP",
-    description:
-      "Sony PSP z gwarancją + zestaw słuchawkowy i ładowarka tanio, nie używana niesmigana, polecam!",
-    promotion: true,
-    productAvailable: true,
-    productInaccessible: false,
-    cartIcon: true,
-  },
+//   {
+//     id: 9,
+//     category: "all",
+//     img: "/assets/zdj4.jpg",
+//     price: 5.99,
+//     favorite: true,
+//     title: "Sony PSP",
+//     description:
+//       "Sony PSP z gwarancją + zestaw słuchawkowy i ładowarka tanio, nie używana niesmigana, polecam!",
+//     promotion: true,
+//     productAvailable: true,
+//     productInaccessible: false,
+//     cartIcon: true,
+//   },
 
-  {
-    id: 10,
-    category: "all",
-    img: "/assets/psp.jpg",
-    price: 15.99,
-    favorite: true,
-    title: "Sony PSP",
-    description:
-      "Sony PSP z gwarancją + zestaw słuchawkowy i ładowarka tanio, nie używana niesmigana, polecam!",
-    promotion: true,
-    productAvailable: true,
-    productInaccessible: false,
-    cartIcon: true,
-  },
-]);
+//   {
+//     id: 10,
+//     category: "all",
+//     img: "/assets/psp.jpg",
+//     price: 15.99,
+//     favorite: true,
+//     title: "Sony PSP",
+//     description:
+//       "Sony PSP z gwarancją + zestaw słuchawkowy i ładowarka tanio, nie używana niesmigana, polecam!",
+//     promotion: true,
+//     productAvailable: true,
+//     productInaccessible: false,
+//     cartIcon: true,
+//   },
+// ]);
 
 function watchUserWidth() {
   showProducts.value = 1;
@@ -203,9 +203,16 @@ function watchUserWidth() {
   }
 }
 
-onMounted(() => {
+// get examples of products only for project
+const testProductsLinkApi = "?limit=10";
+const promotionProducts = useProducts();
+
+onMounted(async () => {
   watchUserWidth();
   window.addEventListener("resize", watchUserWidth);
+
+  await promotionProducts.clearProductList();
+  await promotionProducts.fetchProducts(testProductsLinkApi);
 });
 
 onUnmounted(() => {
