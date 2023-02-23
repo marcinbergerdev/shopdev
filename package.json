@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "epic-spinners": "^2.0.0",
     "pinia": "^2.0.24",
     "vue": "^3.2.41",
     "vue-axios": "^3.5.2",

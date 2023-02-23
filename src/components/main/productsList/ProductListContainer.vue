@@ -74,9 +74,9 @@ onMounted(() => {
 
   @media (min-width: 768px) {
     grid-template-areas:
-      "categoryList filters"
-      "categoryList productsList"
-      "categoryList pagination";
+      "categoryList filters ."
+      "categoryList productsList spinner"
+      "categoryList pagination .";
     grid-template-columns: 27rem 1fr;
     grid-template-rows: 5rem 1fr 7rem;
   }
