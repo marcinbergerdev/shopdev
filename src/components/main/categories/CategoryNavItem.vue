@@ -164,6 +164,7 @@ function closeCategory() {
   }
 
   @media (min-width: 768px) {
+    width: 100%;
     pointer-events: auto;
   }
 }
