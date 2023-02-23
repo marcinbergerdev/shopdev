@@ -13,6 +13,7 @@
 
 <script setup lang="ts">
 import { useMenuVisibility } from "../../../stores/navigation/menuVisibility";
+import { useUserCategories } from "../../../stores/navigation/userCategories";
 import { useProducts } from "../../../stores/products/products";
 import { computed } from "vue";
 
@@ -32,6 +33,7 @@ const underCategory = computed(() => {
 const categories = useMenuVisibility();
 function closeCategoryMenu() {
   if (innerWidth < 768) {
+    underCategories.hideBackIcon();
     categories.closeMenu();
   }
 }
@@ -39,6 +41,7 @@ function closeCategoryMenu() {
 // get examples of products only for project
 const testProductsLinkApi = "/category/electronics";
 const setProducts = useProducts();
+const underCategories = useUserCategories();
 
 async function showAllProductInUnderCategory() {
   await setProducts.clearProductList();
@@ -56,6 +59,7 @@ async function showAllProductInUnderCategory() {
   color: var(--primary-greyDark);
 
   &__name {
+    width: 100%;
     font-size: 1.7rem;
     color: var(--primary-greyDark);
 
