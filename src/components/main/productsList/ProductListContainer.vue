@@ -17,8 +17,6 @@
     <ProductFilters></ProductFilters>
 
     <ProductList></ProductList>
-
-    <ProductPagination></ProductPagination>
   </section>
 </template>
 
@@ -26,7 +24,6 @@
 import CategoryNavChildItem from "../categories/CategoryNavChildItem.vue";
 import ProductList from "./ProductList.vue";
 import ProductFilters from "./ProductFilters.vue";
-import ProductPagination from "./ProductPagination.vue";
 import { useUserCategories } from "../../../stores/navigation/userCategories";
 import { ref, onMounted } from "vue";
 
@@ -66,17 +63,16 @@ onMounted(() => {
   display: grid;
   grid-template-areas:
     "filters filters"
-    "productsList productsList"
-    "pagination pagination";
+    "productsList productsList";
   margin-top: 5rem;
   min-height: 100rem;
-  grid-template-rows: 8rem 1fr 7rem;
+  grid-template-rows: 8rem 1fr;
 
   @media (min-width: 768px) {
     grid-template-areas:
       "categoryList filters ."
       "categoryList productsList spinner"
-      "categoryList pagination .";
+      "categoryList productsList .";
     grid-template-columns: 27rem 1fr;
     grid-template-rows: 5rem 1fr 7rem;
   }

@@ -1,10 +1,5 @@
 <template>
-  <li
-    class="categoriesOption"
-    @mouseover="showCategory"
-    @mouseleave="closeCategory"
-    @click="showAllProductInMainCategory"
-  >
+  <li class="categoriesOption" @mouseover="showCategory" @mouseleave="closeCategory">
     <BaseButton link :to="categoryLink" class="optionBox">
       <Icon class="optionBox__icon" :icon="icon" />
       <button class="optionBox__title">{{ title }}</button>
@@ -31,8 +26,6 @@
 <script setup lang="ts">
 import CategoryNavChildItem from "./CategoryNavChildItem.vue";
 import { useUserCategories } from "../../../stores/navigation/userCategories";
-import { useProducts } from "../../../stores/products/products";
-
 import { ref, computed } from "vue";
 
 const props = defineProps<{
@@ -70,17 +63,6 @@ function showCategory() {
   underCategories.showBackIcon();
 }
 
-// get examples of products only for project
-const testProductsLinkApi = "?limit=20";
-const setProducts = useProducts();
-
-async function showAllProductInMainCategory() {
-  if (innerWidth >= 768) {
-    await setProducts.clearProductList();
-    await setProducts.fetchProducts(testProductsLinkApi);
-  }
-}
-
 function closeCategory() {
   isUnderCategory.value = false;
 }
@@ -105,7 +87,7 @@ function closeCategory() {
   justify-content: space-between;
   align-items: center;
   margin: 0.5rem 0;
-  padding: 1rem;
+  padding: 0 1rem;
 
   &__arrowIcon {
     font-size: 1.5rem;
@@ -117,7 +99,7 @@ function closeCategory() {
 
   @media (min-width: 768px) {
     margin: 0;
-    padding: 1rem 0;
+    padding: 0;
 
     &:hover {
       cursor: pointer;
@@ -139,6 +121,7 @@ function closeCategory() {
   display: flex;
   align-items: center;
   gap: 0 2rem;
+  padding: 1rem 0;
   color: var(--primary-greyDark);
   pointer-events: none;
 

@@ -1,12 +1,8 @@
 <template>
   <li class="underOption" @click="closeCategoryMenu">
-    <BaseButton
-      link
-      :to="underCategory"
-      class="underOption__name"
-      @click="showAllProductInUnderCategory"
-      >{{ title }}</BaseButton
-    >
+    <BaseButton link :to="underCategory" class="underOption__name">{{
+      title
+    }}</BaseButton>
     <span class="underOption__amount">({{ amount }})</span>
   </li>
 </template>
@@ -14,7 +10,6 @@
 <script setup lang="ts">
 import { useMenuVisibility } from "../../../stores/navigation/menuVisibility";
 import { useUserCategories } from "../../../stores/navigation/userCategories";
-import { useProducts } from "../../../stores/products/products";
 import { computed } from "vue";
 
 const props = defineProps<{
@@ -31,21 +26,12 @@ const underCategory = computed(() => {
 });
 
 const categories = useMenuVisibility();
+const underCategories = useUserCategories();
 function closeCategoryMenu() {
   if (innerWidth < 768) {
     underCategories.hideBackIcon();
     categories.closeMenu();
   }
-}
-
-// get examples of products only for project
-const testProductsLinkApi = "/category/electronics";
-const setProducts = useProducts();
-const underCategories = useUserCategories();
-
-async function showAllProductInUnderCategory() {
-  await setProducts.clearProductList();
-  await setProducts.fetchProducts(testProductsLinkApi);
 }
 </script>
 
@@ -64,6 +50,7 @@ async function showAllProductInUnderCategory() {
     color: var(--primary-greyDark);
 
     @media (min-width: 768px) {
+      padding: 1rem 0;
       font-size: 1.4rem;
       &:hover {
         color: var(--primary-claret);
@@ -78,7 +65,7 @@ async function showAllProductInUnderCategory() {
 
   @media (min-width: 768px) {
     margin: 0;
-    padding: 1rem 0;
+    padding: 0;
   }
 }
 </style>

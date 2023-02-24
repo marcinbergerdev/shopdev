@@ -1,9 +1,17 @@
 <template>
   <div class="productsListContainer">
+    <HalfCircleSpinner
+      v-if="isLoadingSpinner"
+      class="loadingSpinner"
+      :animation-duration="1000"
+      :size="60"
+      color="var(--primary-claret)"
+    />
+
     <ul class="productsList">
       <BaseProduct
         view="selectedProduct"
-        v-for="product in products.products"
+        v-for="product in products.products.slice(0, 12)"
         :key="product.id"
         :id="product.id"
         :category="product.category"
@@ -13,40 +21,36 @@
         :title="product.title"
         :description="product.description"
         :promotion="false"
+        s
         :productAvailable="true"
         :cartIcon="true"
       ></BaseProduct>
     </ul>
 
-    <HalfCircleSpinner
-      v-if="isLoadingSpinner"
-      class="loadingSpinner"
-      :animation-duration="1000"
-      :size="60"
-      color="var(--primary-claret)"
-    />
+    <PaginationList @page-back="pageDiscount" @page-next="pageIncrease"></PaginationList>
   </div>
 </template>
 
 <script setup lang="ts">
-import { useProducts } from "../../../stores/products/products";
-import { onMounted } from "vue";
-import { useRoute } from "vue-router";
 import { HalfCircleSpinner } from "epic-spinners";
-import { ref } from "vue";
+import PaginationList from "./PaginationList.vue";
+import { useProducts } from "../../../stores/products/products";
+import { useRoute } from "vue-router";
+import { ref, onMounted } from "vue";
 
 const route = useRoute();
 const products = useProducts();
 const isLoadingSpinner = ref(false);
 
-// get examples of products only for project
+function pageIncrease() {}
+function pageDiscount() {}
 
+// this Api products is fetched from Fake Store and it is only for examples
 onMounted(async () => {
   isLoadingSpinner.value = true;
 
-  await products.clearProductList();
   if (route.params.category && route.params.underCategory) {
-    await products.fetchProducts("/category/electronics?limit=20");
+    await products.fetchProducts("/category/electronics");
     isLoadingSpinner.value = false;
     return;
   }
@@ -60,7 +64,7 @@ onMounted(async () => {
 .productsListContainer {
   position: relative;
   grid-area: productsList;
-  margin: 6rem 0;
+  margin-top: 6rem;
   width: 100%;
 
   @media (min-width: 768px) {
