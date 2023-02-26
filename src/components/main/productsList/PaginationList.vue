@@ -6,9 +6,11 @@
       </li>
 
       <PaginationPage
-        v-for="(page, id) in pages"
+        v-for="(page, id) in numberOfButtons"
         :key="id"
+        :id="id + 1"
         :page-amount="page"
+        :current-page="currentPage"
       ></PaginationPage>
 
       <li class="paginationList__change">
@@ -20,16 +22,16 @@
 
 <script setup lang="ts">
 import PaginationPage from "./PaginationPage.vue";
-import { computed } from "vue";
 
-defineEmits<{
-  (e: "pageBack", value: -1): void;
-  (e: "pageNext", value: 1): void;
+defineProps<{
+  numberOfButtons: number;
+  currentPage: number;
 }>();
 
-const pages = computed(() => {
-  return;
-});
+defineEmits<{
+  (e: "pageBack", value: number): void;
+  (e: "pageNext", value: number): void;
+}>();
 </script>
 
 <style scoped lang="scss">

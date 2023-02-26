@@ -153,6 +153,14 @@ button {
   }
 }
 
+.pagination {
+  background-color: transparent;
+  padding: 0 0.5rem;
+  border: 0;
+  font-weight: bold;
+  color: var(--primary-greyForm);
+}
+
 .closeModal {
   display: grid;
   place-items: center;

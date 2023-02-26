@@ -61,7 +61,6 @@ onMounted(async () => {
   watchUserWidth();
   window.addEventListener("resize", watchUserWidth);
 
-  await promotionProducts.clearProductList();
   await promotionProducts.fetchProducts(testProductsLinkApi);
 });
 
