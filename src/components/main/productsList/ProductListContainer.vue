@@ -25,6 +25,7 @@ import CategoryNavChildItem from "../categories/CategoryNavChildItem.vue";
 import ProductList from "./ProductList.vue";
 import ProductFilters from "./ProductFilters.vue";
 import { useUserCategories } from "../../../stores/navigation/userCategories";
+import UnderCategories from "../../../../types/underCategories";
 import { ref, onMounted } from "vue";
 
 const props = defineProps<{
@@ -33,14 +34,8 @@ const props = defineProps<{
 }>();
 const { category, underCategory } = props;
 
-interface UnderCategories {
-  link: string;
-  title: string;
-  amount: number;
-}
-
 const categories = useUserCategories();
-const selectedUnderCategories = ref<Array<UnderCategories>>([]);
+const selectedUnderCategories = ref<UnderCategories[]>([]);
 
 function selectCategories(categoryName: string, underCategoryName: string) {
   selectedUnderCategories.value = [];

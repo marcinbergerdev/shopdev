@@ -23,8 +23,8 @@ import PaginationPage from "./PaginationPage.vue";
 import { computed } from "vue";
 
 defineEmits<{
-  (e: "pageBack"): void;
-  (e: "pageNext"): void;
+  (e: "pageBack", value: -1): void;
+  (e: "pageNext", value: 1): void;
 }>();
 
 const pages = computed(() => {

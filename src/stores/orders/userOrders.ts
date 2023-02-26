@@ -1,17 +1,9 @@
 import { defineStore } from "pinia";
 import { ref, computed } from "vue";
+import Orders from "../../../types/userOrders";
 
 export const useUserOrders = defineStore("userOrders", () => {
-   interface Orders {
-      id?: number;
-      img?: string;
-      name?: string;
-      amount?: boolean;
-      price?: number;
-      deleteButton?: boolean;
-   }
-
-   const orders = ref<Array<Orders>>([
+   const orders = ref<Orders[]>([
       {
          id: 1,
          img: "/assets/psp.jpg",

@@ -1,17 +1,9 @@
 import { defineStore } from "pinia";
 import axios from "axios";
 import { ref, computed } from "vue";
+import Product from "../../../types/product";
 
 export const useProducts = defineStore("products", () => {
-   interface Product {
-      id?: number;
-      category?: string;
-      image?: string;
-      price?: number;
-      title?: string;
-      description?: string;
-   }
-
    const fetchedProducts = ref<Array<Product>>([]);
 
    async function fetchProducts(link?: string) {

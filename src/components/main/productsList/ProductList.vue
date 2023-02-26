@@ -42,8 +42,9 @@ const route = useRoute();
 const products = useProducts();
 const isLoadingSpinner = ref(false);
 
-function pageIncrease() {}
-function pageDiscount() {}
+function pageDiscount(page: number) {}
+
+function pageIncrease(page: number) {}
 
 // this Api products is fetched from Fake Store and it is only for examples
 onMounted(async () => {
