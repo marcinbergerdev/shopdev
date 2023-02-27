@@ -2,7 +2,9 @@
   <article class="paginationContainer">
     <ul class="paginationList">
       <li class="paginationList__change">
-        <BaseButton @click="$emit('pageBack')">Prev</BaseButton>
+        <BaseButton mode="paginationButton" @click="$emit('pageBack')">
+          <Icon icon="akar-icons:arrow-left" />
+        </BaseButton>
       </li>
 
       <PaginationPage
@@ -14,7 +16,9 @@
       ></PaginationPage>
 
       <li class="paginationList__change">
-        <BaseButton @click="$emit('pageNext')">Next</BaseButton>
+        <BaseButton mode="paginationButton" @click="$emit('pageNext')">
+          <Icon icon="akar-icons:arrow-right" />
+        </BaseButton>
       </li>
     </ul>
   </article>
@@ -48,10 +52,11 @@ defineEmits<{
   justify-content: center;
   align-items: center;
   height: 100%;
-  gap: 0 0.5rem;
+  gap: 0 1.5rem;
 
   &__change {
-    margin: 0 2rem;
+    margin: 0 1rem;
+    background-color: transparent;
   }
 }
 </style>

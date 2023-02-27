@@ -1,6 +1,6 @@
 <template>
   <li :class="setCurrentPage">
-    <BaseButton mode="pagination"> {{ pageAmount }}</BaseButton>
+    <BaseButton mode="paginationCurrentPage"> {{ pageAmount }}</BaseButton>
   </li>
 </template>
 
@@ -20,8 +20,9 @@ const setCurrentPage = computed(() => {
 
 <style scoped lang="scss">
 .currentPage {
-  .pagination {
+  .paginationCurrentPage {
     color: var(--primary-claret);
+    border-bottom: 2px solid var(--primary-claret);
   }
 }
 </style>

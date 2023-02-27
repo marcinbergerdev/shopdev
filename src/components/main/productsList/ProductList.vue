@@ -30,8 +30,8 @@
       v-if="!isLoadingSpinner"
       :number-of-buttons="buttonsPaginationAmount"
       :current-page="currentPage"
-      @page-back="pageDiscount(-1)"
-      @page-next="pageIncrease(1)"
+      @page-back="decreasePageHandler(productsAmount)"
+      @page-next="increasePageHandler(productsAmount)"
     ></PaginationList>
   </div>
 </template>
@@ -51,24 +51,26 @@ const buttonsPaginationAmount = ref<number>(0);
 const currentPage = ref<number>(1);
 
 const productsFrom = ref<number>(0);
-const productsTo = ref<number>(12);
+const productsTo = ref<number>(4); // set number of products at your list
+const productsAmount = productsTo.value;
 
 function setNumberOfButtons(amount: number) {
-  const numberOfButtons = Number((amount / productsTo.value).toFixed(0));
+  const numberOfButtons = Math.ceil(Number(amount / productsTo.value));
+  console.log(numberOfButtons);
   buttonsPaginationAmount.value = numberOfButtons;
 }
 
-function pageDiscount(page: number) {
-  if (productsFrom.value <= 0 && productsTo.value <= 12) return;
-  productsFrom.value -= 10;
-  productsTo.value -= 12;
+function decreasePageHandler(amount: number) {
+  if (productsFrom.value <= 0 && productsTo.value <= amount) return;
+  productsFrom.value -= amount;
+  productsTo.value -= amount;
   --currentPage.value;
 }
 
-function pageIncrease(page: number) {
+function increasePageHandler(amount: number) {
   if (productsTo.value >= products.products.length) return;
-  productsFrom.value += 10;
-  productsTo.value += 12;
+  productsFrom.value += amount;
+  productsTo.value += amount;
   ++currentPage.value;
 }
 

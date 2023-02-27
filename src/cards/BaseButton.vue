@@ -153,12 +153,28 @@ button {
   }
 }
 
-.pagination {
+.paginationCurrentPage {
   background-color: transparent;
   padding: 0 0.5rem;
   border: 0;
+  font-size: 1.7rem;
   font-weight: bold;
   color: var(--primary-greyForm);
+}
+
+.paginationButton {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  border-radius: 5rem;
+  font-size: 2rem;
+  background-color: transparent;
+  color: var(--primary-claret);
+  border: 2px solid var(--primary-claret);
+
+  @media (min-width: 768px) {
+    cursor: pointer;
+  }
 }
 
 .closeModal {
