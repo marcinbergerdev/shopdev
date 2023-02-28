@@ -2,7 +2,7 @@
   <article class="paginationContainer">
     <ul class="paginationList">
       <li class="paginationList__change">
-        <BaseButton mode="paginationButton" @click="switchPageHandler('prev')">
+        <BaseButton mode="paginationButton" @click="switchPageHandler(true)">
           <Icon icon="akar-icons:arrow-left" />
         </BaseButton>
       </li>
@@ -37,12 +37,11 @@ const emit = defineEmits<{
   (e: "pageNext"): void;
 }>();
 
-function switchPageHandler(direction?: string) {
+function switchPageHandler(prev?: boolean) {
   window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
 
-  if (direction === "prev") {
-    emit("pageBack");
-    return;
+  if (prev) {
+    return emit("pageBack");
   }
 
   emit("pageNext");
