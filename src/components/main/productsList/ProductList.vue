@@ -51,7 +51,7 @@ const buttonsPaginationAmount = ref<number>(0);
 const currentPage = ref<number>(1);
 
 const productsFrom = ref<number>(0);
-const productsTo = ref<number>(4); // set number of products at your list
+const productsTo = ref<number>(12); // set number of products at your list
 const productsAmount = productsTo.value;
 
 function setNumberOfButtons(amount: number) {
