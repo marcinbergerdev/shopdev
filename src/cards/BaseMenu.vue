@@ -62,7 +62,7 @@ function closeMenu() {
   position: fixed;
   top: 0;
   right: 0;
-  z-index: 50;
+  z-index: 109;
   width: 100%;
   height: 100vh;
   background-color: grey;
@@ -76,7 +76,7 @@ function closeMenu() {
 .dropContainer {
   position: fixed;
   top: 0;
-  z-index: 100;
+  z-index: 110;
   height: 100%;
   width: 85%;
 
