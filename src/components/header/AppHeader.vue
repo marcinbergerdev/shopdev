@@ -43,11 +43,7 @@ function userScroll() {
 }
 
 function setScrollPositions() {
-  if (window.pageYOffset < 200) {
-    isRelative.value = false;
-  } else {
-    isRelative.value = true;
-  }
+  window.pageYOffset < 200 ? (isRelative.value = false) : (isRelative.value = true);
   emit("setMainPositionIfHeaderFixed", isRelative.value);
 
   if (window.pageYOffset >= 400) {
