@@ -76,12 +76,13 @@ function closeMenu() {
 .dropContainer {
   position: fixed;
   top: 0;
-  z-index: 110;
+  z-index: 150;
   height: 100%;
   width: 85%;
 
   @media (min-width: 768px) {
     position: static;
+    z-index: 0;
     top: auto;
     width: auto;
     margin-right: 2rem;

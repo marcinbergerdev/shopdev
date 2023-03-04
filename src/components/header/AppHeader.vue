@@ -1,11 +1,9 @@
 <template>
-  <Transition name="fade" mode="out-in">
-    <header class="header" :class="showHeader" :key="headerRemount">
-      <router-link class="logoLink" to="/">Shopex</router-link>
-      <SearchContainer></SearchContainer>
-      <NavigationList></NavigationList>
-    </header>
-  </Transition>
+  <header class="header" :class="[headerPositionFixed, headerPositionRelative]">
+    <router-link class="logoLink" to="/">Shopex</router-link>
+    <SearchContainer></SearchContainer>
+    <NavigationList></NavigationList>
+  </header>
 
   <CategoryNavList />
 </template>
@@ -16,32 +14,45 @@ import SearchContainer from "./search/SearchContainer.vue";
 import CategoryNavList from "../main/categories/CategoryNavList.vue";
 
 import { ref, computed, onMounted } from "vue";
-const headerRemount = ref("mount");
-const isHeader = ref(false);
 
-const showHeader = computed(() => {
-  return { showHeader: isHeader.value };
+const emit = defineEmits<{
+  (e: "setMainPositionIfHeaderFixed", value: boolean): void;
+}>();
+
+const isFixed = ref<boolean>(false);
+const isRelative = ref<boolean>(false);
+
+const headerPositionFixed = computed(() => {
+  return { positionFixed: isFixed.value };
+});
+
+const headerPositionRelative = computed(() => {
+  return { positionRelative: isRelative.value };
 });
 
 function userScroll() {
   if (window.pageYOffset <= 0) {
-    headerRemount.value = "unMount";
-    isHeader.value = false;
-  }
-
-  if (isHeader.value) return;
-  isHeader.value = false;
-
-  if (innerWidth < 768 && window.pageYOffset >= 300) {
-    headerRemount.value = "mount";
-    isHeader.value = true;
+    isFixed.value = false;
+    isRelative.value = false;
+    emit("setMainPositionIfHeaderFixed", false);
     return;
   }
+  if (isFixed.value) return;
 
-  if (innerWidth >= 768 && window.pageYOffset >= 100) {
-    headerRemount.value = "mount";
-    isHeader.value = true;
-    return;
+  setScrollPositions();
+}
+
+function setScrollPositions() {
+  if (window.pageYOffset < 200) {
+    isRelative.value = false;
+  } else {
+    isRelative.value = true;
+  }
+  emit("setMainPositionIfHeaderFixed", isRelative.value);
+
+  if (window.pageYOffset >= 400) {
+    isFixed.value = true;
+    emit("setMainPositionIfHeaderFixed", isFixed.value);
   }
 }
 
@@ -56,35 +67,8 @@ onMounted(() => {
   align-items: center;
 }
 
-.fade-enter-from {
-  transform: translateY(-30px);
-  opacity: 0;
-}
-
-.fade-enter-active {
-  transition: 150ms ease-in;
-}
-
-.fade-enter-to {
-  transform: translateY(0);
-  opacity: 1;
-}
-
-// .fade-leave-from {
-//   transform: translateY(-30px);
-//   opacity: 0;
-// }
-
-// .fade-leave-active {
-//   transition: 150ms ease-in;
-// }
-
-// .fade-leave-to {
-//   transform: translateY(0);
-//   opacity: 1;
-// }
-
 .header {
+  position: relative;
   padding: 1.5rem;
   display: grid;
   grid-template-areas:
@@ -121,10 +105,19 @@ onMounted(() => {
   }
 }
 
-.showHeader {
+.positionFixed,
+.positionRelative {
   position: fixed;
-  top: 0;
-  z-index: 101;
+  z-index: 100;
   width: 100%;
+  transition: all 0.5s ease-out;
+}
+
+.positionRelative {
+  top: -150px;
+}
+
+.positionFixed {
+  top: 0;
 }
 </style>
