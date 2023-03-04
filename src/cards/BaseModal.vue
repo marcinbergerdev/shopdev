@@ -1,7 +1,7 @@
 <template>
   <Transition name="dialog" mode="out-in">
     <div class="modalContainer" v-if="isModal">
-      <div class="backdrop"></div>
+      <div class="backdrop" @click="emit('close')"></div>
 
       <dialog class="modal" :class="mode" open v-if="isModal">
         <header class="modalHeader">
@@ -53,6 +53,7 @@ const emit = defineEmits<{
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 100;
   display: grid;
   place-items: center;
   width: 100%;

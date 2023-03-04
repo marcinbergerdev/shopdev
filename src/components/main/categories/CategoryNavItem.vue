@@ -1,5 +1,10 @@
 <template>
-  <li class="categoriesOption" @mouseover="showCategory" @mouseleave="closeCategory">
+  <li
+    class="categoriesOption"
+    @mouseover="showCategory"
+    @mouseleave="closeCategory"
+    @click="scrollPageInTop"
+  >
     <BaseButton link :to="categoryLink" class="optionBox">
       <Icon class="optionBox__icon" :icon="icon" />
       <button class="optionBox__title">{{ title }}</button>
@@ -61,6 +66,12 @@ function showCategory() {
   stopUnderListTransition.value = true;
   isUnderCategory.value = true;
   underCategories.showBackIcon();
+}
+
+function scrollPageInTop() {
+  if (innerWidth >= 768) {
+    window.scrollTo({ top: 0, left: 0 });
+  }
 }
 
 function closeCategory() {

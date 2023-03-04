@@ -90,6 +90,7 @@ function hoverOption() {
   }
 }
 function selectOption(isDropMenu?: boolean) {
+  window.scrollTo({ top: 0, left: 0 });
   if (isDropMenu && !dropMenuMobileActivity.value && innerWidth < 768) {
     dropMenuMobileActivity.value = true;
     document.body.classList.add("scrollHidden");

@@ -27,7 +27,10 @@ const underCategory = computed(() => {
 
 const categories = useMenuVisibility();
 const underCategories = useUserCategories();
+
 function closeCategoryMenu() {
+  window.scrollTo({ top: 0, left: 0 });
+
   if (innerWidth < 768) {
     underCategories.hideBackIcon();
     categories.closeMenu();
