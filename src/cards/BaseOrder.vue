@@ -21,7 +21,11 @@
       <span class="price">79,80zł</span>
 
       <div class="orderIconContainer">
-        <BaseButton mode="favorite">
+        <BaseButton mode="addToCart" v-if="isCart">
+          <Icon class="cartIcon" icon="carbon:shopping-cart-plus" />
+        </BaseButton>
+
+        <BaseButton mode="favorite" v-if="isFavorite">
           <Icon class="icon" icon="ph:heart-fill" />
         </BaseButton>
 
@@ -43,6 +47,8 @@ defineProps<{
   amount: boolean;
   price: number;
   deleteButton: boolean;
+  isCart?: boolean;
+  isFavorite?: boolean;
 }>();
 </script>
 
@@ -195,5 +201,9 @@ defineProps<{
   display: grid;
   place-items: center;
   font-size: 2.4rem;
+}
+
+.cartIcon {
+  color: var(--secondary-superLightGreen);
 }
 </style>

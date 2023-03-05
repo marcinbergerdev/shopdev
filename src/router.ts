@@ -16,8 +16,8 @@ const UserOrderList = () =>
    import("./components/main/userOrders/UserOrdersList.vue");
 const ProductListContainer = () =>
    import("./components/main/productsList/ProductListContainer.vue");
-const ProductList = () =>
-   import("./components/main/productsList/ProductList.vue");
+const FavoriteList = () =>
+   import("./components/main/favorite/FavoriteList.vue");
 
 const router = createRouter({
    history: createWebHashHistory(),
@@ -61,18 +61,10 @@ const router = createRouter({
                ],
             },
 
-            { path: "favorite", component: AuthLogin },
-
+            { path: "favorite", component: FavoriteList },
             { path: "cart", component: UserOrderList },
-
-            { path: "service", component: AuthLogin },
-
-            { path: "order", component: AuthLogin },
             { path: "register", component: AuthLogin },
-
-            { path: "order1", component: AuthLogin },
-
-            { path: "service", component: AuthLogin },
+            { path: "service", component: ReturnSettings },
          ],
       },
    ],

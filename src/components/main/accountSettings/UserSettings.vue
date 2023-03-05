@@ -71,7 +71,7 @@ function closeModal() {
 <style scoped lang="scss">
 .userSettingsContainer {
   height: 55.5rem;
-  margin: 10rem 1rem;
+  margin: 10rem 1rem 25rem 1rem;
   @media (min-width: 768px) {
     margin: 5rem 1rem 0 10rem;
   }

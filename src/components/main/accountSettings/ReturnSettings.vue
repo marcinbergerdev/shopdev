@@ -34,7 +34,7 @@
   justify-content: center;
   align-items: center;
   gap: 10rem;
-  margin: 5rem 0;
+  margin: 7rem 0;
   padding: 10rem 3rem;
   height: 55.5rem;
 

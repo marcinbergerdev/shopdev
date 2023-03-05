@@ -1,6 +1,7 @@
 <template>
   <UserOrdersEmptyList
     mode="emptyOrderListHoverContainer"
+    description="Twój koszyk jest pusty!"
     v-if="orders.isEmpty"
     :isMobileButton="false"
   ></UserOrdersEmptyList>
@@ -8,9 +9,11 @@
   <div class="orderContainer" v-else>
     <CartOrderHeader
       mode="orderHeaderHover"
+      title="Twoje zamówienie"
       edit-button-style="productsEditHover"
       :is-edit-button="true"
       :is-delete-button="false"
+      :is-amount="true"
       @click="editCloseMenu"
     ></CartOrderHeader>
 

@@ -99,12 +99,10 @@ const shopInfos = ref([
 ]);
 </script>
 
-
 <style scoped lang="scss">
 .footerContainer {
   display: flex;
   flex-direction: column;
-  margin-top: 7rem;
   padding: 7rem 3rem;
   gap: 5rem 0;
   border-top: 1px solid var(--primary-greyDark);

@@ -30,7 +30,7 @@ function mainPosition(isFixed: boolean) {
   position: relative;
   top: 12.9rem;
   z-index: 1;
-  margin-bottom: 25rem;
+  margin-bottom: 14rem;
 
   @media (min-width: 768px) {
     top: 7.3rem;

@@ -1,7 +1,7 @@
 <template>
   <header :class="mode">
-    <h2 class="title">Twoje zamówienie</h2>
-    <span class="amount">(3)</span>
+    <h2 class="title">{{ title }}</h2>
+    <span class="amount" v-if="isAmount">(3)</span>
 
     <BaseButton link to="/shop/cart" :class="editButtonStyle" v-if="isEditButton"
       >Edytuj</BaseButton
@@ -21,9 +21,11 @@
 <script setup lang="ts">
 defineProps<{
   mode: string;
+  title: string;
   editButtonStyle?: string;
   isEditButton: boolean;
   isDeleteButton: boolean;
+  isAmount: boolean;
 }>();
 
 const emit = defineEmits<{

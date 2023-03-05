@@ -1,17 +1,24 @@
 <template>
   <section :class="mode">
     <Icon class="icon" icon="fluent:error-circle-20-regular" />
-    <p class="description">Twój koszyk jest pusty!</p>
+    <p class="description">{{ description }}</p>
 
-    <BaseButton link to="/shop" mode="filledLink">Przjedz do zakupów</BaseButton>
+    <BaseButton link to="/shop" mode="filledLink" @click="scrollPage"
+      >Przjedz do zakupów</BaseButton
+    >
   </section>
 </template>
 
 <script setup lang="ts">
 defineProps<{
   mode: string;
+  description: string;
   isMobileButton?: boolean;
 }>();
+
+function scrollPage() {
+  window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+}
 </script>
 
 <style scoped lang="scss">

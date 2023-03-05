@@ -1,14 +1,17 @@
 <template>
   <UserOrdersEmptyList
     mode="emptyOrderListDesctopContainer"
+    description="Twój koszyk jest pusty!"
     v-if="orders.isEmpty"
   ></UserOrdersEmptyList>
 
   <section class="userOrderDesctopContainer" v-else>
     <CartOrderHeader
       mode="orderHeaderDesctop"
+      title="Twoje zamówienie"
       :is-edit-button="false"
       :is-delete-button="true"
+      :is-amount="true"
       @show="showModal"
     ></CartOrderHeader>
 
@@ -24,6 +27,7 @@
         :amount="order.amount"
         :price="order.price"
         :delete-button="order.deleteButton"
+        :is-Favorite="true"
       ></BaseOrder>
     </ul>
 
@@ -32,7 +36,11 @@
       content="orderAmountContainerDesctop"
     ></CartOrderPrice>
 
-    <BaseButton link to="/shop" mode="filledLink onlyDesctop keepBuyingButton"
+    <BaseButton
+      link
+      to="/shop"
+      mode="filledLink onlyDesctop keepBuyingButton"
+      @click="scrollPage"
       >Przjedz do zakupów</BaseButton
     >
 
@@ -67,7 +75,7 @@ import CartOrderHeader from "../../header/contentMenu/cartContent/CartOrderHeade
 import CartOrderPrice from "../../header/contentMenu/cartContent/CartOrderPrice.vue";
 import UserOrdersEmptyList from "./UserOrdersEmptyList.vue";
 
-import { ref, computed } from "vue";
+import { ref } from "vue";
 import { useUserOrders } from "../../../stores/orders/userOrders";
 const orders = useUserOrders();
 
@@ -78,6 +86,9 @@ function showModal() {
 
 function closeModal() {
   isModal.value = false;
+}
+function scrollPage() {
+  window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
 }
 </script>
 

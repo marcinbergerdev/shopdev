@@ -70,11 +70,13 @@ const popularCategory = ref([
   flex-direction: column;
   align-items: center;
   gap: 2rem 0;
+  margin-bottom: 20rem;
   font-size: 2rem;
 
   @media (min-width: 768px) {
     flex-flow: row wrap;
     justify-content: space-around;
+    margin-bottom: 0;
     gap: 5rem 3rem;
   }
 }
