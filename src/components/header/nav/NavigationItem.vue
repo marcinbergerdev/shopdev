@@ -152,10 +152,11 @@ onUnmounted(() => window.removeEventListener("resize", resizeListener));
   transform: translateX(0%);
 }
 
-li:nth-last-child(2) {
+li:nth-last-child(3) {
   padding-left: 4.5rem;
   border-left: 1px solid var(--primary-greyDark);
 }
+li:nth-last-child(3),
 li:nth-last-child(2),
 li:nth-last-child(1) {
   display: none;

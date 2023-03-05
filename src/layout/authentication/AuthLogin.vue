@@ -1,5 +1,5 @@
 <template>
-  <p>asdasd</p>
+  <p>Logowanie</p>
 </template>
 
 <script setup lang="ts">

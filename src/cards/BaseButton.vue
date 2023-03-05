@@ -238,6 +238,10 @@ button {
   font-size: 0.9rem;
 }
 
+.navEmpty {
+  font-size: 1.5rem;
+}
+
 .settingOption {
   display: block;
   padding: 1rem 3rem;

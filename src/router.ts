@@ -4,6 +4,8 @@ const ShopHomePage = () => import("./layout/shop/ShopHomePage.vue");
 const ShopMainContainer = () =>
    import("./components/main/ShopMainContainer.vue");
 const AuthLogin = () => import("./layout/authentication/AuthLogin.vue");
+const AuthRegistration = () =>
+   import("./layout/authentication/AuthRegistration.vue");
 const AccountSettingsContainer = () =>
    import("./components/main/AccountSettingsContainer.vue");
 const UserSettings = () =>
@@ -66,6 +68,12 @@ const router = createRouter({
             { path: "register", component: AuthLogin },
             { path: "service", component: ReturnSettings },
          ],
+      },
+      { name: "login", path: "/login", component: AuthLogin },
+      { name: "register", path: "/register", component: AuthRegistration },
+      {
+         path: "/:notFound(.*)",
+         component: AuthRegistration,
       },
    ],
 });
