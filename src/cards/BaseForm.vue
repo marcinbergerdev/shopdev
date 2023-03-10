@@ -1,13 +1,7 @@
 <template>
-  <div>
-    <AuthHeader></AuthHeader>
-
-    <form></form>
-  </div>
+  <div></div>
 </template>
 
-<script setup lang="ts">
-import AuthHeader from "../layout/authentication/AuthHeader.vue";
-</script>
+<script setup lang="ts"></script>
 
 <style scoped lang="scss"></style>
