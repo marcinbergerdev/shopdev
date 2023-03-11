@@ -354,4 +354,14 @@ button {
     }
   }
 }
+
+.sendToRegister {
+  display: block;
+  width: 100%;
+  padding: 0.7rem 0;
+  font-size: 1.5rem;
+  color: var(--primary-claret);
+  border: 2px solid var(--primary-claret);
+  border-radius: 50px;
+}
 </style>
