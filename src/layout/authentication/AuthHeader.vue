@@ -22,6 +22,7 @@
 
     @media (min-width: 768px) {
       display: block;
+      font-size: 3rem;
     }
   }
 }
@@ -30,6 +31,12 @@
   font-size: 2rem;
   font-weight: 700;
   color: var(--primary-claret);
+
+  @media (min-width: 768px) {
+    position: absolute;
+    top: 13px;
+    left: 10px;
+  }
 }
 
 .backButton {

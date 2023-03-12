@@ -65,4 +65,97 @@ a {
     }
   }
 }
+
+//Styles for Login/Signup (FormKit Library)
+.formContainer {
+  width: 100%;
+  min-height: 100vh;
+
+  @media (min-width: 768px) {
+    display: grid;
+    place-items: center;
+  }
+}
+
+.formBox {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  width: min(76.8rem, 100%);
+  min-height: 100vh;
+
+  @media (min-width: 768px) {
+    min-height: 70vh;
+    border: 1px solid var(--primary-greyForm);
+  }
+}
+
+.formTitle {
+  margin-bottom: 5rem;
+  font-size: 2rem;
+}
+
+.formkit-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem 0;
+  width: min(40rem, 100%);
+  margin: 0 auto;
+}
+
+.formkit-outer {
+  width: 100%;
+}
+
+.formkit-input {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 50px;
+  border: 1px solid var(--primary-greyForm);
+}
+
+.formkit-input:focus-within {
+  outline: 2px solid var(--primary-claret);
+}
+
+.formkit-actions {
+  width: 100%;
+  margin-top: 2rem;
+
+  .formkit-input {
+    color: var(--white);
+    background-color: var(--primary-claret);
+    &:focus {
+      outline: none;
+    }
+
+    @media (min-width: 768px) {
+      cursor: pointer;
+    }
+  }
+}
+
+.formkit-messages {
+  .formkit-message {
+    color: var(--secondary-lightRed);
+  }
+}
+
+[data-invalid] .formkit-inner {
+  box-shadow: 0 0 0 2px var(--secondary-lightRed);
+  border-radius: 50px;
+}
+
+[data-invalid] .formkit-messages {
+  .formkit-message {
+    padding: 0.3rem 0 0 1rem;
+    color: var(--secondary-lightRed);
+  }
+}
+
+[data-complete] .formkit-input:focus-within {
+  outline: 2px solid var(--secondary-normalGreen);
+}
 </style>
