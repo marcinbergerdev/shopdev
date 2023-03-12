@@ -85,6 +85,7 @@ a {
   min-height: 100vh;
 
   @media (min-width: 768px) {
+    margin: 4rem 0;
     min-height: 70vh;
     border: 1px solid var(--primary-greyForm);
   }
