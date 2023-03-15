@@ -1,5 +1,7 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 
+import { useUserAuthentication } from "./stores/auth/userAuthentication";
+
 const ShopHomePage = () => import("./layout/shop/ShopHomePage.vue");
 const ShopMainContainer = () =>
    import("./components/main/ShopMainContainer.vue");
@@ -76,6 +78,21 @@ const router = createRouter({
          component: AuthRegistration,
       },
    ],
+});
+
+router.beforeEach((to, from, next) => {
+   const user = useUserAuthentication();
+
+   if (
+      (to.path === "/shop/account/user" ||
+         to.path === "/shop/favorite" ||
+         to.path === "/shop/cart") &&
+      !user.authentication
+   ) {
+      return next("/login");
+   }
+
+   next();
 });
 
 export default router;

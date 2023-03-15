@@ -5,7 +5,12 @@
       <FormKit type="form" @submit="registerUserData">
         <h2 class="formTitle">Sign up</h2>
 
-        <FormKit type="email" placeholder="e-mail address" validation="email" />
+        <FormKit
+          type="email"
+          name="email"
+          placeholder="email"
+          validation="required|*email"
+        />
 
         <FormKit
           type="password"
