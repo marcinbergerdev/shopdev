@@ -1,21 +1,17 @@
 <template>
-  <article class="menuContainer" v-if="!!user.authentication">
-    <UserContent v-if="menuName === 'account'"></UserContent>
-    <CartContent v-else></CartContent>
-  </article>
-
-  <article class="menuContainer" v-else>
-    <!-- jezelie nie jestes zalogowany to przekaż AuthLogin do odpowiednich komponentów i przekaz propsa z klasami -->
-  </article>
+  <div class="menuContainer">
+    <UserContent v-if="menuName === 'account' && !!user.authentication"></UserContent>
+    <CartContent v-else-if="menuName === 'cart' && !!user.authentication"></CartContent>
+    <AuthRedirect v-else></AuthRedirect>
+  </div>
 </template>
 
 <script setup lang="ts">
 import UserContent from "./userSettings/UserContent.vue";
 import CartContent from "./cartContent/CartContent.vue";
-import AuthLogin from "../../../layout/authentication/AuthLogin.vue";
+import AuthRedirect from "../../../layout/authentication/AuthRedirect.vue";
 import { useUserAuthentication } from "../../../stores/auth/userAuthentication";
 
-import { ref } from "vue";
 defineProps<{
   menuName?: string;
 }>();

@@ -18,12 +18,14 @@
 
 <script setup lang="ts">
 import MenuHeader from "../components/header/contentMenu/MenuHeader.vue";
+import { useUserAuthentication } from "../stores/auth/userAuthentication";
 import { useMenuVisibility } from "../stores/navigation/menuVisibility";
 import { useUserCategories } from "../stores/navigation/userCategories";
 import { computed } from "vue";
 
 const visibility = useMenuVisibility();
 const underCategories = useUserCategories();
+const userAuth = useUserAuthentication();
 
 const props = defineProps<{
   view: boolean;
@@ -41,6 +43,13 @@ const emit = defineEmits<{
 
 const dropMenuStyle = computed<string>(() => {
   return props.menuStyle ? "dropMenuMobile" : "categoriesDesctop";
+});
+const size = computed<string>(() => {
+  if (props.size === "account" || (props.size === "cart" && userAuth.authentication)) {
+    return props.size;
+  }
+
+  return "defaultSize";
 });
 
 function closeMenu() {
@@ -124,6 +133,12 @@ function closeMenu() {
   left: 0;
   @media (min-width: 768px) {
     left: auto;
+  }
+}
+
+.defaultSize {
+  @media (min-width: 768px) {
+    min-width: 22rem;
   }
 }
 
