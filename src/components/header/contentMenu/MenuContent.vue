@@ -1,7 +1,7 @@
 <template>
   <div class="menuContainer">
-    <UserContent v-if="menuName === 'account' && !!user.authentication"></UserContent>
-    <CartContent v-else-if="menuName === 'cart' && !!user.authentication"></CartContent>
+    <UserContent v-if="menuName === 'account' && !!userId && !!tokenId"></UserContent>
+    <CartContent v-else-if="menuName === 'cart' && !!userId && !!tokenId"></CartContent>
     <AuthRedirect v-else></AuthRedirect>
   </div>
 </template>
@@ -10,13 +10,24 @@
 import UserContent from "./userSettings/UserContent.vue";
 import CartContent from "./cartContent/CartContent.vue";
 import AuthRedirect from "../../../layout/authentication/AuthRedirect.vue";
-import { useUserAuthentication } from "../../../stores/auth/userAuthentication";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { ref } from "vue";
 
 defineProps<{
   menuName?: string;
 }>();
 
-const user = useUserAuthentication();
+const userId = ref(null);
+const tokenId = ref(null);
+
+const auth = getAuth();
+onAuthStateChanged(auth, (user: any) => {
+  if (user) {
+    userId.value = user.accessToken;
+    tokenId.value = user.uid;
+  } else {
+  }
+});
 </script>
 
 <style scoped lang="scss">

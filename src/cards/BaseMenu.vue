@@ -18,14 +18,13 @@
 
 <script setup lang="ts">
 import MenuHeader from "../components/header/contentMenu/MenuHeader.vue";
-import { useUserAuthentication } from "../stores/auth/userAuthentication";
 import { useMenuVisibility } from "../stores/navigation/menuVisibility";
 import { useUserCategories } from "../stores/navigation/userCategories";
-import { computed } from "vue";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { ref, computed } from "vue";
 
 const visibility = useMenuVisibility();
 const underCategories = useUserCategories();
-const userAuth = useUserAuthentication();
 
 const props = defineProps<{
   view: boolean;
@@ -44,12 +43,31 @@ const emit = defineEmits<{
 const dropMenuStyle = computed<string>(() => {
   return props.menuStyle ? "dropMenuMobile" : "categoriesDesctop";
 });
+
 const size = computed<string>(() => {
-  if (props.size === "account" || (props.size === "cart" && userAuth.authentication)) {
+  if (
+    props.size === "account" ||
+    (props.size === "cart" && !!userId.value && !!tokenId.value)
+  ) {
     return props.size;
   }
 
   return "defaultSize";
+});
+
+const userId = ref<string | null>(null);
+const tokenId = ref<string | null>(null);
+
+const auth = getAuth();
+onAuthStateChanged(auth, (user: any) => {
+  if (user) {
+    userId.value = user.accessToken;
+    tokenId.value = user.uid;
+    return;
+  }
+
+  userId.value = null;
+  tokenId.value = null;
 });
 
 function closeMenu() {

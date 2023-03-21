@@ -1,6 +1,6 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 
-import { useUserAuthentication } from "./stores/auth/userAuthentication";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 const ShopHomePage = () => import("./layout/shop/ShopHomePage.vue");
 const ShopMainContainer = () =>
@@ -48,6 +48,7 @@ const router = createRouter({
                      component: ReturnSettings,
                   },
                ],
+               meta: { requiresAuth: true },
             },
 
             {
@@ -65,8 +66,16 @@ const router = createRouter({
                ],
             },
 
-            { path: "favorite", component: FavoriteList },
-            { path: "cart", component: UserOrderList },
+            {
+               path: "favorite",
+               component: FavoriteList,
+               meta: { requiresAuth: true },
+            },
+            {
+               path: "cart",
+               component: UserOrderList,
+               meta: { requiresAuth: true },
+            },
             { path: "register", component: AuthLogin },
             { path: "service", component: ReturnSettings },
          ],
@@ -80,19 +89,27 @@ const router = createRouter({
    ],
 });
 
-router.beforeEach((to, from, next) => {
-   const user = useUserAuthentication();
+const getCurrentUser = () => {
+   return new Promise((resolve, reject) => {
+      const removeListener = onAuthStateChanged(
+         getAuth(),
+         (user) => {
+            removeListener();
+            resolve(user);
+         },
+         reject
+      );
+   });
+};
 
-   if (
-      (to.path === "/shop/account/user" ||
-         to.path === "/shop/favorite" ||
-         to.path === "/shop/cart") &&
-      !user.authentication
-   ) {
-      return next("/login");
+router.beforeEach(async (to, from, next) => {
+   if (to.meta.requiresAuth) {
+      if (!(await getCurrentUser())) {
+         return next("/login");
+      }
    }
 
-   next();
+   return next();
 });
 
 export default router;

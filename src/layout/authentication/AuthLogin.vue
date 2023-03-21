@@ -32,10 +32,15 @@
 
 <script setup lang="ts">
 import AuthHeader from "./AuthHeader.vue";
+import { onMounted } from "vue";
 
 function checkUserData() {
   console.log("asds");
 }
+
+onMounted(() => {
+  document.body.classList.remove("scrollHidden");
+});
 </script>
 
 <style lang="scss">

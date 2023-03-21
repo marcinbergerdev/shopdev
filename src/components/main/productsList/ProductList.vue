@@ -56,7 +56,6 @@ const productsAmount = productsTo.value;
 
 function setNumberOfButtons(amount: number) {
   const numberOfButtons = Math.ceil(Number(amount / productsTo.value));
-  console.log(numberOfButtons);
   buttonsPaginationAmount.value = numberOfButtons;
 }
 

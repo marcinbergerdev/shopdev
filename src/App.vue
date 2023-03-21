@@ -2,7 +2,10 @@
   <router-view></router-view>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+const auth = getAuth();
+</script>
 
 <style lang="scss">
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap");

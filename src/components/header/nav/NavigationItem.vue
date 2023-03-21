@@ -34,7 +34,7 @@
 
 <script setup lang="ts">
 import MenuContent from "../contentMenu/MenuContent.vue";
-
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { ref, computed, provide, onMounted, onUnmounted } from "vue";
 
 const props = defineProps<{
@@ -83,6 +83,27 @@ const hoverMenuPositionDesctop = computed(() => {
 const optionHover = computed(() => {
   return { optionHover: isDropMenu };
 });
+
+// const isLogged = computed(() => {
+//   if (!!userId.value && !!tokenId.value && name === "login" && name === "logout") {
+//     return "userLogged";
+//   }
+// });
+
+// const userId = ref<string | null>(null);
+// const tokenId = ref<string | null>(null);
+
+// const auth = getAuth();
+// onAuthStateChanged(auth, (user: any) => {
+//   if (user) {
+//     userId.value = user.accessToken;
+//     tokenId.value = user.uid;
+//     return;
+//   }
+
+//   userId.value = null;
+//   tokenId.value = null;
+// });
 
 function hoverOption() {
   if (isDropMenu && innerWidth >= 768) {
@@ -139,6 +160,10 @@ onUnmounted(() => window.removeEventListener("resize", resizeListener));
 </script>
 
 <style scoped lang="scss">
+.userLogged {
+  display: none;
+}
+
 .dropMenu-enter-from,
 .dropMenu-leave-to {
   transform: translateX(100%);
