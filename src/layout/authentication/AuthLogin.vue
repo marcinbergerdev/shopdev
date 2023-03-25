@@ -24,7 +24,7 @@
       <footer class="authFooter">
         <p class="authFooter__description">or</p>
         <p class="authFooter__description">You don't have an account yet?</p>
-        <BaseButton link to="/register" mode="sendToRegister">Sign up</BaseButton>
+        <BaseButton link to="/register" mode="redirectToRegister">Sign up</BaseButton>
       </footer>
     </div>
   </div>

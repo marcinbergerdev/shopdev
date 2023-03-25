@@ -16,7 +16,6 @@
         <FormKit
           type="password"
           name="password"
-          sd
           placeholder="password"
           validation="required|length:6"
           :validation-messages="{

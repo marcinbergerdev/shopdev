@@ -2,10 +2,11 @@
   <li
     :id="name"
     class="optionElement"
-    :class="optionHover"
+    :class="[optionHover, switchingPositionAfterRegistration]"
     @click="selectOption(isDropMenu)"
     @mouseover="hoverOption"
     @mouseleave="leaveOption"
+    v-if="userActivity"
   >
     <BaseButton link :to="path" :mode="view" :isMobileDisabled="isMobileDisabled">
       <Icon class="optionElement__icon" v-if="!hideIcon" :icon="icon" />
@@ -62,48 +63,64 @@ const {
   isMobileDisabled,
 } = props;
 
-const dropMenuMobileActivity = ref(false);
-const dropMenuDesctopActivity = ref(false);
-const dropMenuAnimation = ref(false);
+const dropMenuMobileActivity = ref<boolean>(false);
+const dropMenuDesctopActivity = ref<boolean>(false);
+const dropMenuAnimation = ref<boolean>(false);
 
-const sendMenuTo = computed(() => (dropMenuDesctopActivity.value ? `#${name}` : "body"));
-const isDropMenuAnimation = computed(() => (dropMenuAnimation.value ? true : false));
+const sendMenuTo = computed<string>(() =>
+  dropMenuDesctopActivity.value ? `#${name}` : "body"
+);
+const isDropMenuAnimation = computed<boolean>(() =>
+  dropMenuAnimation.value ? true : false
+);
 
-const dropMenuPositionMobile = computed(() => {
+const dropMenuPositionMobile = computed<string | undefined>(() => {
   if (dropMenuMobileActivity.value) {
     return dropMenuPosition;
   }
 });
-const hoverMenuPositionDesctop = computed(() => {
+const hoverMenuPositionDesctop = computed<string | undefined>(() => {
   if (dropMenuDesctopActivity.value) {
     return hoverPosition;
   }
 });
 
-const optionHover = computed(() => {
+const optionHover = computed<object>(() => {
   return { optionHover: isDropMenu };
 });
 
-// const isLogged = computed(() => {
-//   if (!!userId.value && !!tokenId.value && name === "login" && name === "logout") {
-//     return "userLogged";
-//   }
-// });
+const userIsLogged = computed<boolean>(() => {
+  return !!userId.value && !!tokenId.value ? true : false;
+});
 
-// const userId = ref<string | null>(null);
-// const tokenId = ref<string | null>(null);
+const userActivity = computed<boolean>(() => {
+  if (userIsLogged.value && (name == "login" || name == "register")) {
+    return false;
+  } else if (!userIsLogged.value && name == "logout") {
+    return false;
+  }
 
-// const auth = getAuth();
-// onAuthStateChanged(auth, (user: any) => {
-//   if (user) {
-//     userId.value = user.accessToken;
-//     tokenId.value = user.uid;
-//     return;
-//   }
+  return true;
+});
 
-//   userId.value = null;
-//   tokenId.value = null;
-// });
+const switchingPositionAfterRegistration = computed<string>(() => {
+  return userIsLogged.value ? "userLoggedIn" : "userLoggedOut";
+});
+
+const userId = ref<string | null>(null);
+const tokenId = ref<string | null>(null);
+
+const auth = getAuth();
+onAuthStateChanged(auth, (user: any) => {
+  if (user) {
+    userId.value = user.accessToken;
+    tokenId.value = user.uid;
+    return;
+  }
+
+  userId.value = null;
+  tokenId.value = null;
+});
 
 function hoverOption() {
   if (isDropMenu && innerWidth >= 768) {
@@ -160,10 +177,6 @@ onUnmounted(() => window.removeEventListener("resize", resizeListener));
 </script>
 
 <style scoped lang="scss">
-.userLogged {
-  display: none;
-}
-
 .dropMenu-enter-from,
 .dropMenu-leave-to {
   transform: translateX(100%);
@@ -177,13 +190,17 @@ onUnmounted(() => window.removeEventListener("resize", resizeListener));
   transform: translateX(0%);
 }
 
-li:nth-last-child(3) {
+.userLoggedIn:nth-last-child(2),
+.userLoggedOut:nth-last-child(3) {
   padding-left: 4.5rem;
   border-left: 1px solid var(--primary-greyDark);
 }
-li:nth-last-child(3),
-li:nth-last-child(2),
-li:nth-last-child(1) {
+
+.userLoggedIn:nth-last-child(2),
+.userLoggedIn:nth-last-child(1),
+.userLoggedOut:nth-last-child(3),
+.userLoggedOut:nth-last-child(2),
+.userLoggedOut:nth-last-child(1) {
   display: none;
   @media (min-width: 768px) {
     display: block;

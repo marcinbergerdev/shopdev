@@ -355,7 +355,7 @@ button {
   }
 }
 
-.sendToRegister {
+.redirectToRegister {
   display: block;
   width: 100%;
   padding: 0.7rem 0;
@@ -363,5 +363,14 @@ button {
   color: var(--primary-claret);
   border: 2px solid var(--primary-claret);
   border-radius: 50px;
+  transition: 0.1s ease-in-out;
+
+  @media (min-width: 768px) {
+    &:hover {
+      background-color: var(--primary-claret);
+      color: var(--white);
+      transition: 0.1s ease-in-out;
+    }
+  }
 }
 </style>

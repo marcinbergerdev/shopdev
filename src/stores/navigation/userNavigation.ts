@@ -42,15 +42,16 @@ export const useUserNavigation = defineStore("userNavigation", () => {
          path: "/register",
          title: "Rejestracja",
          view: "flat",
+         name: "register",
+         hideIcon: true,
+      },
+      {
+         path: "/",
+         title: "Log out",
+         view: "navEmpty",
          name: "logout",
          hideIcon: true,
       },
-      // {
-      //    path: "/",
-      //    title: "Log out",
-      //    view: "navEmpty",
-      //    hideIcon: true,
-      // },
       {
          path: "/shop/service",
          title: "Serwis",

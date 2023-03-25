@@ -18,13 +18,17 @@
     </li>
   </ul>
 
-  <BaseButton mode="empty">Wyloguj</BaseButton>
+  <BaseButton mode="empty" @click="userLogout">Wyloguj</BaseButton>
 </template>
 
 <script setup lang="ts">
+import { getAuth, signOut } from "firebase/auth";
+import router from "../../../../router";
 import { ref, inject } from "vue";
+import { useMenuVisibility } from "../../../../stores/navigation/menuVisibility";
 
 const { closeMenu } = inject("closeMenu") as any;
+const menuNav = useMenuVisibility();
 
 const userOption = ref([
   {
@@ -43,6 +47,18 @@ const userOption = ref([
     title: "Zwroty i Reklamacje",
   },
 ]);
+
+function userLogout() {
+  const auth = getAuth();
+  signOut(auth)
+    .then(() => {
+      router.replace("/shop");
+      optionCloseMenu();
+    })
+    .catch((error) => {
+      console.log("error");
+    });
+}
 
 function optionCloseMenu() {
   closeMenu();
