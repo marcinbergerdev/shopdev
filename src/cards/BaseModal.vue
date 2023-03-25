@@ -80,9 +80,8 @@ const emit = defineEmits<{
 }
 .modalHeader {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  padding: 1rem 1.5rem;
   background-color: #ebebeb;
   border-radius: 5px 5px 0 0;
 }
@@ -101,11 +100,15 @@ const emit = defineEmits<{
   .modalContent {
     margin-top: 2rem;
   }
+}
+.modalInteraction {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  gap: 0 3rem;
+}
 
-  .modalInteraction {
-    display: flex;
-    gap: 0 3rem;
-    justify-content: center;
-  }
+.closeModal {
+  margin-right: 1rem;
 }
 </style>

@@ -35,8 +35,9 @@
 
 <script setup lang="ts">
 import MenuContent from "../contentMenu/MenuContent.vue";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { ref, computed, provide, onMounted, onUnmounted } from "vue";
+import router from "../../../router";
 
 const props = defineProps<{
   path: string;
@@ -62,6 +63,10 @@ const {
   isDropMenu,
   isMobileDisabled,
 } = props;
+
+provide("closeMenu", {
+  closeMenu,
+});
 
 const dropMenuMobileActivity = ref<boolean>(false);
 const dropMenuDesctopActivity = ref<boolean>(false);
@@ -128,11 +133,27 @@ function hoverOption() {
   }
 }
 function selectOption(isDropMenu?: boolean) {
-  window.scrollTo({ top: 0, left: 0 });
+  if (name === "logout") {
+    const auth = getAuth();
+    signOut(auth)
+      .then(() => {
+        userLoggedOut();
+      })
+      .catch((error) => {
+        console.log("error");
+      });
+  }
+
   if (isDropMenu && !dropMenuMobileActivity.value && innerWidth < 768) {
     dropMenuMobileActivity.value = true;
     document.body.classList.add("scrollHidden");
   }
+}
+
+function userLoggedOut() {
+  window.scrollTo({ top: 0, left: 0 });
+  router.replace("/shop");
+  closeMenu();
 }
 
 function leaveOption() {
@@ -164,10 +185,6 @@ function pageRefreshed() {
   }
   dropMenuAnimation.value = false;
 }
-
-provide("closeMenu", {
-  closeMenu,
-});
 
 onMounted(() => {
   pageRefreshed();

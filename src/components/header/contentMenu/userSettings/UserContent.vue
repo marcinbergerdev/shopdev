@@ -25,10 +25,8 @@
 import { getAuth, signOut } from "firebase/auth";
 import router from "../../../../router";
 import { ref, inject } from "vue";
-import { useMenuVisibility } from "../../../../stores/navigation/menuVisibility";
 
 const { closeMenu } = inject("closeMenu") as any;
-const menuNav = useMenuVisibility();
 
 const userOption = ref([
   {
@@ -52,12 +50,17 @@ function userLogout() {
   const auth = getAuth();
   signOut(auth)
     .then(() => {
-      router.replace("/shop");
-      optionCloseMenu();
+      userLoggedOut();
     })
     .catch((error) => {
       console.log("error");
     });
+}
+
+function userLoggedOut() {
+  window.scrollTo({ top: 0, left: 0 });
+  router.replace("/shop");
+  optionCloseMenu();
 }
 
 function optionCloseMenu() {

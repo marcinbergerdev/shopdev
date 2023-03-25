@@ -2,10 +2,7 @@
   <router-view></router-view>
 </template>
 
-<script setup lang="ts">
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-const auth = getAuth();
-</script>
+<script setup lang="ts"></script>
 
 <style lang="scss">
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap");
@@ -104,6 +101,7 @@ a {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex: 1;
   gap: 1.5rem 0;
   width: min(40rem, 100%);
   margin: 0 auto;

@@ -373,4 +373,38 @@ button {
     }
   }
 }
+
+.authSuccessContinueHandler,
+.authErrorContinueHandler {
+  transition: 0.2s ease-in-out;
+
+  @media (min-width: 768px) {
+    &:hover {
+      cursor: pointer;
+      color: var(--white) !important;
+      transition: 0.2s ease-in-out;
+    }
+  }
+}
+
+.authSuccessContinueHandler {
+  color: var(--secondary-lightGreen);
+  border: 1px solid var(--secondary-lightGreen);
+
+  @media (min-width: 768px) {
+    &:hover {
+      background-color: var(--secondary-lightGreen);
+    }
+  }
+}
+.authErrorContinueHandler{
+  color: var(--secondary-darkRed);
+  border: 1px solid var(--secondary-darkRed);
+
+  @media (min-width: 768px) {
+    &:hover {
+      background-color: var(--secondary-darkRed);
+    }
+  }
+}
 </style>

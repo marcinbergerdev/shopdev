@@ -7,9 +7,11 @@
       @close="emit('close')"
     >
       <template #default>
-        <h2 v-if="isTitle === 'userName'">Nazwa użytkownika</h2>
-        <h2 v-else-if="isTitle === 'email'">Zmień adres e-mail</h2>
-        <h2 v-else>Zmień hasło</h2>
+        <div class="modalTitle">
+          <h2 v-if="isTitle === 'userName'">Nazwa użytkownika</h2>
+          <h2 v-else-if="isTitle === 'email'">Zmień adres e-mail</h2>
+          <h2 v-else>Zmień hasło</h2>
+        </div>
       </template>
 
       <template #content>
@@ -118,5 +120,10 @@ function showPassword(event: any) {
       border: 0;
     }
   }
+}
+
+.modalTitle {
+  flex: 1;
+  padding: 1.5rem;
 }
 </style>
