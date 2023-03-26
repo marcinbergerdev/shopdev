@@ -33,51 +33,22 @@
     <Teleport to="body">
       <BaseLoadingSpinner v-if="isLoadingSpinner"></BaseLoadingSpinner>
 
-      <BaseModal
+      <AlertAuth
         v-else="!isLoadingSpinner"
-        :isModal="isModal"
-        :isInteraction="true"
-        :isHeaderCloseButton="false"
-      >
-        <template #default>
-          <h2 class="titleModal successAuth" v-if="!isError">Account created!</h2>
-          <h2 class="titleModal wrongAuth" v-else>Somthing goes wrong!</h2>
-        </template>
-
-        <template #content>
-          <div class="successContentAuth" v-if="!isError">
-            <Icon class="iconAuth iconAuthSuccess" icon="clarity:success-standard-line" />
-          </div>
-
-          <div class="wrongContentAuth" v-else>
-            <Icon class="iconAuth iconAuthWrong" icon="fluent:error-circle-20-regular" />
-
-            <p class="wrongContentAuth__description">{{ isError }}</p>
-          </div>
-        </template>
-
-        <template #interactive>
-          <BaseButton
-            class="interactiveHandler"
-            :class="continueStatus"
-            @click="userRedirection"
-            >Continue</BaseButton
-          >
-        </template>
-      </BaseModal>
+        :is-modal="isModal"
+        :is-error="isError"
+        @user-redirection="userRedirection"
+      ></AlertAuth>
     </Teleport>
   </div>
 </template>
 
 <script setup lang="ts">
 import AuthHeader from "./AuthHeader.vue";
+import AlertAuth from "../../components/alert/AlertAuth.vue";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { ref, computed, onMounted } from "vue";
+import { ref, onMounted } from "vue";
 import router from "../../router";
-
-const continueStatus = computed<string>(() => {
-  return !!isError.value ? "authErrorContinueHandler" : "authSuccessContinueHandler";
-});
 
 const isModal = ref<boolean>(false);
 const isLoadingSpinner = ref<boolean>(false);
@@ -91,14 +62,15 @@ const auth = getAuth();
 const userSignIn = async () => {
   isLoadingSpinner.value = true;
   await signInWithEmailAndPassword(auth, email.value, password.value)
-    .then((userCredential) => {})
+    .then(() => {
+      router.push("/shop");
+    })
     .catch((error) => {
       isError.value = error.code;
       isModal.value = true;
     });
 
   isLoadingSpinner.value = false;
-  router.push("/shop");
 };
 
 const userRedirection = () => {
@@ -132,57 +104,5 @@ onMounted(() => {
   &__description {
     font-weight: 700;
   }
-}
-
-.authLoadingSpinner {
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: grid;
-  place-items: center;
-  width: 100%;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.25);
-}
-
-.titleModal {
-  flex: 1;
-  padding: 2rem 0;
-  text-align: center;
-  font-weight: 400;
-  background-color: var(--secondary-lightGreen);
-  color: var(--white);
-  border-radius: 5px 5px 0 0;
-}
-
-.wrongAuth {
-  background-color: var(--secondary-darkRed);
-}
-
-.wrongContentAuth {
-  text-align: center;
-}
-
-.wrongContentAuth {
-  &__description {
-    margin-top: 2rem;
-    font-size: 1.3rem;
-  }
-}
-
-.iconAuthWrong {
-  color: var(--secondary-darkRed);
-}
-
-.iconAuth {
-  font-size: 7rem;
-  text-align: center;
-}
-
-.interactiveHandler {
-  width: 18rem;
-  padding: 1.5rem 0;
-  background-color: transparent;
-  border-radius: 50px;
 }
 </style>
