@@ -1,5 +1,10 @@
 <template>
-  <BaseModal :isModal="isModal" :isInteraction="true" :isHeaderCloseButton="false">
+  <BaseModal
+    :isModal="isModal"
+    mode="registerAuth"
+    :isInteraction="true"
+    :isHeaderCloseButton="false"
+  >
     <template #default>
       <h2 class="titleModal successAuth" v-if="!isError">Account created!</h2>
       <h2 class="titleModal wrongAuth" v-else>Somthing goes wrong!</h2>
@@ -54,7 +59,7 @@ const continueStatus = computed<string>(() => {
   font-weight: 400;
   background-color: var(--secondary-lightGreen);
   color: var(--white);
-  border-radius: 5px 5px 0 0;
+  border-radius: 45px 45px 0 0;
 }
 
 .successAuth {
@@ -68,6 +73,7 @@ const continueStatus = computed<string>(() => {
 .successContentAuth,
 .wrongContentAuth {
   text-align: center;
+  border-radius: 45px 45px 0 0;
 }
 
 .wrongContentAuth {

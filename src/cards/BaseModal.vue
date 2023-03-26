@@ -111,4 +111,12 @@ const emit = defineEmits<{
 .closeModal {
   margin-right: 1rem;
 }
+
+.registerAuth {
+  border-radius: 50px;
+
+  .modalHeader {
+    border-radius: 50px 50px 0 0;
+  }
+}
 </style>
