@@ -15,6 +15,7 @@ import BaseProduct from "./cards/BaseProduct.vue";
 import BaseModal from "./cards/BaseModal.vue";
 import BaseOrder from "./cards/BaseOrder.vue";
 import BaseForm from "./cards/BaseForm.vue";
+import BaseLoadingSpinner from "./cards/BaseLoadingSpinner.vue";
 
 import router from "./router.js";
 
@@ -41,6 +42,7 @@ app.component("BaseProduct", BaseProduct);
 app.component("BaseModal", BaseModal);
 app.component("BaseOrder", BaseOrder);
 app.component("BaseForm", BaseForm);
+app.component("BaseLoadingSpinner", BaseLoadingSpinner);
 
 app.use(router);
 app.use(pinia);

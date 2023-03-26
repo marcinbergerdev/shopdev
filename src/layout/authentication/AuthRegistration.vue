@@ -35,13 +35,7 @@
     </div>
 
     <Teleport to="body">
-      <div class="authLoadingSpinner" v-if="isLoadingSpinner">
-        <HalfCircleSpinner
-          :animation-duration="1000"
-          :size="60"
-          color="var(--primary-claret)"
-        />
-      </div>
+      <BaseLoadingSpinner v-if="isLoadingSpinner"></BaseLoadingSpinner>
 
       <BaseModal
         v-else="!isLoadingSpinner"
@@ -82,7 +76,6 @@
 <script setup lang="ts">
 import AuthHeader from "./AuthHeader.vue";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { HalfCircleSpinner } from "epic-spinners";
 import { ref, computed, onMounted } from "vue";
 import router from "../../router";
 
