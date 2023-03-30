@@ -2,7 +2,54 @@
   <router-view></router-view>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { User, getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+
+const auth = getAuth();
+
+function setUserLoginTime() {
+  const currentTime: string = String(Date.now());
+  localStorage.setItem("currentTime", currentTime);
+}
+
+function checkUserLoginStatus() {
+  const expirationTime: number = 3600; // 1h in seconds
+  const currentTime: number = Date.now();
+  const lastLogin: number | null = Number(localStorage.getItem("currentTime"));
+  const residenceTime = (currentTime - lastLogin) / 1000;
+
+  if (residenceTime >= expirationTime) {
+    autoLogout();
+    return;
+  }
+}
+
+function autoLogout() {
+  signOut(auth)
+    .then(() => {
+      localStorage.removeItem("currentTime");
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}
+
+function autoLogoutCountdown() {
+  const expirationTime: number = 3600 * 1000; // 1h in millisecond
+  setTimeout(() => {
+    autoLogout();
+  }, expirationTime);
+}
+
+onAuthStateChanged(auth, (user: User | any) => {
+  if (user) {
+    autoLogoutCountdown();
+    setUserLoginTime();
+    checkUserLoginStatus();
+    return;
+  }
+});
+</script>
 
 <style lang="scss">
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap");
