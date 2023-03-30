@@ -8,7 +8,7 @@
         <FormKit
           type="email"
           name="email"
-          placeholder="email"
+          placeholder="admin@admin.com"
           validation="required|*email"
           v-model="email"
         />
@@ -16,7 +16,7 @@
         <FormKit
           type="password"
           name="password"
-          placeholder="password"
+          placeholder="qwerty"
           validation="required|length:6"
           :validation-messages="{
             length: 'Try to make your password longer min 6!',
@@ -25,7 +25,7 @@
         /><FormKit
           type="password"
           name="password_confirm"
-          placeholder="confirm password"
+          placeholder="qwerty"
           validation="required|confirm"
           :validation-messages="{
             length: 'Try to make your password longer min 6!',
