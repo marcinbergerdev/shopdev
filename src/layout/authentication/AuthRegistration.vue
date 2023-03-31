@@ -52,7 +52,7 @@ const password = ref<string>("");
 
 const register = useUserAuthentication();
 const userRegister = () => {
-  register.userRegistration(email.value, password.value);
+  register.userAuth("register", email.value, password.value);
 };
 
 onMounted(() => {

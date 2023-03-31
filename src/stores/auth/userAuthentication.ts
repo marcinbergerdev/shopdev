@@ -14,8 +14,17 @@ export const useUserAuthentication = defineStore("userAuthentication", () => {
    const isError = ref<string>("");
    const isLoadingSpinner = ref<boolean>(false);
 
-   const userSignIn = async (email: string, password: string) => {
+   const userAuth = async (status: string, email: string, password: string) => {
       isLoadingSpinner.value = true;
+
+      status === "login"
+         ? await userSignIn(email, password)
+         : await userRegistration(email, password);
+
+      isLoadingSpinner.value = false;
+   };
+
+   const userSignIn = async (email: string, password: string) => {
       await signInWithEmailAndPassword(auth, email, password)
          .then(() => {
             router.push("/shop");
@@ -24,12 +33,9 @@ export const useUserAuthentication = defineStore("userAuthentication", () => {
             isError.value = error.code;
             isModal.value = true;
          });
-
-      isLoadingSpinner.value = false;
    };
 
    const userRegistration = async (email: string, password: string) => {
-      isLoadingSpinner.value = true;
       await createUserWithEmailAndPassword(auth, email, password)
          .then(() => {
             isModal.value = true;
@@ -38,13 +44,12 @@ export const useUserAuthentication = defineStore("userAuthentication", () => {
             isError.value = error.code;
             isModal.value = true;
          });
-
-      isLoadingSpinner.value = false;
    };
 
    const userRedirectionHandler = () => {
+      isModal.value = false;
+
       if (!!isError.value) {
-         isModal.value = false;
          isError.value = "";
          return;
       }
@@ -56,6 +61,7 @@ export const useUserAuthentication = defineStore("userAuthentication", () => {
       isModal,
       isError,
       isLoadingSpinner,
+      userAuth,
       userSignIn,
       userRegistration,
       userRedirectionHandler,

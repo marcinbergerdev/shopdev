@@ -48,7 +48,7 @@ const password = ref<string>("");
 
 const auth = useUserAuthentication();
 const userSignIn = () => {
-  auth.userSignIn(email.value, password.value);
+  auth.userAuth('login', email.value, password.value);
 };
 
 onMounted(() => {
