@@ -1,24 +1,23 @@
 <template>
   <BaseModal
-    :isModal="isModal"
+    :isModal="auth.isModal"
     mode="registerAuth"
     :isInteraction="true"
     :isHeaderCloseButton="false"
   >
     <template #default>
-      <h2 class="titleModal successAuth" v-if="!isError">Account created!</h2>
+      <h2 class="titleModal successAuth" v-if="!auth.isError">Account created!</h2>
       <h2 class="titleModal wrongAuth" v-else>Somthing goes wrong!</h2>
     </template>
 
     <template #content>
-      <div class="successContentAuth" v-if="!isError">
+      <div class="successContentAuth" v-if="!auth.isError">
         <Icon class="iconAuth iconAuthSuccess" icon="clarity:success-standard-line" />
       </div>
 
       <div class="wrongContentAuth" v-else>
         <Icon class="iconAuth iconAuthWrong" icon="fluent:error-circle-20-regular" />
-
-        <p class="wrongContentAuth__description">{{ isError }}</p>
+        <p class="wrongContentAuth__description">{{ auth.isError }}</p>
       </div>
     </template>
 
@@ -26,7 +25,7 @@
       <BaseButton
         class="interactiveHandler"
         :class="continueStatus"
-        @click="emit('userRedirection')"
+        @click="auth.userRedirectionHandler()"
         >Continue</BaseButton
       >
     </template>
@@ -34,20 +33,13 @@
 </template>
 
 <script setup lang="ts">
+import { useUserAuthentication } from "../../stores/auth/userAuthentication";
 import { computed } from "vue";
 
-const props = defineProps<{
-  isModal: boolean;
-  isError: string;
-}>();
-const { isError } = props;
-
-const emit = defineEmits<{
-  (e: "userRedirection"): void;
-}>();
+const auth = useUserAuthentication();
 
 const continueStatus = computed<string>(() => {
-  return !!isError ? "authErrorContinueHandler" : "authSuccessContinueHandler";
+  return !!auth.isError ? "authErrorContinueHandler" : "authSuccessContinueHandler";
 });
 </script>
 

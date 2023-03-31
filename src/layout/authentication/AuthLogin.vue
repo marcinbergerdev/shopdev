@@ -31,14 +31,8 @@
     </div>
 
     <Teleport to="body">
-      <BaseLoadingSpinner v-if="isLoadingSpinner"></BaseLoadingSpinner>
-
-      <AlertAuth
-        v-else="!isLoadingSpinner"
-        :is-modal="isModal"
-        :is-error="isError"
-        @user-redirection="userRedirection"
-      ></AlertAuth>
+      <BaseLoadingSpinner v-if="auth.isLoadingSpinner"></BaseLoadingSpinner>
+      <AlertAuth v-else></AlertAuth>
     </Teleport>
   </div>
 </template>
@@ -46,41 +40,15 @@
 <script setup lang="ts">
 import AuthHeader from "./AuthHeader.vue";
 import AlertAuth from "../../components/alert/AlertAuth.vue";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { ref, onMounted } from "vue";
-import router from "../../router";
-
-const isModal = ref<boolean>(false);
-const isLoadingSpinner = ref<boolean>(false);
-const isError = ref<string>("");
+import { useUserAuthentication } from "../../stores/auth/userAuthentication";
 
 const email = ref<string>("");
 const password = ref<string>("");
 
-const auth = getAuth();
-
-const userSignIn = async () => {
-  isLoadingSpinner.value = true;
-  await signInWithEmailAndPassword(auth, email.value, password.value)
-    .then(() => {
-      router.push("/shop");
-    })
-    .catch((error) => {
-      isError.value = error.code;
-      isModal.value = true;
-    });
-
-  isLoadingSpinner.value = false;
-};
-
-const userRedirection = () => {
-  if (!!isError.value) {
-    isModal.value = false;
-    isError.value = "";
-    return;
-  }
-
-  router.replace("/shop");
+const auth = useUserAuthentication();
+const userSignIn = () => {
+  auth.userSignIn(email.value, password.value);
 };
 
 onMounted(() => {
