@@ -1,12 +1,14 @@
 import { defineStore } from "pinia";
-import { ref } from "vue";
 import {
    getAuth,
    signInWithEmailAndPassword,
    createUserWithEmailAndPassword,
 } from "firebase/auth";
+import { useUserData } from "./userData";
 import router from "../../router";
+import { ref } from "vue";
 
+const user = useUserData();
 const auth = getAuth();
 
 export const useUserAuthentication = defineStore("userAuthentication", () => {
@@ -37,8 +39,15 @@ export const useUserAuthentication = defineStore("userAuthentication", () => {
 
    const userRegistration = async (email: string, password: string) => {
       await createUserWithEmailAndPassword(auth, email, password)
-         .then(() => {
+         .then((currentUser: any) => {
+            const name = currentUser.user.email.split("@")[0];
+
             isModal.value = true;
+            user.writeUserData(
+               currentUser.user.uid,
+               name,
+               currentUser.user.email
+            );
          })
          .catch((error) => {
             isError.value = error.code;

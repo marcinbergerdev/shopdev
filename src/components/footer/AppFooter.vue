@@ -111,6 +111,7 @@ const shopInfos = ref([
     flex-direction: row;
     justify-content: space-evenly;
     padding: inherit 0;
+    margin-top: 7rem;
   }
 }
 

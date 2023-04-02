@@ -14,7 +14,7 @@
         <h4 class="dataBox__title">Nazwa Użytkownika</h4>
 
         <div class="dataBox__data">
-          <span class="dataBox__data-value">Jan Kowalski</span>
+          <span class="dataBox__data-value">Jan kowaslki</span>
           <BaseButton mode="edit" @click="showModal('userName')">Zmień</BaseButton>
         </div>
       </div>
@@ -49,9 +49,13 @@
 </template>
 
 <script setup lang="ts">
+import { User, getAuth, onAuthStateChanged } from "firebase/auth";
 import UserSettingsForm from "./UserSettingsForm.vue";
+import { useUserData } from "../../../stores/auth/userData";
 import { ref } from "vue";
 
+const userData = useUserData();
+const auth = getAuth();
 const isModal = ref(false);
 const selectedModal = ref("");
 
@@ -66,6 +70,13 @@ function closeModal() {
   document.body.classList.remove("scrollHidden");
   selectedModal.value = "";
 }
+
+onAuthStateChanged(auth, (user: User | any) => {
+  if (user) {
+    userData.getUserSettingsData(user.uid);
+    return;
+  }
+});
 </script>
 
 <style scoped lang="scss">

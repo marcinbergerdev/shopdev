@@ -3,6 +3,7 @@ import { createPinia } from "pinia";
 import { plugin, defaultConfig } from "@formkit/vue";
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import { getDatabase } from "firebase/database";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -30,10 +31,12 @@ const firebaseConfig = {
    storageBucket: "shopex-dev-8067f.appspot.com",
    messagingSenderId: "333074929940",
    appId: "1:333074929940:web:07c91efdcd5d9035a20a01",
+   databaseURL: "https://shopex-dev-8067f-default-rtdb.europe-west1.firebasedatabase.app/",
 };
 
 // Initialize Firebase
-initializeApp(firebaseConfig);
+const authFireBase = initializeApp(firebaseConfig);
+getDatabase(authFireBase);
 
 app.component("Icon", Icon);
 app.component("BaseButton", BaseButton);
