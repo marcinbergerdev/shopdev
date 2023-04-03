@@ -1,24 +1,36 @@
 import { defineStore } from "pinia";
-import { getDatabase, ref, set, child, get } from "firebase/database";
-import { reactive } from 'vue';
+import {
+   getDatabase,
+   ref as FireRef,
+   set,
+   child,
+   get,
+} from "firebase/database";
+import { reactive } from "vue";
+import User from "../../../types/userSettings";
 
 export const useUserData = defineStore("userData", () => {
+   let userData = reactive<User>({
+      email: "",
+      username: "",
+   });
 
    function writeUserData(userId: string, name: string, email: string) {
       const db = getDatabase();
-      set(ref(db, "users/" + userId), {
+      set(FireRef(db, "users/" + userId), {
          username: name,
          email: email,
       });
    }
 
-    function getUserSettingsData(userId: string) {
-      const dbRef = ref(getDatabase());
+   async function getUserSettingsData(userId: string) {
+      const dbRef = FireRef(getDatabase());
 
-      get(child(dbRef, `users/${userId}`))
+      await get(child(dbRef, `users/${userId}`))
          .then((snapshot) => {
             if (snapshot.exists()) {
-               console.log(snapshot.val());
+               userData.email = snapshot.val().email;
+               userData.username = snapshot.val().username;
             } else {
                console.log("No data available");
             }
@@ -28,8 +40,8 @@ export const useUserData = defineStore("userData", () => {
          });
    }
 
-
    return {
+      userData,
       writeUserData,
       getUserSettingsData,
    };

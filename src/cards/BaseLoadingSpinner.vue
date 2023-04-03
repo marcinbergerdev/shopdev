@@ -1,5 +1,5 @@
 <template>
-  <div class="authLoadingSpinner">
+  <div :class="mode">
     <HalfCircleSpinner
       :animation-duration="1000"
       :size="60"
@@ -10,6 +10,10 @@
 
 <script setup lang="ts">
 import { HalfCircleSpinner } from "epic-spinners";
+
+defineProps<{
+  mode: string;
+}>();
 </script>
 
 <style scoped lang="scss">
@@ -22,5 +26,12 @@ import { HalfCircleSpinner } from "epic-spinners";
   width: 100%;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.25);
+}
+
+.userSettingsSpinner {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-30%, -50%);
 }
 </style>

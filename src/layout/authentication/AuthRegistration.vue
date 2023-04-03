@@ -35,7 +35,10 @@
     </div>
 
     <Teleport to="body">
-      <BaseLoadingSpinner v-if="register.isLoadingSpinner"></BaseLoadingSpinner>
+      <BaseLoadingSpinner
+        mode="authLoadingSpinner"
+        v-if="register.isLoadingSpinner"
+      ></BaseLoadingSpinner>
       <AlertAuth v-else></AlertAuth>
     </Teleport>
   </div>

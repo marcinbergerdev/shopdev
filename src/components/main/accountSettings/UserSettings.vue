@@ -6,45 +6,52 @@
       @close="closeModal"
     ></UserSettingsForm>
 
-    <header class="userDataHeader">
-      <h3 class="userDataHeader__title">Dane Konta</h3>
-    </header>
-    <article class="userDataWrapper">
-      <div class="dataBox">
-        <h4 class="dataBox__title">Nazwa Użytkownika</h4>
+    <BaseLoadingSpinner
+      mode="userSettingsSpinner"
+      v-if="isLoadingSpinner"
+    ></BaseLoadingSpinner>
+    <div v-else>
+      <header class="userDataHeader">
+        <h3 class="userDataHeader__title">Dane Konta</h3>
+      </header>
+      <article class="userDataWrapper">
+        <div class="dataBox">
+          <h4 class="dataBox__title">Nazwa Użytkownika</h4>
 
-        <div class="dataBox__data">
-          <span class="dataBox__data-value">Jan kowaslki</span>
-          <BaseButton mode="edit" @click="showModal('userName')">Zmień</BaseButton>
+          <div class="dataBox__data">
+            <span class="dataBox__data-value">{{ userData.userData.username }}</span>
+            <BaseButton mode="edit" @click="showModal('userName')">Zmień</BaseButton>
+          </div>
         </div>
-      </div>
 
-      <div class="dataBox">
-        <h4 class="dataBox__title">Adres e-mail</h4>
+        <div class="dataBox">
+          <h4 class="dataBox__title">Adres e-mail</h4>
 
-        <div class="dataBox__data">
-          <span class="dataBox__data-value">jankowalski@op.pl</span>
-          <BaseButton mode="edit" @click="showModal('email')">Zmień</BaseButton>
+          <div class="dataBox__data">
+            <span class="dataBox__data-value">{{ userData.userData.email }}</span>
+            <BaseButton mode="edit" @click="showModal('email')">Zmień</BaseButton>
+          </div>
         </div>
-      </div>
 
-      <div class="dataBox">
-        <h4 class="dataBox__title">Hasło</h4>
+        <div class="dataBox">
+          <h4 class="dataBox__title">Hasło</h4>
 
-        <div class="dataBox__data">
-          <span class="dataBox__data-value userPassword">kowalski1234</span>
-          <BaseButton mode="edit" @click="showModal('password')">Zmień</BaseButton>
+          <div class="dataBox__data">
+            <span class="dataBox__data-value userPassword">kowalski1234</span>
+            <BaseButton mode="edit" @click="showModal('password')">Zmień</BaseButton>
+          </div>
         </div>
-      </div>
-    </article>
-    <article class="deleteUserAccount">
-      <h5 class="deleteUserAccount__title">Usuń konto</h5>
-      <p class="deleteUserAccount__description">
-        W momencie gdy usuniesz konto, utracisz wszystkie zapisane zamówienia jak i dane.
-        Upewnij się, że chcesz usunąć konto - Niestety nie będziemy mogli go przywrócic.
-      </p>
-      <BaseButton mode="deleteAccount">Usuń konto</BaseButton>
-    </article>
+      </article>
+      <article class="deleteUserAccount">
+        <h5 class="deleteUserAccount__title">Usuń konto</h5>
+        <p class="deleteUserAccount__description">
+          W momencie gdy usuniesz konto, utracisz wszystkie zapisane zamówienia jak i
+          dane. Upewnij się, że chcesz usunąć konto - Niestety nie będziemy mogli go
+          przywrócic.
+        </p>
+        <BaseButton mode="deleteAccount">Usuń konto</BaseButton>
+      </article>
+    </div>
   </section>
 </template>
 
@@ -52,12 +59,13 @@
 import { User, getAuth, onAuthStateChanged } from "firebase/auth";
 import UserSettingsForm from "./UserSettingsForm.vue";
 import { useUserData } from "../../../stores/auth/userData";
-import { ref } from "vue";
+import { ref, onMounted, onBeforeMount } from "vue";
 
 const userData = useUserData();
 const auth = getAuth();
 const isModal = ref(false);
 const selectedModal = ref("");
+const isLoadingSpinner = ref(false);
 
 function showModal(data: string) {
   isModal.value = true;
@@ -71,9 +79,11 @@ function closeModal() {
   selectedModal.value = "";
 }
 
-onAuthStateChanged(auth, (user: User | any) => {
+onAuthStateChanged(auth, async (user: User | any) => {
   if (user) {
-    userData.getUserSettingsData(user.uid);
+    isLoadingSpinner.value = true;
+    await userData.getUserSettingsData(user.uid);
+    isLoadingSpinner.value = false;
     return;
   }
 });
@@ -81,6 +91,7 @@ onAuthStateChanged(auth, (user: User | any) => {
 
 <style scoped lang="scss">
 .userSettingsContainer {
+  position: relative;
   height: 55.5rem;
   margin: 10rem 1rem 25rem 1rem;
   @media (min-width: 768px) {
