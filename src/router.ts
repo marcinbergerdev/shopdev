@@ -108,7 +108,6 @@ router.beforeEach(async (to, __, next) => {
          return next("/login");
       }
    }
-
    return next();
 });
 

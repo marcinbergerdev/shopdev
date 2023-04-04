@@ -11,7 +11,6 @@
 import AdsSlider from "../../components/main/ads/AdsSliderList.vue";
 import AppHeader from "../../components/header/AppHeader.vue";
 import AppFooter from "../../components/footer/AppFooter.vue";
-
 import { ref, computed } from "vue";
 
 const isHeaderFixed = ref<boolean>(false);

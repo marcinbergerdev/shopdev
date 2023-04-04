@@ -4,8 +4,10 @@
 
 <script setup lang="ts">
 import { User, getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import { useUserData } from "./stores/auth/userData";
 
 const auth = getAuth();
+const userData = useUserData();
 
 function setUserLoginTime() {
   const currentTime: string = String(Date.now());
@@ -41,12 +43,12 @@ function autoLogoutCountdown() {
   }, expirationTime);
 }
 
-onAuthStateChanged(auth, (user: User | any) => {
+onAuthStateChanged(auth, (user: User | null) => {
   if (user) {
     autoLogoutCountdown();
     setUserLoginTime();
     checkUserLoginStatus();
-    return;
+    userData.getUserSettingsData(user.uid);
   }
 });
 </script>

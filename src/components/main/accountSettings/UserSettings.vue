@@ -19,7 +19,7 @@
           <h4 class="dataBox__title">Nazwa Użytkownika</h4>
 
           <div class="dataBox__data">
-            <span class="dataBox__data-value">{{ userData.userData.username }}</span>
+            <span class="dataBox__data-value">{{ user.userData.username }}</span>
             <BaseButton mode="edit" @click="showModal('userName')">Zmień</BaseButton>
           </div>
         </div>
@@ -28,7 +28,7 @@
           <h4 class="dataBox__title">Adres e-mail</h4>
 
           <div class="dataBox__data">
-            <span class="dataBox__data-value">{{ userData.userData.email }}</span>
+            <span class="dataBox__data-value">{{ user.userData.email }}</span>
             <BaseButton mode="edit" @click="showModal('email')">Zmień</BaseButton>
           </div>
         </div>
@@ -56,13 +56,12 @@
 </template>
 
 <script setup lang="ts">
-import { User, getAuth, onAuthStateChanged } from "firebase/auth";
 import UserSettingsForm from "./UserSettingsForm.vue";
 import { useUserData } from "../../../stores/auth/userData";
-import { ref, onMounted, onBeforeMount } from "vue";
+import { ref } from "vue";
 
-const userData = useUserData();
-const auth = getAuth();
+const user = useUserData();
+
 const isModal = ref(false);
 const selectedModal = ref("");
 const isLoadingSpinner = ref(false);
@@ -78,15 +77,6 @@ function closeModal() {
   document.body.classList.remove("scrollHidden");
   selectedModal.value = "";
 }
-
-onAuthStateChanged(auth, async (user: User | any) => {
-  if (user) {
-    isLoadingSpinner.value = true;
-    await userData.getUserSettingsData(user.uid);
-    isLoadingSpinner.value = false;
-    return;
-  }
-});
 </script>
 
 <style scoped lang="scss">

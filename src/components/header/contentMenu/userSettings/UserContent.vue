@@ -1,7 +1,7 @@
 <template>
   <header class="userData">
     <h2 class="userData__title">Welcome</h2>
-    <span class="userData__nick">Bergus</span>
+    <span class="userData__nick">{{ user.userData.username }}</span>
   </header>
 
   <ul class="userList">
@@ -22,6 +22,7 @@
 </template>
 
 <script setup lang="ts">
+import { useUserData } from "../../../../stores/auth/userData";
 import { getAuth, signOut } from "firebase/auth";
 import router from "../../../../router";
 import { ref, inject } from "vue";
@@ -46,11 +47,14 @@ const userOption = ref([
   },
 ]);
 
+const user = useUserData();
+
 function userLogout() {
   const auth = getAuth();
   signOut(auth)
     .then(() => {
       userLoggedOut();
+      user.resetUserData();
     })
     .catch((error) => {
       console.log("error");

@@ -40,9 +40,15 @@ export const useUserData = defineStore("userData", () => {
          });
    }
 
+   function resetUserData() {
+      userData.email = "";
+      userData.username = "";
+   }
+
    return {
       userData,
       writeUserData,
       getUserSettingsData,
+      resetUserData
    };
 });

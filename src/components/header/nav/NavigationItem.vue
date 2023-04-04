@@ -37,6 +37,7 @@
 import MenuContent from "../contentMenu/MenuContent.vue";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { ref, computed, provide, onMounted, onUnmounted } from "vue";
+import { useUserData } from "../../../stores/auth/userData";
 import router from "../../../router";
 
 const props = defineProps<{
@@ -67,6 +68,8 @@ const {
 provide("closeMenu", {
   closeMenu,
 });
+
+const userData = useUserData();
 
 const dropMenuMobileActivity = ref<boolean>(false);
 const dropMenuDesctopActivity = ref<boolean>(false);
@@ -138,6 +141,7 @@ function selectOption(isDropMenu?: boolean) {
     signOut(auth)
       .then(() => {
         userLoggedOut();
+        userData.resetUserData();
       })
       .catch((error) => {
         console.log("error");

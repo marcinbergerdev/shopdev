@@ -31,7 +31,10 @@
     </div>
 
     <Teleport to="body">
-      <BaseLoadingSpinner mode="authLoadingSpinner" v-if="auth.isLoadingSpinner"></BaseLoadingSpinner>
+      <BaseLoadingSpinner
+        mode="authLoadingSpinner"
+        v-if="authUser.isLoadingSpinner"
+      ></BaseLoadingSpinner>
       <AlertAuth v-else></AlertAuth>
     </Teleport>
   </div>
@@ -46,9 +49,9 @@ import { useUserAuthentication } from "../../stores/auth/userAuthentication";
 const email = ref<string>("");
 const password = ref<string>("");
 
-const auth = useUserAuthentication();
+const authUser = useUserAuthentication();
 const userSignIn = () => {
-  auth.userAuth('login', email.value, password.value);
+  authUser.userAuth("login", email.value, password.value);
 };
 
 onMounted(() => {
