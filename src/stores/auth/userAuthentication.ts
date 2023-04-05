@@ -5,15 +5,15 @@ import {
    onAuthStateChanged,
    signInWithEmailAndPassword,
    createUserWithEmailAndPassword,
+   updateProfile,
+   updateEmail,
+   updatePassword,
    deleteUser,
 } from "firebase/auth";
-import { useUserData } from "./userData";
 import router from "../../router";
 import { ref } from "vue";
 
-const userData = useUserData();
 const auth = getAuth();
-const user = auth.currentUser;
 
 export const useUserAuthentication = defineStore("userAuthentication", () => {
    const isModal = ref<boolean>(false);
@@ -43,15 +43,8 @@ export const useUserAuthentication = defineStore("userAuthentication", () => {
 
    const userRegistration = async (email: string, password: string) => {
       await createUserWithEmailAndPassword(auth, email, password)
-         .then((currentUser: any) => {
-            const name = currentUser.user.email.split("@")[0];
-
+         .then(() => {
             isModal.value = true;
-            userData.writeUserData(
-               currentUser.user.uid,
-               name,
-               currentUser.user.email
-            );
          })
          .catch((error) => {
             isError.value = error.code;
@@ -84,6 +77,43 @@ export const useUserAuthentication = defineStore("userAuthentication", () => {
       });
    }
 
+   function changeUserName(name: string) {
+      updateProfile(auth.currentUser as User, {
+         displayName: name,
+      })
+         .then(() => {
+            router.replace("/shop");
+         })
+         .catch((error) => {
+            console.log(error);
+         });
+      console.log("userName");
+        
+
+   }
+
+   function changeUserEmailAddress() {
+      // updateEmail(auth.currentUser, "user@example.com").then(() => {
+      //    // Email updated!
+      //    // ...
+      //  }).catch((error) => {
+      //    // An error occurred
+      //    // ...
+      //  });
+      console.log("userEmail");
+   }
+
+   function changeUserPassword() {
+      /*     updatePassword(user, newPassword).then(() => {
+         // Update successful.
+       }).catch((error) => {
+         // An error ocurred
+         // ...
+       }); */
+
+      console.log("userPassword");
+   }
+
    return {
       isModal,
       isError,
@@ -92,6 +122,9 @@ export const useUserAuthentication = defineStore("userAuthentication", () => {
       userSignIn,
       userRegistration,
       userRedirectionHandler,
+      changeUserName,
       deleteAccount,
+      changeUserEmailAddress,
+      changeUserPassword,
    };
 });

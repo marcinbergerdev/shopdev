@@ -19,7 +19,7 @@
           <h4 class="dataBox__title">Nazwa Użytkownika</h4>
 
           <div class="dataBox__data">
-            <span class="dataBox__data-value">{{ user.userData.username }}</span>
+            <span class="dataBox__data-value">{{ showName }}</span>
             <BaseButton mode="edit" @click="showModal('userName')">Zmień</BaseButton>
           </div>
         </div>
@@ -28,7 +28,7 @@
           <h4 class="dataBox__title">Adres e-mail</h4>
 
           <div class="dataBox__data">
-            <span class="dataBox__data-value">{{ user.userData.email }}</span>
+            <span class="dataBox__data-value">{{ showEmail }}</span>
             <BaseButton mode="edit" @click="showModal('email')">Zmień</BaseButton>
           </div>
         </div>
@@ -58,17 +58,25 @@
 
 <script setup lang="ts">
 import UserSettingsForm from "./UserSettingsForm.vue";
-import { useUserData } from "../../../stores/auth/userData";
 import { useUserAuthentication } from "../../../stores/auth/userAuthentication";
-import router from "../../../router";
-import { ref } from "vue";
+import { ref, computed } from "vue";
+import { getAuth } from "firebase/auth";
 
-const user = useUserData();
-const auth = useUserAuthentication();
+const auth = getAuth();
+const user = auth.currentUser;
+
+const authData = useUserAuthentication();
 
 const isModal = ref(false);
 const selectedModal = ref("");
 const isLoadingSpinner = ref(false);
+
+const showName = computed(() => {
+  return !!user?.displayName ? user.displayName : user?.email?.split("@")[0];
+});
+const showEmail = computed(() => {
+  return user?.email;
+});
 
 function showModal(data: string) {
   isModal.value = true;
@@ -83,7 +91,7 @@ function closeModal() {
 }
 
 function deleteAccount() {
-  auth.deleteAccount();
+  authData.deleteAccount();
 }
 </script>
 

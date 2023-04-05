@@ -8,20 +8,20 @@
     >
       <template #default>
         <div class="modalTitle">
-          <h2 v-if="isTitle === 'userName'">Nazwa użytkownika</h2>
-          <h2 v-else-if="isTitle === 'email'">Zmień adres e-mail</h2>
+          <h2 v-if="props.isTitle === 'userName'">Nazwa użytkownika</h2>
+          <h2 v-else-if="props.isTitle === 'email'">Zmień adres e-mail</h2>
           <h2 v-else>Zmień hasło</h2>
         </div>
       </template>
 
       <template #content>
         <form @submit.prevent="changeData">
-          <div class="userForm" v-if="isTitle === 'userName'">
-            <input type="text" placeholder="Imię" />
-            <input type="text" placeholder="Nazwisko" />
+          <div class="userForm" v-if="props.isTitle === 'userName'">
+            <input type="text" placeholder="Imię" v-model="firstName" />
+            <input type="text" placeholder="Nazwisko" v-model="lastName" />
           </div>
 
-          <div class="userForm" v-else-if="isTitle === 'email'">
+          <div class="userForm" v-else-if="props.isTitle === 'email'">
             <input type="text" placeholder="Nowy e-mail" />
             <div class="userForm__passwordVisibility">
               <input type="password" placeholder="Potwiedź hasłem" />
@@ -62,9 +62,10 @@
 </template>
 
 <script setup lang="ts">
-// import { ref, computed } from "vue";
+import { useUserAuthentication } from "../../../stores/auth/userAuthentication";
+import { ref } from "vue";
 
-defineProps<{
+const props = defineProps<{
   isModal: boolean;
   isTitle?: string;
 }>();
@@ -73,8 +74,19 @@ const emit = defineEmits<{
   (e: "close"): void;
 }>();
 
+const auth = useUserAuthentication();
+
+const firstName = ref("");
+const lastName = ref("");
+
 function changeData() {
-  console.log("asdas");
+  if (props.isTitle === "userName") {
+    auth.changeUserName(`${firstName.value} ${lastName.value}`);
+  } else if (props.isTitle === "email") {
+    auth.changeUserEmailAddress();
+  } else {
+    auth.changeUserPassword();
+  }
 }
 
 function showPassword(event: any) {

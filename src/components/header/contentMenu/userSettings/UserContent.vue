@@ -1,7 +1,7 @@
 <template>
   <header class="userData">
     <h2 class="userData__title">Welcome</h2>
-    <span class="userData__nick">{{ user.userData.username }}</span>
+    <span class="userData__nick">{{ showName }}</span>
   </header>
 
   <ul class="userList">
@@ -22,10 +22,9 @@
 </template>
 
 <script setup lang="ts">
-import { useUserData } from "../../../../stores/auth/userData";
 import { getAuth, signOut } from "firebase/auth";
 import router from "../../../../router";
-import { ref, inject } from "vue";
+import { ref, computed, inject } from "vue";
 
 const { closeMenu } = inject("closeMenu") as any;
 
@@ -47,17 +46,20 @@ const userOption = ref([
   },
 ]);
 
-const user = useUserData();
+const auth = getAuth();
+const user = auth.currentUser;
+
+const showName = computed(() => {
+  return !!user?.displayName ? user.displayName : user?.email?.split("@")[0];
+});
 
 function userLogout() {
-  const auth = getAuth();
   signOut(auth)
     .then(() => {
       userLoggedOut();
-      user.resetUserData();
     })
     .catch((error) => {
-      console.log("error");
+      console.log(error);
     });
 }
 
