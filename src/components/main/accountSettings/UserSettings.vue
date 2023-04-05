@@ -49,7 +49,8 @@
           dane. Upewnij się, że chcesz usunąć konto - Niestety nie będziemy mogli go
           przywrócic.
         </p>
-        <BaseButton mode="deleteAccount">Usuń konto</BaseButton>
+
+        <BaseButton mode="deleteAccount" @click="deleteAccount">Usuń konto</BaseButton>
       </article>
     </div>
   </section>
@@ -58,9 +59,12 @@
 <script setup lang="ts">
 import UserSettingsForm from "./UserSettingsForm.vue";
 import { useUserData } from "../../../stores/auth/userData";
+import { useUserAuthentication } from "../../../stores/auth/userAuthentication";
+import router from "../../../router";
 import { ref } from "vue";
 
 const user = useUserData();
+const auth = useUserAuthentication();
 
 const isModal = ref(false);
 const selectedModal = ref("");
@@ -76,6 +80,10 @@ function closeModal() {
   isModal.value = false;
   document.body.classList.remove("scrollHidden");
   selectedModal.value = "";
+}
+
+function deleteAccount() {
+  auth.deleteAccount();
 }
 </script>
 

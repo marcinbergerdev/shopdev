@@ -1,15 +1,19 @@
 import { defineStore } from "pinia";
 import {
+   User,
    getAuth,
+   onAuthStateChanged,
    signInWithEmailAndPassword,
    createUserWithEmailAndPassword,
+   deleteUser,
 } from "firebase/auth";
 import { useUserData } from "./userData";
 import router from "../../router";
 import { ref } from "vue";
 
-const user = useUserData();
+const userData = useUserData();
 const auth = getAuth();
+const user = auth.currentUser;
 
 export const useUserAuthentication = defineStore("userAuthentication", () => {
    const isModal = ref<boolean>(false);
@@ -43,7 +47,7 @@ export const useUserAuthentication = defineStore("userAuthentication", () => {
             const name = currentUser.user.email.split("@")[0];
 
             isModal.value = true;
-            user.writeUserData(
+            userData.writeUserData(
                currentUser.user.uid,
                name,
                currentUser.user.email
@@ -66,6 +70,20 @@ export const useUserAuthentication = defineStore("userAuthentication", () => {
       router.replace("/shop");
    };
 
+   function deleteAccount() {
+      onAuthStateChanged(auth, (user: User | null) => {
+         if (user) {
+            deleteUser(user)
+               .then(() => {
+                  router.replace("/shop");
+               })
+               .catch((error) => {
+                  console.log(error);
+               });
+         }
+      });
+   }
+
    return {
       isModal,
       isError,
@@ -74,5 +92,6 @@ export const useUserAuthentication = defineStore("userAuthentication", () => {
       userSignIn,
       userRegistration,
       userRedirectionHandler,
+      deleteAccount,
    };
 });
