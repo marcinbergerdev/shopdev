@@ -22,13 +22,7 @@
           </div>
 
           <div class="userForm" v-else-if="props.isTitle === 'email'">
-            <input type="text" placeholder="Nowy e-mail" />
-            <div class="userForm__passwordVisibility">
-              <input type="password" placeholder="Potwiedź hasłem" />
-              <BaseButton mode="showUserPassword" @click.prevent="showPassword"
-                >Pokaż</BaseButton
-              >
-            </div>
+            <input type="text" placeholder="Nowy e-mail" v-model="newEmail" />
           </div>
 
           <div class="userForm" v-else>
@@ -76,14 +70,15 @@ const emit = defineEmits<{
 
 const auth = useUserAuthentication();
 
-const firstName = ref("");
-const lastName = ref("");
+const firstName = ref<string>("");
+const lastName = ref<string>("");
+const newEmail = ref<string>("");
 
 function changeData() {
   if (props.isTitle === "userName") {
     auth.changeUserName(`${firstName.value} ${lastName.value}`);
   } else if (props.isTitle === "email") {
-    auth.changeUserEmailAddress();
+    auth.changeUserEmailAddress(newEmail.value);
   } else {
     auth.changeUserPassword();
   }

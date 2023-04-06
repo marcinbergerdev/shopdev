@@ -15,7 +15,6 @@ import BaseMenu from "./cards/BaseMenu.vue";
 import BaseProduct from "./cards/BaseProduct.vue";
 import BaseModal from "./cards/BaseModal.vue";
 import BaseOrder from "./cards/BaseOrder.vue";
-import BaseForm from "./cards/BaseForm.vue";
 import BaseLoadingSpinner from "./cards/BaseLoadingSpinner.vue";
 
 import router from "./router.js";
@@ -31,7 +30,8 @@ const firebaseConfig = {
    storageBucket: "shopex-dev-8067f.appspot.com",
    messagingSenderId: "333074929940",
    appId: "1:333074929940:web:07c91efdcd5d9035a20a01",
-   databaseURL: "https://shopex-dev-8067f-default-rtdb.europe-west1.firebasedatabase.app/",
+   databaseURL:
+      "https://shopex-dev-8067f-default-rtdb.europe-west1.firebasedatabase.app/",
 };
 
 // Initialize Firebase
@@ -44,7 +44,6 @@ app.component("BaseMenu", BaseMenu);
 app.component("BaseProduct", BaseProduct);
 app.component("BaseModal", BaseModal);
 app.component("BaseOrder", BaseOrder);
-app.component("BaseForm", BaseForm);
 app.component("BaseLoadingSpinner", BaseLoadingSpinner);
 
 app.use(router);

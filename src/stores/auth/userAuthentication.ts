@@ -77,29 +77,27 @@ export const useUserAuthentication = defineStore("userAuthentication", () => {
       });
    }
 
-   function changeUserName(name: string) {
-      updateProfile(auth.currentUser as User, {
+   async function changeUserName(name: string) {
+      await updateProfile(auth.currentUser as User, {
          displayName: name,
       })
          .then(() => {
             router.replace("/shop");
          })
          .catch((error) => {
-            console.log(error);
+            console.log(error.message);
          });
       console.log("userName");
-        
-
    }
 
-   function changeUserEmailAddress() {
-      // updateEmail(auth.currentUser, "user@example.com").then(() => {
-      //    // Email updated!
-      //    // ...
-      //  }).catch((error) => {
-      //    // An error occurred
-      //    // ...
-      //  });
+   function changeUserEmailAddress(newEmail: string) {
+      updateEmail(auth.currentUser as User, newEmail)
+         .then(() => {
+            router.replace("/shop");
+         })
+         .catch((error) => {
+            console.log(error.message);
+         });
       console.log("userEmail");
    }
 
