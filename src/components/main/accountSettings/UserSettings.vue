@@ -37,7 +37,7 @@
           <h4 class="dataBox__title">Hasło</h4>
 
           <div class="dataBox__data">
-            <span class="dataBox__data-value userPassword">kowalski1234</span>
+            <span class="dataBox__data-value userPassword">*********</span>
             <BaseButton mode="edit" @click="showModal('password')">Zmień</BaseButton>
           </div>
         </div>

@@ -101,15 +101,27 @@ export const useUserAuthentication = defineStore("userAuthentication", () => {
       console.log("userEmail");
    }
 
-   function changeUserPassword() {
-      /*     updatePassword(user, newPassword).then(() => {
-         // Update successful.
-       }).catch((error) => {
-         // An error ocurred
-         // ...
-       }); */
+   async function changeUserPassword(newPassword: string) {
+      interface Status {
+         modal: boolean;
+         error: string;
+      }
 
-      console.log("userPassword");
+      const status: Status = {
+         modal: false,
+         error: "",
+      };
+
+      await updatePassword(auth.currentUser as User, newPassword)
+         .then(() => {
+            status.modal = true;
+         })
+         .catch((error) => {
+            status.modal = false;
+            status.modal = error.message;
+         });
+
+      return status;
    }
 
    return {

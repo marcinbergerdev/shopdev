@@ -18,6 +18,7 @@
           name="password"
           placeholder="qwerty"
           validation="required|length:6"
+          autocomplete="password"
           :validation-messages="{
             length: 'Try to make your password longer min 6!',
           }"
@@ -27,6 +28,7 @@
           name="password_confirm"
           placeholder="qwerty"
           validation="required|confirm"
+          autocomplete="confirm-password"
           :validation-messages="{
             length: 'Try to make your password longer min 6!',
           }"

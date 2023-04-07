@@ -16,6 +16,7 @@
           name="password"
           placeholder="qwerty"
           validation="required|length:6"
+          autocomplete="current-password"
           :validation-messages="{
             length: 'Try to make your password longer min 6!',
           }"
