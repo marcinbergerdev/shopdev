@@ -117,8 +117,8 @@ export const useUserAuthentication = defineStore("userAuthentication", () => {
             status.modal = true;
          })
          .catch((error) => {
-            status.modal = false;
-            status.modal = error.message;
+            status.modal = true;
+            status.error = error.message;
          });
 
       return status;

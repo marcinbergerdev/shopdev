@@ -68,20 +68,18 @@
       :isHeaderCloseButton="false"
     >
       <template #default>
-        <h2 class="titleModal successAuth" v-if="isCorrectPassword && !!isReturnStatus">
+        <h2 class="titleModal" :class="authTitle">
           {{ isReturnStatus }}
         </h2>
-        <h2 class="titleModal wrongAuth" v-else>{{ isReturnStatus }}</h2>
       </template>
 
       <template #content>
-        <div class="successContentAuth" v-if="isCorrectPassword">
+        <div class="successContentAuth" v-if="!isErrorStatus">
           <Icon class="iconAuth iconAuthSuccess" icon="clarity:success-standard-line" />
         </div>
 
         <div class="wrongContentAuth" v-else>
           <Icon class="iconAuth iconAuthWrong" icon="fluent:error-circle-20-regular" />
-          <p class="wrongContentAuth__description">{{ auth.isError }}</p>
         </div>
       </template>
 
@@ -110,8 +108,12 @@ const emit = defineEmits<{
   (e: "close"): void;
 }>();
 
+const authTitle = computed<string>(() => {
+  return !!isErrorStatus.value ? "wrongAuth" : "successAuth";
+});
+
 const continueStatus = computed<string>(() => {
-  return !isCorrectPassword.value
+  return !!isErrorStatus.value
     ? "authErrorContinueHandler"
     : "authSuccessContinueHandler";
 });
@@ -120,6 +122,7 @@ const auth = useUserAuthentication();
 
 const isReturnStatus = ref<string>("");
 const isError = ref<boolean>(false);
+const isErrorStatus = ref<string>("");
 const isCorrectPassword = ref<boolean>(false);
 
 const firstName = ref<string>("");
@@ -155,6 +158,7 @@ async function changePassword() {
     }
 
     isCorrectPassword.value = modal;
+    isErrorStatus.value = error;
     isError.value = false;
     return;
   }
@@ -238,13 +242,6 @@ function showPassword(event: any) {
 .wrongContentAuth {
   text-align: center;
   border-radius: 45px 45px 0 0;
-}
-
-.wrongContentAuth {
-  &__description {
-    margin-top: 2rem;
-    font-size: 1.3rem;
-  }
 }
 
 .iconAuthSuccess {
