@@ -10,7 +10,12 @@
       <section class="productPrise">
         <span class="productPrise__amount"> {{ price?.toFixed(2) }}zł</span>
         <BaseButton mode="favorite" @click="addToFavoriteHandler">
-          <Icon class="productPrise__favorite" v-if="favorite" icon="ph:heart-fill" />
+          <Icon
+            class="productPrise__favorite"
+            :class="favoriteAdded"
+            v-if="favorite"
+            icon="ph:heart-fill"
+          />
         </BaseButton>
       </section>
 
@@ -40,6 +45,8 @@
 import { useUserFavorite } from "../stores/orders/userFavorite";
 import { getAuth } from "firebase/auth";
 
+import { ref, computed } from "vue";
+
 const props = defineProps<{
   view: string;
   id?: number;
@@ -54,16 +61,22 @@ const props = defineProps<{
   productInaccessible?: boolean;
   cartIcon?: boolean;
 }>();
-
 const { id, category, img, price, title, description } = props;
+
+const favoriteAdded = computed(() => {
+  return { favoriteAdded: isProductAdded.value };
+});
 
 const favorites = useUserFavorite();
 const auth = getAuth();
 
+const isProductAdded = ref<boolean>(false);
+
 const addToFavoriteHandler = () => {
   const user = auth.currentUser;
 
-  if (user) {
+  if (user && !isProductAdded.value) {
+    isProductAdded.value = true;
     favorites.writeNewPost(user.uid, id, category, img, price, title, description);
   }
 };
@@ -276,5 +289,11 @@ const addToFavoriteHandler = () => {
       -webkit-line-clamp: 3;
     }
   }
+}
+
+.favoriteAdded {
+  color: #d5446d;
+  transition: 0.2s ease-in-out;
+  cursor: pointer;
 }
 </style>

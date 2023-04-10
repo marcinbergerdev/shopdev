@@ -397,7 +397,7 @@ button {
     }
   }
 }
-.authErrorContinueHandler{
+.authErrorContinueHandler {
   color: var(--secondary-darkRed);
   border: 1px solid var(--secondary-darkRed);
 
