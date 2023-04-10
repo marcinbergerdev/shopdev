@@ -37,6 +37,9 @@
 </template>
 
 <script setup lang="ts">
+import { getDatabase, ref, child, push, update } from "firebase/database";
+import { getAuth } from "firebase/auth";
+
 const props = defineProps<{
   view: string;
   id?: number;
@@ -54,17 +57,46 @@ const props = defineProps<{
 
 const { id, category, img, price, title, description } = props;
 
-const addToFavoriteHandler = () => {
-  console.log(id);
-  console.log(category);
-  console.log(img);
-  console.log(price);
-  console.log(title);
-  console.log(description);
+const auth = getAuth();
 
-  // te informajce musisz wysłać do dany bazych i je zapisać
-  // po czym z bazy danych przesłąć w momencie klikniecia na ulubione
+const addToFavoriteHandler = () => {
+  const user = auth.currentUser;
+
+  if (user) {
+    writeNewPost(user.uid, id, category, img, price, title, description);
+  }
 };
+
+function writeNewPost(
+  userId: string,
+  id?: number,
+  categories?: string,
+  img?: string,
+  price?: number,
+  title?: string,
+  description?: string
+) {
+  const db = getDatabase();
+
+  // A post entry.
+  const postData = {
+    id: id,
+    categories: categories,
+    img: img,
+    price: price,
+    title: title,
+    description: description,
+  };
+
+  // Get a key for a new Post.
+  const newPostKey = push(child(ref(db), "posts")).key;
+
+  // Write the new post's data simultaneously in the posts list and the user's post list.
+  const updates: any = {};
+  updates["/users/" + userId + "/favoriteProduct/" + newPostKey] = postData;
+
+  return update(ref(db), updates);
+}
 </script>
 
 <style lang="scss" scoped>

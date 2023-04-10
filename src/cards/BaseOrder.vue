@@ -3,7 +3,7 @@
     <img loading="lazy" class="orderImage" :src="img" alt="product-foto" />
 
     <section :class="mode">
-      <h3 class="title">{{ name }}</h3>
+      <h3 class="title">{{ title }}</h3>
 
       <select id="myAmounts" class="amount">
         <option value="1">1 szt.</option>
@@ -29,7 +29,7 @@
           <Icon class="icon" icon="ph:heart-fill" />
         </BaseButton>
 
-        <BaseButton mode="deleteProduct">
+        <BaseButton mode="deleteProduct" @click="removeProduct">
           <Icon class="icon" icon="bi:trash" />
         </BaseButton>
       </div>
@@ -43,13 +43,15 @@ defineProps<{
   mode: string;
   id: number;
   img: string;
-  name: string;
-  amount: boolean;
+  title: string;
+  amount?: boolean;
   price: number;
-  deleteButton: boolean;
+  deleteButton?: boolean;
   isCart?: boolean;
   isFavorite?: boolean;
 }>();
+
+function removeProduct() {}
 </script>
 
 <style scoped lang="scss">

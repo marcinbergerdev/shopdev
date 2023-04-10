@@ -23,8 +23,8 @@
         :key="favorite.id"
         :id="favorite.id"
         :img="favorite.img"
-        :name="favorite.name"
-        :amount="favorite.amount"
+        :title="favorite.title"
+        :amount="false"
         :price="favorite.price"
         :delete-button="favorite.deleteButton"
         :is-cart="true"
@@ -61,9 +61,12 @@
 import UserOrdersEmptyList from "../userOrders/UserOrdersEmptyList.vue";
 import CartOrderHeader from "../../header/contentMenu/cartContent/CartOrderHeader.vue";
 import { useUserFavorite } from "../../../stores/orders/userFavorite";
-import { ref } from "vue";
-const favorites = useUserFavorite();
+import { onMounted, ref } from "vue";
 
+import { getAuth } from "firebase/auth";
+
+const auth = getAuth();
+const favorites = useUserFavorite();
 const isModal = ref(false);
 
 function showModal() {
@@ -73,6 +76,13 @@ function showModal() {
 function closeModal() {
   isModal.value = false;
 }
+
+onMounted(() => {
+  const user = auth.currentUser;
+  if (user) {
+    favorites.getUserFavoriteProducts(user.uid);
+  }
+});
 </script>
 
 <style scoped lang="scss">
