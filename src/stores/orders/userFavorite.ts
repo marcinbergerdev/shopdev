@@ -4,6 +4,8 @@ import {
    ref as firebaseRef,
    child,
    get,
+   push,
+   update,
    remove,
 } from "firebase/database";
 import { ref, computed } from "vue";
@@ -28,6 +30,37 @@ export const useUserFavorite = defineStore("userFavorite", () => {
          });
    }
 
+   function writeNewPost(
+      userId: string,
+      id?: number,
+      categories?: string,
+      img?: string,
+      price?: number,
+      title?: string,
+      description?: string
+   ) {
+      const db = getDatabase();
+
+      // A post entry.
+      const postData = {
+         id: id,
+         categories: categories,
+         img: img,
+         price: price,
+         title: title,
+         description: description,
+      };
+
+      // Get a key for a new Post.
+      const newPostKey = push(child(firebaseRef(db), "posts")).key;
+
+      // Write the new post's data simultaneously in the posts list and the user's post list.
+      const updates: any = {};
+      updates["/users/" + userId + "/favoriteProduct/" + newPostKey] = postData;
+
+      return update(firebaseRef(db), updates);
+   }
+
    async function removeProductFromFavoriteList(
       userId: string,
       productId: string
@@ -50,6 +83,7 @@ export const useUserFavorite = defineStore("userFavorite", () => {
    return {
       userFavorite,
       getUserFavoriteProducts,
+      writeNewPost,
       removeProductFromFavoriteList,
       isEmpty,
    };
