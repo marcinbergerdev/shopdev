@@ -19,8 +19,9 @@
       <BaseOrder
         display="orderItemDesctop"
         mode="orderProductDesctop"
-        v-for="favorite in favorites.userOrders"
-        :key="favorite.id"
+        v-for="(favorite, id) in favorites.userFavorite"
+        :key="id"
+        :product-id="id"
         :id="favorite.id"
         :img="favorite.img"
         :title="favorite.title"
@@ -77,10 +78,11 @@ function closeModal() {
   isModal.value = false;
 }
 
-onMounted(() => {
+onMounted(async () => {
   const user = auth.currentUser;
+
   if (user) {
-    favorites.getUserFavoriteProducts(user.uid);
+    await favorites.getUserFavoriteProducts(user.uid);
   }
 });
 </script>

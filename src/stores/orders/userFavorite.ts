@@ -1,19 +1,24 @@
 import { defineStore } from "pinia";
-import { getDatabase, ref as firebaseRef, child, get } from "firebase/database";
+import {
+   getDatabase,
+   ref as firebaseRef,
+   child,
+   get,
+   remove,
+} from "firebase/database";
 import { ref, computed } from "vue";
 import Orders from "../../../types/userOrders";
 
 export const useUserFavorite = defineStore("userFavorite", () => {
-   const favorite = ref<Orders[]>([]);
+   const userFavorite = ref<Orders[]>([]);
 
-   function getUserFavoriteProducts(userId: string) {
+   async function getUserFavoriteProducts(userId: string) {
       const dbRef = firebaseRef(getDatabase());
 
-      get(child(dbRef, `users/${userId}/favoriteProduct`))
+      await get(child(dbRef, `users/${userId}/favoriteProduct`))
          .then((snapshot) => {
             if (snapshot.exists()) {
-               favorite.value = snapshot.val();
-               console.log(snapshot.val());
+               userFavorite.value = snapshot.val();
             } else {
                console.log("No data available");
             }
@@ -23,7 +28,29 @@ export const useUserFavorite = defineStore("userFavorite", () => {
          });
    }
 
-   const isEmpty = computed(() => (favorite.value.length === 0 ? true : false));
-   const userOrders = computed(() => favorite.value);
-   return { userOrders, getUserFavoriteProducts ,isEmpty };
+   async function removeProductFromFavoriteList(
+      userId: string,
+      productId: string
+   ) {
+      const db = getDatabase();
+      await remove(
+         firebaseRef(db, "users/" + userId + "/favoriteProduct/" + productId)
+      )
+         .then(() => {
+            location.reload();
+         })
+         .catch((error) => {
+            console.log(error.message);
+         });
+   }
+
+   const isEmpty = computed(() =>
+      userFavorite.value.length === 0 ? true : false
+   );
+   return {
+      userFavorite,
+      getUserFavoriteProducts,
+      removeProductFromFavoriteList,
+      isEmpty,
+   };
 });

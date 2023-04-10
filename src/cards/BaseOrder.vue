@@ -38,9 +38,13 @@
 </template>
 
 <script setup lang="ts">
-defineProps<{
+import { useUserFavorite } from "../stores/orders/userFavorite";
+import { getAuth } from "firebase/auth";
+
+const props = defineProps<{
   display: string;
   mode: string;
+  productId: string;
   id: number;
   img: string;
   title: string;
@@ -50,8 +54,18 @@ defineProps<{
   isCart?: boolean;
   isFavorite?: boolean;
 }>();
+const { productId } = props;
 
-function removeProduct() {}
+const favorites = useUserFavorite();
+const auth = getAuth();
+
+async function removeProduct() {
+  const user = auth.currentUser;
+
+  if (user) {
+    await favorites.removeProductFromFavoriteList(user.uid, productId);
+  }
+}
 </script>
 
 <style scoped lang="scss">
