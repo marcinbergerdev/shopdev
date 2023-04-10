@@ -1,7 +1,7 @@
 <template>
   <div class="productsListContainer">
     <HalfCircleSpinner
-      v-if="isLoadingSpinner"
+      v-if="products.isLoadingSpinner"
       class="loadingSpinner"
       :animation-duration="1000"
       :size="60"
@@ -27,7 +27,7 @@
     </ul>
 
     <PaginationList
-      v-if="!isLoadingSpinner"
+      v-if="!products.isLoadingSpinner"
       :number-of-buttons="buttonsPaginationAmount"
       :current-page="currentPage"
       @page-back="decreasePageHandler(productsAmount)"
@@ -40,12 +40,9 @@
 import { HalfCircleSpinner } from "epic-spinners";
 import PaginationList from "./PaginationList.vue";
 import { useProducts } from "../../../stores/products/products";
-import { useRoute } from "vue-router";
 import { ref, onMounted } from "vue";
 
-const route = useRoute();
 const products = useProducts();
-const isLoadingSpinner = ref<boolean>(false);
 
 const buttonsPaginationAmount = ref<number>(0);
 const currentPage = ref<number>(1);
@@ -73,21 +70,8 @@ function increasePageHandler(amount: number) {
   ++currentPage.value;
 }
 
-// this Api products is fetched from Fake Store and it is only for examples
 onMounted(async () => {
-  products.clearProductList();
-  isLoadingSpinner.value = true;
-
-  if (route.params.category && route.params.underCategory) {
-    await products.fetchProducts("/category/electronics");
-    setNumberOfButtons(products.products.length);
-    isLoadingSpinner.value = false;
-    return;
-  }
-
-  await products.fetchProducts("?limit=20");
   setNumberOfButtons(products.products.length);
-  isLoadingSpinner.value = false;
 });
 </script>
 

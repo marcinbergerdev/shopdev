@@ -5,8 +5,11 @@ import Product from "../../../types/product";
 
 export const useProducts = defineStore("products", () => {
    const fetchedProducts = ref<Array<Product>>([]);
+   const isLoadingSpinner = ref(false);
 
    async function fetchProducts(link?: string) {
+      isLoadingSpinner.value = true;
+
       try {
          const response = await axios.get(
             "https://fakestoreapi.com/products" + link
@@ -15,6 +18,8 @@ export const useProducts = defineStore("products", () => {
       } catch (error) {
          console.log(error);
       }
+
+      isLoadingSpinner.value = false;
    }
 
    function clearProductList() {
@@ -25,5 +30,5 @@ export const useProducts = defineStore("products", () => {
       return fetchedProducts.value;
    });
 
-   return { products, fetchProducts, clearProductList };
+   return { products, fetchProducts, isLoadingSpinner, clearProductList };
 });

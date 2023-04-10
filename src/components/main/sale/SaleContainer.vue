@@ -1,15 +1,19 @@
 <template>
   <article class="carouselContainer">
     <HalfCircleSpinner
-      v-if="isLoadingSpinner"
+      v-if="promotionProducts.isLoadingSpinner"
       class="loadingSpinner"
       :animation-duration="1000"
       :size="60"
       color="var(--primary-claret)"
     />
 
-    <Carousel :items-to-show="showProducts" :wrap-around="true" v-if="!isLoadingSpinner">
-      <Slide v-for="product in promotionProducts.products" :key="product.id">
+    <Carousel
+      :items-to-show="showProducts"
+      :wrap-around="true"
+      v-if="!promotionProducts.isLoadingSpinner"
+    >
+      <Slide v-for="product in promotionProducts.products.slice(0, 10)" :key="product.id">
         <BaseProduct
           view="promotionSize"
           :id="product.id"
@@ -40,8 +44,8 @@ import { Carousel, Slide, Pagination, Navigation } from "vue3-carousel";
 import { ref, onMounted, onUnmounted } from "vue";
 import { useProducts } from "../../../stores/products/products";
 
+const promotionProducts = useProducts();
 const showProducts = ref(5);
-const isLoadingSpinner = ref(false);
 
 function watchUserWidth() {
   showProducts.value = 1;
@@ -63,17 +67,9 @@ function watchUserWidth() {
   }
 }
 
-// get examples of products only for project
-const testProductsLinkApi = "?limit=10";
-const promotionProducts = useProducts();
-
 onMounted(async () => {
   watchUserWidth();
   window.addEventListener("resize", watchUserWidth);
-
-  isLoadingSpinner.value = true;
-  await promotionProducts.fetchProducts(testProductsLinkApi);
-  isLoadingSpinner.value = false;
 });
 
 onUnmounted(() => {

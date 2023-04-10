@@ -9,7 +9,7 @@
     <header class="productHeader">
       <section class="productPrise">
         <span class="productPrise__amount"> {{ price?.toFixed(2) }}zł</span>
-        <BaseButton mode="favorite">
+        <BaseButton mode="favorite" @click="addToFavoriteHandler">
           <Icon class="productPrise__favorite" v-if="favorite" icon="ph:heart-fill" />
         </BaseButton>
       </section>
@@ -37,7 +37,7 @@
 </template>
 
 <script setup lang="ts">
-defineProps<{
+const props = defineProps<{
   view: string;
   id?: number;
   category?: string;
@@ -51,6 +51,20 @@ defineProps<{
   productInaccessible?: boolean;
   cartIcon?: boolean;
 }>();
+
+const { id, category, img, price, title, description } = props;
+
+const addToFavoriteHandler = () => {
+  console.log(id);
+  console.log(category);
+  console.log(img);
+  console.log(price);
+  console.log(title);
+  console.log(description);
+
+  // te informajce musisz wysłać do dany bazych i je zapisać
+  // po czym z bazy danych przesłąć w momencie klikniecia na ulubione
+};
 </script>
 
 <style lang="scss" scoped>

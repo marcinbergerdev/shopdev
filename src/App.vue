@@ -3,7 +3,9 @@
 </template>
 
 <script setup lang="ts">
+import { onBeforeMount } from "vue";
 import { User, getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import { useProducts } from "./stores/products/products";
 
 const auth = getAuth();
 
@@ -47,6 +49,13 @@ onAuthStateChanged(auth, (user: User | null) => {
     setUserLoginTime();
     checkUserLoginStatus();
   }
+});
+
+// this Api products is fetched from Fake Store and it is only for examples
+const shopProducts = useProducts();
+onBeforeMount(() => {
+  shopProducts.clearProductList();
+  shopProducts.fetchProducts("?limit=20");
 });
 </script>
 
