@@ -33,7 +33,12 @@
           >Brak produktu</span
         >
 
-        <BaseButton mode="addToCart" v-if="cartIcon">
+        <BaseButton
+          mode="addToCart"
+          :class="cartAdded"
+          v-if="cartIcon"
+          @click="addToCartHandler"
+        >
           <Icon class="cartIcon" icon="carbon:shopping-cart-plus" />
         </BaseButton>
       </section>
@@ -50,9 +55,9 @@ import { ref, computed } from "vue";
 const props = defineProps<{
   view: string;
   id?: number;
-  category?: string;
   img?: string;
   price?: number;
+  category?: string;
   favorite?: boolean;
   title?: string;
   description?: string;
@@ -61,23 +66,54 @@ const props = defineProps<{
   productInaccessible?: boolean;
   cartIcon?: boolean;
 }>();
-const { id, category, img, price, title, description } = props;
+const { id, img, price, category, title, description } = props;
 
 const favoriteAdded = computed(() => {
-  return { favoriteAdded: isProductAdded.value };
+  return { addedToFavorite: isProductAddedFavorite.value };
+});
+const cartAdded = computed(() => {
+  return { addedToCart: isProductAddedCart.value };
 });
 
 const favorites = useUserFavorite();
 const auth = getAuth();
 
-const isProductAdded = ref<boolean>(false);
+const isProductAddedFavorite = ref<boolean>(false);
+const isProductAddedCart = ref<boolean>(false);
 
 const addToFavoriteHandler = () => {
   const user = auth.currentUser;
 
-  if (user && !isProductAdded.value) {
-    isProductAdded.value = true;
-    favorites.writeNewPost(user.uid, id, category, img, price, title, description);
+  if (user && !isProductAddedFavorite.value) {
+    isProductAddedFavorite.value = true;
+    favorites.writeNewPost(
+      "/favoriteProduct/",
+      user.uid,
+      id,
+      img,
+      category,
+      price,
+      title,
+      description
+    );
+  }
+};
+
+const addToCartHandler = () => {
+  const user = auth.currentUser;
+
+  if (user && !isProductAddedCart.value) {
+    isProductAddedCart.value = true;
+    favorites.writeNewPost(
+      "/userCart/",
+      user.uid,
+      id,
+      img,
+      category,
+      price,
+      title,
+      description
+    );
   }
 };
 </script>
@@ -291,9 +327,19 @@ const addToFavoriteHandler = () => {
   }
 }
 
-.favoriteAdded {
+.addedToFavorite {
   color: #d5446d;
   transition: 0.2s ease-in-out;
   cursor: pointer;
+}
+
+.addedToCart {
+  background-color: var(--secondary-superLightGreen);
+  transition: 0.2s ease-in-out;
+  cursor: pointer;
+
+  .cartIcon {
+    color: var(--white);
+  }
 }
 </style>

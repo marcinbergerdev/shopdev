@@ -21,7 +21,12 @@
       <span class="price">79,80zł</span>
 
       <div class="orderIconContainer">
-        <BaseButton mode="addToCart" v-if="isCart">
+        <BaseButton
+          mode="addToCart"
+          v-if="isCart"
+          :class="cartAdded"
+          @click="addToCartHandler"
+        >
           <Icon class="cartIcon" icon="carbon:shopping-cart-plus" />
         </BaseButton>
 
@@ -41,23 +46,33 @@
 import { useUserFavorite } from "../stores/orders/userFavorite";
 import { getAuth } from "firebase/auth";
 
+import { ref, computed } from "vue";
+
 const props = defineProps<{
   display: string;
   mode: string;
   productId: string;
   id: number;
   img: string;
+  category: string;
   title: string;
+  description: string;
   amount?: boolean;
-  price: number;
+  price?: number;
   deleteButton?: boolean;
   isCart?: boolean;
   isFavorite?: boolean;
 }>();
-const { productId } = props;
+const { productId, id, img, category, price, title, description } = props;
+
+const cartAdded = computed(() => {
+  return { addedToCart: isProductAddedCart.value };
+});
 
 const favorites = useUserFavorite();
 const auth = getAuth();
+
+const isProductAddedCart = ref<boolean>(false);
 
 async function removeProduct() {
   const user = auth.currentUser;
@@ -66,6 +81,24 @@ async function removeProduct() {
     await favorites.removeProductFromFavoriteList(user.uid, productId);
   }
 }
+
+const addToCartHandler = () => {
+  const user = auth.currentUser;
+
+  if (user && !isProductAddedCart.value) {
+    isProductAddedCart.value = true;
+    favorites.writeNewPost(
+      "/userCart/",
+      user.uid,
+      id,
+      img,
+      category,
+      price,
+      title,
+      description
+    );
+  }
+};
 </script>
 
 <style scoped lang="scss">
@@ -221,5 +254,15 @@ async function removeProduct() {
 
 .cartIcon {
   color: var(--secondary-superLightGreen);
+}
+
+.addedToCart {
+  background-color: var(--secondary-superLightGreen);
+  transition: 0.2s ease-in-out;
+  cursor: pointer;
+
+  .cartIcon {
+    color: var(--white);
+  }
 }
 </style>

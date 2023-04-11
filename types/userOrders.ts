@@ -6,6 +6,7 @@ interface Orders {
   amount: boolean;
   price: number;
   title: string;
+  description: string;
   deleteButton?: boolean;
 }
 

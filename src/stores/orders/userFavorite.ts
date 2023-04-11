@@ -31,10 +31,11 @@ export const useUserFavorite = defineStore("userFavorite", () => {
    }
 
    function writeNewPost(
+      dataPath: string,
       userId: string,
       id?: number,
-      categories?: string,
       img?: string,
+      categories?: string,
       price?: number,
       title?: string,
       description?: string
@@ -44,9 +45,9 @@ export const useUserFavorite = defineStore("userFavorite", () => {
       // A post entry.
       const postData = {
          id: id,
-         categories: categories,
          img: img,
          price: price,
+         categories: categories,
          title: title,
          description: description,
       };
@@ -56,7 +57,7 @@ export const useUserFavorite = defineStore("userFavorite", () => {
 
       // Write the new post's data simultaneously in the posts list and the user's post list.
       const updates: any = {};
-      updates["/users/" + userId + "/favoriteProduct/" + newPostKey] = postData;
+      updates["/users/" + userId + dataPath + newPostKey] = postData;
 
       return update(firebaseRef(db), updates);
    }

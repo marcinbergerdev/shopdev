@@ -21,11 +21,15 @@
       <BaseOrder
         display="orderWrapperHover"
         mode="orderDataHover"
-        v-for="order in orders.userOrders"
-        :key="order.id"
+        v-for="(order, id) in orders.userOrders"
+        :key="id"
+        :productId="id"
         :id="order.id"
         :img="order.img"
+        :category="order.categories"
         :name="order.name"
+        :title="order.title"
+        :description="order.description"
         :amount="order.amount"
         :price="order.price"
         :delete-button="order.deleteButton"
@@ -43,9 +47,10 @@
 import UserOrdersEmptyList from "../../../main/userOrders/UserOrdersEmptyList.vue";
 import CartOrderHeader from "./CartOrderHeader.vue";
 import CartOrderPrice from "./CartOrderPrice.vue";
-
 import { useUserOrders } from "../../../../stores/orders/userOrders";
-import { inject } from "vue";
+import { inject, onMounted } from "vue";
+
+import { getAuth } from "firebase/auth";
 
 const orders = useUserOrders();
 const { closeMenu } = inject("closeMenu") as any;
@@ -56,6 +61,15 @@ const editCloseMenu = (e: any) => {
     document.body.classList.remove("scrollHidden");
   }
 };
+
+const auth = getAuth();
+onMounted(async () => {
+  const user = auth.currentUser;
+
+  if (user) {
+    await orders.getUserCartProducts(user.uid);
+  }
+});
 </script>
 
 <style scoped lang="scss">
