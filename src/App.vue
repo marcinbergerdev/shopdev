@@ -9,21 +9,21 @@ import { useProducts } from "./stores/products/products";
 
 const auth = getAuth();
 
-function setUserLoginTime() {
-  const currentTime: string = String(Date.now());
-  localStorage.setItem("currentTime", currentTime);
-}
-
-function checkUserLoginStatus() {
-  const expirationTime: number = 3600; // 1h in seconds
+function checkUserLastLogin() {
   const currentTime: number = Date.now();
-  const lastLogin: number | null = Number(localStorage.getItem("currentTime"));
-  const residenceTime = (currentTime - lastLogin) / 1000;
+  const expirationTime: number = 3600; // time in seconds 1h
 
-  if (residenceTime >= expirationTime) {
-    autoLogout();
-    return;
+  if (!!localStorage.getItem("currentTime")) {
+    const lastLogin: number | null = Number(localStorage.getItem("currentTime"));
+    const residenceTime = (currentTime - lastLogin) / 1000;
+
+    if (residenceTime >= expirationTime) {
+      autoLogout();
+      return;
+    }
   }
+
+  localStorage.setItem("currentTime", String(currentTime));
 }
 
 function autoLogout() {
@@ -46,8 +46,7 @@ function autoLogoutCountdown() {
 onAuthStateChanged(auth, (user: User | null) => {
   if (user) {
     autoLogoutCountdown();
-    setUserLoginTime();
-    checkUserLoginStatus();
+    checkUserLastLogin();
   }
 });
 
