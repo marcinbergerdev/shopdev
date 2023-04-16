@@ -32,6 +32,7 @@
         :price="order.price"
         :delete-button="order.deleteButton"
         :is-Favorite="true"
+        category-type="userCart"
       ></BaseOrder>
     </ul>
 
@@ -78,12 +79,13 @@
 import CartOrderHeader from "../../header/contentMenu/cartContent/CartOrderHeader.vue";
 import CartOrderPrice from "../../header/contentMenu/cartContent/CartOrderPrice.vue";
 import UserOrdersEmptyList from "./UserOrdersEmptyList.vue";
-
-import { ref } from "vue";
 import { useUserOrders } from "../../../stores/orders/userOrders";
-const orders = useUserOrders();
+import { getAuth } from "firebase/auth";
+import { ref, onMounted } from "vue";
 
+const orders = useUserOrders();
 const isModal = ref(false);
+
 function showModal() {
   isModal.value = true;
 }
@@ -94,6 +96,15 @@ function closeModal() {
 function scrollPage() {
   window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
 }
+
+const auth = getAuth();
+onMounted(async () => {
+  const user = auth.currentUser;
+
+  if (user) {
+    await orders.getUserCartProducts(user.uid);
+  }
+});
 </script>
 
 <style scoped lang="scss">

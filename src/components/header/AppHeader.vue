@@ -12,7 +12,6 @@
 import NavigationList from "./nav/NavigationList.vue";
 import SearchContainer from "./search/SearchContainer.vue";
 import CategoryNavList from "../main/categories/CategoryNavList.vue";
-
 import { ref, computed, onMounted } from "vue";
 
 const emit = defineEmits<{

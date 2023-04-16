@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import { onBeforeMount } from "vue";
+import { onMounted } from "vue";
 import { User, getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { useProducts } from "./stores/products/products";
 
@@ -52,7 +52,7 @@ onAuthStateChanged(auth, (user: User | null) => {
 
 // this Api products is fetched from Fake Store and it is only for examples
 const shopProducts = useProducts();
-onBeforeMount(() => {
+onMounted(() => {
   shopProducts.clearProductList();
   shopProducts.fetchProducts("?limit=20");
 });

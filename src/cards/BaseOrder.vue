@@ -44,7 +44,8 @@
 
 <script setup lang="ts">
 import { useUserFavorite } from "../stores/orders/userFavorite";
-import { getAuth } from "firebase/auth";
+import { useUserOrders } from "../stores/orders/userOrders";
+import { User, getAuth } from "firebase/auth";
 
 import { ref, computed } from "vue";
 
@@ -62,23 +63,29 @@ const props = defineProps<{
   deleteButton?: boolean;
   isCart?: boolean;
   isFavorite?: boolean;
+  categoryType: string;
 }>();
-const { productId, id, img, category, price, title, description } = props;
+const { productId, id, img, category, price, title, description, categoryType } = props;
 
 const cartAdded = computed(() => {
   return { addedToCart: isProductAddedCart.value };
 });
 
 const favorites = useUserFavorite();
+const orders = useUserOrders();
 const auth = getAuth();
 
 const isProductAddedCart = ref<boolean>(false);
 
-async function removeProduct() {
-  const user = auth.currentUser;
+function removeProduct() {
+  const user: User | null = auth.currentUser;
 
   if (user) {
-    await favorites.removeProductFromFavoriteList(user.uid, productId);
+    if (categoryType === "favoriteProduct") {
+      favorites.removeProductFromFavoriteList(user.uid, productId);
+      return;
+    }
+    orders.removeProductFromOrdersList(user.uid, productId);
   }
 }
 

@@ -11,6 +11,8 @@
     <BaseButton link :to="path" :mode="view" :isMobileDisabled="isMobileDisabled">
       <Icon class="optionElement__icon" v-if="!hideIcon" :icon="icon" />
       <p class="optionElement__title">{{ title }}</p>
+
+      <span v-if="isAmount" class="navProductAmount">{{ productAmount }}</span>
     </BaseButton>
 
     <Teleport :to="sendMenuTo">
@@ -36,6 +38,9 @@
 <script setup lang="ts">
 import MenuContent from "../contentMenu/MenuContent.vue";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import { useUserFavorite } from "../../../stores/orders/userFavorite";
+import { useUserOrders } from "../../../stores/orders/userOrders";
+
 import { ref, computed, provide, onMounted, onUnmounted } from "vue";
 import router from "../../../router";
 
@@ -45,11 +50,13 @@ const props = defineProps<{
   icon?: string;
   name?: string;
   view: string;
+  productAmount: number;
   hoverPosition?: string;
   dropMenuPosition?: string;
   hideIcon?: boolean;
   isDropMenu?: boolean;
   isMobileDisabled?: string;
+  isAmount?: boolean;
 }>();
 const {
   path,
@@ -90,6 +97,13 @@ const hoverMenuPositionDesctop = computed<string | undefined>(() => {
   }
 });
 
+// const productsAmount = computed(() => {
+//   if (name === "favorite") {
+//     return Object.keys(favorite.userFavorite).length;
+//   }
+//   return Object.keys(orders.userOrders).length;
+// });
+
 const optionHover = computed<object>(() => {
   return { optionHover: isDropMenu };
 });
@@ -116,11 +130,24 @@ const userId = ref<string | null>(null);
 const tokenId = ref<string | null>(null);
 
 const auth = getAuth();
-onAuthStateChanged(auth, (user: any) => {
+const favorite = useUserFavorite();
+const orders = useUserOrders();
+const productAmount = ref<number>(0);
+
+onAuthStateChanged(auth, async (user: any) => {
   if (user) {
     userId.value = user.accessToken;
     tokenId.value = user.uid;
-    return;
+
+    if (name === "favorite") {
+      await favorite.getUserFavoriteProducts(user.uid);
+      productAmount.value = Object.keys(favorite.userFavorite).length;
+      return;
+    } else if (name === "cart") {
+      await orders.getUserCartProducts(user.uid);
+      productAmount.value = Object.keys(orders.userOrders).length;
+      return;
+    }
   }
 
   userId.value = null;
@@ -250,5 +277,15 @@ onUnmounted(() => window.removeEventListener("resize", resizeListener));
       border-radius: 0.6rem 0.6rem 0 0;
     }
   }
+}
+
+.navProductAmount {
+  position: absolute;
+  top: 0;
+  padding: 0.3rem 0.6rem;
+  font-size: 1rem;
+  color: var(--white);
+  background-color: var(--primary-claret);
+  border-radius: 50%;
 }
 </style>

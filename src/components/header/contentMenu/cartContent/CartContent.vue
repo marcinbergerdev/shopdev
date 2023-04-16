@@ -33,6 +33,7 @@
         :amount="order.amount"
         :price="order.price"
         :delete-button="order.deleteButton"
+        category-type="userCart"
       ></BaseOrder>
     </ul>
 

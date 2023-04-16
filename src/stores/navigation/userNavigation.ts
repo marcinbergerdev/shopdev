@@ -18,7 +18,9 @@ export const useUserNavigation = defineStore("userNavigation", () => {
          path: "/shop/favorite",
          title: "Ulubione",
          icon: "bi:heart",
+         name: "favorite",
          view: "navElement",
+         isAmount: true
       },
       {
          path: "/shop/cart",
@@ -30,6 +32,7 @@ export const useUserNavigation = defineStore("userNavigation", () => {
          dropMenuPosition: "dropMenuRight",
          isDropMenu: true,
          isMobileDisabled: "disabledLinkOnMobile",
+         isAmount: true
       },
       {
          path: "/login",
