@@ -67,6 +67,7 @@ function userLoggedOut() {
   window.scrollTo({ top: 0, left: 0 });
   router.replace("/shop");
   optionCloseMenu();
+  location.reload();
 }
 
 function optionCloseMenu() {

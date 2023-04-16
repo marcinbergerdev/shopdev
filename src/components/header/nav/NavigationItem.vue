@@ -12,7 +12,9 @@
       <Icon class="optionElement__icon" v-if="!hideIcon" :icon="icon" />
       <p class="optionElement__title">{{ title }}</p>
 
-      <span v-if="isAmount" class="navProductAmount">{{ productAmount }}</span>
+      <span v-if="isAmount && productsAmount > 0" class="navProductAmount">{{
+        productsAmount
+      }}</span>
     </BaseButton>
 
     <Teleport :to="sendMenuTo">
@@ -97,12 +99,12 @@ const hoverMenuPositionDesctop = computed<string | undefined>(() => {
   }
 });
 
-// const productsAmount = computed(() => {
-//   if (name === "favorite") {
-//     return Object.keys(favorite.userFavorite).length;
-//   }
-//   return Object.keys(orders.userOrders).length;
-// });
+const productsAmount = computed<number>(() => {
+  if (name === "favorite") {
+    return Object.keys(favorite.userFavorite).length;
+  }
+  return Object.keys(orders.userOrders).length;
+});
 
 const optionHover = computed<object>(() => {
   return { optionHover: isDropMenu };
@@ -132,7 +134,6 @@ const tokenId = ref<string | null>(null);
 const auth = getAuth();
 const favorite = useUserFavorite();
 const orders = useUserOrders();
-const productAmount = ref<number>(0);
 
 onAuthStateChanged(auth, async (user: any) => {
   if (user) {
@@ -141,13 +142,12 @@ onAuthStateChanged(auth, async (user: any) => {
 
     if (name === "favorite") {
       await favorite.getUserFavoriteProducts(user.uid);
-      productAmount.value = Object.keys(favorite.userFavorite).length;
       return;
     } else if (name === "cart") {
       await orders.getUserCartProducts(user.uid);
-      productAmount.value = Object.keys(orders.userOrders).length;
       return;
     }
+    return;
   }
 
   userId.value = null;
@@ -181,6 +181,7 @@ function userLoggedOut() {
   window.scrollTo({ top: 0, left: 0 });
   router.replace("/shop");
   closeMenu();
+  location.reload();
 }
 
 function leaveOption() {
@@ -252,6 +253,7 @@ onUnmounted(() => window.removeEventListener("resize", resizeListener));
 }
 
 .optionElement {
+  position: relative;
   padding: 0.5rem;
   text-align: center;
 

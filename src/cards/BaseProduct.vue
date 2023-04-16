@@ -48,6 +48,7 @@
 
 <script setup lang="ts">
 import { useUserFavorite } from "../stores/orders/userFavorite";
+import { useUserOrders } from "../stores/orders/userOrders";
 import { getAuth } from "firebase/auth";
 
 import { ref, computed } from "vue";
@@ -76,17 +77,18 @@ const cartAdded = computed(() => {
 });
 
 const favorites = useUserFavorite();
+const orders = useUserOrders();
 const auth = getAuth();
 
 const isProductAddedFavorite = ref<boolean>(false);
 const isProductAddedCart = ref<boolean>(false);
 
-const addToFavoriteHandler = () => {
+const addToFavoriteHandler = async () => {
   const user = auth.currentUser;
 
   if (user && !isProductAddedFavorite.value) {
     isProductAddedFavorite.value = true;
-    favorites.writeNewPost(
+    await favorites.writeNewPost(
       "/favoriteProduct/",
       user.uid,
       id,
@@ -96,15 +98,16 @@ const addToFavoriteHandler = () => {
       title,
       description
     );
+    await favorites.getUserFavoriteProducts(user.uid);
   }
 };
 
-const addToCartHandler = () => {
+const addToCartHandler = async () => {
   const user = auth.currentUser;
 
   if (user && !isProductAddedCart.value) {
     isProductAddedCart.value = true;
-    favorites.writeNewPost(
+    await favorites.writeNewPost(
       "/userCart/",
       user.uid,
       id,
@@ -114,6 +117,7 @@ const addToCartHandler = () => {
       title,
       description
     );
+    await orders.getUserCartProducts(user.uid);
   }
 };
 </script>

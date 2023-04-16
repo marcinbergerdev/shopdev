@@ -30,7 +30,12 @@
           <Icon class="cartIcon" icon="carbon:shopping-cart-plus" />
         </BaseButton>
 
-        <BaseButton mode="favorite" v-if="isFavorite">
+        <BaseButton
+          mode="favorite"
+          v-if="isFavorite"
+          :class="favoriteAdded"
+          @click="addToFavoriteHandler"
+        >
           <Icon class="icon" icon="ph:heart-fill" />
         </BaseButton>
 
@@ -60,7 +65,6 @@ const props = defineProps<{
   description: string;
   amount?: boolean;
   price?: number;
-  deleteButton?: boolean;
   isCart?: boolean;
   isFavorite?: boolean;
   categoryType: string;
@@ -71,11 +75,16 @@ const cartAdded = computed(() => {
   return { addedToCart: isProductAddedCart.value };
 });
 
+const favoriteAdded = computed(() => {
+  return { addedToFavorite: isProductAddedFavorite.value };
+});
+
 const favorites = useUserFavorite();
 const orders = useUserOrders();
 const auth = getAuth();
 
 const isProductAddedCart = ref<boolean>(false);
+const isProductAddedFavorite = ref<boolean>(false);
 
 function removeProduct() {
   const user: User | null = auth.currentUser;
@@ -89,12 +98,31 @@ function removeProduct() {
   }
 }
 
-const addToCartHandler = () => {
+const addToFavoriteHandler = async () => {
+  const user = auth.currentUser;
+
+  if (user && !isProductAddedFavorite.value) {
+    isProductAddedFavorite.value = true;
+    await favorites.writeNewPost(
+      "/favoriteProduct/",
+      user.uid,
+      id,
+      img,
+      category,
+      price,
+      title,
+      description
+    );
+    await favorites.getUserFavoriteProducts(user.uid);
+  }
+};
+
+const addToCartHandler = async () => {
   const user = auth.currentUser;
 
   if (user && !isProductAddedCart.value) {
     isProductAddedCart.value = true;
-    favorites.writeNewPost(
+    await favorites.writeNewPost(
       "/userCart/",
       user.uid,
       id,
@@ -104,6 +132,7 @@ const addToCartHandler = () => {
       title,
       description
     );
+    await orders.getUserCartProducts(user.uid);
   }
 };
 </script>
@@ -270,6 +299,12 @@ const addToCartHandler = () => {
 
   .cartIcon {
     color: var(--white);
+  }
+}
+
+.addedToFavorite {
+  .icon {
+    color: #d5446d;
   }
 }
 </style>
