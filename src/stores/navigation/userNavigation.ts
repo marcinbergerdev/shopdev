@@ -20,7 +20,7 @@ export const useUserNavigation = defineStore("userNavigation", () => {
          icon: "bi:heart",
          name: "favorite",
          view: "navElement",
-         isAmount: true
+         isAmount: true,
       },
       {
          path: "/shop/cart",
@@ -32,7 +32,7 @@ export const useUserNavigation = defineStore("userNavigation", () => {
          dropMenuPosition: "dropMenuRight",
          isDropMenu: true,
          isMobileDisabled: "disabledLinkOnMobile",
-         isAmount: true
+         isAmount: true,
       },
       {
          path: "/login",
@@ -56,7 +56,7 @@ export const useUserNavigation = defineStore("userNavigation", () => {
          hideIcon: true,
       },
       {
-         path: "/shop/service",
+         path: "/shop/account/returns",
          title: "Serwis",
          icon: "mingcute:service-line",
          view: "navElement",
