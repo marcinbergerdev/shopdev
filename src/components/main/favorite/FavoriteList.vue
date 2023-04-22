@@ -55,7 +55,9 @@
 
       <template #interactive>
         <BaseButton mode="clear" @click="closeModal">Anuluj</BaseButton>
-        <BaseButton mode="border">Continue</BaseButton>
+        <BaseButton mode="border" @click="deleteAllFavoriteProductHandler"
+          >Continue</BaseButton
+        >
       </template>
     </BaseModal>
   </Teleport>
@@ -79,6 +81,15 @@ function showModal() {
 
 function closeModal() {
   isModal.value = false;
+}
+
+async function deleteAllFavoriteProductHandler() {
+  closeModal();
+  const user = auth.currentUser;
+
+  if (user) {
+    await favorites.removeAllFavoriteProducts(user.uid);
+  }
 }
 
 onMounted(async () => {

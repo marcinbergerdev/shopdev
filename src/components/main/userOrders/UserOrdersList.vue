@@ -68,7 +68,9 @@
 
         <template #interactive>
           <BaseButton mode="clear" @click="closeModal">Anuluj</BaseButton>
-          <BaseButton mode="border">Continue</BaseButton>
+          <BaseButton mode="border" @click="deleteAllOrdersProductHandler"
+            >Continue</BaseButton
+          >
         </template>
       </BaseModal>
     </Teleport>
@@ -95,6 +97,15 @@ function closeModal() {
 }
 function scrollPage() {
   window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+}
+
+async function deleteAllOrdersProductHandler() {
+  closeModal();
+  const user = auth.currentUser;
+
+  if (user) {
+    await orders.removeAllFavoriteProducts(user.uid);
+  }
 }
 
 const auth = getAuth();

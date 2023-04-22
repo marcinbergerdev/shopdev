@@ -30,7 +30,6 @@ export const useUserOrders = defineStore("userOrders", () => {
          });
    }
 
-
    async function removeProductFromOrdersList(
       userId: string,
       productId: string
@@ -47,11 +46,24 @@ export const useUserOrders = defineStore("userOrders", () => {
          });
    }
 
-
-
-
+   async function removeAllFavoriteProducts(userId: string) {
+      const db = getDatabase();
+      await remove(firebaseRef(db, "users/" + userId + "/userCart/"))
+         .then(() => {
+            location.reload();
+         })
+         .catch((error) => {
+            console.log(error.message);
+         });
+   }
 
    const isEmpty = computed(() => (orders.value.length === 0 ? true : false));
    const userOrders = computed(() => orders.value);
-   return { userOrders, getUserCartProducts, isEmpty ,removeProductFromOrdersList};
+   return {
+      userOrders,
+      getUserCartProducts,
+      isEmpty,
+      removeProductFromOrdersList,
+      removeAllFavoriteProducts,
+   };
 });

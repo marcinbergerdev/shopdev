@@ -78,6 +78,17 @@ export const useUserFavorite = defineStore("userFavorite", () => {
          });
    }
 
+   async function removeAllFavoriteProducts(userId: string) {
+      const db = getDatabase();
+      await remove(firebaseRef(db, "users/" + userId + "/favoriteProduct/"))
+         .then(() => {
+            location.reload();
+         })
+         .catch((error) => {
+            console.log(error.message);
+         });
+   }
+
    const isEmpty = computed(() =>
       userFavorite.value.length === 0 ? true : false
    );
@@ -86,6 +97,7 @@ export const useUserFavorite = defineStore("userFavorite", () => {
       getUserFavoriteProducts,
       writeNewPost,
       removeProductFromFavoriteList,
+      removeAllFavoriteProducts,
       isEmpty,
    };
 });
