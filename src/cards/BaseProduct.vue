@@ -1,5 +1,5 @@
 <template>
-  <li class="productContainer" :class="view">
+  <li class="productContainer" :class="view" @click="showProductDetails">
     <span class="productContainer__promotion" v-if="promotion">Promocja</span>
 
     <span class="productImg">
@@ -44,6 +44,87 @@
       </section>
     </header>
   </li>
+
+  <Teleport to="body">
+    <BaseModal
+      mode="productDetails"
+      :isModal="isModal"
+      :isInteraction="true"
+      :isHeaderCloseButton="true"
+      @close="closeModal"
+    >
+      <template #content>
+        <div class="productImgDetails">
+          <img class="productImgDetails__img" :src="img" alt="selected-product" />
+        </div>
+
+        <div class="productDataDetails">
+          <h2 class="productDetails__title">{{ title }}</h2>
+
+          <div class="priceBox">
+            <span class="priceBox__price">{{ price }}zł</span>
+
+            <select class="priceBox__amount">
+              <option value="1">1 szt.</option>
+              <option value="2">2 szt.</option>
+              <option value="3">3 szt.</option>
+              <option value="4">4 szt.</option>
+              <option value="5">5 szt.</option>
+              <option value="6">6 szt.</option>
+              <option value="7">7 szt.</option>
+              <option value="8">8 szt.</option>
+              <option value="9">9 szt.</option>
+              <option value="10">10 szt.</option>
+            </select>
+
+            <BaseButton
+              mode="desktopAddToFavorite"
+              :class="favoriteAdded"
+              @click="addToFavoriteHandler"
+            >
+              <Icon icon="ph:heart-fill" />
+            </BaseButton>
+
+            <BaseButton
+              mode="desktopAddToCart"
+              :class="cartAdded"
+              @click="addToCartHandler"
+            >
+              <Icon class="cartIcon" icon="carbon:shopping-cart-plus" /> Dodaj do koszyka
+            </BaseButton>
+          </div>
+
+          <div class="deliverStatus">
+            <p class="deliverStatus__descriptionTitle">Dostawa</p>
+            <p class="deliverStatus__description">Czas dostawy: 3-4 dni robocze</p>
+          </div>
+
+          <div class="shippingCostStatus">
+            <p class="shippingCostStatus__description">Koszt wysyłki: 4,50zł</p>
+          </div>
+        </div>
+
+        <div class="productDescription">
+          <p class="productDescription__description">{{ description }}</p>
+        </div>
+      </template>
+
+      <template #interactive>
+        <BaseButton
+          mode="mobileAddToFavorite"
+          :class="favoriteAdded"
+          @click="addToFavoriteHandler"
+        >
+          <Icon icon="ph:heart-fill" />
+        </BaseButton>
+
+        <BaseButton mode="mobileAddToCart" @click="addToCartHandler">
+          <Icon class="mobileAddToCart__icon" icon="carbon:shopping-cart-plus" /> Dodaj do
+          koszyka
+        </BaseButton>
+      </template>
+    </BaseModal>
+  </Teleport>
 </template>
 
 <script setup lang="ts">
@@ -82,6 +163,7 @@ const auth = getAuth();
 
 const isProductAddedFavorite = ref<boolean>(false);
 const isProductAddedCart = ref<boolean>(false);
+const isModal = ref(false);
 
 const addToFavoriteHandler = async () => {
   const user = auth.currentUser;
@@ -120,6 +202,21 @@ const addToCartHandler = async () => {
     await orders.getUserCartProducts(user.uid);
   }
 };
+
+const showProductDetails = (e: any) => {
+  const element = e.target.localName;
+
+  if (element === "img" || element === "h2" || element === "p") {
+    isModal.value = true;
+    document.body.classList.add("scrollHidden");
+    console.log(id, img, price, category, title, description);
+  }
+};
+
+function closeModal() {
+  isModal.value = false;
+  document.body.classList.remove("scrollHidden");
+}
 </script>
 
 <style lang="scss" scoped>
@@ -331,6 +428,193 @@ const addToCartHandler = async () => {
   }
 }
 
+.productImgDetails {
+  width: min(70%, 17rem);
+  height: 23rem;
+  margin: 0 auto;
+  grid-area: productImg;
+
+  &__img {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+
+    @media (min-width: 768px) {
+    }
+  }
+}
+
+.productDataDetails {
+  grid-area: productDetails;
+  margin-top: 3rem;
+  display: grid;
+}
+
+.priceBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2rem 0;
+
+  &__price {
+    grid-area: price;
+    text-align: right;
+    font-size: 2rem;
+    color: var(--secondary-normalGreen);
+  }
+
+  &__amount {
+    grid-area: amount;
+    width: 6rem;
+  }
+
+  @media (min-width: 768px) {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+      "price price price"
+      "amount favoriteBtn cartBtn";
+    gap: 0 1rem;
+    margin: 3rem;
+    padding: 3rem;
+    border: 1px solid #b6b5b5;
+    border-radius: 15px;
+  }
+}
+
+.deliverStatus {
+  text-align: right;
+
+  &__descriptionTitle {
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+
+  &__description {
+    color: var(--secondary-normalGreen);
+  }
+
+  @media (min-width: 768px) {
+    margin-bottom: -3rem;
+    margin-left: 3rem;
+    text-align: left;
+  }
+}
+
+.shippingCostStatus {
+  text-align: end;
+  @media (min-width: 768px) {
+    margin-left: 3rem;
+    text-align: left;
+  }
+}
+
+.productDescription {
+  grid-area: description;
+  margin-top: 2rem;
+  border-top: 1px solid #a1a1a1;
+  &__description {
+    margin-top: 1rem;
+    padding: 4rem;
+    font-size: 1.3rem;
+  }
+}
+
+.desktopAddToCart {
+  display: none;
+  @media (min-width: 768px) {
+    display: flex;
+  }
+}
+
+.desktopAddToFavorite {
+  display: none;
+
+  @media (min-width: 768px) {
+    grid-area: favoriteBtn;
+    width: 6rem;
+    place-items: center;
+    background-color: transparent;
+    border: 0;
+    font-size: 3rem;
+    cursor: pointer;
+    display: grid;
+  }
+}
+.desktopAddToCart {
+  grid-area: cartBtn;
+  width: 20rem;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--secondary-superLightGreen);
+  background-color: transparent;
+  border-radius: 10px;
+  color: var(--secondary-superLightGreen);
+  font-size: 1.7rem;
+  transition: 0.2s ease-in-out;
+
+  &:hover {
+    background-color: var(--secondary-superLightGreen);
+    border-radius: 10px;
+    color: var(--white);
+    transition: 0.2s ease-in-out;
+    cursor: pointer;
+
+    .cartIcon {
+      color: var(--white);
+      transition: 0.2s ease-in-out;
+    }
+  }
+
+  &__icon {
+    font-size: 2rem;
+  }
+}
+
+.mobileAddToFavorite,
+.mobileAddToCart {
+  display: block;
+  @media (min-width: 768px) {
+    display: none;
+  }
+}
+
+.mobileAddToFavorite {
+  display: grid;
+  place-items: center;
+  justify-self: center;
+  background-color: transparent;
+  border: 0;
+  font-size: 3rem;
+}
+
+.mobileAddToCart {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--secondary-superLightGreen);
+  background-color: transparent;
+  border-radius: 10px;
+  color: var(--secondary-superLightGreen);
+  font-size: 1.7rem;
+  transition: 0.2s ease-in-out;
+
+  &:hover {
+    background-color: var(--secondary-superLightGreen);
+    border-radius: 10px;
+    color: var(--white);
+    transition: 0.2s ease-in-out;
+  }
+
+  &__icon {
+    font-size: 2rem;
+  }
+}
+
 .addedToFavorite {
   color: #d5446d;
   transition: 0.2s ease-in-out;
@@ -341,6 +625,7 @@ const addToCartHandler = async () => {
   background-color: var(--secondary-superLightGreen);
   transition: 0.2s ease-in-out;
   cursor: pointer;
+  color: var(--white);
 
   .cartIcon {
     color: var(--white);

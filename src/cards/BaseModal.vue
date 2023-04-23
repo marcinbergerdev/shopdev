@@ -119,4 +119,37 @@ const emit = defineEmits<{
     border-radius: 50px 50px 0 0;
   }
 }
+
+.productDetails {
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  height: 95vh;
+  overflow: auto;
+
+  .modalHeader {
+    justify-content: flex-end;
+    padding: 1rem 0;
+  }
+
+  .modalContent {
+    flex: 1;
+
+    @media (min-width: 768px) {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      grid-template-areas:
+        "productImg productDetails"
+        "description description";
+    }
+  }
+
+  .modalInteraction {
+    display: flex;
+    @media (min-width: 768px) {
+      display: none;
+    }
+  }
+}
 </style>
