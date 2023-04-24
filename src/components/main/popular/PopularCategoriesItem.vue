@@ -1,7 +1,12 @@
 <template>
   <li class="popularCategoriesItem">
-    <BaseButton link :to="to">
-      <img loading="lazy" class="popularCategoriesItem__img" :src="img" alt="category-image" />
+    <BaseButton link :to="'/shop/categories/' + to" @click="scrollUp">
+      <img
+        loading="lazy"
+        class="popularCategoriesItem__img"
+        :src="img"
+        alt="category-image"
+      />
       <span class="popularCategoriesItem__name"> {{ name }}</span>
     </BaseButton>
   </li>
@@ -13,6 +18,10 @@ defineProps<{
   name: string;
   to: string;
 }>();
+
+const scrollUp = () => {
+  window.scrollTo({ top: 0, left: 0 });
+};
 </script>
 
 <style scoped lang="scss">

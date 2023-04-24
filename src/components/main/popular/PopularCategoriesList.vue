@@ -24,27 +24,27 @@ const popularCategory = ref([
   {
     img: "/assets/zdj1.jpg",
     name: "Dom i Ogród",
-    to: "#",
+    to: "dom",
   },
   {
     img: "/assets/zdj2.jpg",
     name: "Elektronika",
-    to: "#",
+    to: "elektronika",
   },
   {
     img: "/assets/zdj3.jpg",
     name: "Motoryzacja",
-    to: "#",
+    to: "motoryzacja",
   },
   {
     img: "/assets/zdj4.jpg",
     name: "Uroda",
-    to: "#",
+    to: "uroda",
   },
   {
     img: "/assets/psp.jpg",
     name: "Moda",
-    to: "#",
+    to: "moda",
   },
 ]);
 </script>
