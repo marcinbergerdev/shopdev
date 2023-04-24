@@ -460,9 +460,12 @@ function closeModal() {
 
   &__price {
     grid-area: price;
-    justify-self: flex-start;
     font-size: 2rem;
     color: var(--secondary-normalGreen);
+
+    @media (min-width: 768px) {
+      margin-bottom: 2rem;
+    }
   }
 
   &__amount {

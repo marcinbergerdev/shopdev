@@ -124,7 +124,7 @@ const emit = defineEmits<{
   top: 5%;
   display: flex;
   flex-direction: column;
-  width: 95%;
+  width: min(95%, 100rem);
   height: 75vh;
   overflow: auto;
 
