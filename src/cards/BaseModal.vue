@@ -125,7 +125,7 @@ const emit = defineEmits<{
   display: flex;
   flex-direction: column;
   width: 95%;
-  height: 80vh;
+  height: 75vh;
   overflow: auto;
 
   .modalHeader {
