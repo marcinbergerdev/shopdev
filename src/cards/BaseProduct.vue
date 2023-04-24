@@ -440,6 +440,8 @@ function closeModal() {
     overflow: auto;
 
     @media (min-width: 768px) {
+      width: 20rem;
+      margin-top: 4rem;
     }
   }
 }
@@ -458,19 +460,21 @@ function closeModal() {
 
   &__price {
     grid-area: price;
-    text-align: right;
+    justify-self: flex-start;
     font-size: 2rem;
     color: var(--secondary-normalGreen);
   }
 
   &__amount {
     grid-area: amount;
+    justify-self: flex-start;
     width: 6rem;
   }
 
   @media (min-width: 768px) {
     display: grid;
     align-items: center;
+    justify-items: flex-end;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
     grid-template-areas:
@@ -497,7 +501,6 @@ function closeModal() {
   }
 
   @media (min-width: 768px) {
-    margin-bottom: -3rem;
     margin-left: 3rem;
     text-align: left;
   }
@@ -506,6 +509,7 @@ function closeModal() {
 .shippingCostStatus {
   text-align: end;
   @media (min-width: 768px) {
+    margin-top: -1rem;
     margin-left: 3rem;
     text-align: left;
   }
@@ -517,7 +521,7 @@ function closeModal() {
   border-top: 1px solid #a1a1a1;
   &__description {
     margin-top: 1rem;
-    padding: 4rem;
+    padding: 2rem 1rem;
     font-size: 1.3rem;
   }
 }

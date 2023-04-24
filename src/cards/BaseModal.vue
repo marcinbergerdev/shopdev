@@ -121,10 +121,11 @@ const emit = defineEmits<{
 }
 
 .productDetails {
+  top: 5%;
   display: flex;
   flex-direction: column;
   width: 95%;
-  height: 95vh;
+  height: 80vh;
   overflow: auto;
 
   .modalHeader {
