@@ -512,7 +512,6 @@ function closeModal() {
 .shippingCostStatus {
   text-align: end;
   @media (min-width: 768px) {
-    margin-top: -1rem;
     margin-left: 3rem;
     text-align: left;
   }

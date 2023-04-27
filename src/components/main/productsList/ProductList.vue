@@ -1,7 +1,7 @@
 <template>
   <div class="productsListContainer">
     <HalfCircleSpinner
-      v-if="products.isLoadingSpinner"
+      v-if="userProducts.isLoadingSpinner"
       class="loadingSpinner"
       :animation-duration="1000"
       :size="60"
@@ -11,7 +11,7 @@
     <ul class="productsList">
       <BaseProduct
         view="selectedProduct"
-        v-for="product in products.products.slice(productsFrom, productsTo)"
+        v-for="product in products"
         :key="product.id"
         :id="product.id"
         :category="product.category"
@@ -27,7 +27,7 @@
     </ul>
 
     <PaginationList
-      v-if="!products.isLoadingSpinner"
+      v-if="!userProducts.isLoadingSpinner"
       :number-of-buttons="buttonsPaginationAmount"
       :current-page="currentPage"
       @page-back="decreasePageHandler(productsAmount)"
@@ -40,9 +40,15 @@
 import { HalfCircleSpinner } from "epic-spinners";
 import PaginationList from "./PaginationList.vue";
 import { useProducts } from "../../../stores/products/products";
-import { ref, onMounted } from "vue";
+import { ref, computed, onMounted, toRefs } from "vue";
+import Product from "../../../../types/product";
 
-const products = useProducts();
+const userProducts = useProducts();
+
+const props = defineProps<{
+  productSorted: string;
+}>();
+const { productSorted } = toRefs(props);
 
 const buttonsPaginationAmount = ref<number>(0);
 const currentPage = ref<number>(1);
@@ -50,6 +56,78 @@ const currentPage = ref<number>(1);
 const productsFrom = ref<number>(0);
 const productsTo = ref<number>(12); // set number of products at your list
 const productsAmount = productsTo.value;
+
+const products = computed(() => {
+  if (productSorted.value === "all") {
+    return userProducts.products.slice(productsFrom.value, productsTo.value);
+  } else if (productSorted.value === "alphabeticallyAZ") {
+    const sortedAlphabetically = userProducts.products.sort((a: Product, b: Product) => {
+      let titleA = a.title.toLocaleLowerCase();
+      let titleB = b.title.toLocaleLowerCase();
+
+      if (titleA > titleB) {
+        return 1;
+      }
+
+      if (titleA < titleB) {
+        return -1;
+      }
+
+      return 0;
+    });
+
+    return sortedAlphabetically.slice(productsFrom.value, productsTo.value);
+  } else if (productSorted.value === "alphabeticallyZA") {
+    const sortedAlphabetically = userProducts.products.sort((a: Product, b: Product) => {
+      let titleA = a.title.toLocaleLowerCase();
+      let titleB = b.title.toLocaleLowerCase();
+
+      if (titleA < titleB) {
+        return 1;
+      }
+
+      if (titleA > titleB) {
+        return -1;
+      }
+
+      return 0;
+    });
+
+    return sortedAlphabetically.slice(productsFrom.value, productsTo.value);
+  } else if (productSorted.value === "lowest") {
+    const sortedAlphabetically = userProducts.products.sort((a: Product, b: Product) => {
+      let titleA = a.price;
+      let titleB = b.price;
+
+      if (titleA > titleB) {
+        return 1;
+      }
+
+      if (titleA < titleB) {
+        return -1;
+      }
+
+      return 0;
+    });
+    return sortedAlphabetically.slice(productsFrom.value, productsTo.value);
+  } else {
+    const sortedAlphabetically = userProducts.products.sort((a: Product, b: Product) => {
+      let titleA = a.price;
+      let titleB = b.price;
+
+      if (titleA < titleB) {
+        return 1;
+      }
+
+      if (titleA > titleB) {
+        return -1;
+      }
+
+      return 0;
+    });
+    return sortedAlphabetically.slice(productsFrom.value, productsTo.value);
+  }
+});
 
 function setNumberOfButtons(amount: number) {
   const numberOfButtons = Math.ceil(Number(amount / productsTo.value));
@@ -64,14 +142,14 @@ function decreasePageHandler(amount: number) {
 }
 
 function increasePageHandler(amount: number) {
-  if (productsTo.value >= products.products.length) return;
+  if (productsTo.value >= userProducts.products.length) return;
   productsFrom.value += amount;
   productsTo.value += amount;
   ++currentPage.value;
 }
 
 onMounted(async () => {
-  setNumberOfButtons(products.products.length);
+  setNumberOfButtons(userProducts.products.length);
 });
 </script>
 

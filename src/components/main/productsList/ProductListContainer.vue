@@ -14,9 +14,9 @@
       </ul>
     </aside>
 
-    <ProductFilters></ProductFilters>
+    <ProductFilters @product-sorting-handler="sortingProducts"></ProductFilters>
 
-    <ProductList></ProductList>
+    <ProductList :product-sorted="sortingProduct"></ProductList>
   </section>
 </template>
 
@@ -36,6 +36,7 @@ const { category, underCategory } = props;
 
 const categories = useUserCategories();
 const selectedUnderCategories = ref<UnderCategories[]>([]);
+const sortingProduct = ref<string>("all");
 
 function selectCategories(categoryName: string, underCategoryName: string) {
   selectedUnderCategories.value = [];
@@ -46,6 +47,10 @@ function selectCategories(categoryName: string, underCategoryName: string) {
     );
     selectedUnderCategories.value = selectedCategory[0].underCategories;
   }
+}
+
+function sortingProducts(sortStatus: string) {
+  sortingProduct.value = sortStatus;
 }
 
 onMounted(() => {
