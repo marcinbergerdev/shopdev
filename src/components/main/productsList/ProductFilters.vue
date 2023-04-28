@@ -1,7 +1,7 @@
 <template>
-  <article class="filtersContainer">
+  <article class="filtersContainer" @mouseleave="closeSortingHandler">
     <div class="filterBox">
-      <BaseButton mode="filters" @click="showSortingHandler">
+      <BaseButton mode="filters" @mousemove="showSortingHandler">
         <Icon icon="icons8:alphabetical-sorting" />
         <span>Sortuj</span>
       </BaseButton>
@@ -39,6 +39,10 @@ const isSorting = ref<boolean>(false);
 
 function showSortingHandler() {
   isSorting.value = true;
+}
+
+function closeSortingHandler() {
+  isSorting.value = false;
 }
 </script>
 
