@@ -17,6 +17,7 @@ import SearchProduct from "./SearchProduct.vue";
 }
 
 section {
+  position: relative;
   grid-area: search;
   padding-right: 1rem;
   grid-area: search;

@@ -128,6 +128,10 @@ const emit = defineEmits<{
   height: 75vh;
   overflow: auto;
 
+  @media (min-width: 768px) {
+    height: auto;
+  }
+
   .modalHeader {
     justify-content: flex-end;
     padding: 1rem 0;

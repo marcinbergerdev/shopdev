@@ -59,7 +59,7 @@
         </div>
 
         <div class="productDataDetails">
-          <h2 class="productDetails__title">{{ title }}</h2>
+          <h2 class="productDataDetails__title">{{ title }}</h2>
 
           <div class="priceBox">
             <span class="priceBox__price">{{ price }}zł</span>
@@ -450,6 +450,9 @@ function closeModal() {
   grid-area: productDetails;
   margin-top: 3rem;
   display: grid;
+
+  &__title {
+  }
 }
 
 .priceBox {
@@ -635,6 +638,36 @@ function closeModal() {
 
   .cartIcon {
     color: var(--white);
+  }
+}
+
+.searchedProduct {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 2rem;
+  padding: 1rem 2rem;
+
+  .productImg {
+    width: 4rem;
+    height: 4rem;
+
+    &__img {
+    }
+  }
+
+  .productPrise {
+    display: none;
+  }
+
+  .productHeader {
+    &__title {
+    }
+
+    &__description {
+      display: none;
+    }
   }
 }
 </style>
