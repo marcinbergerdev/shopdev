@@ -6,8 +6,12 @@
       <dialog class="modal" :class="mode" open v-if="isModal">
         <header class="modalHeader">
           <slot></slot>
-          <BaseButton mode="closeModal" v-if="isHeaderCloseButton" @click="emit('close')"
-            ><Icon icon="bi:x-lg"
+          <BaseButton
+            id="searchListElement"
+            mode="closeModal"
+            v-if="isHeaderCloseButton"
+            @click="emit('close')"
+            ><Icon class="modalHeader__closeBtn" icon="bi:x-lg"
           /></BaseButton>
         </header>
 
@@ -84,6 +88,10 @@ const emit = defineEmits<{
   align-items: center;
   background-color: #ebebeb;
   border-radius: 5px 5px 0 0;
+
+  &__closeBtn {
+    pointer-events: none;
+  }
 }
 
 .deleteAllOrders {

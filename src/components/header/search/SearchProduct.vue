@@ -5,11 +5,15 @@
       placeholder="Wyszukaj..."
       v-model="productName"
       @input="openSearchingList"
-      @blur="closeSearchingList"
     />
   </form>
 
-  <ul class="searchingList" v-if="isSearchingList" @mouseleave="closeSearchingList">
+  <ul
+    ref="outside"
+    class="searchingList"
+    v-show="isSearchingList"
+    @mouseleave="closeSearchingList"
+  >
     <BaseProduct
       view="searchedProduct"
       v-for="(sortedProduct, id) in productSorting"
@@ -19,18 +23,28 @@
       :title="sortedProduct.title"
       :price="sortedProduct.price"
       :description="sortedProduct.description"
+      @show-list="openSearchingList"
     >
     </BaseProduct>
+
+    <li v-if="isEmpty" class="elementEmpty">
+      <div>
+        <p>Brak wyników wyszukiwania</p>
+      </div>
+    </li>
   </ul>
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
 import { useProducts } from "../../../stores/products/products";
 
 const searchedProduct = useProducts();
+
+const outside = ref<HTMLDivElement | null>(null);
 const productName = ref<string>("");
 const isSearchingList = ref<boolean>(false);
+const isEmpty = ref<boolean>(false);
 
 const productSorting = computed(() => {
   if (productName.value === "") return;
@@ -43,11 +57,29 @@ const productSorting = computed(() => {
 });
 
 function openSearchingList() {
+  if (productName.value === "") return (isSearchingList.value = false);
+
+  productSorting.value?.length === 0 ? (isEmpty.value = true) : (isEmpty.value = false);
+
   isSearchingList.value = true;
 }
 function closeSearchingList() {
   isSearchingList.value = false;
 }
+
+const handleClickOutside = (e: MouseEvent) => {
+  if (
+    outside.value &&
+    !outside.value.contains(e.target as HTMLElement) &&
+    !(e.target as HTMLElement).id
+  ) {
+    closeSearchingList();
+  }
+};
+
+onMounted(() => {
+  document.addEventListener("click", handleClickOutside);
+});
 </script>
 
 <style scoped lang="scss">
@@ -83,5 +115,11 @@ input:focus {
   @media (min-width: 768px) {
     max-height: 60rem;
   }
+}
+
+.elementEmpty {
+  text-align: center;
+  padding: 4rem 0;
+  font-size: 1.4rem;
 }
 </style>
