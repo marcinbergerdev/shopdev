@@ -133,7 +133,7 @@ const emit = defineEmits<{
   display: flex;
   flex-direction: column;
   width: min(95%, 100rem);
-  height: 75vh;
+  height: 75vh !important;
   overflow: auto;
 
   @media (min-width: 768px) {
