@@ -57,7 +57,7 @@ const emit = defineEmits<{
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 100;
+  z-index: 150;
   display: grid;
   place-items: center;
   width: 100%;

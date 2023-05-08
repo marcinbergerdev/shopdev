@@ -20,11 +20,11 @@
     <Teleport :to="sendMenuTo">
       <Transition name="dropMenu" :css="isDropMenuAnimation">
         <BaseMenu
-          v-if="dropMenuMobileActivity || dropMenuDesctopActivity"
-          :view="dropMenuMobileActivity || !dropMenuDesctopActivity"
+          v-if="dropMenuMobileActivity || dropMenuDesktopActivity"
+          :view="dropMenuMobileActivity || !dropMenuDesktopActivity"
           :menu-style="true"
           :container-position="dropMenuPositionMobile"
-          :hover-position="hoverMenuPositionDesctop"
+          :hover-position="hoverMenuPositionDesktop"
           :size="name"
           :title="title"
           :is-header="dropMenuMobileActivity"
@@ -78,11 +78,11 @@ provide("closeMenu", {
 });
 
 const dropMenuMobileActivity = ref<boolean>(false);
-const dropMenuDesctopActivity = ref<boolean>(false);
+const dropMenuDesktopActivity = ref<boolean>(false);
 const dropMenuAnimation = ref<boolean>(false);
 
 const sendMenuTo = computed<string>(() =>
-  dropMenuDesctopActivity.value ? `#${name}` : "body"
+  dropMenuDesktopActivity.value ? `#${name}` : "body"
 );
 const isDropMenuAnimation = computed<boolean>(() =>
   dropMenuAnimation.value ? true : false
@@ -93,8 +93,8 @@ const dropMenuPositionMobile = computed<string | undefined>(() => {
     return dropMenuPosition;
   }
 });
-const hoverMenuPositionDesctop = computed<string | undefined>(() => {
-  if (dropMenuDesctopActivity.value) {
+const hoverMenuPositionDesktop = computed<string | undefined>(() => {
+  if (dropMenuDesktopActivity.value) {
     return hoverPosition;
   }
 });
@@ -156,7 +156,7 @@ onAuthStateChanged(auth, async (user: any) => {
 
 function hoverOption() {
   if (isDropMenu && innerWidth >= 768) {
-    dropMenuDesctopActivity.value = true;
+    dropMenuDesktopActivity.value = true;
   }
 }
 function selectOption(isDropMenu?: boolean) {
@@ -186,18 +186,18 @@ function userLoggedOut() {
 
 function leaveOption() {
   if (isDropMenu && innerWidth >= 768) {
-    dropMenuDesctopActivity.value = false;
+    dropMenuDesktopActivity.value = false;
   }
 }
 function closeMenu() {
   dropMenuMobileActivity.value = false;
-  dropMenuDesctopActivity.value = false;
+  dropMenuDesktopActivity.value = false;
 }
 
 function resizeListener() {
   const screenWidth = innerWidth;
   if (screenWidth < 768) {
-    dropMenuDesctopActivity.value = false;
+    dropMenuDesktopActivity.value = false;
     dropMenuAnimation.value = true;
   }
   if (screenWidth >= 768) {

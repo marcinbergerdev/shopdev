@@ -32,6 +32,7 @@
         :price="order.price"
         :delete-button="order.deleteButton"
         :is-favorite="true"
+             :is-cart="false"
         category-type="userCart"
       ></BaseOrder>
     </ul>

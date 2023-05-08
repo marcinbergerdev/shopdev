@@ -79,8 +79,18 @@
             </select>
 
             <BaseButton
+              mode="desktopAddToFavorite"
+              :class="favoriteAdded"
+              v-if="isFavorite"
+              @click="addToFavoriteHandler"
+            >
+              <Icon icon="ph:heart-fill" />
+            </BaseButton>
+
+            <BaseButton
               mode="desktopAddToCart"
               :class="cartAdded"
+              v-if="isCart"
               @click="addToCartHandler"
             >
               <Icon class="cartIcon" icon="carbon:shopping-cart-plus" /> Dodaj do koszyka
@@ -245,6 +255,7 @@ function closeModal() {
   @media (min-width: 768px) {
     width: 8rem;
     height: 8rem;
+    pointer-events: none;
   }
 }
 
@@ -287,6 +298,10 @@ function closeModal() {
   flex: 1;
   gap: 1.5rem 0;
 
+  @media (min-width: 768px) {
+    pointer-events: none;
+  }
+
   .title {
     text-align: start;
     display: -webkit-box;
@@ -300,6 +315,10 @@ function closeModal() {
 
     @media (min-width: 300px) {
       width: 6rem;
+    }
+
+    @media (min-width: 768px) {
+      pointer-events: auto;
     }
   }
 
@@ -316,6 +335,10 @@ function closeModal() {
     justify-self: flex-end;
     display: flex;
     gap: 0.5rem;
+
+    @media (min-width: 768px) {
+      pointer-events: auto;
+    }
   }
 }
 
@@ -380,6 +403,7 @@ function closeModal() {
 
 .productDetails {
   top: 5%;
+  z-index: 1100;
   display: flex;
   flex-direction: column;
   width: min(95%, 100rem);
@@ -555,7 +579,7 @@ function closeModal() {
     border-radius: 10px;
     color: var(--white);
     transition: 0.2s ease-in-out;
-    cursor: pointer;
+    cursor: auto;
 
     .cartIcon {
       color: var(--white);
@@ -618,6 +642,12 @@ function closeModal() {
   .cartIcon {
     color: var(--white);
   }
+}
+
+.addedToFavorite {
+  color: #d5446d;
+  transition: 0.2s ease-in-out;
+  cursor: pointer;
 }
 
 .deleteProduct,
