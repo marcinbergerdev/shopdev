@@ -7,7 +7,7 @@
   >
     <template #default>
       <h2 class="titleModal successAuth" v-if="!auth.isError">Account created!</h2>
-      <h2 class="titleModal wrongAuth" v-else>Somthing goes wrong!</h2>
+      <h2 class="titleModal wrongAuth" v-else>Something goes wrong!</h2>
     </template>
 
     <template #content>

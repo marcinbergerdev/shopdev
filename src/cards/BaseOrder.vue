@@ -6,19 +6,19 @@
       <h3 class="title">{{ title }}</h3>
 
       <select id="myAmounts" class="amount">
-        <option value="1">1 szt.</option>
-        <option value="2">2 szt.</option>
-        <option value="3">3 szt.</option>
-        <option value="4">4 szt.</option>
-        <option value="5">5 szt.</option>
-        <option value="6">6 szt.</option>
-        <option value="7">7 szt.</option>
-        <option value="8">8 szt.</option>
-        <option value="9">9 szt.</option>
-        <option value="10">10 szt.</option>
+        <option value="1">1 pcs.</option>
+        <option value="2">2 pcs.</option>
+        <option value="3">3 pcs.</option>
+        <option value="4">4 pcs.</option>
+        <option value="5">5 pcs.</option>
+        <option value="6">6 pcs.</option>
+        <option value="7">7 pcs.</option>
+        <option value="8">8 pcs.</option>
+        <option value="9">9 pcs.</option>
+        <option value="10">10 pcs.</option>
       </select>
 
-      <span class="price">79,80zł</span>
+      <span class="price">$79,80</span>
 
       <div class="orderIconContainer">
         <BaseButton
@@ -63,19 +63,19 @@
           <h2>{{ title }}</h2>
 
           <div class="priceBox">
-            <span class="priceBox__price">{{ price }}zł</span>
+            <span class="priceBox__price">${{ price }}</span>
 
             <select class="priceBox__amount">
-              <option value="1">1 szt.</option>
-              <option value="2">2 szt.</option>
-              <option value="3">3 szt.</option>
-              <option value="4">4 szt.</option>
-              <option value="5">5 szt.</option>
-              <option value="6">6 szt.</option>
-              <option value="7">7 szt.</option>
-              <option value="8">8 szt.</option>
-              <option value="9">9 szt.</option>
-              <option value="10">10 szt.</option>
+              <option value="1">1 pcs.</option>
+              <option value="2">2 pcs.</option>
+              <option value="3">3 pcs.</option>
+              <option value="4">4 pcs.</option>
+              <option value="5">5 pcs.</option>
+              <option value="6">6 pcs.</option>
+              <option value="7">7 pcs.</option>
+              <option value="8">8 pcs.</option>
+              <option value="9">9 pcs.</option>
+              <option value="10">10 pcs.</option>
             </select>
 
             <BaseButton
@@ -93,17 +93,17 @@
               v-if="isCart"
               @click="addToCartHandler"
             >
-              <Icon class="cartIcon" icon="carbon:shopping-cart-plus" /> Dodaj do koszyka
+              <Icon class="cartIcon" icon="carbon:shopping-cart-plus" /> Add to cart
             </BaseButton>
           </div>
 
           <div class="deliverStatus">
-            <p class="deliverStatus__descriptionTitle">Dostawa</p>
-            <p class="deliverStatus__description">Czas dostawy: 3-4 dni robocze</p>
+            <p class="deliverStatus__descriptionTitle">Deliver</p>
+            <p class="deliverStatus__description">Delivery time: 3-4 working days</p>
           </div>
 
           <div class="shippingCostStatus">
-            <p class="shippingCostStatus__description">Koszt wysyłki: 4,50zł</p>
+            <p class="shippingCostStatus__description">Postage cost: $4.50</p>
           </div>
         </div>
 
@@ -122,8 +122,8 @@
         </BaseButton>
 
         <BaseButton mode="mobileAddToCart" @click="addToCartHandler">
-          <Icon class="mobileAddToCart__icon" icon="carbon:shopping-cart-plus" /> Dodaj do
-          koszyka
+          <Icon class="mobileAddToCart__icon" icon="carbon:shopping-cart-plus" /> Add to
+          cart
         </BaseButton>
       </template>
     </BaseModal>
@@ -342,7 +342,7 @@ function closeModal() {
   }
 }
 
-.orderItemDesctop {
+.orderItemDesktop {
   display: flex;
   gap: 0.5rem;
   padding: 4rem 0;
@@ -354,7 +354,7 @@ function closeModal() {
   }
 }
 
-.orderProductDesctop {
+.orderProductDesktop {
   width: 100%;
   display: grid;
   align-items: flex-start;

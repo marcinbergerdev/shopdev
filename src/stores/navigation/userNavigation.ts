@@ -5,7 +5,7 @@ export const useUserNavigation = defineStore("userNavigation", () => {
    const options = ref([
       {
          path: "/shop/account",
-         title: "Twoje konto",
+         title: "Account",
          icon: "cil:user",
          name: "account",
          view: "navElement",
@@ -16,7 +16,7 @@ export const useUserNavigation = defineStore("userNavigation", () => {
       },
       {
          path: "/shop/favorite",
-         title: "Ulubione",
+         title: "Favorite",
          icon: "bi:heart",
          name: "favorite",
          view: "navElement",
@@ -24,7 +24,7 @@ export const useUserNavigation = defineStore("userNavigation", () => {
       },
       {
          path: "/shop/cart",
-         title: "Koszyk",
+         title: "Cart",
          icon: "carbon:shopping-cart",
          name: "cart",
          view: "navElement",
@@ -43,7 +43,7 @@ export const useUserNavigation = defineStore("userNavigation", () => {
       },
       {
          path: "/register",
-         title: "Rejestracja",
+         title: "Register",
          view: "flat",
          name: "register",
          hideIcon: true,
@@ -57,7 +57,7 @@ export const useUserNavigation = defineStore("userNavigation", () => {
       },
       {
          path: "/shop/account/returns",
-         title: "Serwis",
+         title: "Service",
          icon: "mingcute:service-line",
          view: "navElement",
       },

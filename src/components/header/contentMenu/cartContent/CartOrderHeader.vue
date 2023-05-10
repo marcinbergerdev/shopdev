@@ -1,10 +1,10 @@
 <template>
   <header :class="mode">
     <h2 class="title">{{ title }}</h2>
-    <span class="amount" v-if="isAmount">(3)</span>
+    <span class="amount" v-if="isAmount">({{ productAmount }})</span>
 
     <BaseButton link to="/shop/cart" :class="editButtonStyle" v-if="isEditButton"
-      >Edytuj</BaseButton
+      >Edit</BaseButton
     >
     <BaseButton
       class="deleteAll"
@@ -13,7 +13,7 @@
       @click="emit('show')"
     >
       <Icon class="orderData__icon" icon="bi:trash" />
-      <span>wyczyść koszyk</span>
+      <span>clear the cart</span>
     </BaseButton>
   </header>
 </template>
@@ -22,6 +22,7 @@
 defineProps<{
   mode: string;
   title: string;
+  productAmount?: number;
   editButtonStyle?: string;
   isEditButton: boolean;
   isDeleteButton: boolean;
@@ -49,7 +50,7 @@ const emit = defineEmits<{
   }
 }
 
-.orderHeaderDesctop {
+.orderHeaderDesktop {
   display: flex;
   flex-flow: row wrap;
   align-items: center;

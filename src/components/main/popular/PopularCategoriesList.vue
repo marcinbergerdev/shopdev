@@ -1,7 +1,7 @@
 <template>
   <section class="popularCategoriesContainer">
     <header class="popularCategoriesHeader">
-      <h3>Najczęściej wyszukiwane i popularne</h3>
+      <h3>Most searched and popular</h3>
     </header>
 
     <ul class="popularCategoriesList">
@@ -23,28 +23,28 @@ import { ref } from "vue";
 const popularCategory = ref([
   {
     img: "/assets/zdj1.jpg",
-    name: "Dom i Ogród",
-    to: "dom",
+    name: "Home and Garden",
+    to: "home",
   },
   {
     img: "/assets/zdj2.jpg",
-    name: "Elektronika",
-    to: "elektronika",
+    name: "Electronics",
+    to: "electronics",
   },
   {
     img: "/assets/zdj3.jpg",
-    name: "Motoryzacja",
-    to: "motoryzacja",
+    name: "Automotive",
+    to: "automotive",
   },
   {
     img: "/assets/zdj4.jpg",
-    name: "Uroda",
-    to: "uroda",
+    name: "Beauty",
+    to: "beauty",
   },
   {
     img: "/assets/psp.jpg",
-    name: "Moda",
-    to: "moda",
+    name: "Fashion",
+    to: "fashion",
   },
 ]);
 </script>

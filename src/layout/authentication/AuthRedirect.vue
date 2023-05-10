@@ -1,13 +1,13 @@
 <template>
   <article class="redirectContainer">
     <header class="redirectHeader">
-      <h3 class="redirectHeader__title">Witaj w Shopex!</h3>
+      <h3 class="redirectHeader__title">Welcome to Shopex!</h3>
     </header>
 
     <section class="redirectToAuth">
-      <BaseButton link to="/login" mode="flat">Zaloguj</BaseButton>
-      <p class="redirectToAuth__description">Jeszcze nie masz konta?</p>
-      <BaseButton link to="/register" mode="border">Zarejestruj</BaseButton>
+      <BaseButton link to="/login" mode="flat">Login</BaseButton>
+      <p class="redirectToAuth__description">Don't have an account yet?</p>
+      <BaseButton link to="/register" mode="border">Register</BaseButton>
     </section>
   </article>
 </template>

@@ -1,25 +1,24 @@
 <template>
   <section class="returnInfoContainer">
     <article class="returnInfoBox">
-      <h3 class="returnInfoBox__title">Pytania do zamówienia?</h3>
+      <h3 class="returnInfoBox__title">Questions about the order?</h3>
       <p class="returnInfoBox__description">
-        Jeżeli masz pytania do swojego zamówienia zadzown do nas lub napisz na nasz
-        e-mail:
+        If you have questions about your order call us or write to our e-mail:
       </p>
 
-      <span class="returnInfoBox__contact">numer: +00 123 456 789</span>
+      <span class="returnInfoBox__contact">number: +00 123 456 789</span>
       <span class="returnInfoBox__contact">e-mail: test-test@test.test</span>
     </article>
 
     <article class="returnInfoBox">
-      <h3 class="returnInfoBox__title">Reklamacja</h3>
+      <h3 class="returnInfoBox__title">Complaint</h3>
 
       <p class="returnInfoBox__description">
-        Jeżeli chcesz złożyć reklamacje swojego produktu z powodu: braku przesyłki,
-        uszkodzonej paczki, uszkodzonego produktu, itp...
+        If you want to complain about your product because of: missing shipment, damaged
+        package, damaged product, etc....
       </p>
 
-      <span class="returnInfoBox__contact">numer: +00 123 456 789</span>
+      <span class="returnInfoBox__contact">number: +00 123 456 789</span>
       <span class="returnInfoBox__contact">e-mail: test-test@test.test</span>
     </article>
   </section>

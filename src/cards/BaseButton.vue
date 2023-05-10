@@ -285,7 +285,7 @@ button {
   color: var(--primary-blue);
 }
 
-.productsEditDesctop {
+.productsEditDesktop {
   font-size: 1.3rem;
   color: var(--primary-blue);
 }

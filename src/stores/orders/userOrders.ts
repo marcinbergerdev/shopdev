@@ -4,8 +4,6 @@ import {
    ref as firebaseRef,
    child,
    get,
-   push,
-   update,
    remove,
 } from "firebase/database";
 import { ref, computed } from "vue";

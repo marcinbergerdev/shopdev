@@ -18,7 +18,7 @@
     </li>
   </ul>
 
-  <BaseButton mode="empty" @click="userLogout">Wyloguj</BaseButton>
+  <BaseButton mode="empty" @click="userLogout">Logout</BaseButton>
 </template>
 
 <script setup lang="ts">
@@ -32,17 +32,17 @@ const userOption = ref([
   {
     path: "/shop/account/user",
     icon: "cil:user",
-    title: "Twoje konto",
+    title: "Your account",
   },
   {
     path: "/shop/account/orders",
     icon: "fluent-mdl2:activate-orders",
-    title: "Zamówienia",
+    title: "Orders",
   },
   {
     path: "/shop/account/returns",
     icon: "tabler:truck-return",
-    title: "Zwroty i Reklamacje",
+    title: "Returns & Complaints",
   },
 ]);
 

@@ -12,45 +12,47 @@
     ></BaseLoadingSpinner>
     <div v-else>
       <header class="userDataHeader">
-        <h3 class="userDataHeader__title">Dane Konta</h3>
+        <h3 class="userDataHeader__title">Account Details</h3>
       </header>
       <article class="userDataWrapper">
         <div class="dataBox">
-          <h4 class="dataBox__title">Nazwa Użytkownika</h4>
+          <h4 class="dataBox__title">User Name</h4>
 
           <div class="dataBox__data">
             <span class="dataBox__data-value">{{ showName }}</span>
-            <BaseButton mode="edit" @click="showModal('userName')">Zmień</BaseButton>
+            <BaseButton mode="edit" @click="showModal('userName')">Change</BaseButton>
           </div>
         </div>
 
         <div class="dataBox">
-          <h4 class="dataBox__title">Adres e-mail</h4>
+          <h4 class="dataBox__title">Address e-mail</h4>
 
           <div class="dataBox__data">
             <span class="dataBox__data-value">{{ showEmail }}</span>
-            <BaseButton mode="edit" @click="showModal('email')">Zmień</BaseButton>
+            <BaseButton mode="edit" @click="showModal('email')">Change</BaseButton>
           </div>
         </div>
 
         <div class="dataBox">
-          <h4 class="dataBox__title">Hasło</h4>
+          <h4 class="dataBox__title">Password</h4>
 
           <div class="dataBox__data">
             <span class="dataBox__data-value userPassword">*********</span>
-            <BaseButton mode="edit" @click="showModal('password')">Zmień</BaseButton>
+            <BaseButton mode="edit" @click="showModal('password')">Change</BaseButton>
           </div>
         </div>
       </article>
       <article class="deleteUserAccount">
-        <h5 class="deleteUserAccount__title">Usuń konto</h5>
+        <h5 class="deleteUserAccount__title">Delete Account</h5>
         <p class="deleteUserAccount__description">
-          W momencie gdy usuniesz konto, utracisz wszystkie zapisane zamówienia jak i
-          dane. Upewnij się, że chcesz usunąć konto - Niestety nie będziemy mogli go
-          przywrócic.
+          The moment you delete your account, you will lose all saved orders as well as
+          data. Make sure you want to delete your account - Unfortunately, we will not be
+          able to restore it.
         </p>
 
-        <BaseButton mode="deleteAccount" @click="deleteAccount">Usuń konto</BaseButton>
+        <BaseButton mode="deleteAccount" @click="deleteAccount"
+          >Delete Account</BaseButton
+        >
       </article>
     </div>
   </section>
@@ -144,40 +146,6 @@ function deleteAccount() {
   @media (min-width: 768px) {
   }
 }
-
-// .userForm {
-//   display: flex;
-//   flex-direction: column;
-//   gap: 1.5rem 0;
-//   margin-top: 1.5rem;
-
-//   input {
-//     width: 100%;
-//     padding: 0.7rem 1rem;
-//     outline: none;
-//     border: 1px solid var(--primary-greyDarker);
-//     border-radius: 7px;
-//   }
-
-//   input::placeholder {
-//     opacity: 0.5;
-//   }
-
-//   input:focus::placeholder {
-//     opacity: 1;
-//   }
-
-//   &__passwordVisibility {
-//     display: flex;
-//     align-items: center;
-//     border: 1px solid var(--primary-greyDarker);
-//     border-radius: 7px;
-
-//     input {
-//       border: 0;
-//     }
-//   }
-// }
 
 .deleteUserAccount {
   margin-top: 10rem;

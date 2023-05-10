@@ -1,16 +1,6 @@
 <template>
   <footer class="footerContainer">
     <div v-for="(info, id) in shopInfos" :key="id">
-      <section class="languageBox" v-if="info.isLanguages">
-        <h4 class="title">Wybierz język</h4>
-
-        <select class="languageBox__languages" name="language" id="language">
-          <option value="eng">English</option>
-          <option value="pl">Polski</option>
-          <option value="de">Deutsch</option>
-        </select>
-      </section>
-
       <header>
         <h4 class="title">{{ info.title }}</h4>
       </header>
@@ -39,58 +29,58 @@ const shopInfos = ref([
 
     options: [
       {
-        name: "O nas",
+        name: "About us",
         path: "/",
       },
       {
-        name: "Reklama",
+        name: "Advertising",
         path: "/",
       },
     ],
   },
 
   {
-    title: "Centrum pomocy",
+    title: "Help center",
     options: [
       {
-        name: "Dla kupującego",
+        name: "For buyers",
         path: "/",
       },
       {
-        name: "Dla sprzedającego",
+        name: "For sellers",
         path: "/",
       },
       {
-        name: "Polityka zwrotu towaru",
+        name: "Return policy",
         path: "/",
       },
       {
-        name: "Polityka plików 'cockies'",
+        name: "Cookies policy",
         path: "/",
       },
       {
-        name: "Ustawienia plików 'cockies'",
+        name: "Cookies settings",
         path: "/",
       },
     ],
   },
   {
-    title: "Społeczność",
+    title: "Community",
     options: [
       {
-        name: "Komunikaty",
+        name: "Announcements",
         path: "/",
       },
       {
-        name: "Centrum odpowiedzi",
+        name: "Answers center",
         path: "/",
       },
       {
-        name: "Fora dyskusyjne",
+        name: "Discussion forums",
         path: "/",
       },
       {
-        name: "Grupy",
+        name: "Groups",
         path: "/",
       },
     ],
@@ -114,14 +104,6 @@ const shopInfos = ref([
     margin-top: 7rem;
   }
 }
-
-.languageBox {
-  &__languages {
-    margin: 1rem 0 2rem 0;
-    padding: 0.5rem 1rem;
-  }
-}
-
 .title {
   font-size: 2rem;
   font-weight: 400;

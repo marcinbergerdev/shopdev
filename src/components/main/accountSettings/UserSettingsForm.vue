@@ -9,53 +9,53 @@
     >
       <template #default>
         <div class="modalTitle">
-          <h2 v-if="props.isTitle === 'userName'">Nazwa użytkownika</h2>
-          <h2 v-else-if="props.isTitle === 'email'">Zmień adres e-mail</h2>
-          <h2 v-else>Zmień hasło</h2>
+          <h2 v-if="props.isTitle === 'userName'">User name</h2>
+          <h2 v-else-if="props.isTitle === 'email'">Change address e-mail</h2>
+          <h2 v-else>Change password</h2>
         </div>
       </template>
 
       <template #content>
         <form @submit.prevent="changeData">
           <div class="userForm" v-if="props.isTitle === 'userName'">
-            <input type="text" placeholder="Imię" v-model="firstName" />
-            <input type="text" placeholder="Nazwisko" v-model="lastName" />
+            <input type="text" placeholder="First name" v-model="firstName" />
+            <input type="text" placeholder="Last name" v-model="lastName" />
           </div>
 
           <div class="userForm" v-else-if="props.isTitle === 'email'">
-            <input type="text" placeholder="Nowy e-mail" v-model="newEmail" />
+            <input type="text" placeholder="New e-mail" v-model="newEmail" />
           </div>
 
           <div class="userForm" v-else>
             <div class="userForm__passwordVisibility">
               <input
                 type="password"
-                placeholder="Nowe hasło"
+                placeholder="New Password"
                 autocomplete="new-password"
                 v-model="newPassword"
               />
               <BaseButton mode="showUserPassword" @click.prevent="showPassword"
-                >Pokaż</BaseButton
+                >Show</BaseButton
               >
             </div>
 
             <div class="userForm__passwordVisibility">
               <input
                 type="password"
-                placeholder="Powtórz nowe hasło"
+                placeholder="Confirm new password"
                 autocomplete="confirm-password"
                 v-model="confirmPassword"
               />
               <BaseButton mode="showUserPassword" @click.prevent="showPassword"
-                >Pokaż</BaseButton
+                >Show</BaseButton
               >
             </div>
             <p v-if="isError" class="userForm__incorrectPassword">
-              Hasło nieprawidłowe lub za mało znaków min 6!
+              Password incorrect or not enough characters min 6!
             </p>
           </div>
 
-          <BaseButton mode="modalFormButton">Zapisz</BaseButton>
+          <BaseButton mode="modalFormButton">Save</BaseButton>
         </form>
       </template>
     </BaseModal>

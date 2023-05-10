@@ -3,7 +3,7 @@
     <AdsImage></AdsImage>
 
     <article class="lastSearchingWrapper">
-      <h2 class="lastSearchingWrapper__title">Ostatnio wyszukiwane</h2>
+      <h2 class="lastSearchingWrapper__title">Recently searched</h2>
 
       <ul class="searchedList">
         <BaseProduct
@@ -40,7 +40,7 @@ const searchedProduct = ref([
     favorite: true,
     title: "Sony PSP",
     description:
-      "Sony PSP z gwarancją + zestaw słuchawkowy i ładowarka tanio, nie używana niesmigana, polecam!",
+      "Sony PSP with warranty + headset and charger cheap, not used un-smudged, recommend!",
     promotion: false,
     productAvailable: false,
     productInaccessible: false,
@@ -54,7 +54,7 @@ const searchedProduct = ref([
     favorite: true,
     title: "Sony PSP",
     description:
-      "Sony PSP z gwarancją + zestaw słuchawkowy i ładowarka tanio, nie używana niesmigana, polecam!",
+      "Sony PSP with warranty + headset and charger cheap, not used un-smudged, recommend!",
     promotion: false,
     productAvailable: false,
     productInaccessible: false,
@@ -68,7 +68,7 @@ const searchedProduct = ref([
     favorite: true,
     title: "Sony PSP",
     description:
-      "Sony PSP z gwarancją + zestaw słuchawkowy i ładowarka tanio, nie używana niesmigana, polecam!",
+      "Sony PSP with warranty + headset and charger cheap, not used un-smudged, recommend!",
     promotion: false,
     productAvailable: false,
     productInaccessible: false,
@@ -82,7 +82,7 @@ const searchedProduct = ref([
     favorite: true,
     title: "Sony PSP",
     description:
-      "Sony PSP z gwarancją + zestaw słuchawkowy i ładowarka tanio, nie używana niesmigana, polecam!",
+      "Sony PSP with warranty + headset and charger cheap, not used un-smudged, recommend!",
     promotion: false,
     productAvailable: false,
     productInaccessible: false,

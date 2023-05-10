@@ -1,7 +1,7 @@
 <template>
   <UserOrdersEmptyList
     mode="emptyOrderListHoverContainer"
-    description="Twój koszyk jest pusty!"
+    description="Your shopping cart is empty!"
     v-if="orders.isEmpty"
     :isMobileButton="false"
   ></UserOrdersEmptyList>
@@ -9,7 +9,8 @@
   <div class="orderContainer" v-else>
     <CartOrderHeader
       mode="orderHeaderHover"
-      title="Twoje zamówienie"
+      title="Your order"
+      :product-amount="Object.keys(orders.userOrders).length"
       edit-button-style="productsEditHover"
       :is-edit-button="true"
       :is-delete-button="false"
@@ -59,7 +60,7 @@ const orders = useUserOrders();
 const { closeMenu } = inject("closeMenu") as any;
 
 const editCloseMenu = (e: any) => {
-  if (e.target.text === "Edytuj") {
+  if (e.target.text === "Edit") {
     closeMenu();
     document.body.classList.remove("scrollHidden");
   }

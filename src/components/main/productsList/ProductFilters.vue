@@ -3,25 +3,25 @@
     <div class="filterBox">
       <BaseButton mode="filters" @mousemove="showSortingHandler">
         <Icon icon="icons8:alphabetical-sorting" />
-        <span>Sortuj</span>
+        <span>Sorting</span>
       </BaseButton>
 
       <div class="filtersOptionBox" v-if="isSorting">
         <BaseButton
           mode="filterOption"
           @click="emit('productSortingHandler', 'alphabeticallyAZ')"
-          >od A do Z</BaseButton
+          >from A to Z</BaseButton
         >
         <BaseButton
           mode="filterOption"
           @click="emit('productSortingHandler', 'alphabeticallyZA')"
-          >od Z do A</BaseButton
+          >from Z to A</BaseButton
         >
         <BaseButton mode="filterOption" @click="emit('productSortingHandler', 'lowest')"
-          >od najniższej</BaseButton
+          >from the lowest</BaseButton
         >
         <BaseButton mode="filterOption" @click="emit('productSortingHandler', 'highest')"
-          >od najwyzszej</BaseButton
+          >from the highest</BaseButton
         >
       </div>
     </div>

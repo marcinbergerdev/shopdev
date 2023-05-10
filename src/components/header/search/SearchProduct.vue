@@ -2,7 +2,7 @@
   <form>
     <input
       type="text"
-      placeholder="Wyszukaj..."
+      placeholder="Search..."
       v-model="productName"
       @input="openSearchingList"
     />
@@ -29,7 +29,7 @@
 
     <li v-if="isEmpty" class="elementEmpty">
       <div>
-        <p>Brak wyników wyszukiwania</p>
+        <p>No search results</p>
       </div>
     </li>
   </ul>

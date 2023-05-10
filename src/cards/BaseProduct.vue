@@ -1,6 +1,6 @@
 <template>
   <li class="productContainer" :class="view" @click="showProductDetails">
-    <span class="productContainer__promotion" v-if="promotion">Promocja</span>
+    <span class="productContainer__promotion" v-if="promotion">Promotion</span>
 
     <span class="productImg">
       <img loading="lazy" class="productImg__img" :src="img" alt="product-img" />
@@ -27,10 +27,10 @@
 
       <section class="productStatus">
         <span v-if="productAvailable" class="productStatus__available"
-          >Produkt dostępny</span
+          >Product available</span
         >
         <span v-if="productInaccessible" class="productStatus__inaccessible"
-          >Brak produktu</span
+          >Product inaccessible</span
         >
 
         <BaseButton
@@ -62,19 +62,19 @@
           <h2>{{ title }}</h2>
 
           <div class="priceBox">
-            <span class="priceBox__price">{{ price }}zł</span>
+            <span class="priceBox__price">${{ price }}</span>
 
             <select class="priceBox__amount">
-              <option value="1">1 szt.</option>
-              <option value="2">2 szt.</option>
-              <option value="3">3 szt.</option>
-              <option value="4">4 szt.</option>
-              <option value="5">5 szt.</option>
-              <option value="6">6 szt.</option>
-              <option value="7">7 szt.</option>
-              <option value="8">8 szt.</option>
-              <option value="9">9 szt.</option>
-              <option value="10">10 szt.</option>
+              <option value="1">1 pcs.</option>
+              <option value="2">2 pcs.</option>
+              <option value="3">3 pcs.</option>
+              <option value="4">4 pcs.</option>
+              <option value="5">5 pcs.</option>
+              <option value="6">6 pcs.</option>
+              <option value="7">7 pcs.</option>
+              <option value="8">8 pcs.</option>
+              <option value="9">9 pcs.</option>
+              <option value="10">10 pcs.</option>
             </select>
 
             <BaseButton
@@ -90,17 +90,17 @@
               :class="cartAdded"
               @click="addToCartHandler"
             >
-              <Icon class="cartIcon" icon="carbon:shopping-cart-plus" /> Dodaj do koszyka
+              <Icon class="cartIcon" icon="carbon:shopping-cart-plus" /> Add to cart
             </BaseButton>
           </div>
 
           <div class="deliverStatus">
-            <p class="deliverStatus__descriptionTitle">Dostawa</p>
-            <p class="deliverStatus__description">Czas dostawy: 3-4 dni robocze</p>
+            <p class="deliverStatus__descriptionTitle">Delivery</p>
+            <p class="deliverStatus__description">Delivery time: 3-4 working days</p>
           </div>
 
           <div class="shippingCostStatus">
-            <p class="shippingCostStatus__description">Koszt wysyłki: 4,50zł</p>
+            <p class="shippingCostStatus__description">Postage cost: $4.50</p>
           </div>
         </div>
 
@@ -119,8 +119,8 @@
         </BaseButton>
 
         <BaseButton mode="mobileAddToCart" @click="addToCartHandler">
-          <Icon class="mobileAddToCart__icon" icon="carbon:shopping-cart-plus" /> Dodaj do
-          koszyka
+          <Icon class="mobileAddToCart__icon" icon="carbon:shopping-cart-plus" /> Add to
+          cart
         </BaseButton>
       </template>
     </BaseModal>

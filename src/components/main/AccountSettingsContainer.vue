@@ -2,17 +2,17 @@
   <ul class="settingsList">
     <li class="settingList__option">
       <BaseButton link to="/shop/account/user" mode="settingOption"
-        >Ustawienie konta</BaseButton
+        >Account setup</BaseButton
       >
     </li>
     <li class="settingList__option">
       <BaseButton link to="/shop/account/orders" mode="settingOption"
-        >Zamówienia</BaseButton
+        >Orders</BaseButton
       >
     </li>
     <li class="settingList__option">
       <BaseButton link to="/shop/account/returns" mode="settingOption"
-        >Zwroty i reklamacje</BaseButton
+        >Returns & Complaints</BaseButton
       >
     </li>
   </ul>
@@ -48,9 +48,6 @@
   margin-top: 4rem;
   padding: 2rem 0;
   box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.7);
-
-  &__option {
-  }
 
   @media (min-width: 768px) {
     flex-direction: row;

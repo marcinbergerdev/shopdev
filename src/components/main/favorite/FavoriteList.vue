@@ -1,8 +1,8 @@
 <template>
   <section class="favoriteContainer">
     <CartOrderHeader
-      mode="orderHeaderDesctop"
-      title="Ulubione"
+      mode="orderHeaderDesktop"
+      title="Favorite"
       :is-edit-button="false"
       :is-delete-button="true"
       :is-amount="false"
@@ -10,15 +10,15 @@
     ></CartOrderHeader>
 
     <UserOrdersEmptyList
-      mode="emptyOrderListDesctopContainer"
-      description="Twój lista ulubionych jest pusta!"
+      mode="emptyOrderListDesktopContainer"
+      description="Your list of favorites is empty!"
       v-if="favorites.isEmpty"
     ></UserOrdersEmptyList>
 
     <ul class="favoriteList">
       <BaseOrder
-        display="orderItemDesctop"
-        mode="orderProductDesctop"
+        display="orderItemDesktop"
+        mode="orderProductDesktop"
         v-for="(favorite, id) in favorites.userFavorite"
         :key="id"
         :product-id="id"
@@ -45,17 +45,17 @@
       :isInteraction="true"
     >
       <template #default>
-        <h2 class="modalHeaderTitle">Wyczyścić ulubione?</h2>
+        <h2 class="modalHeaderTitle">Clean up favorites?</h2>
       </template>
 
       <template #content>
         <p class="modalContentDescription">
-          Usuwasz wszystkie produkty z listy ulubionych, nie można tego cofnąć!
+          You remove all the products from your favorites list, this cannot be undone!
         </p>
       </template>
 
       <template #interactive>
-        <BaseButton mode="clear" @click="closeModal">Anuluj</BaseButton>
+        <BaseButton mode="clear" @click="closeModal">Cancel</BaseButton>
         <BaseButton mode="border" @click="deleteAllFavoriteProductHandler"
           >Continue</BaseButton
         >
@@ -126,5 +126,9 @@ onMounted(async () => {
   justify-content: flex-end;
   border: 1px solid var(--secondary-lightRed);
   border-radius: 5px;
+}
+
+.modalContentDescription {
+  font-size: 1.2rem;
 }
 </style>

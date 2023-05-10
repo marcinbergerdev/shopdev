@@ -1,11 +1,11 @@
 <template>
   <article :class="mode">
     <div :class="content">
-      <h3 class="title">Do zapłaty:</h3>
-      <span class="price">239,40 zł</span>
+      <h3 class="title">To pay:</h3>
+      <span class="price">$239,40</span>
     </div>
 
-    <BaseButton mode="payButtonMobileMenu">Zapłać</BaseButton>
+    <BaseButton mode="payButtonMobileMenu">Pay</BaseButton>
   </article>
 </template>
 
@@ -39,7 +39,7 @@ defineProps<{
   }
 }
 
-.orderAmountDesctop {
+.orderAmountDesktop {
   display: flex;
   justify-content: space-between;
   flex-direction: column;
@@ -57,7 +57,7 @@ defineProps<{
   }
 }
 
-.orderAmountContainerDesctop {
+.orderAmountContainerDesktop {
   display: flex;
   justify-content: space-between;
   align-items: center;

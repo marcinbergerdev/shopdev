@@ -4,7 +4,7 @@
     <p class="description">{{ description }}</p>
 
     <BaseButton link to="/shop" mode="filledLink" @click="scrollPage"
-      >Przjedz do zakupów</BaseButton
+      >Drive to shopping</BaseButton
     >
   </section>
 </template>
@@ -23,7 +23,7 @@ function scrollPage() {
 
 <style scoped lang="scss">
 .emptyOrderListHoverContainer,
-.emptyOrderListDesctopContainer {
+.emptyOrderListDesktopContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -62,7 +62,7 @@ function scrollPage() {
   }
 }
 
-.emptyOrderListDesctopContainer {
+.emptyOrderListDesktopContainer {
   gap: 2rem;
   margin: 8rem 0;
   padding-top: 10rem;

@@ -1,24 +1,25 @@
 <template>
   <UserOrdersEmptyList
-    mode="emptyOrderListDesctopContainer"
-    description="Twój koszyk jest pusty!"
+    mode="emptyOrderListDesktopContainer"
+    description="Your shopping cart is empty!"
     v-if="orders.isEmpty"
   ></UserOrdersEmptyList>
 
-  <section class="userOrderDesctopContainer" v-else>
+  <section class="userOrderDesktopContainer" v-else>
     <CartOrderHeader
-      mode="orderHeaderDesctop"
-      title="Twoje zamówienie"
+      mode="orderHeaderDesktop"
+      title="Your order"
+      :product-amount="Object.keys(orders.userOrders).length"
       :is-edit-button="false"
       :is-delete-button="true"
       :is-amount="true"
       @show="showModal"
     ></CartOrderHeader>
 
-    <ul class="userOrderListDesctop">
+    <ul class="userOrderListDesktop">
       <BaseOrder
-        display="orderItemDesctop"
-        mode="orderProductDesctop"
+        display="orderItemDesktop"
+        mode="orderProductDesktop"
         v-for="(order, id) in orders.userOrders"
         :key="id"
         :productId="id"
@@ -32,22 +33,22 @@
         :price="order.price"
         :delete-button="order.deleteButton"
         :is-favorite="true"
-             :is-cart="false"
+        :is-cart="false"
         category-type="userCart"
       ></BaseOrder>
     </ul>
 
     <CartOrderPrice
-      mode="orderAmountDesctop"
-      content="orderAmountContainerDesctop"
+      mode="orderAmountDesktop"
+      content="orderAmountContainerDesktop"
     ></CartOrderPrice>
 
     <BaseButton
       link
       to="/shop"
-      mode="filledLink onlyDesctop keepBuyingButton"
+      mode="filledLink onlyDesktop keepBuyingButton"
       @click="scrollPage"
-      >Przjedz do zakupów</BaseButton
+      >Drive to shopping</BaseButton
     >
 
     <Teleport to="body">
@@ -58,17 +59,17 @@
         :isInteraction="true"
       >
         <template #default>
-          <h2 class="modalHeaderTitle">Wyczyścić koszyk?</h2>
+          <h2 class="modalHeaderTitle">Clean out the basket?</h2>
         </template>
 
         <template #content>
           <p class="modalContentDescription">
-            Usuwasz wszystkie produkty z koszyka, nie można tego cofnąć!
+            You remove all products from the cart, this cannot be undone!
           </p>
         </template>
 
         <template #interactive>
-          <BaseButton mode="clear" @click="closeModal">Anuluj</BaseButton>
+          <BaseButton mode="clear" @click="closeModal">Cancel</BaseButton>
           <BaseButton mode="border" @click="deleteAllOrdersProductHandler"
             >Continue</BaseButton
           >
@@ -120,7 +121,7 @@ onMounted(async () => {
 </script>
 
 <style scoped lang="scss">
-.userOrderDesctopContainer {
+.userOrderDesktopContainer {
   display: flex;
   flex-direction: column;
   margin-top: 7rem;
@@ -142,10 +143,10 @@ onMounted(async () => {
   }
 }
 
-.orderHeaderDesctop {
+.orderHeaderDesktop {
   grid-area: header;
 }
-.orderAmountDesctop {
+.orderAmountDesktop {
   grid-area: amount;
 }
 
@@ -161,7 +162,7 @@ onMounted(async () => {
   }
 }
 
-.userOrderListDesctop {
+.userOrderListDesktop {
   grid-area: list;
   display: flex;
   flex-direction: column;

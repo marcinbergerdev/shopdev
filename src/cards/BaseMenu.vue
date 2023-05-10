@@ -41,7 +41,7 @@ const emit = defineEmits<{
 }>();
 
 const dropMenuStyle = computed<string>(() => {
-  return props.menuStyle ? "dropMenuMobile" : "categoriesDesctop";
+  return props.menuStyle ? "dropMenuMobile" : "categoriesDesktop";
 });
 
 const size = computed<string>(() => {
@@ -133,7 +133,7 @@ function closeMenu() {
   }
 }
 
-.categoriesDesctop {
+.categoriesDesktop {
   @media (min-width: 768px) {
     width: 28rem;
     border: 1px solid var(--primary-greyDark);
@@ -162,7 +162,7 @@ function closeMenu() {
 
 .account {
   @media (min-width: 768px) {
-    min-width: 22rem;
+    min-width: 23rem;
   }
 }
 

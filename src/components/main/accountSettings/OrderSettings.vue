@@ -1,7 +1,7 @@
 <template>
   <section class="orderContainer">
     <p class="blankOrderText">
-      Aktualnie nie posiadasz zamówień, jeżeliu złożysz zamówienie pojawi sie ono tutaj.
+      Currently you do not have orders, if you place an order it will appear here.
     </p>
   </section>
 </template>
